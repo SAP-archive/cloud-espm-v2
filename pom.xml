@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sap.refapps</groupId>
+	<artifactId>espm</artifactId>
+	<version>2.0.0</version>
+	<packaging>pom</packaging>
+	<description>ESPM application showcases how to build applications on SAP HANA Cloud Platform consuming various platform services</description>
+	
+	<organization>
+        <name>SAP AG</name>
+        <url>http://www.sap.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>SAP HANA Cloud</name>
+            <email>netweaver-cloud@sap.com</email>
+            <url>http://hana.ondemand.com</url>
+            <organization>SAP AG</organization>
+            <organizationUrl>http://www.sap.com/</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <url>https://github.com/SAP/cloud-espm-v2</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Properties that hold the local server information required for local 
+			integration testing -->
+		<local.server.root>${project.build.directory}/server</local.server.root>
+		<local.server.host>localhost</local.server.host>
+		<local.server.proxy.settings>--httpProxyHost proxy --httpProxyPort 8080 --httpsProxyHost proxy --httpsProxyPort 8080</local.server.proxy.settings>
+		<browser.proxy.settings>-Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080</browser.proxy.settings>
+		<sap.cloud.sdk.version>2.87.10</sap.cloud.sdk.version>
+		<sap.cloud.sdk.path>${project.build.directory}/install</sap.cloud.sdk.path>
+		<olingo.version>2.0.6</olingo.version>		
+
+		<!-- Property that holds the source path to the backend destinations -->
+		<destinations.path>${basedir}/../destinations</destinations.path>
+		<m2e.jaxrs.activation>false</m2e.jaxrs.activation>
+	</properties>
+
+	<modules>
+		<module>espm-cloud-jpa</module>
+		<module>espm-cloud-web</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.9.1.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.3</version> <!-- prevent Maven warning -->
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>[2.4,)</versionRange>
+										<goals>
+											<goal>copy-dependencies</goal>
+											<goal>unpack-dependencies</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.sap.cloud
+										</groupId>
+										<artifactId>
+											neo-javaee6-wp-maven-plugin
+										</artifactId>
+										<versionRange>[2.87,)</versionRange>									
+										<goals>
+											<goal>install-sdk</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											build-helper-maven-plugin
+										</artifactId>
+										<versionRange>[1.7,)</versionRange>									
+										<goals>
+											<goal>reserve-network-port</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>								
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<!-- Choose correct command line scripts for interaction with SAP HANA 
+			Cloud based on detected operating system -->
+		<profile>
+			<id>unix-scripts</id>
+			<activation>
+				<os>
+					<family>Unix</family>
+				</os>
+			</activation>
+			<properties>
+				<sap.cloud.console.shell>sh</sap.cloud.console.shell>
+				<sap.cloud.console.script>neo.sh</sap.cloud.console.script>
+			</properties>
+		</profile>
+		<profile>
+			<id>windows-scripts</id>
+			<activation>
+				<os>
+					<family>Windows</family>
+				</os>
+			</activation>
+			<properties>
+				<sap.cloud.console.shell>cmd</sap.cloud.console.shell>
+				<sap.cloud.console.script>/c neo.bat</sap.cloud.console.script>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

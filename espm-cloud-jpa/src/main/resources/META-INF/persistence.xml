@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="com.sap.espm.model" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>com.sap.espm.model.ProductCategory</class>
+		<class>com.sap.espm.model.Product</class>
+		<class>com.sap.espm.model.ProductText</class>
+		<class>com.sap.espm.model.Customer</class>
+		<class>com.sap.espm.model.SalesOrderHeader</class>
+		<class>com.sap.espm.model.SalesOrderItem</class>
+		<class>com.sap.espm.model.SalesOrderItemId</class>
+		<class>com.sap.espm.model.CustomerReview</class>
+		<class>com.sap.espm.model.Supplier</class>
+		<class>com.sap.espm.model.Stock</class>
+		
+		<properties>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+		</properties>
+	</persistence-unit>
+</persistence>

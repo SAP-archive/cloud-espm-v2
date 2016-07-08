@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>espm-cloud-web</display-name>
+
+	<!-- OData servlets --> 
+	<servlet>
+		<servlet-name>ODataServlet</servlet-name>
+		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>org.apache.olingo.odata2.core.rest.app.ODataApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.apache.olingo.odata2.service.factory</param-name>
+			<param-value>com.sap.espm.model.web.EspmServiceFactory</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ODataServlet</servlet-name>
+		<url-pattern>/espm.svc/*</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>ODataServletFilter</filter-name>
+		<filter-class>com.sap.espm.model.web.EspmServiceFactoryFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ODataServletFilter</filter-name>
+		<url-pattern>/espm.svc/*</url-pattern>
+	</filter-mapping>	
+	<servlet>
+		<servlet-name>ODataSecureServlet</servlet-name>
+		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>org.apache.olingo.odata2.core.rest.app.ODataApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.apache.olingo.odata2.service.factory</param-name>
+			<param-value>com.sap.espm.model.web.EspmServiceFactory</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ODataSecureServlet</servlet-name>
+		<url-pattern>/espm.svc/secure/*</url-pattern>
+	</servlet-mapping>		
+	<resource-ref>
+		<res-ref-name>jdbc/DefaultDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+	</resource-ref>
+	<servlet>
+		<description></description>
+		<display-name>StartupServlet</display-name>
+		<servlet-name>StartupServlet</servlet-name>
+		<servlet-class>com.sap.espm.model.web.StartupServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<resource-ref>
+		<res-ref-name>connectivity/DestinationFactory</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.DestinationFactory</res-type>
+	</resource-ref>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Area</web-resource-name>
+			<url-pattern>/espm.svc/secure/*</url-pattern>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>Retailer</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<!-- for ui5 -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Area</web-resource-name>
+			<url-pattern>/retailer/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>Retailer</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-role>
+		<role-name>Retailer</role-name>
+	</security-role>
+	
+</web-app>

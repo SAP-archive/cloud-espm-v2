@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<QuickView id="companyQuickView">
+		<QuickViewPage description="Computer Hardwares Company" header="{i18n>detail.supplier}" icon="sap-icon://account" title="{EspmModel>SupplierName}">
+			<QuickViewGroup heading="{i18n>detail.contactDetails}">
+				<QuickViewGroupElement label="{i18n>detail.phone}" type="phone" value="{EspmModel>PhoneNumber}"/>
+				<QuickViewGroupElement label="{i18n>detail.address}" value="{EspmModel>HouseNumber},{EspmModel>Street},{EspmModel>City},{EspmModel>Country},{EspmModel>PostalCode}"/>
+			</QuickViewGroup>
+			<QuickViewGroup heading="{i18n>detail.mainContact}">
+				<QuickViewGroupElement label="{i18n>detail.contactName}" value="{EspmModel>SupplierName}"/>
+				<QuickViewGroupElement label="{i18n>detail.email}" type="mobile" value="{EspmModel>EmailAddress}"/>
+			</QuickViewGroup>
+		</QuickViewPage>
+	</QuickView>
+</core:FragmentDefinition>

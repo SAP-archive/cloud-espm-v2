@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<customerReviewsData>
+  <customerReview>
+    <comment>This product is really great. I like especially the design, speed and performance</comment>
+    <creationdate>20150707</creationdate>
+    <firstname>John</firstname>
+    <lastname>Smith</lastname>
+    <rating>5</rating>
+    <product_id>HT-1000</product_id>    
+  </customerReview>
+  <customerReview>
+    <comment>The Product is really good</comment>
+    <creationdate>20150708</creationdate>
+    <firstname>Viola</firstname>
+    <lastname>Gains</lastname>
+    <rating>4</rating>
+    <product_id>HT-1000</product_id>    
+  </customerReview>
+  <customerReview>
+    <comment>Good product for the price</comment>
+    <creationdate>20150709</creationdate>
+    <firstname>Paul</firstname>
+    <lastname>Burke</lastname>
+    <rating>3</rating>
+    <product_id>HT-1000</product_id>    
+  </customerReview>
+  <customerReview>
+    <comment>A must buy. Great Performance</comment>
+    <creationdate>20150711</creationdate>
+    <firstname>Sally</firstname>
+    <lastname>Spring</lastname>
+    <rating>5</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview> 
+  <customerReview>
+    <comment>A decent notebook for the price. But the screen is really a let off!</comment>
+    <creationdate>20150807</creationdate>
+    <firstname>Sue</firstname>
+    <lastname>Bay</lastname>
+    <rating>2</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>
+  <customerReview>
+    <comment>An average notebook, not for power users</comment>
+    <creationdate>20150909</creationdate>
+    <firstname>James</firstname>
+    <lastname>Field</lastname>
+    <rating>2</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>
+  <customerReview>
+    <comment>The design of the notebook is very basic. Performance is just ok</comment>
+    <creationdate>20150912</creationdate>
+    <firstname>Dagmar</firstname>
+    <lastname>Schulze</lastname>
+    <rating>2</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>
+  <customerReview>
+    <comment>The notebook has a brilliant screen. The performance is also great. Good Buy</comment>
+    <creationdate>20150913</creationdate>
+    <firstname>Viola</firstname>
+    <lastname>Gains</lastname>
+    <rating>3</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>
+  <customerReview>
+    <comment>A good latptop that does not get heated up quickly. a beautiful screen as well</comment>
+    <creationdate>20150913</creationdate>
+    <firstname>Paul</firstname>
+    <lastname>Burke</lastname>
+    <rating>5</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>
+  <customerReview>
+    <comment>bought this laptop for gifting. its a good buy</comment>
+    <creationdate>20150915</creationdate>
+    <firstname>Sally</firstname>
+    <lastname>Burke</lastname>
+    <rating>3</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>  
+  <customerReview>
+    <comment>A great performing laptop at a decent price</comment>
+    <creationdate>20150916</creationdate>
+    <firstname>Sue</firstname>
+    <lastname>Bay</lastname>
+    <rating>3</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>      
+  <customerReview>
+    <comment>awsome product. Great price.</comment>
+    <creationdate>20150917</creationdate>
+    <firstname>Karl</firstname>
+    <lastname>Muller</lastname>
+    <rating>5</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>             
+  <customerReview>
+    <comment>The laptop is just a poor one. Dont buy this one!!!</comment>
+    <creationdate>20150914</creationdate>
+    <firstname>Sarah</firstname>
+    <lastname>Gains</lastname>
+    <rating>1</rating>
+    <product_id>HT-1000</product_id>
+  </customerReview>
+  <customerReview>
+    <comment>A great PDA!!!</comment>
+    <creationdate>19770917</creationdate>
+    <firstname>Sally</firstname>
+    <lastname>Spring</lastname>
+    <rating>3</rating>
+    <product_id>HT-1007</product_id>
+  </customerReview>     
+    <customerReview>
+    <comment>A great PDA!!! Must buy this one if you need a PDA</comment>
+    <creationdate>19770920</creationdate>
+    <firstname>Sue</firstname>
+    <lastname>Bay</lastname>
+    <rating>3</rating>
+    <product_id>HT-1020</product_id>
+  </customerReview> 
+    <customerReview>
+    <comment>An Average 17 Inch Monitor. Does the job for day to day watching</comment>
+    <creationdate>19770920</creationdate>
+    <firstname>Sue</firstname>
+    <lastname>Bay</lastname>
+    <rating>3</rating>
+    <product_id>HT-1030</product_id>
+  </customerReview>   
+    <customerReview>
+    <comment>A good printer to buy at a reasonable price</comment>
+    <creationdate>19770920</creationdate>
+    <firstname>GmbH</firstname>
+    <lastname>James</lastname>
+    <rating>4</rating>
+    <product_id>HT-1040</product_id>
+  </customerReview> 
+    <customerReview>
+    <comment>An Average mouse</comment>
+    <creationdate>19770920</creationdate>
+    <firstname>Karl</firstname>
+    <lastname>Muller</lastname>
+    <rating>3</rating>
+    <product_id>HT-1061</product_id>
+  </customerReview> 
+ </customerReviewsData>  

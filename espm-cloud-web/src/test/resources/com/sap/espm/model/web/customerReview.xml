@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entry xmlns="http://www.w3.org/2005/Atom"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+	xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+	xml:base="http://localhost:8080/espm-model-extension-web/jpa.svc/">
+	<title type="text">CustomerReviews</title>
+	<updated>2013-03-25T17:44:29.264+05:30</updated>
+	<author>
+		<name />
+	</author>
+	<category term="com.sap.espm.model.extension.CustomerReview"
+		scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+	<content type="application/xml">
+		<m:properties>
+			<d:Comment>This product is really great. I like especially the
+				design, speed and performance
+			</d:Comment>
+			<d:Rating>5</d:Rating>
+			<d:ProductId>HT-2001</d:ProductId>
+			<d:CreationDate>2013-03-25T13:17:02.272</d:CreationDate>
+			<d:FirstName>John</d:FirstName>
+			<d:LastName>Smith</d:LastName>
+		</m:properties>
+	</content>
+</entry>
