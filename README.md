@@ -11,7 +11,7 @@ The business scenario is that of an eCommerce site that sells electronic product
 ![Usecase Diagram](/docs/images/ESPMUseCase.png?raw=true)
 
 # Get the Source Code
-Clone the Git [repository](https://github.wdf.sap.corp/refapps/espmv2.0.git) or download the latest release.
+Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download the latest release.
 
 # 1. Quick start guide
 ### Setting up the developer environment
@@ -73,7 +73,7 @@ Clone the Git [repository](https://github.wdf.sap.corp/refapps/espmv2.0.git) or 
 
 
 3. Import Maven project
-   - Open https://github.wdf.sap.corp/refapps/espmv2.0 with your web browser
+   - Open https://github.com/SAP/cloud-espm-v2 with your web browser
    - Click on the Copy to clipboard so that the Git repository URL of the opened cloud-basecamp GitHub repository is copied to your clipboard.
 
         ![Repo URL](/docs/images/repoclone.png?raw=true)
