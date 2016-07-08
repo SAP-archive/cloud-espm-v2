@@ -34,38 +34,12 @@ public class CmisRead extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
       super.init(config);
      
-	try {
-		ctx = new InitialContext();
-		String lookupName = "java:comp/env/" + "EcmService";
-		ecmSvc = (EcmService) ctx.lookup(lookupName);
-		repositoryUniqueName = ReadProperties.getInstance().getValue("uniqueName");
-		repositorySecretKey=ReadProperties.getInstance().getValue("secretKey");
-		openCmisSession= ecmSvc.connect(repositoryUniqueName, repositorySecretKey);
-		
-	} catch (NamingException e1) {
-		e1.printStackTrace();
-	}
+  	//TODO connect to the add logic to connect to the CMIS repository - code snippet 1 
 	 }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final String objectId =  request.getParameter("objectId");
-		try {
-			Document doc = (Document) openCmisSession.getObject(objectId);
-			ContentStream content = doc.getContentStream();
-			String type = content.getMimeType();
-			String name =  content.getFileName();
-			int length = (int) content.getLength();
-			InputStream stream = content.getStream();
-			response.setContentType(type);
-			response.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + name);
-			response.setContentLength(length);
-			ioCopy(stream, response.getOutputStream());
-		} catch(Exception exception){
-			exception.printStackTrace();
-		}
-		catch(Throwable throwable){
-			throwable.printStackTrace();
-		}
+	//TODO Logic for reading the contents from the CMIS Repository - code snippet 2
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -63,10 +63,7 @@
 		<res-ref-name>connectivity/DestinationFactory</res-ref-name>
 		<res-type>com.sap.core.connectivity.api.DestinationFactory</res-type>
 	</resource-ref>
-	<resource-ref>
-		<res-ref-name>EcmService</res-ref-name>
-		<res-type>com.sap.ecm.api.EcmService</res-type>
-	</resource-ref>
+	<!-- TODO Add the ECMSource -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
