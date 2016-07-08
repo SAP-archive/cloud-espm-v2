@@ -263,9 +263,6 @@ public class TestFactory {
 			em.getTransaction().begin();
 			soHeader = createSalesOrderHeader(salesOrderId);
 			soItem = new SalesOrderItem();
-			/*
-			 * soItem.setSalesOrderId(salesOrderId); soItem.setItemNumber(1);
-			 */
 			soItem.setId(id);
 			soItem.setCurrencyCode("INR");
 			soItem.setGrossAmount(BigDecimal.valueOf(13224));
@@ -430,6 +427,7 @@ public class TestFactory {
 	}
 
 
+
 	/**
 	 * Helper method to create Stock
 	 * 
@@ -489,6 +487,7 @@ public class TestFactory {
 		}
 		return status;
 	}
+
 
 	/**
 	 * Create SalesOrderHeader entity

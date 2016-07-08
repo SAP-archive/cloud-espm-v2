@@ -68,7 +68,7 @@ sap.ui.define([
 		},
 		onAfterRendering: function() 
 		{
-			 
+			
 		},
 		onBeforeRendering: function() 
 		{
@@ -97,6 +97,84 @@ sap.ui.define([
 			oRouter.navTo("Shoppingcart");
 			
 		},
+		onSettingsButtonPressed: function(){
+			
+			var apiEndPointValue,apiSecretKeyValue;
+			var that = this;
+			
+			var dialog = new sap.m.Dialog({
+				id:"settingsDialogId",
+				title: 'API management',
+				type: 'Message',
+				content: [
+					new sap.ui.layout.form.SimpleForm({
+						content:[
+						        new sap.m.Label({text:"API End point"}),
+								new sap.m.Input({
+									id:"endPointInputId",
+									value:"",
+									liveChange:function(oEvent){
+										apiEndPointValue = oEvent.getSource().getValue();
+									}
+								}),
+								new sap.m.Label({text:"API secret key"}),
+								new sap.m.Input({
+									id:"secretKeyInputId",
+									value:"",
+									liveChange:function(oEvent){
+										apiSecretKeyValue = oEvent.getSource().getValue();
+									}
+										
+								}),
+						         
+						      ]
+					})
+				],
+				beginButton: new sap.m.Button({
+					text: 'Submit',
+					press: function () {
+						
+						if(apiEndPointValue && apiSecretKeyValue){
+							var lastChar=apiEndPointValue.charAt(apiEndPointValue.length-1);
+							if(lastChar === "/"){
+								
+								apiEndPointValue = apiEndPointValue.substring(0, apiEndPointValue.length-1);
+
+							}
+							
+							var oModel = that.getView().getModel("EspmModel");
+							oModel.sServiceUrl = apiEndPointValue;
+							window.secretKey = apiSecretKeyValue;
+							oModel.setHeaders({
+								
+								"APIKey" : apiSecretKeyValue,
+								"Accept" : "application/json",
+								"Content-Type": "application/json"
+							});
+							oModel.refresh();
+							dialog.close();
+						}
+						else{
+							sap.m.MessageToast.show("Fill the missing fields");
+						}
+						
+						
+					}
+				}),
+				endButton: new sap.m.Button({
+					text: 'Cancel',
+					press: function () {
+						dialog.close();
+					}
+				}),
+				afterClose: function() {
+					dialog.destroy();
+				}
+			});
+ 
+			dialog.open();
+		
+		},
 		/// Table Operations
 		onSearchPressed : function(event){
  
@@ -114,7 +192,7 @@ sap.ui.define([
 			
 			});
 			
-			var filter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString);
+			var filter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString);  
 			newFilters.push(filter);
 			if(this._oCombobox.getValue().length === 0){
 				binding.filter(filter);
@@ -126,6 +204,9 @@ sap.ui.define([
 				                                           new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString)
 				                                        ],true)]);
 			}
+			
+			
+			//
 
 		},
 		_createDialog: function(sDialog) {
@@ -179,7 +260,6 @@ sap.ui.define([
 				var bDescending = mParams.groupDescending;
 				var vGroup = this.mGroupFunctions[sPath];
 				sorters = new sap.ui.model.Sorter(sPath, bDescending, vGroup);
-				
 			}
 			oBinding.sort(sorters);
 			
@@ -212,11 +292,6 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("SalesOrder");
 		}
-		
-		
-		
-
-		
 
 	});
 

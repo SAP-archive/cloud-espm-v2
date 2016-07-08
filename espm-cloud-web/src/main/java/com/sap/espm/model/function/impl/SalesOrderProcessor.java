@@ -210,7 +210,7 @@ public class SalesOrderProcessor {
 			}
 		}
 	}
-		
+	
 	/**
 	 * Function Import implementation for getting all the Sales Order invoices by email Address
 	 * under a Sales Order Header
@@ -220,6 +220,7 @@ public class SalesOrderProcessor {
 	 * @return SalesOrderHeader entity.
 	 * @throws ODataException
 	 */
+
 	@SuppressWarnings("unchecked")
 	@EdmFunctionImport(name = "GetSalesOrderInvoiceByEmail", entitySet = "SalesOrderHeaders", returnType = @ReturnType(type = Type.ENTITY, isCollection = true))
 	public List<SalesOrderHeader> getSalesOrderInvoiceByEmail(
@@ -230,7 +231,8 @@ public class SalesOrderProcessor {
 		List<SalesOrderHeader> orderList = new ArrayList<>();
 		List<SalesOrderHeader> salesOrderHeaderList = new ArrayList<>();
 		List<SalesOrderItem> itemList = new ArrayList<>();
-		try {		
+
+		try {
 			Query querySOItems; ;
 			Query queryCustomer = em.createQuery("SELECT c FROM Customer c where c.emailAddress= :emailAddress");
 			queryCustomer.setParameter("emailAddress", emailAddress);

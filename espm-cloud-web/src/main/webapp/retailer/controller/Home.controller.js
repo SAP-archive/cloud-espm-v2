@@ -7,6 +7,10 @@ sap.ui.define([
 	return Controller.extend("com.sap.espm.retailer.controller.Home", {
 		
 		onInit : function (evt) {
+			// set mock model
+			
+			var oModel = new JSONModel("/espm-cloud-web/retailer/model/tileData.json");
+			this.getView().setModel(oModel);
 		},
 		
 		approveTilePressed: function(event){

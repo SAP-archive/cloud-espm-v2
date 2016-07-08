@@ -83,8 +83,8 @@
 							<footer> 
 								<Bar> 
 									<contentRight> 
-										<Button id="approveButtonId" text="{i18n>sales.ApproveButtonText}" type="Accept" icon="sap-icon://accept" press="handleApprove" />
-										<Button text="{i18n>sales.RejectButtonText}" type="Reject" icon="sap-icon://reject" press="handleReject" /> 
+										<Button id="approveButtonId" text="{i18n>sales.approveButtonText}" type="Accept" icon="sap-icon://accept" press="handleApprove" />
+										<Button text="{i18n>sales.rejectButtonText}" type="Reject" icon="sap-icon://reject" press="handleReject" /> 
 									</contentRight> 
 								</Bar> 
 							</footer>

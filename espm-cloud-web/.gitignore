@@ -6,3 +6,4 @@ target
 .project
 /bin
 /.apt_generated/
+/target/

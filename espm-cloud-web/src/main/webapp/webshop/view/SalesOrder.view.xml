@@ -24,7 +24,6 @@
 											<attributes> <ObjectAttribute text="{EspmModel>Customer/FirstName}" /> 
 											</attributes> 
 											<firstStatus> 
-												<!--<ObjectStatus state="{ path: 'EspmModel>LifeCycleStatus', formatter: 'com.sap.espm.shop.model.format.statusState' }" text="{ path: 'EspmModel>LifeCycleStatus', formatter: 'com.sap.espm.shop.model.format.statusText' }"/>  -->
 											</firstStatus>
 										</ObjectListItem>
 									</items>
@@ -40,7 +39,8 @@
 							<ObjectHeader id="detailObjectHeader" title="{SalesOrderId}" number="{path: 'GrossAmount', formatter:'com.sap.espm.shop.model.format.formatAmount'}" numberUnit="{CurrencyCode}" > 
 								<attributes> <ObjectAttribute text="{CustomerId}" /> <ObjectAttribute text="{path: 'CreatedAt', formatter: 'com.sap.espm.shop.model.format.date'}" />
 								</attributes> 
-								<firstStatus> 	 
+								<firstStatus> 
+								<!-- <ObjectStatus state="{ path: 'LifeCycleStatus', formatter: 'com.sap.espm.shop.model.format.statusState' }" text="{path: 'LifeCycleStatus',formatter: 'com.sap.espm.shop.model.format.statusText'}"/> -->	 
 								</firstStatus> 
 							</ObjectHeader>
 							<IconTabBar expanded="true" > 

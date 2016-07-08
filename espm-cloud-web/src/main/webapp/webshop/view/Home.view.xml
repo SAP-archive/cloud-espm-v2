@@ -3,6 +3,7 @@
 			<Page id="productListPage" title="{i18n>home.Title}">
 				<headerContent>
 					<Button icon="sap-icon://my-sales-order" id="btnOrdersId" press="onOrdersButtonPressed" tooltip="{i18n>home.salesOrder}"/>
+					<Button icon="sap-icon://settings" id="btnSettingsId" press="onSettingsButtonPressed" tooltip="{i18n>home.settings}"/>
 					<Button binding="{/Cart}" icon="sap-icon://cart" id="btnProductListHeader" press="onShoppingCartPressed" text="{TotalQunatity}"
 						tooltip="{i18n>home.cart}"/>
 				</headerContent>
@@ -50,8 +51,6 @@
 						</columns>
 						<ColumnListItem id="columnListItem" press="onLineItemPressed" type="Navigation" vAlign="Middle">
 							<cells>
-								<!--<core:Icon class="sapThemeHighlight-asColor sapMTableContentMargin" id="favoriteIcon" src="sap-icon://favorite"
-									visible="{IsFavoriteOfCurrentUser}"/>-->
 								<Image alt="{i18n>home.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
 									id="imageImage" src="/espm-cloud-web/images/{EspmModel>PictureUrl}" width="3rem"/>
 								<ObjectIdentifier class="sapMTableContentMargin" id="availabilityObjIdent"

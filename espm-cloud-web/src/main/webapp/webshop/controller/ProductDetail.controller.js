@@ -117,9 +117,7 @@ sap.ui.define([
 			this._oReviewDialog.open();
 		},
 		onReviewDialogOKPressed: function(oEvent) {
-			
 			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			
 			this._oReviewDialog.close();
 			var iRatingCount = sap.ui.getCore().byId("ratingIndicator", "reviewDialog").getValue();
 			var sReviewComment = sap.ui.getCore().byId("textArea", "reviewDialog").getValue();
@@ -135,9 +133,10 @@ sap.ui.define([
 			
 			var oModel = this.getView().getModel("EspmModel");
 			
-			oModel.setHeaders({  
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+			oModel.setHeaders({ 
+				"APIKey" : window.secretKey,
+				"Content-Type": "application/json",
+				"Accept": "application/json"
         	});
 			oModel.read('/CreateCustomerReview',null, aParams , false, function(data)
 			{
@@ -146,8 +145,9 @@ sap.ui.define([
  					
  				}
  			},function(){
-				sap.m.MessageToast.show(oBundle.getText("detail.reviewFailed")); 
+ 				sap.m.MessageToast.show(oBundle.getText("detail.reviewFailed")); 
  			});
+			
 			oModel.refresh(true);
 			
 			var oView = this.getView();
