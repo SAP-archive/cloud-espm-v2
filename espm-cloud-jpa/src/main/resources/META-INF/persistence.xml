@@ -8,12 +8,12 @@
 		<class>com.sap.espm.model.Product</class>
 		<class>com.sap.espm.model.ProductText</class>
 		<class>com.sap.espm.model.Customer</class>
-		<class>com.sap.espm.model.SalesOrderHeader</class>
 		<class>com.sap.espm.model.SalesOrderItem</class>
 		<class>com.sap.espm.model.SalesOrderItemId</class>
 		<class>com.sap.espm.model.CustomerReview</class>
 		<class>com.sap.espm.model.Supplier</class>
 		<class>com.sap.espm.model.Stock</class>
+		<!-- To do add the SalesOrderHeader class -->
 		
 		<properties>
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />

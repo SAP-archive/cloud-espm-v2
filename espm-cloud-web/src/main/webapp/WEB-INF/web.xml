@@ -48,10 +48,7 @@
 		<servlet-name>ODataSecureServlet</servlet-name>
 		<url-pattern>/espm.svc/secure/*</url-pattern>
 	</servlet-mapping>
-	<resource-ref>
-		<res-ref-name>jdbc/DefaultDB</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-	</resource-ref>
+<!-- TODO Add the JPA reference here -->
 	<servlet>
 		<description></description>
 		<display-name>StartupServlet</display-name>

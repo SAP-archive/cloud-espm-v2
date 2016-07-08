@@ -21,8 +21,7 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "ESPM_SALES_ORDER_HEADER")
+//TODO add annotation for entity
 public class SalesOrderHeader {
 
 	/* Sales order ids are generated within a number range starting with 5 */
@@ -178,30 +177,6 @@ public class SalesOrderHeader {
 		this.salesOrderItems = param;
 	}
 
-	@PrePersist
-	private void persist() {
-		Calendar cal = Calendar.getInstance();
-		Date date = new Date();
-		cal.setTime(date);
-		this.lifeCycleStatus = "N";
-		this.lifeCycleStatusName = "New";
-		int itemNumber = 10;
-		this.netAmount = new BigDecimal("0.00");
-		this.taxAmount = new BigDecimal("0.00");
-		this.grossAmount = new BigDecimal("0.00");
-		this.createdAt = cal;
-		for (SalesOrderItem item : salesOrderItems) {
-			item.setSalesOrderId(this.getSalesOrderId());
-			item.setItemNumber(itemNumber);
-			itemNumber += 10;
-			item.persist();
-			this.netAmount = this.netAmount.add(item.getNetAmount())
-					.setScale(3);
-			this.taxAmount = this.taxAmount.add(item.getTaxAmount())
-					.setScale(3);
-			this.grossAmount = this.grossAmount.add(item.getGrossAmount())
-					.setScale(3);
-		}
-	}
+	//TODO add the prePersist Logic
 
 }
