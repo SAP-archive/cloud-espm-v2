@@ -17,18 +17,8 @@ public class EspmServiceFactory extends ODataJPAServiceFactory {
 	@Override
 	public ODataJPAContext initializeODataJPAContext()
 			throws ODataJPARuntimeException {
-		ODataJPAContext oDataJPAContext = this.getODataJPAContext();
-		EntityManagerFactory emf;
-		try {
-			emf = JpaEntityManagerFactory.getEntityManagerFactory();
-			oDataJPAContext.setEntityManagerFactory(emf);
-			oDataJPAContext.setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
-			oDataJPAContext.setJPAEdmExtension(new EspmProcessingExtension());
-			oDataJPAContext.setJPAEdmMappingModel("EspmEdmMapping.xml");
-			return oDataJPAContext;
-		} catch (Exception e) {
-			throw new ODataRuntimeException(e);
-		}
+		//to-do - replace this with your code implementation
+		return null;
 
 	}
 }

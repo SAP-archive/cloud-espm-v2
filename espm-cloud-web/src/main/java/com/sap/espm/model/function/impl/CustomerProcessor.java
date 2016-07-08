@@ -34,11 +34,8 @@ public class CustomerProcessor {
 	 * @return customer entity.
 	 * @throws ODataException
 	 */
-	@SuppressWarnings("unchecked")
-	@EdmFunctionImport(name = "GetCustomerByEmailAddress", entitySet = "Customers", returnType = @ReturnType(type = Type.ENTITY, isCollection = true))
-	public List<Customer> getCustomerByEmailAddress(
-			@EdmFunctionImportParameter(name = "EmailAddress") String emailAddress)
-			throws ODataException {
+	//to-do - replace the below function signature with your code implementation
+	public List<Customer> getCustomerByEmailAddress(String emailAddress) throws ODataException {
 		EntityManagerFactory emf = Utility.getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		List<Customer> custList = null;
