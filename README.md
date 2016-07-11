@@ -17,10 +17,11 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 ### Setting up the developer environment
 1. Install [SAP JVM 7.*](https://tools.hana.ondemand.com/#cloud) or Java JDK 1.7 and setup the JAVA_HOME and PATH environment variables in your local machine
 2. Install [Eclipse](https://help.hana.ondemand.com/help/frameset.htm?761374e5711e1014839a8273b0e91070.html). Please download Eclipse Mars
-3. Install the [SAP HANA Cloud SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please download Java EE 6 Web Profile SDK
-4. [Install SAP Development Tools for Eclipse](https://help.hana.ondemand.com/help/frameset.htm?76137a37711e1014839a8273b0e91070.html)
+3. [Install SAP Development Tools for Eclipse](https://help.hana.ondemand.com/help/frameset.htm?76137a37711e1014839a8273b0e91070.html)
+4. Install the [SAP HANA Cloud SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please download Java EE 6 Web Profile SDK
 5. [Setup the Runtime Environment](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html). please use the Java EE 6 Web Profile section in the above document
 6. Signup for [HCP Trial account](https://hcp.sap.com/developers.html#section_4) 
+
 
 ### Build the application and deploy
 1. Git configuration in Eclipse
@@ -29,7 +30,7 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
    - Navigate to Team > Git > Configuration and select the Configuration node and add the following configuration 
    ![EGit Configuration](/docs/images/EGitConfig.PNG?raw=true)
 
-        **Note! The Proxy value should be as per your environment**
+        **Note! For most people the proxy value doesn’t need to be set but if you are working behind a proxy, then it should be set as per you environment**
 2. Maven configuration
    - From the Eclipse IDE main menu, choose Window > Preferences
    - Enter maven in the filter field in the top-left corner
@@ -61,18 +62,12 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
         		<host>proxy</host>
         		<port>8080</port>
         	</proxy>
-        	<proxy>
-        		<active>true</active>
-        		<protocol>https</protocol>
-        		<host>proxy</host>
-        		<port>8080</port>
-        	</proxy>
         </proxies>
         </settings>
     ```
 
 
-3. Import Maven project
+3. Clone Git repository and import Maven project
    - Open https://github.com/SAP/cloud-espm-v2 with your web browser
    - Click on the Copy to clipboard so that the Git repository URL of the opened cloud-basecamp GitHub repository is copied to your clipboard.
 
@@ -87,7 +82,10 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
    - On this wizard page check that the master branch is selected and click again on Next >
    - On the last wizard page you can adjust the location of the local Git Repository, but for the scope of this tutorial we'll just leave the default as-is
    - Click on Finish so that the remote cloud-basecamp Git repository (source code) is cloned to the local location specified on the last wizard page.
-4. Build imported Maven project
+4. Update dependencies and build Maven project
+
+    - Instruction to run update dependencies for the Maven project
+      - Right click on the web project in ESPM > and choose Maven > Click on Update Project
     - Note! you need to modify the parent pom.xml for certain property values depending on your environment:
       - local.server.proxy.settings - comment this out if you are not behind a proxy server. Else update your proxy settings here
       - browser.proxy.settings - comment this out if your browser is not using a proxy. Else update your browser proxy settings here
@@ -250,7 +248,7 @@ This document is for informational purposes only. Its content is subject to chan
 Any software coding and/or code lines / strings ("Code") included in this documentation are only examples and are not intended to be used in a productive system environment. The Code is only intended to better explain and visualize the syntax and phrasing rules of certain coding. SAP does not warrant the correctness and completeness of the Code given herein, and SAP shall not be liable for errors or damages caused by the usage of the Code, unless damages were caused by SAP intentionally or by SAP's gross negligence.
 
 # Copyright and License
-Copyright 2016 SAP AG
+Copyright 2016 SAP SE
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
