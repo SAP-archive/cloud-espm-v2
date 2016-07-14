@@ -67,9 +67,9 @@
 							<Table id="lineItemsId" headerText="{i18n>sales.lineItemTableHeader}" > 
 								<columns> 
 									<Column> <header><Label text="{i18n>sales.lineItemTitle}" /></header> </Column> 
-									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" > <header><Label text="Delivery Date" /></header> </Column> 
-									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" > <header><Label text="Quantity" /></header> </Column> 
-									<Column hAlign="Right" > <header><Label text="Price" /></header> </Column> 
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" > <header><Label text="{i18n>sales.deliveryDate}" /></header> </Column> 
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" > <header><Label text="{i18n>sales.quantity}" /></header> </Column> 
+									<Column hAlign="Right" > <header><Label text="{i18n>stock.price}" /></header> </Column> 
 								</columns> 
 								<ColumnListItem id="columnListLineItem" type="Navigation" press="handleLineItemPress" > 
 									<cells> 

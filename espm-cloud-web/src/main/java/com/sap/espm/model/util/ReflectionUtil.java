@@ -84,7 +84,6 @@ public final class ReflectionUtil {
 					String data = "";
 					if (annotation != null) {
 						field.setAccessible(true);
-						// headers += field.getName() + DELIMITER;
 						Object currentField = field.get(object);
 						if (currentField != null
 								&& currentField instanceof GregorianCalendar) {

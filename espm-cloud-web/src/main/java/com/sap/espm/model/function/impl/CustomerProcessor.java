@@ -63,4 +63,42 @@ public class CustomerProcessor {
 			em.close();
 		}
 	}
+	/**
+	 * Function Import implementation for getting customer by Twitter ID
+	 * 
+	 * @param twitter id
+	 *            twitter id of the customer
+	 * @return customer entity.
+	 * @throws ODataException
+	 */
+	@SuppressWarnings("unchecked")
+	@EdmFunctionImport(name = "GetCustomerByTwitterId", entitySet = "Customers", returnType = @ReturnType(type = Type.ENTITY, isCollection = true))
+	public List<Customer> getCustomerByTwitterId(
+			@EdmFunctionImportParameter(name = "twitterid") String twitterid)
+			throws ODataException {
+		EntityManagerFactory emf = Utility.getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		List<Customer> custList = null;
+		try {
+
+			Query query = em
+					.createQuery("SELECT c FROM Customer c WHERE c.twitterid ='"
+							+ twitterid + "'");
+
+			try {
+
+				custList = query.getResultList();
+				return custList;
+
+			} catch (NoResultException e) {
+				throw new ODataApplicationException(
+						"No matching customer with twitter ID:"
+								+ twitterid, Locale.ENGLISH,
+						HttpStatusCodes.BAD_REQUEST);
+			}
+		} finally {
+			em.close();
+		}
+	}	
+	
 }

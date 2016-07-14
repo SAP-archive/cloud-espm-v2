@@ -33,9 +33,6 @@
 						<Text id="descriptionTxt" text="{EspmModel>LongDescription}"/>
 						<Label id="supplierLbl" text="{i18n>detail.supplierInfo}"/>
 						<Link class="sapUiForceWidthAuto" id="supplierLink" press="onSupplierPressed" text="ITelo"/>
-						<!-- <Label id="ratingLbl" text="{i18n>xfld.reviews}"></Label>
-						<shop:RatingAndCount enabled="true" iconSize="1rem" id="ratingCount" maxRatingValue="5" press="onRatingPressed" ratingCount="{RatingCount}"
-							value="{AverageRating}" verticalAdjustment="-15" verticalAlignContent="true"/> -->
 						<core:Title id="technicalDataTitle" text="{i18n>detail.technicalData}"/>
 						<Label id="quantityUnitLbl" text="{i18n>detail.unitOfMeasure}"/>
 						<Text id="quantityUnitTxt" text="{EspmModel>QuantityUnit}"/>
@@ -54,7 +51,7 @@
 					</f:content>
 				</f:SimpleForm>
 				<core:ExtensionPoint name="extensionAfterForm"/>
-					<Table class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" id="reviewTable" items="{}"
+					<Table class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" id="reviewTable" items="{path: 'EspmModel>/CustomerReview',sorter: {path: 'EspmModel>CreationDate', descending: true}}"
 						noDataText="{i18n>detail.noDataReviews}" width="auto">
 					<headerToolbar>
 						<Toolbar id="tableHeaderBar">

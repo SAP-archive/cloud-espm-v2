@@ -261,6 +261,8 @@ public class DataLoader {
 		List<Supplier> suppliers = loadSuppliers();
 		List<Product> products = loadProducts(suppliers);
 		List<CustomerReview> customerReviews = loadCustomerReviews(products);
+		//persistSampleCustomerReview();
+		//logNumberOfCustomerReviews();
 		loadStock(products);
 		loadProductCategories(products);
 

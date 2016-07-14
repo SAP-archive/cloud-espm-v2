@@ -23,8 +23,7 @@
 											title="{EspmModel>SalesOrderId}" >
 											<attributes> <ObjectAttribute text="{EspmModel>Customer/FirstName}" /> 
 											</attributes> 
-											<firstStatus> 
-												<!--<ObjectStatus state="{ path: 'EspmModel>LifeCycleStatus', formatter: 'com.sap.espm.shop.model.format.statusState' }" text="{ path: 'EspmModel>LifeCycleStatus', formatter: 'com.sap.espm.shop.model.format.statusText' }"/>  -->
+											<firstStatus>
 											</firstStatus>
 										</ObjectListItem>
 									</items>

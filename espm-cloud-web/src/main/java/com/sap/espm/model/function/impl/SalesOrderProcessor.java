@@ -210,7 +210,7 @@ public class SalesOrderProcessor {
 			}
 		}
 	}
-		
+	
 	/**
 	 * Function Import implementation for getting all the Sales Order invoices by email Address
 	 * under a Sales Order Header
@@ -230,7 +230,7 @@ public class SalesOrderProcessor {
 		List<SalesOrderHeader> orderList = new ArrayList<>();
 		List<SalesOrderHeader> salesOrderHeaderList = new ArrayList<>();
 		List<SalesOrderItem> itemList = new ArrayList<>();
-		try {		
+		try {
 			Query querySOItems; ;
 			Query queryCustomer = em.createQuery("SELECT c FROM Customer c where c.emailAddress= :emailAddress");
 			queryCustomer.setParameter("emailAddress", emailAddress);
@@ -261,19 +261,11 @@ public class SalesOrderProcessor {
 			throw new ODataApplicationException(
 					"No Sales Order Invoices with emailId Id:" + emailAddress,
 					Locale.ENGLISH, HttpStatusCodes.BAD_REQUEST);
-		} catch (Throwable throwable){
-			//TODO: remove this
-			throwable.printStackTrace();
 		}
-
 		finally {
 			em.close();
 		}
-
 		return salesOrderHeaderList;
-
 	}
-	
-
 }
 

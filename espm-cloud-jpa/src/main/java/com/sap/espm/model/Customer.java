@@ -60,6 +60,11 @@ public class Customer {
 	@SalesOrderReportField
 	@Column(name = "COUNTRY", length = 3)
 	private String country;
+	
+	@Column(name = "TWITTER_ID", unique=true)
+	private String twitterid;
+	
+	
 
 	public String getCustomerId() {
 		return this.customerId;
@@ -148,4 +153,14 @@ public class Customer {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	public String getTwitterid() {
+		return twitterid;
+	}
+
+	public void setTwitterid(String twitterid) {
+		this.twitterid = twitterid;
+	}
+	
+	
 }

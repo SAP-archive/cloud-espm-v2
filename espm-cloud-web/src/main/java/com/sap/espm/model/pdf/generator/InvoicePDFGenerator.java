@@ -76,7 +76,6 @@ public class InvoicePDFGenerator {
 			repositorySecretKey=ReadProperties.getInstance().getValue("secretKey");
 			openCmisSession = ecmSvc.connect(repositoryUniqueName, repositorySecretKey);
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (CmisObjectNotFoundException e) {
 			// repository does not exist, so try to create it
@@ -87,7 +86,6 @@ public class InvoicePDFGenerator {
 			ecmSvc.createRepository(options);
 			// should be created now, so connect to it
 			openCmisSession = ecmSvc.connect(repositoryUniqueName, repositorySecretKey);
-			System.out.println("Connected in the catch block");
 		}
 
 		// access the root folder of the repository
@@ -139,8 +137,6 @@ public class InvoicePDFGenerator {
 			reportPath=cmisDocument.getId();
 			
 		}catch (IOException | COSVisitorException e) {
-		
-			System.out.println("Exception while writing the content to the pdf file.");
 			e.printStackTrace();
 		}
 

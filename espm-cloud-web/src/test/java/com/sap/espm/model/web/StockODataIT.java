@@ -80,25 +80,6 @@ public class StockODataIT extends AbstractODataIT {
 	}
 
 	/**
-	 * Test Skip Service Query option via URL.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
-	 */
-/*	@Test
-	public void testStockUrlSkip() throws IOException, JSONException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
-				ENTITY_NAME + "?$format=json&$orderby=ProductId&$skip=1", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals("First product in the ordered response not skipped",
-				"HT-1000", jo.getString("ProductId"));
-	}*/
-
-	/**
 	 * Test Select Service Query Option via URL.
 	 * 
 	 * @throws IOException

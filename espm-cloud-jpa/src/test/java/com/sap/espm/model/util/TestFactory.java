@@ -429,7 +429,6 @@ public class TestFactory {
 		return status;
 	}
 
-
 	/**
 	 * Helper method to create Stock
 	 * 
@@ -490,6 +489,23 @@ public class TestFactory {
 		return status;
 	}
 
+	/**
+	 * Create a Purchase Order Header entity
+	 * 
+	 * @param purchaseOrderId
+	 *            purchase order id of entity to be created.
+	 * @return created entity
+	 */
+	/*private PurchaseOrderHeader createPurchaseOrderHeader(String purchaseOrderId) {
+		PurchaseOrderHeader poHeader = new PurchaseOrderHeader();
+		poHeader.setPurchaseOrderId(purchaseOrderId);
+		poHeader.setCurrencyCode("INR");
+		poHeader.setGrossAmount(BigDecimal.valueOf(13224));
+		poHeader.setNetAmount(BigDecimal.valueOf(11113));
+		poHeader.setTaxAmount(BigDecimal.valueOf(2111));
+		return poHeader;
+	}
+*/
 	/**
 	 * Create SalesOrderHeader entity
 	 * 

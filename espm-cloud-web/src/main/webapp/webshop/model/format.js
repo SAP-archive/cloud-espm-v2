@@ -54,6 +54,10 @@ com.sap.espm.shop.model.format = {
 			}
 			var numFormat = sap.ui.core.format.NumberFormat.getCurrencyInstance();
 			return numFormat.format(fAmount);
-		}
-			
+		},
+		
+        formatCountryName: function(sText){
+            var oResourceBundle = this.getModel("i18n").getResourceBundle();
+            return oResourceBundle.getText("sText");
+        }		
 };

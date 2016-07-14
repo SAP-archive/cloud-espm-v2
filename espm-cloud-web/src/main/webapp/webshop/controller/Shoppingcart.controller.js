@@ -128,11 +128,11 @@ sap.ui.define([
 		    var idx = m.getBindingContextPath();
 			idx = idx.charAt(idx.lastIndexOf('/')+1);
 			if (idx !== -1) {
-				var oModel = this.getView().getModel("Cart");             
+				var oModel = this.getView().getModel("Cart");
 				var data = oModel.getProperty('/ShoppingCart');
 				var removed = data.splice(idx,1);
 				oModel.setData({ShoppingCart : data});
-				//oModel.refresh();
+
 				
 			}
 			this.onAddCountToCart();

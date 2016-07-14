@@ -78,16 +78,16 @@ sap.ui.define([
 			oreviewTable.setModel(model);
 			oreviewTable.bindItems("/ShoppingCart",oCheckoutTemplate);
 			
-			//model for countries in the UI
-			var ocountryModel = new JSONModel(); 
-			ocountryModel.loadData("/espm-cloud-web/webshop/model/countries.json");
-			this.getView().byId("countryListId").setModel(ocountryModel, "countryModel");
-			
-			
+            //model for countries in the UI
+            var ocountryModel = new JSONModel(); 
+            ocountryModel.loadData("/espm-cloud-web/webshop/model/countries.json");
+            this.getView().byId("countryListId").setModel(ocountryModel, "countryModel");			
 		},
 		onAfterRendering: function() 
 		{
-		
+			this.getView().byId("twitterId").setValue(sap.app.espm.screenName);
+			
+			
 		},
 		onBeforeRendering: function() 
 		{
@@ -166,34 +166,11 @@ sap.ui.define([
 		},
 		wizardCompletedHandler : function () {
 			
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			var validationFlag = true;
-			var myInteger = (/^-?\d*(\.\d+)?$/);
-			var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;	
-			var firstName = this.byId("firstNameId").getValue();
-			var lastName = this.byId("lastnameId").getValue();
-			var birthDate = this.byId("birthId").getValue();
-			var eMail = this.byId("newEmailId").getValue();
-			var street = this.byId("streetId").getValue();
-			var city = this.byId("cityId").getValue();
-			var postalCode = this.byId("postalId").getValue();
-			var country = this.byId("countryListId").getSelectedKey();
-			var name = this.byId("nameId").getValue();
-			var SecNumber = this.byId("numberId").getValue();
-			
-			if (!eMail.match(mailregex)) {
-				validationFlag = false;
-			}
-			
-			if(validationFlag === false || (!street.match(myInteger)) === true || (!postalCode.match(myInteger)) === true || (name.match(myInteger)) === true || (!SecNumber.match(myInteger)) === true || firstName.match(myInteger) === true || lastName.match(myInteger) === true || city.match(myInteger) === true || country.match(myInteger) === true){
-				validationFlag = false;
-			}
-			
-			if(validationFlag === false || this.byId("firstNameId").getValue().length === 0 || this.byId("lastnameId").getValue().length === 0 || this.byId("birthId").getValue().length === 0 || this.byId("newEmailId").getValue().length === 0 ||
-					this.byId("streetId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0 ||
-					this.byId("nameId").getValue().length === 0 || this.byId("numberId").getValue().length === 0)
+			if(this.byId("firstNameId").getValue().length === 0 || this.byId("lastnameId").getValue().length === 0 || this.byId("birthId").getValue().length === 0 || this.byId("newEmailId").getValue().length === 0 ||
+			this.byId("streetId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0 ||
+			this.byId("nameId").getValue().length === 0 || this.byId("numberId").getValue().length === 0)
 			{
-				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+				sap.m.MessageToast.show("Please enter all missing details");
 			}
 			else{
 				sap.ui.getCore().byId("firstname").setText(this.byId("firstNameId").getValue());
@@ -213,8 +190,8 @@ sap.ui.define([
 		},
 		handleWizardCancel: function(){
 			
-			this._oNavContainer.backToPage(this._oWizardContentPage.getId());
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			this._oNavContainer.backToPage(that._oWizardContentPage.getId());
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
 			oRouter.navTo("Home", true);
 		},
 		handleWizardSubmit : function () {
@@ -229,13 +206,14 @@ sap.ui.define([
 			}
 			
 			
+
 		},
 		createCustomer: function(){
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			var that = this;
-			var date = this.byId("birthId").getValue();
-			var utctime = Date.parse(date);		
-			date = "/Date("+utctime+")/";
+            var oBundle = this.getView().getModel('i18n').getResourceBundle();
+            var that = this;
+            var date = this.byId("birthId").getValue();
+            var utctime = Date.parse(date);                                
+            date = "/Date("+utctime+")/";
 			var customer = {
 				"EmailAddress":this.byId("newEmailId").getValue(),
 				"LastName":this.byId("lastnameId").getValue(),
@@ -244,7 +222,8 @@ sap.ui.define([
 				"PostalCode":this.byId("postalId").getValue(),
 				"City":this.byId("cityId").getValue(),
 				"Street":this.byId("streetId").getValue(),
-				"Country":this.byId("countryListId").getSelectedKey()
+				"Country":this.byId("countryListId").getSelectedKey(),
+				"Twitterid":sap.app.espm.screenName
 				
 			};
 			
@@ -262,18 +241,15 @@ sap.ui.define([
             error: function(err) {
                 sap.m.MessageToast.show(oBundle.getText("check.customerCreateFailed"));
             }
-        	});
-        	
-			
+        	});			
 		},
 		createSalesOrder: function(){
 			
 			var that = this;
 			var sCustomerId = customerId;
 			var SalesOrderHeader = {};
-	
+            var oBundle = this.getView().getModel('i18n').getResourceBundle();                     
 			SalesOrderHeader.CustomerId = sCustomerId;
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
 		
 			var items = [];
 			var cartModel = this.getView().getModel("Cart");
@@ -337,25 +313,12 @@ sap.ui.define([
 								            	
 								            },
 								            error: function(err) {
-								                sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+								            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
 								                that._oWizardReviewPage.setBusy(false);
 								            }});
 					            	}
 					            	that._oWizardReviewPage.setBusy(false);
-					            	sap.m.MessageBox.information(oBundle.getText("check.soIDCreated", [oData.d.SalesOrderId]),{
-						            	onClose: function(oAction){
-						            			
-						            		that._oNavContainer.backToPage(that._oWizardContentPage.getId());
-						            		var model = that.getView().getModel("Cart");
-											var newArray = [];
-											model.setData({ShoppingCart : newArray});
-											sap.ui.getCore().byId("totalFooter").setNumber("");
-											sap.ui.getCore().byId("totalFooter").setUnit("");
-											that.getView().byId("existingCustomerId").setSelected(true);
-											var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
-											oRouter.navTo("Home", true);
-					            		}
-						            });
+					            	that.showOrderSuccessDialog(oData.d.SalesOrderId);
 					            },
 					            error: function(err) {
 					            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
@@ -380,6 +343,100 @@ sap.ui.define([
 			
 				
 		},
+		showOrderSuccessDialog: function(orderId){
+            var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			var that = this;
+			var dialog = new sap.m.Dialog({
+				id:"orderDialogId",
+				title: oBundle.getText("tweet.title"),
+				type: 'Message',
+				content: [
+					new sap.ui.layout.form.SimpleForm({
+						content:[
+						        new sap.m.Text({text:oBundle.getText("check.soIDCreated", [orderId])})
+						      ]
+					})
+				],
+				beginButton: new sap.m.Button({
+					text: oBundle.getText("tweet.btnText"),
+					press: function () {
+						
+						dialog.close();
+						
+						var model = that.getView().getModel("Cart");
+						var aData = model.getProperty("/ShoppingCart");
+						var tweetStr;
+						for(var i=0;i<aData.length;i++){
+							
+							var prodName = aData[i].Name;
+							if(!tweetStr){
+								tweetStr = prodName;
+							}
+							else{
+								tweetStr = tweetStr+" , "+prodName;
+							}
+							 
+						}
+						var tweetMsg = {
+								"status": oBundle.getText("tweet.message", [tweetStr])
+								
+							};
+						
+							$.ajax({
+				            type: "POST",
+				            async: true,
+				            contentType:"application/json; charset=utf-8",
+				            dataType: "json",
+				            url: "/espm-cloud-web/TwitterUpdateWs",
+				            data : JSON.stringify(tweetMsg),
+				            success: function() {
+				            	 sap.m.MessageToast.show(oBundle.getText("tweet-successMessage"));
+				            },
+				            error: function(err) {
+				            	if(err.status === 200){
+				            		sap.m.MessageToast.show(oBundle.getText("tweet.successMessage"));
+				            	}
+				            	else{
+				            		sap.m.MessageToast.show(oBundle.getText("tweet.checkMessage"));
+				            	}
+				                
+				            }
+				        	});
+							
+						that._oNavContainer.backToPage(that._oWizardContentPage.getId());
+	            		
+						var newArray = [];
+						model.setData({ShoppingCart : newArray});
+						sap.ui.getCore().byId("totalFooter").setNumber("");
+						sap.ui.getCore().byId("totalFooter").setUnit("");
+						var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+						oRouter.navTo("Home", true);
+							
+					}
+				}),
+				endButton: new sap.m.Button({
+					text: oBundle.getText("tweet.btnOk"),
+					press: function () {
+						
+						dialog.close();
+						
+						that._oNavContainer.backToPage(that._oWizardContentPage.getId());
+	            		var model = that.getView().getModel("Cart");
+						var newArray = [];
+						model.setData({ShoppingCart : newArray});
+						sap.ui.getCore().byId("totalFooter").setNumber("");
+						sap.ui.getCore().byId("totalFooter").setUnit("");
+						var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+						oRouter.navTo("Home", true);
+					}
+				}),
+				afterClose: function() {
+					dialog.destroy();
+				}
+			});
+ 
+			dialog.open();
+		},
 		backToWizardContent : function () {
 			this._oNavContainer.backToPage(this._oWizardContentPage.getId());
 		},
@@ -389,22 +446,19 @@ sap.ui.define([
 			if(buttonId === 0){
 				this._oExistingForm.setVisible(true);
 				this._oNewForm.setVisible(false);
-				this._wizard.validateStep(this.getView().byId("creditCardStep"));
 			}
 			else{
 				this._oExistingForm.setVisible(false);
 				this._oNewForm.setVisible(true);
-				this._wizard.validateStep(this.getView().byId("creditCardStep"));
 			}
 			
 		},
-		checkExistingEmailId: function(oEvent){
-			
+		checkExistingCustomerAccount: function(oEvent){
+            var oBundle = this.getView().getModel('i18n').getResourceBundle();
 			var that = this;
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			if(this.validateEmail(this.byId("existingEmailId").getValue()) === true){
+			if(sap.app.espm.screenName){
 				
-				var sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue() + "'";
+				var sFunctionImportEmailParam = "twitterid='" + sap.app.espm.screenName + "'";
 				var aParams = [];
 				aParams.push(sFunctionImportEmailParam);
 				
@@ -414,17 +468,11 @@ sap.ui.define([
 	            "Content-Type": "application/json",
 	            "Accept": "application/json"
 	        	}); 
-				oDataModel.read('/GetCustomerByEmailAddress',null, aParams , false, function(data)
+				oDataModel.read('/GetCustomerByTwitterId',null, aParams , false, function(data)
 				{
 	 				if(data.results.length == 0){
-	 					sap.m.MessageToast.show(oBundle.getText("check.customerNotExist"));
-	 					
-	 					that.byId("radioButtonGroupId").setSelectedIndex(1);// = 1;
-	 					that._oExistingForm.setVisible(false);
+	 					sap.m.MessageToast.show(oBundle.getText("check.enterDetails"));
 						that._oNewForm.setVisible(true);
-						that._wizard.validateStep(that.getView().byId("creditCardStep"));
-	 					that.byId("newEmailId").setValue(that.byId("existingEmailId").getValue());
-	 					
 	 					customerId = "";
 	 				}
 	 				else{
@@ -438,17 +486,12 @@ sap.ui.define([
 	 					that.byId("countryListId").setSelectedKey(result[0].Country);
 	 					that.byId("postalId").setValue(result[0].PostalCode);
 	 					that.byId("nameId").setValue(result[0].FirstName+" "+result[0].LastName);
-	 					
-	 					that.byId("radioButtonGroupId").setSelectedIndex(1);// = 1;
-	 					that._oExistingForm.setVisible(false);
-						that._oNewForm.setVisible(true);
-						that._wizard.validateStep(that.getView().byId("creditCardStep"));
-	 					
+						that._oNewForm.setVisible(true);	 					
 						customerId = result[0].CustomerId;
 	 					
 	 				}
 	 			},function(){
-	 				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+	 				sap.m.MessageToast.show(oBundle.getText("tweet.checkMessage"));
 	 				
 	 			});
 				
@@ -458,19 +501,13 @@ sap.ui.define([
      
 		},
 		validateEmail: function(mail){
-			
-			var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;	
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			if(typeof(mail) === "object"){
-				mail = mail.getSource().getValue();
-			}
-
-			if (mail.match(mailregex)) {
+            var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
 				return (true);
 			}else{
 				sap.m.MessageToast.show(oBundle.getText("soPopup.invalidEmailAddress")); 
-
 			}
+
 		},
 		validateNumberInputField: function(oEvent){
 			
@@ -481,7 +518,7 @@ sap.ui.define([
 			else{
 				oEvent.getSource().setValueState(sap.ui.core.ValueState.None);
 			}
-			
+					
 		},
 		validateStringInputField: function(oEvent){
 			
@@ -492,19 +529,20 @@ sap.ui.define([
 			else{
 				oEvent.getSource().setValueState(sap.ui.core.ValueState.None);
 			}
-			
-			
+					
 		},
 		
 		valueChanged: function(oEvent){
 			
 			this.byId("nameId").setValue(this.byId("firstNameId").getValue()+" "+this.byId("lastnameId").getValue());
+			this.checkCustomerInformation();
 		},
 		
 		checkCustomerInformation: function(){
+			
 			if(this.byId("firstNameId").getValue().length === 0 || this.byId("lastnameId").getValue().length === 0 || this.byId("birthId").getValue().length === 0 || this.byId("newEmailId").getValue().length === 0 ||
-					this.byId("streetId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0){
-				
+					this.byId("streetId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0 ||
+					this.byId("nameId").getValue().length === 0 ){
 				this._wizard.invalidateStep(this.getView().byId("creditCardStep"));
 			}
 			else{
@@ -516,10 +554,6 @@ sap.ui.define([
 		addMoreProducts: function(){
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("Home", true);
-		},
-		
-		formatCustomerLocation: function(location){
-			 return formatter.formatCountryName(location);
 		}
 		
 

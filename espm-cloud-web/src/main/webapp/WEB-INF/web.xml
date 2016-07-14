@@ -59,6 +59,36 @@
 		<servlet-class>com.sap.espm.model.web.StartupServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+		<servlet>
+	<servlet-name>twitter</servlet-name>
+	<servlet-class>com.sap.espm.model.oAuth.web.TwitterLoginWs</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	<servlet-name>twitter</servlet-name>
+	<url-pattern>/twitter</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>twitterCallback</servlet-name>
+	<servlet-class>com.sap.espm.model.oAuth.web.TwitterCallBackWs</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	<servlet-name>twitterCallback</servlet-name>
+	<url-pattern>/TwitterCallbackWs</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>twitterUpdate</servlet-name>
+	<servlet-class>com.sap.espm.model.oAuth.web.TwitterUpdateWs</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	<servlet-name>twitterUpdate</servlet-name>
+	<url-pattern>/TwitterUpdateWs</url-pattern>
+	</servlet-mapping>
+
 	<resource-ref>
 		<res-ref-name>connectivity/DestinationFactory</res-ref-name>
 		<res-type>com.sap.core.connectivity.api.DestinationFactory</res-type>
@@ -109,4 +139,8 @@
 		<servlet-name>CmisRead</servlet-name>
 		<url-pattern>/CmisRead</url-pattern>
 	</servlet-mapping>
+	<resource-ref>
+    <res-ref-name>ConnectivityConfiguration</res-ref-name>
+    <res-type>com.sap.core.connectivity.api.configuration.ConnectivityConfiguration</res-type>
+  </resource-ref>
 </web-app>

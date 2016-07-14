@@ -64,11 +64,14 @@ sap.ui.define([
 				}
 			};
 			
+			//To get screen name from twitter login
 			
+			sap.app.espm.screenName = location.search.split('screenName=')[1];
 		},
+		
 		onAfterRendering: function() 
 		{
-			 
+			 			
 		},
 		onBeforeRendering: function() 
 		{
@@ -103,7 +106,7 @@ sap.ui.define([
 			var searchString = event.mParameters.query;
 			var oTable = this.getView().byId("catalogTable");
 			var binding = oTable.getBinding("items");
-			var enabledFilters;// = binding.aFilters; 
+			var enabledFilters; 
 			enabledFilters = [];
 			
 			var newFilters = []; 
@@ -126,6 +129,9 @@ sap.ui.define([
 				                                           new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString)
 				                                        ],true)]);
 			}
+			
+			
+			//
 
 		},
 		_createDialog: function(sDialog) {
@@ -179,7 +185,6 @@ sap.ui.define([
 				var bDescending = mParams.groupDescending;
 				var vGroup = this.mGroupFunctions[sPath];
 				sorters = new sap.ui.model.Sorter(sPath, bDescending, vGroup);
-				
 			}
 			oBinding.sort(sorters);
 			
@@ -204,7 +209,7 @@ sap.ui.define([
 			
 			this.getView().byId("searchField").setValue("");
 			this._oCombobox.setValue("");
-			
+				
 		},
 		
 		onOrdersButtonPressed: function(){
@@ -212,10 +217,6 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("SalesOrder");
 		}
-		
-		
-		
-
 		
 
 	});

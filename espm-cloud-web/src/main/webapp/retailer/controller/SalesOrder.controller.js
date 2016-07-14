@@ -67,7 +67,6 @@ sap.ui.define([
 			
 			var objectStatus = new sap.m.ObjectStatus({
 				text : event.getSource().getFirstStatus().getText()
-				//state:data.results[0].LifeCycleStatus//"{ path: 'LifeCycleStatus', formatter: 'com.sap.espm.retailer.model.format.statusState' }"
 			});
 			
 			this.getView().byId("detailObjectHeader").setFirstStatus(objectStatus);
@@ -134,19 +133,17 @@ sap.ui.define([
 				        	}); 
 							
 							oDataModel.read("ConfirmSalesOrder", null, aParams, false, function(data){
-								
 								responseData =data;
 								
 								var oComponent = that.getOwnerComponent();
 								var model = oComponent.getModel("espmRetailerModel");
 								model.refresh();
-								
-								var successMsg = bundle.getText("sales.aproveDialogSuccessMsg"); 
+								var successMsg = bundle.getText("sales.approveDialogSuccessMsg"); 
 								sap.m.MessageToast.show(successMsg);
 							 	},
 							 	function()
 							 	{
-							 		sap.m.MessageToast.show(bundle.getText("sales.approvalFailed"));
+							 		sap.m.MessageToast.show("Approving sales order failed");
 							 	});
 						} 
 						}, 
@@ -176,16 +173,14 @@ sap.ui.define([
 				        	}); 
 							
 							oDataModel.read("CancelSalesOrder", null, aParams, false, function(data){
-
 								responseData =data;
 								var oComponent = that.getOwnerComponent();
 								var model = oComponent.getModel("espmRetailerModel");
 								model.refresh();
-								
 								var successMsg = bundle.getText("sales.rejectDialogSuccessMsg"); 
 								sap.m.MessageToast.show(successMsg);
 							 	},function(){
-							 		sap.m.MessageToast.show(bundle.getText("sales.rejectFailed"));});
+							 		sap.m.MessageToast.show("Rejecting sales order failed");});
 						} 
 						}, 
 						bundle.getText("sales.rejectDialogTitle") ); 

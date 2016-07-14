@@ -50,8 +50,6 @@
 						</columns>
 						<ColumnListItem id="columnListItem" press="onLineItemPressed" type="Navigation" vAlign="Middle">
 							<cells>
-								<!--<core:Icon class="sapThemeHighlight-asColor sapMTableContentMargin" id="favoriteIcon" src="sap-icon://favorite"
-									visible="{IsFavoriteOfCurrentUser}"/>-->
 								<Image alt="{i18n>home.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
 									id="imageImage" src="/espm-cloud-web/images/{EspmModel>PictureUrl}" width="3rem"/>
 								<ObjectIdentifier class="sapMTableContentMargin" id="availabilityObjIdent"

@@ -53,13 +53,6 @@ sap.ui.define([
 			onAfterRendering: function() {
 			},
 
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf com.sap.espm.retailer.view.SalesOrder
-		 */
-		//	onExit: function() {
-		//
-		//	}
 		
 			showPopUpdialog: function(){
 				
@@ -204,8 +197,7 @@ sap.ui.define([
 		},
 		
 		handleSearch : function (evt) 
-		{ // create model filter 
-			
+		{ 	
 			var filters = []; 
 			var query = evt.getParameter("query"); 
 			if (query && query.length > 0) { 
@@ -220,7 +212,7 @@ sap.ui.define([
 			
 			this.pdfHTML.setVisible(true);
 			this.pdfHTML.setContent("<iframe src=" + pdfURL + " width='0%' height='0%'></iframe>");
-			
+	
 		},
 		onNavBack: function(){
 			window.history.go(-1);

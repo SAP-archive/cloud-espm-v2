@@ -11,21 +11,11 @@
 					<StandardTile
 						press="approveTilePressed"
 						icon="sap-icon://approvals"
-						type=""
-						number=""
-						numberUnit=""
-						title="{i18n>home.approveTile}"
-						info=""
-						infoState="" />
+						title="{i18n>home.approveTile}" />
 						<StandardTile
 						press="stockTilePressed"
 						icon="sap-icon://inspection"
-						type=""
-						number=""
-						numberUnit=""
-						title="{i18n>home.stockTile}"
-						info=""
-						infoState="" />
+						title="{i18n>home.stockTile}" />
 				</TileContainer>
 			</content>
 		</Page>
