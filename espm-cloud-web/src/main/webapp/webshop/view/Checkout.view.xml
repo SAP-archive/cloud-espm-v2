@@ -70,21 +70,21 @@
 					</form:SimpleForm>
 					<form:SimpleForm visible="false" editable="true" minWidth="300" id="newFormId">
 							<Label text="{i18n>check.name}" required="true"/>
-							<Input id="firstNameId" placeholder="{i18n>check.holderFirstName}" type ="sap.ui.model.type.String" change="valueChanged" liveChange ="validateStringInputField" value=""/>
-							<Input id="lastnameId" placeholder="{i18n>check.holderLastName}" type ="sap.ui.model.type.String" change="valueChanged" liveChange ="validateStringInputField" value=""/>
+							<Input id="firstNameId" placeholder="{i18n>check.holderFirstName}" type="sap.ui.model.type.String" change="valueChanged" liveChange="validateStringInputField" value=""/>
+							<Input id="lastnameId" placeholder="{i18n>check.holderLastName}" type="sap.ui.model.type.String" change="valueChanged" liveChange="validateStringInputField" value=""/>
 							<Label text="{i18n>check.newEmail}" required="true"/>
-							<Input id="newEmailId" placeholder="{i18n>check.holderNewEmail}" change ="validateEmail" value=""/>
+							<Input id="newEmailId" placeholder="{i18n>check.holderNewEmail}" change="validateEmail" value=""/>
 							<Label text="{i18n>check.DOB}" required="true"/>
-							<DatePicker id="birthId" displayFormat="medium" type ="sap.ui.model.type.Date" valueFormat="yyyy-MM-dd"/>
+							<DatePicker id="birthId" displayFormat="medium" type="sap.ui.model.type.Date" valueFormat="yyyy-MM-dd" change="validateDateField"/>
 							<Label text="{i18n>check.address}" required="true"/>
-							<Input id="streetId" placeholder="{i18n>check.holderStreetNumber}" type ="sap.ui.model.type.Integer" liveChange ="validateNumberInputField" value=""/>
-							<Input id="cityId" placeholder="{i18n>check.holderCity}" type ="sap.ui.model.type.String" liveChange ="validateStringInputField" value=""/>
-							<Input id="postalId" placeholder="{i18n>check.holderPostalCode}" type ="sap.ui.model.type.Integer" liveChange ="validateNumberInputField" value=""/>
+							<Input id="streetId" placeholder="{i18n>check.holderStreetNumber}" type="sap.ui.model.type.Integer" liveChange="validateNumberInputField" value=""/>
+							<Input id="cityId" placeholder="{i18n>check.holderCity}" type="sap.ui.model.type.String" liveChange="validateStringInputField" value=""/>
+							<Input id="postalId" placeholder="{i18n>check.holderPostalCode}" type="sap.ui.model.type.Integer" liveChange="validateNumberInputField" value=""/>
 							<Label text="{i18n>check.country}" required="true"/>
 							<ComboBox id="countryListId" items="{path: 'countryModel>/Countries'}">
-									<core:Item key="{countryModel>key}" text="{countryModel>name}" />
+								<core:Item key="{countryModel>key}" text="{countryModel>name}"/>
 							</ComboBox>
-					</form:SimpleForm>
+				</form:SimpleForm>
 				</WizardStep>
 				<WizardStep title="{i18n>check.wizardStep3Title}">
 					<form:SimpleForm editable="true" id="cardFormId">
@@ -100,7 +100,7 @@
 						<Label text="{i18n>check.nameOnCard}" required="true"/>
 						<Input id="nameId" placeholder="{i18n>check.holderName}" type ="sap.ui.model.type.String" liveChange ="validateStringInputField" value=""/>
 						<Label text="{i18n>check.cardNumber}" required="true"/>
-						<Input id="numberId" placeholder="{i18n>check.holderCardNumber}" type ="sap.ui.model.type.Integer" liveChange ="" value=""/>
+						<Input id="numberId" placeholder="{i18n>check.holderCardNumber}" type ="sap.ui.model.type.Integer" liveChange ="validateNumberInputField" value=""/>
 						<Label text="{i18n>check.securityCode}" required="true"/>
 						<Input id="securityId" placeholder="{i18n>check.holderSecurityId}" type ="sap.ui.model.type.Integer" liveChange ="validateNumberInputField" value=""/>
 					</form:SimpleForm>

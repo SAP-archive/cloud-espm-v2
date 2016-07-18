@@ -166,10 +166,13 @@ sap.ui.define([
 		},
 		wizardCompletedHandler : function () {
 			
+			//get the resource bundle
 			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			//validation of input
 			var validationFlag = true;
 			var myInteger = (/^-?\d*(\.\d+)?$/);
 			var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;	
+			
 			var firstName = this.byId("firstNameId").getValue();
 			var lastName = this.byId("lastnameId").getValue();
 			var birthDate = this.byId("birthId").getValue();
@@ -179,24 +182,24 @@ sap.ui.define([
 			var postalCode = this.byId("postalId").getValue();
 			var country = this.byId("countryListId").getSelectedKey();
 			var name = this.byId("nameId").getValue();
-			var SecNumber = this.byId("numberId").getValue();
+			var cardNumber = this.byId("numberId").getValue();
+			var secNumber = this.byId("securityId").getValue();
 			
 			if (!eMail.match(mailregex)) {
 				validationFlag = false;
 			}
 			
-			if(validationFlag === false || (!street.match(myInteger)) === true || (!postalCode.match(myInteger)) === true || (name.match(myInteger)) === true || (!SecNumber.match(myInteger)) === true || firstName.match(myInteger) === true || lastName.match(myInteger) === true || city.match(myInteger) === true || country.match(myInteger) === true){
+			if(this.getView().byId("birthId").getValueState() === "Error"){
 				validationFlag = false;
 			}
 			
-			if(validationFlag === false || this.byId("firstNameId").getValue().length === 0 || this.byId("lastnameId").getValue().length === 0 || this.byId("birthId").getValue().length === 0 || this.byId("newEmailId").getValue().length === 0 ||
-					this.byId("streetId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0 ||
-					this.byId("nameId").getValue().length === 0 || this.byId("numberId").getValue().length === 0)
+			if(validationFlag === false || firstName.length === 0 || lastName.length === 0 || birthDate.length === 0 || eMail.length === 0 || street.length === 0 || city.length === 0 || postalCode.length === 0 || country.length === 0 ||
+					name.length === 0 || cardNumber.length === 0 || secNumber.length === 0 || (!street.match(myInteger)) === true || (!postalCode.match(myInteger)) === true || (name.match(myInteger)) === true || (!cardNumber.match(myInteger)) === true ||
+					firstName.match(myInteger) === true || lastName.match(myInteger) === true || city.match(myInteger) === true || country.match(myInteger) === true)
 			{
 				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
 			}
 			else{
-				
 				sap.ui.getCore().byId("firstname").setText(this.byId("firstNameId").getValue());
 				sap.ui.getCore().byId("lastName").setText(this.byId("lastnameId").getValue());
 				sap.ui.getCore().byId("dateBirth").setText(this.byId("birthId").getValue());
@@ -220,6 +223,8 @@ sap.ui.define([
 		},
 		handleWizardSubmit : function () {
 			
+			var that = this;
+			this.getCustomerId();
 			if(customerId.length === 0){
 				this._oWizardReviewPage.setBusy(true);
 				this.createCustomer();
@@ -228,6 +233,11 @@ sap.ui.define([
 				this._oWizardReviewPage.setBusy(true);
 				this.createSalesOrder();
 			}
+			
+			that.byId("radioButtonGroupId").setSelectedIndex(1);// = 1;
+			that._oExistingForm.setVisible(true);
+			that._oNewForm.setVisible(false);
+			that.clearNewForm();
 			
 		},
 		createCustomer: function(){
@@ -286,7 +296,7 @@ sap.ui.define([
 					"ItemNumber" : ((i + 1) * 10),
 					"Quantity" : product.Quantity + "",
 					"QuantityUnit" : product.QuantityUnit,
-					"DeliveryDate" :  "2014-02-01T11:55:00"
+					"DeliveryDate" :  "2017-02-01T11:55:00"
 				};
 				items.push(item);
 			}
@@ -396,14 +406,61 @@ sap.ui.define([
 				this._oExistingForm.setVisible(true);
 				this._oNewForm.setVisible(false);
 				this._wizard.validateStep(this.getView().byId("creditCardStep"));
+				this.clearNewForm();
 			}
 			else{
 				this._oExistingForm.setVisible(false);
 				this._oNewForm.setVisible(true);
 				this._wizard.validateStep(this.getView().byId("creditCardStep"));
+				this.clearNewForm();
 			}
 			
 		},
+		
+		getCustomerId: function(oEvent){
+			var that = this;
+			customerId = "";
+			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			var buttonIndex = that.getView().byId("radioButtonGroupId").getSelectedIndex();
+			if(buttonIndex === 0){
+				if(that.byId("newEmailId").getValue().length !== 0){
+					var sFunctionImportEmailParam = "EmailAddress='" + that.byId("newEmailId").getValue() + "'";
+				}
+			}
+			else{
+				if(that.byId("existingEmailId").getValue().length !== 0){
+					var sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue() + "'";
+				}
+			}
+			
+			var aParams = [];
+			aParams.push(sFunctionImportEmailParam);
+			
+			oDataModel = this.getView().getModel("EspmModel");
+			
+			oDataModel.setHeaders({
+			
+			"APIKey" : window.secretKey,
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+            	
+        	}); 
+			oDataModel.read('/GetCustomerByEmailAddress',null, aParams , false, function(data)
+			{
+ 				if(data.results.length == 0){
+ 					customerId = "";
+ 				}
+ 				else{		
+					customerId = result[0].CustomerId;
+ 					
+ 				}
+ 			},function(){
+ 				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+ 				
+ 			});
+				
+		},
+		
 		checkExistingEmailId: function(oEvent){
 			var oBundle = this.getView().getModel('i18n').getResourceBundle();
 			var that = this;
@@ -430,9 +487,20 @@ sap.ui.define([
 	 					that.byId("radioButtonGroupId").setSelectedIndex(1);// = 1;
 	 					that._oExistingForm.setVisible(false);
 						that._oNewForm.setVisible(true);
-	 					that.byId("newEmailId").setValue(that.byId("existingEmailId").getValue());
 	 					that._wizard.validateStep(that.getView().byId("creditCardStep"));
-	 					customerId = "";
+	 					that.byId("newEmailId").setValue(that.byId("existingEmailId").getValue());
+	 					that.byId("firstNameId").setValue("");
+	 					that.byId("lastnameId").setValue("");
+	 					that.byId("newEmailId").setValue("");
+	 					that.byId("birthId").setValue("");
+	 					that.byId("streetId").setValue("");
+	 					that.byId("cityId").setValue("");
+	 					that.byId("countryListId").setSelectedKey("");
+	 					that.byId("postalId").setValue("");
+	 					that.byId("nameId").setValue("");
+	 					that.byId("numberId").setValue("");
+	 					that.byId("securityId").setValue("");
+	 					//customerId = "";
 	 				}
 	 				else{
 	 					var result = data.results;
@@ -446,12 +514,12 @@ sap.ui.define([
 	 					that.byId("postalId").setValue(result[0].PostalCode);
 	 					that.byId("nameId").setValue(result[0].FirstName+" "+result[0].LastName);
 	 					
-	 					that.byId("radioButtonGroupId").setSelectedIndex(1);// = 1;
 	 					that._oExistingForm.setVisible(false);
 						that._oNewForm.setVisible(true);
 						that._wizard.validateStep(that.getView().byId("creditCardStep"));
+						that.byId("radioButtonGroupId").setSelectedIndex(0);
 	 					
-						customerId = result[0].CustomerId;
+						//customerId = result[0].CustomerId;
 	 					
 	 				}
 	 			},function(){
@@ -531,7 +599,31 @@ sap.ui.define([
 		
 		formatCustomerLocation: function(location){
 			 return formatter.formatCountryName(location);
-		}	
+		},
+		
+		clearNewForm: function(){
+			this.byId("newEmailId").setValue("");
+			this.byId("firstNameId").setValue("");
+			this.byId("lastnameId").setValue("");
+			this.byId("newEmailId").setValue("");
+			this.byId("birthId").setValue("");
+			this.byId("streetId").setValue("");
+			this.byId("cityId").setValue("");
+			this.byId("countryListId").setSelectedKey("");
+			this.byId("postalId").setValue("");
+			this.byId("nameId").setValue("");
+			this.byId("numberId").setValue("");
+			this.byId("securityId").setValue("");
+			this.byId("existingEmailId").setValue("");
+		},
+		
+		validateDateField: function(oEvent){
+			if(!oEvent.getParameter("valid")){
+				oEvent.oSource.setValueState(sap.ui.core.ValueState.Error);
+			}else{
+				oEvent.oSource.setValueState(sap.ui.core.ValueState.None);
+			}
+		}
 		
 
 	});
