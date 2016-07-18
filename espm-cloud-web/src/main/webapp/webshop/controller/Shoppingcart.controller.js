@@ -111,12 +111,12 @@ sap.ui.define([
 			this.getView().byId("btnShoppingCartHeader").setText(totalQuantity);
 			
 			subTotal = formatter.formatAmount(subTotal);
-			this._oTotalFooter.setNumber(subTotal);
-			this._oTotalFooter.setUnit(currency);
+			this._oTotalFooter.setNumber(subTotal);// = 3000;
+			this._oTotalFooter.setUnit(currency);// = "EUR";
 			}
 			else{
-				this._oTotalFooter.setNumber("");
-				this._oTotalFooter.setUnit("");
+				this._oTotalFooter.setNumber("");// = 3000;
+				this._oTotalFooter.setUnit("");// = "EUR";
 			}
 			
 			
@@ -128,7 +128,7 @@ sap.ui.define([
 		    var idx = m.getBindingContextPath();
 			idx = idx.charAt(idx.lastIndexOf('/')+1);
 			if (idx !== -1) {
-				var oModel = this.getView().getModel("Cart");             
+				var oModel = this.getView().getModel("Cart");               // if named model - var a= tbl.getModel(ModelName);
 				var data = oModel.getProperty('/ShoppingCart');
 				var removed = data.splice(idx,1);
 				oModel.setData({ShoppingCart : data});

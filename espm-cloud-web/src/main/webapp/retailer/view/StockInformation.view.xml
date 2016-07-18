@@ -9,6 +9,13 @@
 							<OverflowToolbar id="tableToolbar">
 								<Title id="catalogTitle" text="{catalogTitle}" visible="{= !${device>/system/phone}}"/>
 								<ToolbarSpacer id="toolbarSpacer" visible="{= !${device>/system/phone}}"/>
+								<ComboBox id="categoryListId" selectionChange="handleSelectionFinish" width="500px" items="{path: 'espmRetailerModel>/ProductCategories'}">
+									<core:Item key="{espmRetailerModel>Category}" text="{espmRetailerModel>Category}" />
+								</ComboBox>
+								<SearchField id="searchField" search="onSearchPressed" showRefreshButton="false" width="200px"/>
+								<OverflowToolbarButton icon="sap-icon://sort" id="sortBtn" press="onSortPressed" text="{i18n>stock.sort}" tooltip="{i18n>stock.sort}"/>
+								<OverflowToolbarButton icon="sap-icon://group-2" id="groupBtn" press="onGroupPressed" text="{i18n>stock.group}" tooltip="{i18n>stock.group}"/>
+								<OverflowToolbarButton icon="sap-icon://refresh" id="filter" press="onResetPressed" text="" tooltip="{i18n>stock.clear}"/>
 							</OverflowToolbar>
 						</headerToolbar>
 						<columns>

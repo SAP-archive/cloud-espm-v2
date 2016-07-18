@@ -195,6 +195,65 @@ public class DataLoader {
 	}
 	
 	/**
+	 * Persist one customer
+	 * 
+	 * @param em
+	 *            Entity Manager
+	 * @throws ParseException
+	 */
+/*	private void persistSampleCustomerReview(){
+		EntityManager em = emf.createEntityManager();
+		Calendar cal = Calendar.getInstance();
+		Date date = null;
+		DateFormat formatter = new SimpleDateFormat("yyyymmdd");
+		try {
+			date = formatter.parse("19770707");
+			cal.setTime(date);
+			em.getTransaction().begin();
+
+			CustomerReview customerReview = new CustomerReview();
+			customerReview
+					.setComment("This product is really great. I like especially the design, speed and performance");
+			customerReview.setRating(5);
+			customerReview.setFirstName("John");
+			customerReview.setLastName("Smith");
+			customerReview.setProductId("HT-2001");
+			customerReview.setCreationDate(cal);
+
+			em.persist(customerReview);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+					logger.error("Exception occured", e);
+		}
+		finally {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}
+	}*/
+
+	/**
+	 * Get number of customer reviews in database
+	 * 
+	 * @param em
+	 *            Entity Manager
+	 * @return number of customers
+	 */
+/*	private void logNumberOfCustomerReviews() {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		TypedQuery<CustomerReview> queryCustomerReview = em.createQuery("SELECT cr FROM CustomerReview cr",CustomerReview.class);
+		
+		List<CustomerReview> resCustomerReview = queryCustomerReview
+				.getResultList();
+		logger.info(resCustomerReview.size()
+				+ " CustomerReview loaded in the db");
+		em.close();
+	}
+*/
+	
+	/**
 	 * Load stock into db based on an algorithm
 	 * 
 	 * @param products
@@ -261,6 +320,8 @@ public class DataLoader {
 		List<Supplier> suppliers = loadSuppliers();
 		List<Product> products = loadProducts(suppliers);
 		List<CustomerReview> customerReviews = loadCustomerReviews(products);
+		//persistSampleCustomerReview();
+		//logNumberOfCustomerReviews();
 		loadStock(products);
 		loadProductCategories(products);
 

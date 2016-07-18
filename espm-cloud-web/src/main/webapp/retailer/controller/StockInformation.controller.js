@@ -83,22 +83,22 @@ sap.ui.define([
 		},
 		
 		updateStock: function(event){
-			var bundle = this.getView().getModel("i18n").getResourceBundle(); 			
+			
 			var updatedStockValue;
 			var getBindingPath = event.getSource().getParent().getBindingContextPath();
 			var stockString = event.getSource().getText();
 			stockString = stockString.split("/");
-			
+			var bundle = this.getView().getModel("i18n").getResourceBundle(); 
 			var that = this;
 			var dialog = new sap.m.Dialog({
 				id:"stockDialogId",
-				title: bundle.getText("stock.minQuantity"),
+				title: bundle.getText("stock.minStockQuantity"),
 				type: 'Message',
 				content: [
 					new sap.ui.layout.form.SimpleForm({
 						id:"stockFormId",
 						content:[
-						        new sap.m.Label({text:bundle.getText("stock.minLevel")}),
+						        new sap.m.Label({text:bundle.getText("stock.minStockLevel")}),
 								new sap.m.Input({
 									id:"stockInputId",
 									value:stockString[1],
@@ -106,14 +106,14 @@ sap.ui.define([
 										updatedStockValue = oEvent.getSource().getValue();
 									}
 								}),
-								new sap.m.Label({text:bundle.getText("stock.itemsInStock")}),
+								new sap.m.Label({text:bundle.getText("stock.itemInStock")}),
 								new sap.m.Input({value:stockString[0],editable: false}),
 						         
 						      ]
 					})
 				],
 				beginButton: new sap.m.Button({
-					text: bundle.getText("stock.submit"),
+					text: bundle.getText("stock.Submit"),
 					press: function () {
 						
 						var oEntry = {};
@@ -132,14 +132,14 @@ sap.ui.define([
 			        	}); 
 						
 						oDataModel.update(getBindingPath, oEntry, null, function(){
-						 		sap.m.MessageToast.show(bundle.getText("stock.stockInformationUpdated"));
+						 		sap.m.MessageToast.show(bundle.getText("stock.stockUpdateSuccess"));
 						 	},function(){
 						 		sap.m.MessageToast.show(bundle.getText("stock.stockUpdateFailed"));});
 						dialog.close();
 					}
 				}),
 				endButton: new sap.m.Button({
-					text: bundle.getText("stock.cancel"),
+					text: bundle.getText("stock.Cancel"),
 					press: function () {
 						dialog.close();
 					}

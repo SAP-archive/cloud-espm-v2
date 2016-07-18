@@ -136,7 +136,7 @@ public class CustomerODataIT extends AbstractODataIT {
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	@Test
+	/*@Test
 	public void testCreateCustomerViaREST() throws IOException, JSONException {
 		String email = rand.nextInt(200) + "@sap.com";
 		String customerXml = StreamHelper.readFromFile(FILENAME);
@@ -162,7 +162,7 @@ public class CustomerODataIT extends AbstractODataIT {
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	/**
 	 * Test Update Customer via URL.
@@ -170,7 +170,7 @@ public class CustomerODataIT extends AbstractODataIT {
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	@Test
+	/*@Test
 	public void testUpdateCustomerViaURL() throws IOException, JSONException {
 
 		String email = rand.nextInt(200) + "@sap.com";
@@ -208,7 +208,7 @@ public class CustomerODataIT extends AbstractODataIT {
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	/**
 	 * Test Delete Customer via URL.
@@ -216,7 +216,7 @@ public class CustomerODataIT extends AbstractODataIT {
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	@Test
+	/*@Test
 	public void testDeleteCustomerViaURL() throws IOException, JSONException {
 		String email = rand.nextInt(200) + "@sap.com";
 		String customerXml = StreamHelper.readFromFile(FILENAME);
@@ -236,7 +236,7 @@ public class CustomerODataIT extends AbstractODataIT {
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	/**
 	 * Test Function Import GetCustomerByEmailAddress
@@ -244,7 +244,7 @@ public class CustomerODataIT extends AbstractODataIT {
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	@Test
+/*	@Test
 	public void testGetCustomerByEmailAddress() throws IOException,
 			JSONException {
 		String email = rand.nextInt(200) + "@sap.com";
@@ -279,7 +279,7 @@ public class CustomerODataIT extends AbstractODataIT {
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	/**
 	 * Test Get Customer Details by Anonymous user.
@@ -287,7 +287,7 @@ public class CustomerODataIT extends AbstractODataIT {
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	@Test
+/*	@Test
 	public void testGetCustomerByAnonymous() throws IOException, JSONException {
 		String email = rand.nextInt(200) + "@sap.com";
 		String customerXml = StreamHelper.readFromFile(FILENAME);
@@ -308,7 +308,7 @@ public class CustomerODataIT extends AbstractODataIT {
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	private String prefix0(int value) {
 		return String.format("1%08d", value);

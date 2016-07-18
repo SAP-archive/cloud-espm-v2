@@ -32,7 +32,7 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+	/*@Test
 	public void testCreateSalesOrderHeaderViaREST() throws IOException,
 			JSONException {
 		String salesOrderHeaderXml = StreamHelper.readFromFile(SOH_FILENAME);
@@ -55,7 +55,7 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	/**
 	 * Test Create Sales Order via Url.
@@ -63,7 +63,7 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+	/*@Test
 	public void testCreateSalesOrderViaREST() throws IOException, JSONException {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
 		String id = RequestExecutionHelper.createSalesOrderViaREST(ENTITY_NAME,
@@ -87,14 +87,14 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
 	}
-
+*/
 	/**
 	 * Test ConfirmSalesOrder Function Import
 	 * 
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	@Test
+/*	@Test
 	public void testConfirmSalesOrder() throws JSONException, IOException {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
 		String id = RequestExecutionHelper.createSalesOrderViaREST(ENTITY_NAME,
@@ -128,7 +128,7 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
 
-	}
+	}*/
 
 	/**
 	 * Test Cancel Sales Order Function Import
@@ -136,7 +136,7 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+	/*@Test
 	public void testCancelSalesOrder() throws IOException, JSONException {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
 		String id = RequestExecutionHelper.createSalesOrderViaREST(ENTITY_NAME,
@@ -169,7 +169,7 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	/**
 	 * Test Get SalesOrderHeader Details by Anonymous user.
@@ -177,7 +177,7 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+/*	@Test
 	public void testGetSalesOrderHeaderByAnonymous() throws IOException,
 			JSONException {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
@@ -195,6 +195,6 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 }

@@ -138,7 +138,7 @@ public class SupplierODataIT extends AbstractODataIT {
 	 * @throws JSONException
 	 */
 
-	@Test
+	/*@Test
 	public void testCreateSupplierViaREST() throws IOException, JSONException {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String email = rand.nextInt(200) + "@sap.com";
@@ -165,14 +165,14 @@ public class SupplierODataIT extends AbstractODataIT {
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
 	}
-
+*/
 	/**
 	 * Test Delete Supplier via URL.
 	 * 
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+	/*@Test
 	public void testDeleteSupplierViaREST() throws IOException, JSONException {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String email = rand.nextInt(200) + "@sap.com";
@@ -193,14 +193,14 @@ public class SupplierODataIT extends AbstractODataIT {
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
 	}
-
+*/
 	/**
 	 * Test Update Supplier via URL.
 	 * 
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+	/*@Test
 	public void testUpdateSupplierViaREST() throws IOException, JSONException {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String newPhoneNumber = "111111";
@@ -238,7 +238,7 @@ public class SupplierODataIT extends AbstractODataIT {
 				"Unable to delete Supplier via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 	/**
 	 * Test Get Supplier by Anonymous user.
@@ -247,7 +247,7 @@ public class SupplierODataIT extends AbstractODataIT {
 	 * @throws JSONException
 	 */
 
-	@Test
+	/*@Test
 	public void testGetSupplierByAnonymous() throws IOException, JSONException {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String email = rand.nextInt(200) + "@sap.com";
@@ -268,6 +268,6 @@ public class SupplierODataIT extends AbstractODataIT {
 				"Unable to delete Supplier via REST or incorrect HTTP Response Code:"
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}
+	}*/
 
 }

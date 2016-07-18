@@ -29,6 +29,7 @@ sap.ui.define([
 				var that = this;
 				this.getView().addEventDelegate({
 					onAfterShow: function() {
+						//that.getView().byId("btnProductListHeader").setText(count);
 						that.showPopUpdialog();
 					}});
 				
@@ -221,6 +222,7 @@ sap.ui.define([
 			this.pdfHTML.setVisible(true);
 			this.pdfHTML.setContent("<iframe src=" + pdfURL + " width='0%' height='0%'></iframe>");
 			
+//			window.open( "http://blasthemy.com/sap/TechEd13/1_Session_PDFs/CD/CD119/CD119.pdf","blank");
 		},
 		onNavBack: function(){
 			window.history.go(-1);

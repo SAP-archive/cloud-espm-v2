@@ -141,7 +141,7 @@
 										<artifactId>
 											neo-javaee6-wp-maven-plugin
 										</artifactId>
-										<versionRange>[2.87,)</versionRange>									
+										<versionRange>[2.83,)</versionRange>									
 										<goals>
 											<goal>install-sdk</goal>
 										</goals>

@@ -210,7 +210,56 @@ public class SalesOrderProcessor {
 			}
 		}
 	}
-		
+	
+/*	@SuppressWarnings("unchecked")
+	@EdmFunctionImport(name = "GetSalesOrderInvoiceByEmail", entitySet = "SalesOrderHeaders", returnType = @ReturnType(type = Type.COMPLEX, isCollection = true))
+	public List<Object> getSalesOrderInvoiceByEmail(
+			@EdmFunctionImportParameter(name = "EmailAddress") String emailAddress,
+			@EdmFunctionImportParameter(name = "SalesOrderId") String salesOrderId)
+			throws ODataException {
+		EntityManagerFactory emf = Utility.getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		List<Object> Invoice = new ArrayList<Object>();
+		List<SalesOrderHeader> invoiceList = Collections.emptyList();
+		List<SalesOrderItem> itemList = Collections.emptyList();
+		List<Customer> custList = null;
+		try {
+			Query query = em
+					.createQuery("SELECT soh FROM SalesOrderHeader soh JOIN Customer c WHERE c.emailAddress= :emailAddress ");
+			query.setParameter("emailAddress", emailAddress);
+			Query query1 = em
+					.createQuery("SELECT soi FROM SalesOrderItem soi where soi.id.salesOrderId='"+ salesOrderId +"'");
+			
+			Query query2 = em
+					.createQuery("SELECT c FROM Customer WHERE c.emailAddress= :emailAddress ");
+			query2.setParameter("emailAddress", emailAddress);
+			invoiceList = query.getResultList();
+			itemList=query1.getResultList();
+			custList=query2.getResultList();
+			Invoice.addAll(invoiceList);
+			Invoice.addAll(itemList);
+			Invoice.addAll(custList);
+			
+			
+		} catch (NoResultException e) {
+			throw new ODataApplicationException(
+					"No Sales Order Invoices with emailId Id:" + emailAddress,
+					Locale.ENGLISH, HttpStatusCodes.BAD_REQUEST);
+		} catch (Exception exception) {
+			throw new ODataApplicationException(
+					"No Sales Order Invoices with emailId Id:" + emailAddress,
+					Locale.ENGLISH, HttpStatusCodes.BAD_REQUEST);
+		}
+
+		finally {
+			em.close();
+		}
+
+		return Invoice;
+
+	}
+*/
+	
 	/**
 	 * Function Import implementation for getting all the Sales Order invoices by email Address
 	 * under a Sales Order Header
@@ -220,6 +269,7 @@ public class SalesOrderProcessor {
 	 * @return SalesOrderHeader entity.
 	 * @throws ODataException
 	 */
+	//@EdmFunctionImportParameter(name = "SalesOrderId") String salesOrderId
 	@SuppressWarnings("unchecked")
 	@EdmFunctionImport(name = "GetSalesOrderInvoiceByEmail", entitySet = "SalesOrderHeaders", returnType = @ReturnType(type = Type.ENTITY, isCollection = true))
 	public List<SalesOrderHeader> getSalesOrderInvoiceByEmail(
@@ -230,7 +280,27 @@ public class SalesOrderProcessor {
 		List<SalesOrderHeader> orderList = new ArrayList<>();
 		List<SalesOrderHeader> salesOrderHeaderList = new ArrayList<>();
 		List<SalesOrderItem> itemList = new ArrayList<>();
-		try {		
+		//SalesOrderHeader soh;
+		try {
+			/*Query querySOHeader = em
+					.createQuery("SELECT soh FROM SalesOrderHeader soh JOIN Customer c WHERE c.emailAddress= :emailAddress ");
+			querySOHeader.setParameter("emailAddress", emailAddress);
+			Query querySOItems; 			
+			Query queryCustomer = em
+					.createQuery("SELECT c FROM Customer WHERE c.emailAddress= :emailAddress");
+			queryCustomer.setParameter("emailAddress", emailAddress);
+			orderList = querySOHeader.getResultList();
+			Customer cm = (Customer) queryCustomer.getSingleResult();
+			for( SalesOrderHeader salesOrderHeader : orderList){
+				querySOItems = em
+						.createQuery("SELECT soi FROM SalesOrderItem soi where soi.id.salesOrderId= :salesOrderId");
+				querySOItems.setParameter("salesOrderId", salesOrderId);
+				salesOrderHeader.setSalesOrderItems(querySOItems.getResultList());
+				salesOrderHeader.setCustomer(cm);
+				orderList.add(salesOrderHeader);
+				
+			}*/		
+			
 			Query querySOItems; ;
 			Query queryCustomer = em.createQuery("SELECT c FROM Customer c where c.emailAddress= :emailAddress");
 			queryCustomer.setParameter("emailAddress", emailAddress);

@@ -22,6 +22,11 @@
 							</OverflowToolbar>
 						</headerToolbar>
 						<columns>
+						<!--	<Column hAlign="Left" id="favoriteColumn" minScreenWidth="Tablet" width="4%">
+								<header>
+									<Label id="favoriteLbl" text="{/#Product/IsFavoriteOfCurrentUser/@sap:label}" visible="false"/>
+								</header>
+							</Column>-->
 							<Column hAlign="Left" id="pictureColumn" width="{= !${device>/system/phone}? '9%' : '5rem'}">
 								<header>
 									<Label id="imageLbl" text="{i18n>home.image}" visible="{= !${device>/system/phone}}"/>

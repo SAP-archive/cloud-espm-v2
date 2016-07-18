@@ -128,7 +128,7 @@ public class StockODataIT extends AbstractODataIT {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+	/*@Test
 	public void testUpdateStock() throws IOException, JSONException {
 		String productId = "HX-" + rand.nextInt(200);
 		BigDecimal minStock = BigDecimal.valueOf(10.0);
@@ -167,5 +167,5 @@ public class StockODataIT extends AbstractODataIT {
 						+ resp.getResponseMessage(),
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
 
-	}
+	}*/
 }

@@ -34,6 +34,8 @@ sap.ui.define([
 					var count = formatter.onAddCountToCart(oModel);
 					that.getView().byId("btnProductListHeader").setText(count);
 				}});
+			/*var oModel = new sap.ui.model.odata.ODataModel("https://espmespm.neo.ondemand.com/espm-cloud-web/espm.svc");
+			this.getView().setModel(oModel);*/
 			
 			this.mGroupFunctions = {
 				Category: function(oContext) {
@@ -69,6 +71,44 @@ sap.ui.define([
 		onAfterRendering: function() 
 		{
 			 
+			/*jQuery.sap.require("jquery.sap.storage");
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			
+			if (!oStorage.get("disclaimer")) {  
+				
+				var dialog = new sap.m.Dialog({
+					title: 'SAP HANA Cloud Development Scenario',
+					type: 'Message',
+					content: [new sap.m.Text({
+						text: 'This application is intended to serve as a reference application for usage of SAP HANA Cloud services and related technologies as part of a development scenario. This application consists of dummy data retrieved from a reference backend system. Users are advised not to enter any personal data as the application does not serve as a reference for handling confidential or sensitive information.'
+					}),
+					new sap.m.RadioButton({
+						text : "Do not show this message again",
+						select:function(evt){
+							
+							var data = {  
+									  "disclaimer" : [ {  
+									  "show" : "1"  
+									  } ]  
+									  };
+							oStorage.put("disclaimer", data);  
+
+						}
+					})],
+					beginButton: new sap.m.Button({
+						text: 'OK',
+						press: function () {
+							dialog.close();
+						}
+					}),
+					afterClose: function() {
+						dialog.destroy();
+					}
+				});
+	 
+				dialog.open();
+			}*/
+			
 		},
 		onBeforeRendering: function() 
 		{
@@ -115,6 +155,7 @@ sap.ui.define([
 			});
 			
 			var filter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString);
+			//var oFilter = new sap.ui.model.Filter("Category", sap.ui.model.FilterOperator.Contains, searchString);  
 			newFilters.push(filter);
 			if(this._oCombobox.getValue().length === 0){
 				binding.filter(filter);
@@ -126,6 +167,9 @@ sap.ui.define([
 				                                           new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString)
 				                                        ],true)]);
 			}
+			
+			
+			//
 
 		},
 		_createDialog: function(sDialog) {
@@ -180,6 +224,7 @@ sap.ui.define([
 				var vGroup = this.mGroupFunctions[sPath];
 				sorters = new sap.ui.model.Sorter(sPath, bDescending, vGroup);
 				
+				//aSorters.push(new Sorter(sPath, bDescending, vGroup));
 			}
 			oBinding.sort(sorters);
 			
@@ -204,6 +249,9 @@ sap.ui.define([
 			
 			this.getView().byId("searchField").setValue("");
 			this._oCombobox.setValue("");
+			
+			
+			//this._resetSortingState();
 			
 		},
 		

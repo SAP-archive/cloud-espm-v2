@@ -1,0 +1,17 @@
+{
+	"TileCollection" : [
+		{
+			"icon" : "inbox",
+			"number" : "12",
+			"title" : "Approve Sales Order Requests",
+			"info" : ""
+		},
+		{
+			"icon" : "cart",
+			"number" : "",
+			"title" : "Stock availability",
+			"info" : ""
+					
+		}
+	]
+}

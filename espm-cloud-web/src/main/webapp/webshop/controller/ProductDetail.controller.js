@@ -117,9 +117,7 @@ sap.ui.define([
 			this._oReviewDialog.open();
 		},
 		onReviewDialogOKPressed: function(oEvent) {
-			
 			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			
 			this._oReviewDialog.close();
 			var iRatingCount = sap.ui.getCore().byId("ratingIndicator", "reviewDialog").getValue();
 			var sReviewComment = sap.ui.getCore().byId("textArea", "reviewDialog").getValue();
@@ -130,6 +128,7 @@ sap.ui.define([
 			
 			var sFunctionImportReviewParam = "ProductId='" + prodId + "'&FirstName='" + firstName + "'&LastName='" + lastName + "'&Rating='" + iRatingCount + "'&CreationDate='" + createtionDate + "'&Comment='" + sReviewComment + "'";
 		
+			//var sFunctionImportReviewParam = "EmailAddress='" + this.byId("existingEmailId").getValue() + "'";
 			var aParams = [];
 			aParams.push(sFunctionImportReviewParam);
 			
@@ -146,7 +145,7 @@ sap.ui.define([
  					
  				}
  			},function(){
-				sap.m.MessageToast.show(oBundle.getText("detail.reviewFailed")); 
+ 				sap.m.MessageToast.show(oBundle.getText("detail.reviewFailed")); 
  			});
 			oModel.refresh(true);
 			

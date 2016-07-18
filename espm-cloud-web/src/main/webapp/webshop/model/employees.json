@@ -1,0 +1,31 @@
+{
+    "employees": [{
+        "NAME": "karthik",
+        "AGE":  "28"
+    }, 
+    {
+        "NAME": "karthik",
+        "AGE":  "28"
+    },  
+    {
+         "NAME": "karthik",
+        "AGE":  "28"
+    }, 
+    {
+         "NAME": "karthik",
+        "AGE":  "28"
+    }, 
+    {
+         "NAME": "karthik",
+        "AGE":  "28"
+    }, 
+    {
+         "NAME": "karthik",
+        "AGE":  "28"
+    }, 
+    {
+        "NAME": "karthik",
+        "AGE":  "28"
+    }
+    ]
+}

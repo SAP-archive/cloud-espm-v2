@@ -35,6 +35,9 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel(oData);
 			this.setModel(oModel,"Cart");
 			
+			var oModel = new sap.ui.model.json.JSONModel("model/employees.json");
+			this.setModel(oModel,"employee");
+			
 			this.getRouter().initialize();
 		}
 	});

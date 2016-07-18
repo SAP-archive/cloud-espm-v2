@@ -1,0 +1,16 @@
+{    
+	"welcomeFile": "index.html",
+	"routes": [        
+		{            
+			"path": "/proxy/cloudbackend",
+			"target": {
+				"type": "destination",
+				"name": "cloudbackend"
+		              },
+            "description": "Cloud backend"
+        }
+    ],
+    "cacheControl": [{        
+   		"maxAge": 604800    
+   		}]
+}

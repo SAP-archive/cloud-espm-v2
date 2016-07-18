@@ -429,6 +429,134 @@ public class TestFactory {
 		return status;
 	}
 
+	/**
+	 * Helper method to create Purchase Order Header.
+	 * 
+	 * @param em
+	 *            the entity manager instance
+	 * @param id
+	 *            the primary key purchase order id.
+	 * @return the true/false status of the success/failure of operation.
+	 */
+	/*public Boolean createPurchaseOrderHeader(EntityManager em,
+			String purchaseOrderId) {
+		boolean status = true;
+		PurchaseOrderHeader poHeader = null;
+		try {
+			// Create PO Header
+			em.getTransaction().begin();
+			poHeader = createPurchaseOrderHeader(purchaseOrderId);
+			em.persist(poHeader);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			status = false;
+			logger.error("Error occured during creation of Purchase Order Header. Detailed info: "
+					+ e);
+		}
+
+		return status;
+	}*/
+
+	/**
+	 * Helper method to delete Purchase Order Header.
+	 * 
+	 * @param em
+	 *            the entity manager instance
+	 * @param id
+	 *            the primary key purchase order id.
+	 * @return the true/false status of the success/failure of operation.
+	 */
+	/*public Boolean deletePurchaseOrderHeader(EntityManager em, String id) {
+		boolean status = true;
+		PurchaseOrderHeader poHeader = null;
+		try {
+			if (!em.getTransaction().isActive()) {
+				em.getTransaction().begin();
+			}
+			poHeader = em.find(PurchaseOrderHeader.class, id);
+			em.remove(poHeader);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			status = false;
+			logger.error("Error occured during delete of Purchase Order Header. Detailed info: "
+					+ e);
+		}
+		return status;
+	}*/
+
+	/**
+	 * Helper method to create Purchase Order Item.
+	 * 
+	 * @param em
+	 *            the entity manager instance
+	 * @param id
+	 *            the primary key purchase order id.
+	 * @return the true/false status of the success/failure of operation.
+	 */
+	/*public Boolean createPurchaseOrderItem(EntityManager em,
+			String purchaseOrderId, int itemNumber) {
+		boolean status = true;
+		PurchaseOrderHeader poHeader = null;
+		PurchaseOrderItem poItem = null;
+		PurchaseOrderItemId poItemId = new PurchaseOrderItemId(purchaseOrderId,
+				itemNumber);
+		try {
+			// Create PO Item
+			em.getTransaction().begin();
+			poHeader = createPurchaseOrderHeader(purchaseOrderId);
+			poItem = new PurchaseOrderItem();
+			
+			 * poItem.setPurchaseOrderId(purchaseOrderId);
+			 * poItem.setItemNumber(1);
+			 
+			poItem.setPurchaseOrderItemId(poItemId);
+			poItem.setCurrencyCode("INR");
+			poItem.setGrossAmount(BigDecimal.valueOf(13224));
+			poItem.setNetAmount(BigDecimal.valueOf(11113));
+			poItem.setTaxAmount(BigDecimal.valueOf(2111));
+			poHeader.addItem(poItem);
+			poItem.setPurchaseOrderHeader(poHeader);
+			em.persist(poItem);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			status = false;
+			logger.error("Error occured during create of Purchase Order Item. Detailed info: "
+					+ e);
+		}
+		return status;
+
+	}*/
+
+	/**
+	 * Helper method to delete Purchase Order Item.
+	 * 
+	 * @param em
+	 *            the entity manager instance
+	 * @param id
+	 *            the primary key purchase order id.
+	 * @param itemNumber
+	 *            TODO
+	 * @return the true/false status of the success/failure of operation.
+	 */
+	/*public Boolean deletePurchaseOrderItem(EntityManager em, String id,
+			int itemNumber) {
+		boolean status = true;
+		PurchaseOrderItem poItem = null;
+		try {
+			if (!em.getTransaction().isActive()) {
+				em.getTransaction().begin();
+			}
+			poItem = em.find(PurchaseOrderItem.class, new PurchaseOrderItemId(
+					id, itemNumber));
+			em.remove(poItem);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			status = false;
+			logger.error("Error occured during delete of Purchase Order Item. Detailed info: "
+					+ e);
+		}
+		return status;
+	}*/
 
 	/**
 	 * Helper method to create Stock
@@ -490,6 +618,23 @@ public class TestFactory {
 		return status;
 	}
 
+	/**
+	 * Create a Purchase Order Header entity
+	 * 
+	 * @param purchaseOrderId
+	 *            purchase order id of entity to be created.
+	 * @return created entity
+	 */
+	/*private PurchaseOrderHeader createPurchaseOrderHeader(String purchaseOrderId) {
+		PurchaseOrderHeader poHeader = new PurchaseOrderHeader();
+		poHeader.setPurchaseOrderId(purchaseOrderId);
+		poHeader.setCurrencyCode("INR");
+		poHeader.setGrossAmount(BigDecimal.valueOf(13224));
+		poHeader.setNetAmount(BigDecimal.valueOf(11113));
+		poHeader.setTaxAmount(BigDecimal.valueOf(2111));
+		return poHeader;
+	}
+*/
 	/**
 	 * Create SalesOrderHeader entity
 	 * 

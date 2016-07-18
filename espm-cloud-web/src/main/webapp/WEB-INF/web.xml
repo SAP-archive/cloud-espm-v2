@@ -46,8 +46,19 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ODataSecureServlet</servlet-name>
-		<url-pattern>/espm.svc/secure/*</url-pattern>
+	    <url-pattern>/espm.svc/secure/*</url-pattern>
 	</servlet-mapping>
+	<!-- CSRF protection for the REST API for retailer scenario -->
+		<filter>
+		   <filter-name>RestCSRF</filter-name>
+		   <filter-class>org.apache.catalina.filters.RestCsrfPreventionFilter</filter-class>
+	 	</filter>
+	 <filter-mapping>
+	   	<filter-name>RestCSRF</filter-name>
+	    <!--modifying REST APIs  -->
+		<url-pattern>/espm.svc/secure/*</url-pattern>	    
+	 </filter-mapping>	
+	 <!-- data source for the application -->	
 	<resource-ref>
 		<res-ref-name>jdbc/DefaultDB</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
@@ -109,4 +120,36 @@
 		<servlet-name>CmisRead</servlet-name>
 		<url-pattern>/CmisRead</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>userManagement</display-name>
+		<servlet-name>userManagement</servlet-name>
+		<servlet-class>com.sap.espm.model.AuthorizationManagement.AuthorizationApiUserManagementWs</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userManagement</servlet-name>
+		<url-pattern>/grantUserRole</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>roleManagement</display-name>
+		<servlet-name>roleManagement</servlet-name>
+		<servlet-class>com.sap.espm.model.AuthorizationManagement.AuthorizationApiRoleManagement</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>roleManagement</servlet-name>
+		<url-pattern>/RoleManagement</url-pattern>
+	</servlet-mapping>
+	<resource-ref>
+  <res-ref-name>PasswordStorage</res-ref-name>
+  <res-type>com.sap.cloud.security.password.PasswordStorage</res-type>
+</resource-ref>
+<resource-ref>
+    <res-ref-name>tenantContext</res-ref-name>
+    <res-type>com.sap.cloud.account.TenantContext</res-type>
+  </resource-ref>
+ <resource-ref>
+    <res-ref-name>ConnectivityConfiguration</res-ref-name>
+    <res-type>com.sap.core.connectivity.api.configuration.ConnectivityConfiguration</res-type>
+  </resource-ref>
 </web-app>

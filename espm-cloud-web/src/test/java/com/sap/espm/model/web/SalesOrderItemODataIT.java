@@ -32,7 +32,7 @@ public class SalesOrderItemODataIT extends AbstractODataIT {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	@Test
+/*	@Test
 	public void testCreateSalesOrderItemViaURL() throws IOException,
 			JSONException {
 		String salesOrderItemXml = StreamHelper.readFromFile(FILENAME);
@@ -63,5 +63,5 @@ public class SalesOrderItemODataIT extends AbstractODataIT {
 				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
 		resp = RequestExecutionHelper.executeDeleteRequest(
 				"SalesOrderHeaders('" + soid + "')", true);
-	}
+	}*/
 }

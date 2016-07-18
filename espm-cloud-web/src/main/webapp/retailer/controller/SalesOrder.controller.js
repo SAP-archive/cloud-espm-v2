@@ -112,46 +112,38 @@ sap.ui.define([
 			binding.filter(filters); 
 			
 		},
+		
 		handleApprove: function(evt){
-			
+				
 			var bundle = this.getView().getModel("i18n").getResourceBundle(); 
 			var that = this;
 			
 			sap.m.MessageBox.confirm( bundle.getText("sales.approveDialogMsg"), 
 					function (oAction) { 
 						if (sap.m.MessageBox.Action.OK === oAction) { 
-						// notify user 
-							
+							// notify user 
 							var id = that.getView().byId("detailObjectHeader").getTitle();
-							var sFilterString = "SalesOrderId='" + id + "'";
-							var aParams = [];
-							aParams.push(sFilterString);
-							
 							var oDataModel = that.getView().getModel("espmRetailerModel");
 							oDataModel.setHeaders({  
 				            "Content-Type": "application/json",
 				            "Accept": "application/json"
 				        	}); 
-							
-							oDataModel.read("ConfirmSalesOrder", null, aParams, false, function(data){
-								
-								responseData =data;
-								
-								var oComponent = that.getOwnerComponent();
-								var model = oComponent.getModel("espmRetailerModel");
-								model.refresh();
-								
-								var successMsg = bundle.getText("sales.aproveDialogSuccessMsg"); 
+							var sPath = "/SalesOrderHeaders('" + id + "')";
+							var oData = {};
+							oData.LifeCycleStatus = 'P';
+							oData.LifeCycleStatusName = 'In Process';
+							oDataModel.update(sPath, oData, null, function(data){
+								//the sales order updated successfully
+								var successMsg = bundle.getText("sales.approveDialogSuccessMsg"); 
 								sap.m.MessageToast.show(successMsg);
-							 	},
-							 	function()
-							 	{
-							 		sap.m.MessageToast.show(bundle.getText("sales.approvalFailed"));
-							 	});
+							},
+							function(data){
+								//the sales order updation failed
+								sap.m.MessageToast.show(bundle.getText("sales.soApprovalFailed"));
+							});
 						} 
 						}, 
 						bundle.getText("sales.approveDialogTitle") ); 
-			
 					
 		},
 		
@@ -159,39 +151,36 @@ sap.ui.define([
 			
 			var bundle = this.getView().getModel("i18n").getResourceBundle(); 
 			var that = this;
-			sap.m.MessageBox.confirm( bundle.getText("sales.rejectDialogMsg"), 
+			
+			sap.m.MessageBox.confirm( bundle.getText("sales.RejectDialogMsg"), 
 					function (oAction) { 
 						if (sap.m.MessageBox.Action.OK === oAction) { 
-						// notify user 
-							
+							// notify user 
 							var id = that.getView().byId("detailObjectHeader").getTitle();
-							var sFilterString = "SalesOrderId='" + id + "'";
-							var aParams = [];
-							aParams.push(sFilterString);
-							
 							var oDataModel = that.getView().getModel("espmRetailerModel");
 							oDataModel.setHeaders({  
 				            "Content-Type": "application/json",
 				            "Accept": "application/json"
 				        	}); 
-							
-							oDataModel.read("CancelSalesOrder", null, aParams, false, function(data){
-
-								responseData =data;
-								var oComponent = that.getOwnerComponent();
-								var model = oComponent.getModel("espmRetailerModel");
-								model.refresh();
-								
+							var sPath = "/SalesOrderHeaders('" + id + "')";
+							var oData = {};
+							oData.LifeCycleStatus = 'X';
+							oData.LifeCycleStatusName = 'Cancelled';
+							oDataModel.update(sPath, oData, null, function(data){
+								//the sales order updated successfully
 								var successMsg = bundle.getText("sales.rejectDialogSuccessMsg"); 
 								sap.m.MessageToast.show(successMsg);
-							 	},function(){
-							 		sap.m.MessageToast.show(bundle.getText("sales.rejectFailed"));});
+							},
+							function(data){
+								//the sales order updation failed
+								sap.m.MessageToast.show(bundle.getText("sales.soApprovalFailed"));
+							});
 						} 
 						}, 
-						bundle.getText("sales.rejectDialogTitle") ); 
-			
+						bundle.getText("sales.rejectDialogTitle") ); 		
 					
 		},
+		
 		onNavBack: function(){
 			window.history.go(-1);
 		}
