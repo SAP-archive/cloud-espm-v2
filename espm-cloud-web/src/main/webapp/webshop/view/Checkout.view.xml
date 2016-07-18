@@ -75,7 +75,7 @@
 							<Label text="{i18n>check.newEmail}" required="true"/>
 							<Input id="newEmailId" placeholder="{i18n>check.holderNewEmail}" change="validateEmail" value=""/>
 							<Label text="{i18n>check.DOB}" required="true"/>
-							<DatePicker id="birthId" displayFormat="medium" type="sap.ui.model.type.Date" valueFormat="yyyy-MM-dd"/>
+							<DatePicker id="birthId" displayFormat="medium" type="sap.ui.model.type.Date" valueFormat="yyyy-MM-dd" change="validateDateField"/>
 							<Label text="{i18n>check.address}" required="true"/>
 							<Input id="streetId" placeholder="{i18n>check.holderStreetNumber}" type="sap.ui.model.type.Integer" liveChange="validateNumberInputField" value=""/>
 							<Input id="cityId" placeholder="{i18n>check.holderCity}" type="sap.ui.model.type.String" liveChange="validateStringInputField" value=""/>
