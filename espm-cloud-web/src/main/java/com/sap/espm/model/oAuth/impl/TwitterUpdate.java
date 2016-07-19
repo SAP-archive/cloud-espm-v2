@@ -1,7 +1,10 @@
 package com.sap.espm.model.oAuth.impl;
 
 
+import java.util.Map;
+
 import com.sap.espm.model.util.ReadProperties;
+import com.sap.espm.model.util.oAuthDetails;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -16,8 +19,9 @@ import twitter4j.auth.AccessToken;
 
 
 public class TwitterUpdate {
-	static String consumerKeyStr = ReadProperties.getInstance().getValue("consumerApplicationKey");
-	static String consumerSecretStr =ReadProperties.getInstance().getValue("consumerApplicationSecret");;
+	static Map<String,String> twitterDetails = oAuthDetails.getOAuthDetails();
+	static String consumerKeyStr = twitterDetails.get("consumerApplicationKey");
+	static String consumerSecretStr =twitterDetails.get("consumerApplicationSecret");
 	
 	
 	public static int tweet(AccessToken at, String status) {

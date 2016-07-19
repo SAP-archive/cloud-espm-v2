@@ -23,7 +23,7 @@ import twitter4j.conf.ConfigurationBuilder;
 public class TwitterLogin {
 	static Map<String,String> twitterDetails = oAuthDetails.getOAuthDetails();
 	static String consumerKeyStr = twitterDetails.get("consumerApplicationKey");
-	static String consumerSecretStr =twitterDetails.get("consumerApplicationSecret");;
+	static String consumerSecretStr =twitterDetails.get("consumerApplicationSecret");
 	public static String token;
 	public static String tokenSecret;
 	public static Twitter loginReqApi()
