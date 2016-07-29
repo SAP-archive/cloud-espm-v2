@@ -79,7 +79,7 @@
 							<Input id="cityId" placeholder="{i18n>check.holderCity}" type ="sap.ui.model.type.String" change="checkCustomerInformation" liveChange ="validateStringInputField" value=""/>
 							<Input id="postalId" placeholder="{i18n>check.holderPostalCode}" type ="sap.ui.model.type.Integer" change="checkCustomerInformation" liveChange ="validateNumberInputField" value=""/>
 							<Label text="{i18n>check.country}" required="true"/>
-							<ComboBox id="countryListId" selectionChange="checkCustomerInformation" items="{path: 'countryModel>/Countries'}">
+							<ComboBox id="countryListId" selectionChange="checkCustomerInformation" items="{path: 'countryModel>/Countries', length: '241'}">
                                  <core:Item key="{countryModel>key}" text="{countryModel>name}" />
                             </ComboBox>
 					</form:SimpleForm>
