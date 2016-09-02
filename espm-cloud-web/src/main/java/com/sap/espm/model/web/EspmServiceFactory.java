@@ -19,6 +19,5 @@ public class EspmServiceFactory extends ODataJPAServiceFactory {
 			throws ODataJPARuntimeException {
 		//to-do - replace this with your code implementation
 		return null;
-
 	}
 }

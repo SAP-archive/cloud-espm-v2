@@ -34,8 +34,10 @@ public class CustomerProcessor {
 	 * @return customer entity.
 	 * @throws ODataException
 	 */
+	
 	//to-do - replace the below function signature with your code implementation
-	public List<Customer> getCustomerByEmailAddress(String emailAddress) throws ODataException {
+	public List<Customer> getCustomerByEmailAddress(String emailAddress)
+			throws ODataException {
 		EntityManagerFactory emf = Utility.getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		List<Customer> custList = null;
