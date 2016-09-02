@@ -3,12 +3,11 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"com/sap/espm/shop/model/formatter",
 	"sap/ui/core/UIComponent",
-	"sap/ui/core/mvc/ViewType",
 	"sap/ui/model/odata/ODataModel",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/routing/History",
 	"sap/m/MessageBox"
-], function(Controller, formatter, UIComponent, ViewType, ODataModel, JSONModel, History, MessageBox) {
+], function(Controller, formatter, UIComponent, ODataModel, JSONModel, History, MessageBox) {
 	"use strict";
 		var oDataModel;
 		var customerId = "";
@@ -17,6 +16,7 @@ sap.ui.define([
 		
 		formatter: formatter,
 		
+		cardType: "american",
 		onInit:function()
 		{
 			
@@ -81,7 +81,10 @@ sap.ui.define([
             //model for countries in the UI
             var ocountryModel = new JSONModel(); 
             ocountryModel.loadData("/espm-cloud-web/webshop/model/countries.json");
-            this.getView().byId("countryListId").setModel(ocountryModel, "countryModel");			
+            this.getView().byId("countryListId").setModel(ocountryModel, "countryModel");
+
+            var today = new Date();
+			this.getView().byId("birthId").setMaxDate(today);
 		},
 		onAfterRendering: function() 
 		{
@@ -102,7 +105,7 @@ sap.ui.define([
 			var subTotal = 0;
 			var currency;
 			var oModel = this.getView().getModel("Cart");
-			var data = oModel.getProperty('/ShoppingCart');
+			var data = oModel.getProperty("/ShoppingCart");
 			if(data){
 				for(var i=0; i<data.length; i++){
 					var prodId = data[i];
@@ -184,14 +187,16 @@ sap.ui.define([
 				sap.ui.getCore().byId("cardOwner").setText(this.byId("nameId").getValue());
 				sap.ui.getCore().byId("cardNumber").setText(this.byId("numberId").getValue());
 				
+				sap.ui.getCore().byId("cardImg").setSrc("Images/"+ this.cardType+ ".png");
+				
 				this._oNavContainer.to(this._oWizardReviewPage);
 			}
 			
 		},
 		handleWizardCancel: function(){
 			
-			this._oNavContainer.backToPage(that._oWizardContentPage.getId());
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+			this._oNavContainer.backToPage(this._oWizardContentPage.getId());
+			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("Home", true);
 		},
 		handleWizardSubmit : function () {
@@ -209,7 +214,7 @@ sap.ui.define([
 
 		},
 		createCustomer: function(){
-            var oBundle = this.getView().getModel('i18n').getResourceBundle();
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
             var that = this;
             var date = this.byId("birthId").getValue();
             var utctime = Date.parse(date);                                
@@ -238,7 +243,7 @@ sap.ui.define([
             		customerId = responsedata.d.CustomerId;
  					that.createSalesOrder();
             },
-            error: function(err) {
+            error: function() {
                 sap.m.MessageToast.show(oBundle.getText("check.customerCreateFailed"));
             }
         	});			
@@ -248,12 +253,12 @@ sap.ui.define([
 			var that = this;
 			var sCustomerId = customerId;
 			var SalesOrderHeader = {};
-            var oBundle = this.getView().getModel('i18n').getResourceBundle();                     
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();                     
 			SalesOrderHeader.CustomerId = sCustomerId;
 		
 			var items = [];
 			var cartModel = this.getView().getModel("Cart");
-			var products = cartModel.getProperty('/ShoppingCart');
+			var products = cartModel.getProperty("/ShoppingCart");
 			for (var i = 0; i < products.length; i++) {
 				var product = products[i];
 				var item = {
@@ -275,7 +280,7 @@ sap.ui.define([
             dataType: "json",
             url: "/espm-cloud-web/espm.svc/SalesOrderHeaders",
             data : JSON.stringify(SalesOrderHeader),
-            success: function(oData, responsedata) {
+            success: function(oData) {
             		
             		
             		var dataJson = {
@@ -287,7 +292,7 @@ sap.ui.define([
 			            contentType:"application/json; charset=utf-8",
 			            url: oData.d.__metadata.id + "/$links/Customer",
 			            data :JSON.stringify(dataJson),
-			            success: function(data, response) {
+			            success: function() {
 			            	
 			            	$.ajax({
 					            type: "GET",
@@ -295,24 +300,24 @@ sap.ui.define([
 					            contentType:"application/json; charset=utf-8",
 					            dataType: "json",
 					            url: "/espm-cloud-web/espm.svc/GetSalesOrderItemsById?SalesOrderId='"+ oData.d.SalesOrderId +"'",
-					            success: function(data, response) {
+					            success: function(data) {
 					            	var length = data.d.results.length;
-					            	for(var i=0;i<length;i++){
+					            	for(var j=0;j<length;j++){
 					            		var productDataJson = {
-					            				"uri" : "Products('" + data.d.results[i].ProductId + "')"
+					            				"uri" : "Products('" + data.d.results[j].ProductId + "')"
 					                		};
 					            		$.ajax({
 								            type: "PUT",
 								            async: true,
 								            dataType: "json",
 								            contentType:"application/json; charset=utf-8",
-								            url: data.d.results[i].__metadata.id + "/$links/Product",
+								            url: data.d.results[j].__metadata.id + "/$links/Product",
 								            data :JSON.stringify(productDataJson),
-								            success: function(data, response) {
+								            success: function() {
 								            	
 								            	
 								            },
-								            error: function(err) {
+								            error: function() {
 								            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
 								                that._oWizardReviewPage.setBusy(false);
 								            }});
@@ -320,7 +325,7 @@ sap.ui.define([
 					            	that._oWizardReviewPage.setBusy(false);
 					            	that.showOrderSuccessDialog(oData.d.SalesOrderId);
 					            },
-					            error: function(err) {
+					            error: function() {
 					            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
 					                that._oWizardReviewPage.setBusy(false);
 					            }
@@ -329,13 +334,13 @@ sap.ui.define([
 			            	
 			            		
 			            },
-			            error: function(err) {
+			            error: function() {
 			            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
 			                that._oWizardReviewPage.setBusy(false);
 			            }
 			        	});
             },
-            error: function(err) {
+            error: function() {
             	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
                 that._oWizardReviewPage.setBusy(false);
             }
@@ -344,12 +349,12 @@ sap.ui.define([
 				
 		},
 		showOrderSuccessDialog: function(orderId){
-            var oBundle = this.getView().getModel('i18n').getResourceBundle();
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var that = this;
 			var dialog = new sap.m.Dialog({
 				id:"orderDialogId",
 				title: oBundle.getText("tweet.title"),
-				type: 'Message',
+				type: "Message",
 				content: [
 					new sap.ui.layout.form.SimpleForm({
 						content:[
@@ -409,7 +414,7 @@ sap.ui.define([
 						model.setData({ShoppingCart : newArray});
 						sap.ui.getCore().byId("totalFooter").setNumber("");
 						sap.ui.getCore().byId("totalFooter").setUnit("");
-						var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+						var oRouter = UIComponent.getRouterFor(that);
 						oRouter.navTo("Home", true);
 							
 					}
@@ -426,7 +431,7 @@ sap.ui.define([
 						model.setData({ShoppingCart : newArray});
 						sap.ui.getCore().byId("totalFooter").setNumber("");
 						sap.ui.getCore().byId("totalFooter").setUnit("");
-						var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+						var oRouter = UIComponent.getRouterFor(that);
 						oRouter.navTo("Home", true);
 					}
 				}),
@@ -453,8 +458,8 @@ sap.ui.define([
 			}
 			
 		},
-		checkExistingCustomerAccount: function(oEvent){
-            var oBundle = this.getView().getModel('i18n').getResourceBundle();
+		checkExistingCustomerAccount: function(){
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var that = this;
 			if(sap.app.espm.screenName){
 				
@@ -468,9 +473,9 @@ sap.ui.define([
 	            "Content-Type": "application/json",
 	            "Accept": "application/json"
 	        	}); 
-				oDataModel.read('/GetCustomerByTwitterId',null, aParams , false, function(data)
+				oDataModel.read("/GetCustomerByTwitterId",null, aParams , false, function(data)
 				{
-	 				if(data.results.length == 0){
+	 				if(data.results.length === 0){
 	 					sap.m.MessageToast.show(oBundle.getText("check.enterDetails"));
 						that._oNewForm.setVisible(true);
 	 					customerId = "";
@@ -501,7 +506,7 @@ sap.ui.define([
      
 		},
 		validateEmail: function(mail){
-            var oBundle = this.getView().getModel('i18n').getResourceBundle();
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
 				return (true);
 			}else{
@@ -532,7 +537,7 @@ sap.ui.define([
 					
 		},
 		
-		valueChanged: function(oEvent){
+		valueChanged: function(){
 			
 			this.byId("nameId").setValue(this.byId("firstNameId").getValue()+" "+this.byId("lastnameId").getValue());
 			this.checkCustomerInformation();
@@ -552,9 +557,12 @@ sap.ui.define([
 		},
 		
 		addMoreProducts: function(){
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("Home", true);
-		}
+		},
+		onRbChange: function(oEvent){
+			this.cardType = oEvent.getSource().data("cardtype");
+  		}
 		
 
 	});

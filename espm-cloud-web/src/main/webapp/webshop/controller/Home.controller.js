@@ -3,17 +3,10 @@ sap.ui.define([
 	"com/sap/espm/shop/model/formatter",
 	"com/sap/espm/shop/model/utility",
 	"sap/ui/core/UIComponent",
-	"sap/ui/core/mvc/ViewType",
-	"com/sap/espm/shop/util/TableOperations",
-	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterType",
-	'sap/m/Button',
-	'sap/m/Dialog',
-	'sap/m/Text',
 	"sap/ui/model/FilterOperator"
-], function(Controller, formatter, utility, Dialog, Text, Button) {
+], function(Controller, formatter, utility, UIComponent, Sorter, Filter, FilterOperator) {
 	"use strict";
 
 
@@ -80,7 +73,7 @@ sap.ui.define([
 		onLineItemPressed: function(event)
 		{
 			var bindingContext = event.getSource().getBindingContextPath();
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("ProductDetail",{Productdetails:bindingContext.substr(1)});
 		},
 		onAddToCartHomePressed: function(oEvent){
@@ -96,7 +89,7 @@ sap.ui.define([
 		},
 		onShoppingCartPressed: function(){
 			
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("Shoppingcart");
 			
 		},
@@ -117,17 +110,17 @@ sap.ui.define([
 			
 			});
 			
-			var filter = new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString);
+			var filter = new Filter("Name", FilterOperator.Contains, searchString);
 			newFilters.push(filter);
 			if(this._oCombobox.getValue().length === 0){
 				binding.filter(filter);
 			}
 			else{
 				
-				binding.filter( [ new sap.ui.model.Filter([
-				                                           new sap.ui.model.Filter("Category", sap.ui.model.FilterOperator.EQ, this._oCombobox.getValue()),
-				                                           new sap.ui.model.Filter("Name", sap.ui.model.FilterOperator.Contains, searchString)
-				                                        ],true)]);
+				binding.filter( [ new Filter([
+	                                           new Filter("Category", FilterOperator.EQ, this._oCombobox.getValue()),
+	                                           new Filter("Name", FilterOperator.Contains, searchString)
+	                                        ],true)]);
 			}
 			
 			
@@ -161,7 +154,7 @@ sap.ui.define([
 			
 			var sPath = mParams.sortItem.getKey();
 			var bDescending = mParams.sortDescending;
-			var sorters = new sap.ui.model.Sorter(sPath, bDescending);
+			var sorters = new Sorter(sPath, bDescending);
 			oBinding.sort(sorters);
 
 		},
@@ -184,7 +177,7 @@ sap.ui.define([
 				var sPath = mParams.groupItem.getKey();
 				var bDescending = mParams.groupDescending;
 				var vGroup = this.mGroupFunctions[sPath];
-				sorters = new sap.ui.model.Sorter(sPath, bDescending, vGroup);
+				sorters = new Sorter(sPath, bDescending, vGroup);
 			}
 			oBinding.sort(sorters);
 			
@@ -195,7 +188,7 @@ sap.ui.define([
 			var oTable = this.getView().byId("catalogTable");
 			var binding = oTable.getBinding("items");
 			
-			var oFilter = new sap.ui.model.Filter("Category", sap.ui.model.FilterOperator.EQ, oEvent.getSource().getValue());  
+			var oFilter = new Filter("Category", FilterOperator.EQ, oEvent.getSource().getValue());  
 			binding.filter(oFilter);
 			
 			
@@ -214,7 +207,7 @@ sap.ui.define([
 		
 		onOrdersButtonPressed: function(){
 			
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("SalesOrder");
 		}
 		

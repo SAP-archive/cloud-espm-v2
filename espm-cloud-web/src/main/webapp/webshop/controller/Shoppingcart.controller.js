@@ -1,10 +1,7 @@
 jQuery.sap.require("com.sap.espm.shop.model.format");
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"com/sap/espm/shop/model/formatter",
-	"sap/ui/core/mvc/ViewType",
-	"sap/ui/core/routing/History",
-	"sap/ui/model/json/JSONModel"
+	"com/sap/espm/shop/model/formatter"
 ], function(Controller, formatter) {
 	"use strict";
 
@@ -76,7 +73,7 @@ sap.ui.define([
 		onBeforeRendering: function() 
 		{
  		},
-		onLineItemPressed: function(oEvent)
+		onLineItemPressed: function()
 		{
 			
 		},
@@ -100,7 +97,7 @@ sap.ui.define([
 			var subTotal = 0;
 			var currency;
 			var oModel = this.getView().getModel("Cart");
-			var data = oModel.getProperty('/ShoppingCart');
+			var data = oModel.getProperty("/ShoppingCart");
 			if(data){
 				for(var i=0; i<data.length; i++){
 					var prodId = data[i];
@@ -126,11 +123,11 @@ sap.ui.define([
 			
 			var m = oEvent.getParameter("listItem");
 		    var idx = m.getBindingContextPath();
-			idx = idx.charAt(idx.lastIndexOf('/')+1);
+			idx = idx.charAt(idx.lastIndexOf("/")+1);
 			if (idx !== -1) {
 				var oModel = this.getView().getModel("Cart");
-				var data = oModel.getProperty('/ShoppingCart');
-				var removed = data.splice(idx,1);
+				var data = oModel.getProperty("/ShoppingCart");
+				data.splice(idx,1);
 				oModel.setData({ShoppingCart : data});
 
 				

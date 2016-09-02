@@ -2,10 +2,8 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"com/sap/espm/shop/model/formatter",
 	"sap/ui/core/UIComponent",
-	"sap/ui/core/mvc/ViewType",
-	"sap/ui/core/routing/History",
-	"sap/ui/model/odata/ODataModel"
-], function(Controller, formatter,ODataModel,UIComponent, History) {
+	"sap/ui/core/routing/History"
+], function(Controller, formatter, UIComponent, History) {
 	"use strict";
 	var bindingObject, bindingPath;
 	return Controller.extend("com.sap.espm.shop.controller.ProductDetail", {
@@ -22,7 +20,7 @@ sap.ui.define([
 					 that.getView().byId("btnProductHeader").setText(formatter.onAddCountToCart(oModel));
 				}});
 			
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.getRoute("ProductDetail").attachPatternMatched(this._onObjectMatched, this);
 			
 			this._oReviewDialog = null;
@@ -40,7 +38,6 @@ sap.ui.define([
 			var oView = this.getView();
 			var oTable = oView.byId("reviewTable");
 
-			var mParams = oEvent.getParameters();
 			var oBinding = oTable.getBinding("items");
 			
 			var sorters = new sap.ui.model.Sorter("CreationDate", true);
@@ -62,7 +59,7 @@ sap.ui.define([
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				var oRouter = UIComponent.getRouterFor(this);
 				oRouter.navTo("Home", true);
 			}
 		},
@@ -88,7 +85,7 @@ sap.ui.define([
 			});
 			this.getView().addDependent(this._oSupplierCard);
 		},
-		onAddToCartPressed: function(oEvent){
+		onAddToCartPressed: function(){
 			
 			var oModel = this.getView().getModel("Cart");
 			var model = this.getView().getModel("EspmModel");
@@ -99,7 +96,7 @@ sap.ui.define([
 		},
 		onShoppingCartPressed: function(){
 			
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("Shoppingcart");
 			
 		},
@@ -109,7 +106,7 @@ sap.ui.define([
 			this.getView().addDependent(oDialog);
 			return oDialog;
 		},
-		onEditReviewPressed: function(oEvent) {
+		onEditReviewPressed: function() {
 			
 			if (!this._oReviewDialog) {
 				this._oReviewDialog = this._createDialog("com.sap.espm.shop.view.fragment.ReviewDialog");
@@ -117,7 +114,8 @@ sap.ui.define([
 			this._oReviewDialog.open();
 		},
 		onReviewDialogOKPressed: function(oEvent) {
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			var that = this;
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			this._oReviewDialog.close();
 			var iRatingCount = sap.ui.getCore().byId("ratingIndicator", "reviewDialog").getValue();
 			var sReviewComment = sap.ui.getCore().byId("textArea", "reviewDialog").getValue();
@@ -138,10 +136,12 @@ sap.ui.define([
             "Content-Type": "application/json",
             "Accept": "application/json"
         	});
-			oModel.read('/CreateCustomerReview',null, aParams , false, function(data)
+			oModel.read("/CreateCustomerReview",null, aParams , false, function(data)
 			{
  				if(data){
  					sap.m.MessageToast.show(oBundle.getText("detail.reviewSuccess"));
+
+ 					that.clearReviewDialogForm();
  					
  				}
  			},function(){
@@ -152,7 +152,6 @@ sap.ui.define([
 			var oView = this.getView();
 			var oTable = oView.byId("reviewTable");
 
-			var mParams = oEvent.getParameters();
 			var oBinding = oTable.getBinding("items");
 			
 			var sorters = new sap.ui.model.Sorter("CreationDate", true);
@@ -164,6 +163,13 @@ sap.ui.define([
 		onReviewDialogCancelPressed: function() {
 			this._oReviewDialog.close();
 		},
+		clearReviewDialogForm: function(){
+			sap.ui.getCore().byId("ratingIndicator", "reviewDialog").setValue(0);
+			sap.ui.getCore().byId("textArea", "reviewDialog").setValue("");
+			sap.ui.getCore().byId("firstNameId", "reviewDialog").setValue("");
+			sap.ui.getCore().byId("lastNameId", "reviewDialog").setValue("");
+
+		},
 		onTextAreaChanged: function() {
 			sap.ui.getCore().byId("btnOK", "reviewDialog").setEnabled(false);
 			var iRatingCount = sap.ui.getCore().byId("ratingIndicator", "reviewDialog").getValue();
@@ -171,6 +177,29 @@ sap.ui.define([
 			if (iRatingCount > 0 && sReviewComment) {
 				sap.ui.getCore().byId("btnOK", "reviewDialog").setEnabled(true);
 			}
+		},
+		validateReviewForm: function(){
+			var iRatingCount = sap.ui.getCore().byId("ratingIndicator", "reviewDialog").getValue();
+			var sReviewComment = sap.ui.getCore().byId("textArea", "reviewDialog").getValue();
+			var firstName = sap.ui.getCore().byId("firstNameId", "reviewDialog").getValue();
+			var lastName = sap.ui.getCore().byId("lastNameId", "reviewDialog").getValue();
+
+			if(iRatingCount > 0 && sReviewComment !== "" && firstName !== "" && lastName !== ""){
+				sap.ui.getCore().byId("btnOK", "reviewDialog").setEnabled(true);
+			}
+			else{
+				sap.ui.getCore().byId("btnOK", "reviewDialog").setEnabled(false);
+			}
+  		},
+  		onTableSettingsPressed: function(){
+			var oBinding = this.byId("reviewTable").getBinding("items");
+			var aSorters = [];
+			var aDescending = this.sortReviewDesc;
+			this.sortReviewDesc = !this.sortReviewDesc;
+
+			aSorters.push(new sap.ui.model.Sorter("Rating", aDescending));
+			oBinding.sort(aSorters);
+
 		}
 		 
 

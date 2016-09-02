@@ -1,15 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"com/sap/espm/retailer/model/formatter",
-	"sap/ui/core/routing/History",
-	'sap/m/Dialog',
-	"sap/m/Text",
-	"sap/m/Button",
-	'sap/ui/layout/HorizontalLayout',
-	'sap/ui/layout/VerticalLayout',
-	"sap/m/Input"
+	"com/sap/espm/retailer/model/formatter"
 	
-], function(Controller,formatter, VerticalLayout, HorizontalLayout, Text, Input, Dialog, Button) {
+], function(Controller, formatter) {
 	"use strict";
 
 	var bindingObject;
@@ -83,7 +76,7 @@ sap.ui.define([
 		},
 		
 		updateStock: function(event){
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var updatedStockValue;
 			var getBindingPath = event.getSource().getParent().getBindingContextPath();
 			var stockString = event.getSource().getText();
@@ -93,7 +86,7 @@ sap.ui.define([
 			var dialog = new sap.m.Dialog({
 				id:"stockDialogId",
 				title: oBundle.getText("stock.minStockLevelInfo"),
-				type: 'Message',
+				type: "Message",
 				content: [
 					new sap.ui.layout.form.SimpleForm({
 						id:"stockFormId",
@@ -107,7 +100,7 @@ sap.ui.define([
 									}
 								}),
 								new sap.m.Label({text:oBundle.getText("stock.itemsInStock")}),
-								new sap.m.Input({value:stockString[0],editable: false}),
+								new sap.m.Input({value:stockString[0],editable: false})
 						         
 						      ]
 					})
