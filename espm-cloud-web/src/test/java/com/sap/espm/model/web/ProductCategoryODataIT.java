@@ -87,19 +87,6 @@ public class ProductCategoryODataIT extends AbstractODataIT {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-/*	@Test
-	public void testProductCategoryUrlSkip() throws IOException, JSONException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
-				ENTITY_NAME + "?$format=json&$orderby=Category&$skip=1", false);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals(
-				"First product category in the ordered response not skipped",
-				"Computer system accessories", jo.getString("Category"));
-	}*/
 
 	/**
 	 * Test Select Service Query Option via URL.

@@ -12,7 +12,7 @@
 		"description": "{{appDescription}}",
 		"resources": "resources.json",
 		"ach": "ach",
-		//to-do - replace this with your code implementation
+		//to do - replace this with your code implementation
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.32.0"

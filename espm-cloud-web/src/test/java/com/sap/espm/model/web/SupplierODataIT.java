@@ -85,27 +85,6 @@ public class SupplierODataIT extends AbstractODataIT {
 				jo.getString("SupplierId"));
 
 	}
-
-	/**
-	 * Test if Supplier URL Skip Service Query Option.
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
-	 */
-/*	@Test
-	public void testSupplierUrlSkip() throws JSONException, IOException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper
-				.executeGetRequest(ENTITY_NAME
-						+ "?$format=json&$orderby=SupplierId&$skip=1", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals("First Supplier in the ordered response not skipped",
-				"100000042", jo.getString("SupplierId"));
-	}*/
-
 	/**
 	 * Test if Supplier URL Select Service Query Option.
 	 * 
