@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Random;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
 import com.sap.espm.model.web.util.HttpResponse;
+import com.sap.espm.model.web.util.ReSTExecutionHelper;
 import com.sap.espm.model.web.util.RequestExecutionHelper;
 import com.sap.espm.model.web.util.StreamHelper;
 
@@ -87,26 +89,6 @@ public class SupplierODataIT extends AbstractODataIT {
 	}
 
 	/**
-	 * Test if Supplier URL Skip Service Query Option.
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
-	 */
-/*	@Test
-	public void testSupplierUrlSkip() throws JSONException, IOException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper
-				.executeGetRequest(ENTITY_NAME
-						+ "?$format=json&$orderby=SupplierId&$skip=1", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals("First Supplier in the ordered response not skipped",
-				"100000042", jo.getString("SupplierId"));
-	}*/
-
-	/**
 	 * Test if Supplier URL Select Service Query Option.
 	 * 
 	 * @throws IOException
@@ -133,13 +115,11 @@ public class SupplierODataIT extends AbstractODataIT {
 
 	/**
 	 * Test Create and Read Supplier via URL.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
 
-	/*@Test
-	public void testCreateSupplierViaREST() throws IOException, JSONException {
+	@Test
+	public void testCreateSupplierViaREST() throws Exception {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String email = rand.nextInt(200) + "@sap.com";
 		supplierXml = supplierXml.replace(
@@ -147,33 +127,29 @@ public class SupplierODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				supplierXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SupplierId%20eq%20'" + id
 						+ "'", true);
-		assertEquals("Supplier not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+		assertEquals("Supplier not persisted", HttpURLConnection.HTTP_OK,resp.getStatusLine().getStatusCode());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Added Supplier via REST not persisted in db", id,
 				jo.getString("SupplierId"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Supplier via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
 	}
-*/
+
 	/**
 	 * Test Delete Supplier via URL.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testDeleteSupplierViaREST() throws IOException, JSONException {
+	@Test
+	public void testDeleteSupplierViaREST() throws Exception {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String email = rand.nextInt(200) + "@sap.com";
 		supplierXml = supplierXml.replace(
@@ -181,27 +157,25 @@ public class SupplierODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				supplierXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SupplierId%20eq%20'" + id
 						+ "'", true);
 		assertEquals("Supplier not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+				resp.getStatusLine().getStatusCode());
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
 	}
-*/
+
 	/**
 	 * Test Update Supplier via URL.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testUpdateSupplierViaREST() throws IOException, JSONException {
+	@Test
+	public void testUpdateSupplierViaREST() throws Exception {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String newPhoneNumber = "111111";
 		String email = rand.nextInt(200) + "@sap.com";
@@ -210,45 +184,42 @@ public class SupplierODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				supplierXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SupplierId%20eq%20'" + id
 						+ "'", true);
 		assertEquals("Supplier not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+				resp.getStatusLine().getStatusCode());
 
 		supplierXml = supplierXml.replace(
 				"<d:PhoneNumber>5899428367</d:PhoneNumber>", "<d:PhoneNumber>"
 						+ newPhoneNumber + "</d:PhoneNumber>");
-		resp = RequestExecutionHelper.executePutRequest(ENTITY_NAME + "('" + id
+		resp = ReSTExecutionHelper.executePutRequest(ENTITY_NAME + "('" + id
 				+ "')", supplierXml, true);
 		assertEquals("Unable to update Supplier via URL Response Message:"
-				+ resp.getResponseMessage(), HttpURLConnection.HTTP_NO_CONTENT,
-				resp.getResponseCode());
-		resp = RequestExecutionHelper.executeGetRequest(ENTITY_NAME
+				+ resp.getStatusLine().getReasonPhrase(), HttpURLConnection.HTTP_NO_CONTENT,
+				resp.getStatusLine().getStatusCode());
+		resp = ReSTExecutionHelper.executeGetRequest(ENTITY_NAME
 				+ "?$format=json&$filter=SupplierId%20eq%20'" + id + "'", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Updated Supplier via URL not persisted in db",
 				newPhoneNumber, jo.getString("PhoneNumber"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Supplier via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 	/**
 	 * Test Get Supplier by Anonymous user.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
 
-	/*@Test
-	public void testGetSupplierByAnonymous() throws IOException, JSONException {
+	@Test
+	public void testGetSupplierByAnonymous() throws Exception {
 		String supplierXml = StreamHelper.readFromFile(FILENAME);
 		String email = rand.nextInt(200) + "@sap.com";
 		supplierXml = supplierXml.replace(
@@ -256,18 +227,18 @@ public class SupplierODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				supplierXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SupplierId%20eq%20'" + id
 						+ "'", false);
 		assertEquals("Supplier OData service not secure for HTTP_GET request",
-				HttpURLConnection.HTTP_UNAUTHORIZED, resp.getResponseCode());
+				HttpURLConnection.HTTP_UNAUTHORIZED, resp.getStatusLine().getStatusCode());
 
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Supplier via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 }

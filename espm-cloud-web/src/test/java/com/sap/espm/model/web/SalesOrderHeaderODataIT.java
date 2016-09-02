@@ -7,12 +7,14 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Random;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
 import com.sap.espm.model.web.util.HttpResponse;
+import com.sap.espm.model.web.util.ReSTExecutionHelper;
 import com.sap.espm.model.web.util.RequestExecutionHelper;
 import com.sap.espm.model.web.util.StreamHelper;
 
@@ -28,173 +30,157 @@ public class SalesOrderHeaderODataIT extends AbstractODataIT {
 
 	/**
 	 * Test Create Sales Order Header via URL.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testCreateSalesOrderHeaderViaREST() throws IOException,
-			JSONException {
+	@Test
+	public void testCreateSalesOrderHeaderViaREST() throws Exception {
 		String salesOrderHeaderXml = StreamHelper.readFromFile(SOH_FILENAME);
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				salesOrderHeaderXml, false);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SalesOrderId%20eq%20'"
 						+ id + "'", true);
 		assertEquals("Sales Order not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+				resp.getStatusLine().getStatusCode());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Added Sales Order Header via REST not persisted in db",
 				id, jo.getString("SalesOrderId"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 	/**
 	 * Test Create Sales Order via Url.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testCreateSalesOrderViaREST() throws IOException, JSONException {
+	@Test
+	public void testCreateSalesOrderViaREST() throws Exception {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
 		String id = RequestExecutionHelper.createSalesOrderViaREST(ENTITY_NAME,
 				salesOrderXml, false);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SalesOrderId%20eq%20'"
 						+ id + "'", true);
 		assertEquals("Sales Order not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+				resp.getStatusLine().getStatusCode());
 
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Added Sales Order Header via REST not persisted in db",
 				id, jo.getString("SalesOrderId"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
+						+ resp.getStatusLine().getStatusCode(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
 	}
-*/
+
 	/**
 	 * Test ConfirmSalesOrder Function Import
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-/*	@Test
-	public void testConfirmSalesOrder() throws JSONException, IOException {
+	@Test
+	public void testConfirmSalesOrder() throws Exception {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
 		String id = RequestExecutionHelper.createSalesOrderViaREST(ENTITY_NAME,
 				salesOrderXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SalesOrderId%20eq%20'"
 						+ id + "'", true);
 		assertEquals("Sales Order not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+				resp.getStatusLine().getStatusCode());
 
-		resp = RequestExecutionHelper.executeGetRequest(
+		resp = ReSTExecutionHelper.executeGetRequest(
 				"ConfirmSalesOrder?SalesOrderId='" + id + "'&$format=json",
 				true);
 
 		assertEquals("Sales Order not confirmed", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+				resp.getStatusLine().getStatusCode());
 
-		resp = RequestExecutionHelper.executeGetRequest(ENTITY_NAME
+		resp = ReSTExecutionHelper.executeGetRequest(ENTITY_NAME
 				+ "?$format=json&$filter=SalesOrderId%20eq%20'" + id + "'",
 				true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Added Sales Order Header via REST not persisted in db",
 				"P", jo.getString("LifeCycleStatus"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
 
-	}*/
+	}
 
 	/**
 	 * Test Cancel Sales Order Function Import
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testCancelSalesOrder() throws IOException, JSONException {
+	@Test
+	public void testCancelSalesOrder() throws Exception {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
 		String id = RequestExecutionHelper.createSalesOrderViaREST(ENTITY_NAME,
 				salesOrderXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SalesOrderId%20eq%20'"
 						+ id + "'", true);
 		assertEquals("Sales Order not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+				resp.getStatusLine().getStatusCode());
 
-		resp = RequestExecutionHelper
+		resp = ReSTExecutionHelper
 				.executeGetRequest("CancelSalesOrder?SalesOrderId='" + id
 						+ "'&$format=json", true);
 
 		assertEquals("Sales Order not confirmed", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+				resp.getStatusLine().getStatusCode());
 
-		resp = RequestExecutionHelper.executeGetRequest(ENTITY_NAME
+		resp = ReSTExecutionHelper.executeGetRequest(ENTITY_NAME
 				+ "?$format=json&$filter=SalesOrderId%20eq%20'" + id + "'",
 				true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Added Sales Order Header via URL not persisted in db",
 				"X", jo.getString("LifeCycleStatus"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 	/**
 	 * Test Get SalesOrderHeader Details by Anonymous user.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-/*	@Test
-	public void testGetSalesOrderHeaderByAnonymous() throws IOException,
-			JSONException {
+	@Test
+	public void testGetSalesOrderHeaderByAnonymous() throws Exception {
 		String salesOrderXml = StreamHelper.readFromFile(SO_FILENAME);
 		String id = RequestExecutionHelper.createSalesOrderViaREST(ENTITY_NAME,
 				salesOrderXml, false);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=SalesOrderId%20eq%20'"
 						+ id + "'", false);
 		assertEquals(
 				"SalesOrderHeader OData service not secured for HTTP GET request",
-				HttpURLConnection.HTTP_UNAUTHORIZED, resp.getResponseCode());
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+				HttpURLConnection.HTTP_UNAUTHORIZED, resp.getStatusLine().getStatusCode());
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Sales Order Header via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 }

@@ -24,7 +24,34 @@ The Authorization Management API is a REST API that allows you to manage role an
 # Business Scenario
 
 In ESPM Cloud Web application, retailer logs into the application. SAP HANA Cloud checks the authorization to see if he is a retailer. Retailer accepts/reject the sales orders created by customer. He also monitors his stock and if any products stock falls below target he raises a purchase order with his supplier.
-Assume that a new user is joining as a retailer and needs to access the ESPM Retailer portal. Using Authorization API Retailer can assign retailer role to new user through ESPM Webshop application.
+Assume that a new user is joining as a retailer and needs to access the ESPM Retailer portal. Using Authorization API Retailer can assign retailer role to new user through ESPM Webshop application. 
+
+### Protecting from Cross-Site Request Forgery
+
+In ESPM, we use **Custom header approach** for CSRF protection. For details on the same, please refer [SAP HANA Cloud Platform documentation](https://help.hana.ondemand.com/help/frameset.htm?1f5f34e31ec64af8b5fef1796ea07c0a.html)
+
+In Web.xml file in ESPM espm-cloud-web project(path src/main/webapp/WEB-INF/web.xml), we have added the below tags to enable CSRF protection for the secure odata service (http://<appname><accountname>.hana.ondemand.com/espm-cloud-web/espm.svc/secure)
+```sh
+	<!-- CSRF protection for the REST API for retailer scenario -->
+		<filter>
+		   <filter-name>RestCSRF</filter-name>
+		   <filter-class>org.apache.catalina.filters.RestCsrfPreventionFilter</filter-class>
+	 	</filter>
+	 <filter-mapping>
+	   	<filter-name>RestCSRF</filter-name>
+	    <!--modifying REST APIs  -->
+		<url-pattern>/espm.svc/secure/*</url-pattern>	    
+	 </filter-mapping>	
+```
+
+Note that the CSRF protection is performed only for modifying HTTP requests (different from GET|HEAD or OPTIONS).
+All CSRF protected resources should be protected with an authentication mechanism.
+
+In ESPM, the Retailer scenario (https://localhost:\<port\>/espm-cloud-web/retailer) is protected with authentication. The Sales Order Approval and Stock Update scenario is protected with CSRF protection. 
+
+The modifing HTTP requests to the secure service will be sent with header **X-CSRF-Token: <token_value>**
+
+Prior to sending a modifing HTTTP request, an HTTP GET request should be sent to a non-modifing HTTP request with the header **X-CSRF-Token: Fetch**. This will fetch the **<token_value>** required for the modifing request.
  
 
 
@@ -61,15 +88,16 @@ For Implementing Authorization API to assign Role to user from ESPM Cloud Retail
  ![AuthAPIImpl](/docs/images/AuthAPIImpl.jpg?raw=true)
 
  
-1.	Register ESPM Application in Hana Cloud Platform Cockpit, get Client ID and Client Secret.
-2.	Using Destination fill the required fields
+1.	Navigate the oAuth 2.0 Services -> Platform API -> create a Client ID and Client Secret. Save them for the next steps.
+2.	Create a destination as shown in the below screen shot.
+	Name - OAuthDestination
+	URL - https://api.hanatrial.ondemand.com/oauth2/apitoken/v1?grant_type=client_credentials 
+	Create Properties with name ClientId and ClientSecret and paste the saved values from Step 1.
 
  ![OAuthDestination](/docs/images/OAuthDestination.jpg?raw=true)
-3.	In Config.Properties add AppName, AccountName and LandscapeHost 
-4.	In web.xml add this piece of code for password store
-5.	First we check Access Token is available in password Store or not?  if it is not available or the access Token which is obtained from Password Store is invalid then make a POST request to OAuth API for Access Token. For Sample code Click on this [LINK](/espm-cloud-web/src/main/java/com/sap/espm/model/AuthorizationManagement/AuthorizationApiUserManagementWs.java).
-6.	On obtaining the Access Token proceed with operation with Authorization API. Click on the [LINK](/espm-cloud-web/src/main/java/com/sap/espm/model/AuthorizationManagement/Handler/AuthApiHandler.java) for sample code.
-
+3.	In Config.Properties -> add AppName (your app name), AccountName ( your account name of SAP HCP) and LandscapeHost ( for hana trial account, the value is hanatrial.ondemand.com) , OAuthDestinationName (this is the HCP destination name -  OAuthDestination )
+4.	Grant role "Retailer" in HCP to your user.
+5.	Build the applciation in Eclipse and deploy the same to HCP.
 
 ### Authorization API Source code packages:-
 
@@ -84,7 +112,10 @@ Packages related to Authorization API Implementation on ESPM:-
 2. src/main/resources
      - config.properties
 
+#### Code Details
 
+1.	First we check Access Token is available in password Store or not?  if it is not available or the access Token which is obtained from Password Store is invalid then make a POST request to OAuth API for Access Token. For Sample code Click on this [LINK](/espm-cloud-web/src/main/java/com/sap/espm/model/AuthorizationManagement/AuthorizationApiUserManagementWs.java).
+2.	On obtaining the Access Token proceed with operation with Authorization API. Click on the [LINK](/espm-cloud-web/src/main/java/com/sap/espm/model/AuthorizationManagement/Handler/AuthApiHandler.java) for sample code.
 
 
 

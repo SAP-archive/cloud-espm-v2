@@ -8,12 +8,17 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Random;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.sap.espm.model.AuthorizationManagement.AuthorizationApiRoleManagement;
 import com.sap.espm.model.web.util.HttpResponse;
+import com.sap.espm.model.web.util.ReSTExecutionHelper;
 import com.sap.espm.model.web.util.RequestExecutionHelper;
 import com.sap.espm.model.web.util.StreamHelper;
 
@@ -26,8 +31,10 @@ public class CustomerODataIT extends AbstractODataIT {
 	private final String ENTITY_NAME = "Customers";
 	private Random rand = new Random();
 	private static final String FILENAME = "com/sap/espm/model/web/customer.xml";
+	private static Logger logger = LoggerFactory.getLogger(CustomerODataIT.class);
 
-	/**
+
+/**
 	 * Test if Customers are preloaded.
 	 * 
 	 * @throws IOException
@@ -61,7 +68,7 @@ public class CustomerODataIT extends AbstractODataIT {
 				prefix0(0), jo.getString("CustomerId"));
 
 	}
-
+	
 	/**
 	 * Test Customer Url filter Service Query option.
 	 * 
@@ -82,27 +89,7 @@ public class CustomerODataIT extends AbstractODataIT {
 		jo = (JSONObject) ja.get(0);
 		assertEquals("Customer not filtered CustomerId", prefix0(40),
 				jo.getString("CustomerId"));
-	}
-
-	/**
-	 * Test if Customer URL Skip Service Query Option.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
-	 */
-/*	@Test
-	public void testCustomerUrlSkip() throws IOException, JSONException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper
-				.executeGetRequest(ENTITY_NAME
-						+ "?$format=json&$orderby=CustomerId&$skip=1", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals("Customer not expanded by Address", prefix0(1),
-				jo.getString("CustomerId"));
-	}*/
+	}	
 
 	/**
 	 * Test if Customer URL Select Service Query Option.
@@ -132,46 +119,42 @@ public class CustomerODataIT extends AbstractODataIT {
 
 	/**
 	 * Test Create and Read Customer via URL.
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testCreateCustomerViaREST() throws IOException, JSONException {
+	@Test
+	public void testCreateCustomerViaREST() throws Exception {
 		String email = rand.nextInt(200) + "@sap.com";
 		String customerXml = StreamHelper.readFromFile(FILENAME);
 		customerXml = customerXml.replace(
 				"<d:EmailAddress>email</d:EmailAddress>", "<d:EmailAddress>"
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
-				customerXml, false);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
-				ENTITY_NAME + "?$format=json&$filter=CustomerId%20eq%20'" + id
-						+ "'", true);
+				customerXml, true);
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
+				ENTITY_NAME + "?$format=json&$filter=CustomerId%20eq%20%27" + id 
+						+ "%27", true);
+		
 		assertEquals("Customer not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+				resp.getStatusLine().getStatusCode());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Added Customer via REST not persisted in db", id,
 				jo.getString("CustomerId"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
-				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
-
+				"Unable to delete Customer via REST or incorrect HTTP Response Code:",
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
+	
+	
 	/**
 	 * Test Update Customer via URL.
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testUpdateCustomerViaURL() throws IOException, JSONException {
+	@Test
+	public void testUpdateCustomerViaURL() throws Exception {
 
 		String email = rand.nextInt(200) + "@sap.com";
 		String newPhoneNumber = "9565470312";
@@ -181,43 +164,38 @@ public class CustomerODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				customerXml, false);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=CustomerId%20eq%20'" + id
 						+ "'", true);
-		assertEquals("Customer not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+		assertEquals("Customer not persisted", HttpURLConnection.HTTP_OK,resp.getStatusLine().getStatusCode());
 		customerXml = customerXml.replace(
 				"<d:PhoneNumber>5850428367</d:PhoneNumber>", "<d:PhoneNumber>"
 						+ newPhoneNumber + "</d:PhoneNumber>");
-		resp = RequestExecutionHelper.executePutRequest(ENTITY_NAME + "('" + id
+		resp = ReSTExecutionHelper.executePutRequest(ENTITY_NAME + "('" + id
 				+ "')", customerXml, true);
-		assertEquals("Unable to update Customer via URL Response Message:"
-				+ resp.getResponseMessage(), HttpURLConnection.HTTP_NO_CONTENT,
-				resp.getResponseCode());
-		resp = RequestExecutionHelper.executeGetRequest(ENTITY_NAME
+		assertEquals("Unable to update Customer via URL Response Message:", HttpURLConnection.HTTP_NO_CONTENT,
+				resp.getStatusLine().getStatusCode());
+		resp = ReSTExecutionHelper.executeGetRequest(ENTITY_NAME
 				+ "?$format=json&$filter=CustomerId%20eq%20'" + id + "'", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Updated Customer via REST not persisted in db",
 				newPhoneNumber, jo.getString("PhoneNumber"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 	/**
 	 * Test Delete Customer via URL.
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testDeleteCustomerViaURL() throws IOException, JSONException {
+	
+	public void testDeleteCustomerViaURL() throws Exception {
 		String email = rand.nextInt(200) + "@sap.com";
 		String customerXml = StreamHelper.readFromFile(FILENAME);
 		customerXml = customerXml.replace(
@@ -225,28 +203,24 @@ public class CustomerODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				customerXml, false);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=CustomerId%20eq%20'" + id
 						+ "'", true);
-		assertEquals("Customer not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		assertEquals("Customer not persisted", HttpURLConnection.HTTP_OK,resp.getStatusLine().getStatusCode());
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 	/**
 	 * Test Function Import GetCustomerByEmailAddress
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-/*	@Test
-	public void testGetCustomerByEmailAddress() throws IOException,
-			JSONException {
+	@Test
+	public void testGetCustomerByEmailAddress() throws Exception {
 		String email = rand.nextInt(200) + "@sap.com";
 		String customerXml = StreamHelper.readFromFile(FILENAME);
 		customerXml = customerXml.replace(
@@ -254,41 +228,38 @@ public class CustomerODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				customerXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=CustomerId%20eq%20'" + id
 						+ "'", true);
 		assertEquals("Customer not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+				resp.getStatusLine().getStatusCode());
 
-		resp = RequestExecutionHelper.executeGetRequest(
+		resp = ReSTExecutionHelper.executeGetRequest(
 				"GetCustomerByEmailAddress?EmailAddress='" + email
 						+ "'&$format=json", false);
 
 		assertEquals("Sales Order not confirmed", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+				resp.getStatusLine().getStatusCode());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals(
 				"Unable to retreive by function import GetCustomerByEmailAddress",
 				email, jo.getString("EmailAddress"));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 	/**
 	 * Test Get Customer Details by Anonymous user.
-	 * 
-	 * @throws JSONException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-/*	@Test
-	public void testGetCustomerByAnonymous() throws IOException, JSONException {
+	@Test
+	public void testGetCustomerByAnonymous() throws Exception {
 		String email = rand.nextInt(200) + "@sap.com";
 		String customerXml = StreamHelper.readFromFile(FILENAME);
 		customerXml = customerXml.replace(
@@ -296,19 +267,19 @@ public class CustomerODataIT extends AbstractODataIT {
 						+ email + "</d:EmailAddress>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				customerXml, false);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+		CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=CustomerId%20eq%20'" + id
 						+ "'", false);
 		assertEquals(
 				"Customers OData service not secured for HTTP_GET Request",
-				HttpURLConnection.HTTP_UNAUTHORIZED, resp.getResponseCode());
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+				HttpURLConnection.HTTP_UNAUTHORIZED, resp.getStatusLine().getStatusCode());
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ id + "')", true);
 		assertEquals(
 				"Unable to delete Customer via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
-	}*/
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
+	}
 
 	private String prefix0(int value) {
 		return String.format("1%08d", value);

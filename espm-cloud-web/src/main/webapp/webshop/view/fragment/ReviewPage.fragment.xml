@@ -27,10 +27,6 @@
 						<Table class="sapUiResponsiveMargin" delete="onDeletePressed" growing="true" growingScrollToLoad="true" id="reviewCartTable" items="{path: 'Cart>/ShoppingCart'}"
 						mode="" noDataText="{i18n>review.noDataShoppingCart}" updateFinished="onUpdateFinished" width="1200px">
 						<columns>
-							<!-- Favorite -->
-							<!--<Column hAlign="Left" id="favoriteColumn" minScreenWidth="Tablet" width="7%">
-								<header></header>
-							</Column>-->
 							<!-- Picture -->
 							<Column hAlign="Left" id="pictureColumn" minScreenWidth="Tablet" width="13%">
 								<header><Label id="itemsLbl" text="{i18n>check.items}"/></header>
@@ -59,8 +55,6 @@
 						</columns>
 						<ColumnListItem press="onLineItemPressed" type="Navigation" vAlign="Middle">
 							<cells>
-								<!-- Favorite -->
-							<!--	<core:Icon class="sapThemeHighlight-asColor" id="favoriteIcon" src="sap-icon://favorite" visible="{Product/IsFavoriteOfCurrentUser}"/>-->
 								<!-- Picture -->
 								<Image alt="{i18n>xfld.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
 									id="reviewproductImage" src="https://espmespm.neo.ondemand.com/espm-cloud-web/images/{Cart>PictureUrl}" width="3rem"/>
@@ -112,7 +106,7 @@
 						layout="ResponsiveGridLayout">
 					<form:content>
 						<Label text="{i18n>check.cardType}"/>
-						<Image src="Images/american.png" width="64px" align="left"></Image>
+						<Image id="cardImg" width="64px" align="left"></Image>
 						<Label text="{i18n>check.nameOnCard}r"/>
 						<Text id="cardOwner" text=""/>
 						<Label text="{i18n>check.cardNumber}"/>

@@ -9,10 +9,6 @@
 			<Table class="sapUiResponsiveMargin" delete="onDeletePressed" growing="true" growingScrollToLoad="true" id="shoppingCartTable"
 				mode="Delete" items="{Cart>/ShoppingCart}" noDataText="{i18n>cart.noDataShoppingCart}" updateFinished="onUpdateFinished" width="auto">
 				<columns>
-					<!-- Favorite -->
-					<!--<Column hAlign="Left" id="favoriteColumn" minScreenWidth="Tablet" width="7%">
-						<header></header>
-					</Column>-->
 					<!-- Picture -->
 					<Column hAlign="Left" id="pictureColumn" minScreenWidth="Tablet" width="13%">
 						<header><Label id="itemsLbl" text="{i18n>cart.items}"/></header>
@@ -41,8 +37,6 @@
 				</columns>
 				<ColumnListItem press="onLineItemPressed" type="Navigation" vAlign="Middle" id = "columnListId">
 					<cells>
-						<!-- Favorite -->
-					<!--	<core:Icon class="sapThemeHighlight-asColor" id="favoriteIcon" src="sap-icon://favorite" visible="{Product/IsFavoriteOfCurrentUser}"/>-->
 						<!-- Picture -->
 						<Image alt="{i18n>xfld.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
 							id="productImage" src="/espm-cloud-web/images/{Cart>PictureUrl}" width="3rem"/>

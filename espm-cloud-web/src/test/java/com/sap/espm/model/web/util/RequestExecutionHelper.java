@@ -8,9 +8,11 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 import org.apache.geronimo.mail.util.Base64;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+
 
 /**
  * Class containing all factory methods.
@@ -32,6 +34,7 @@ public class RequestExecutionHelper {
 	private static final String INTEGRATION_TEST_SERVER_URL = "integration.test.server.url";
 	private static final String SERVICE_ROOT_URI = System
 			.getProperty(INTEGRATION_TEST_SERVER_URL) + ESPM_SERVICE_BASE_URI;
+	
 	private static final String UPDATE_LINK_PAYLOAD = "<uri  xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\">"
 			+ SERVICE_ROOT_URI + "<href></uri>";
 	private static final String user = "ret";
@@ -79,20 +82,23 @@ public class RequestExecutionHelper {
 	 * @param secure
 	 *            True if credentials need to be sent with request
 	 * @return connection instance of the request/response
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
+		
 	public static String createEntityViaREST(String entityName, String payLoad,
-			boolean secure) throws IOException, JSONException {
-		HttpResponse resp = executePostRequest(entityName, payLoad, secure);
-		if (resp.getResponseCode() != 201) {
+			boolean secure) throws Exception {
+		
+		
+		CloseableHttpResponse resp = ReSTExecutionHelper.executePostRequest(entityName, payLoad, secure);		
+		if (resp.getStatusLine().getStatusCode() != 201) {
 			return null;
 		}
-		JSONObject jo = getJSONResponseObject(resp.getBody());
+		JSONObject jo = getJSONResponseObject(ReSTExecutionHelper.readResponse(resp));
 		return jo.getString(getPropertyRefByEntityName(entityName));
 	}
 
 	/**
+	 * @throws Exception 
 	 * 
 	 * @throws JSONException
 	 * 
@@ -107,32 +113,32 @@ public class RequestExecutionHelper {
 	 * @throws
 	 */
 	public static String createSalesOrderViaREST(String entityName,
-			String salesOrderPayLoad, boolean secure) throws IOException,
-			JSONException {
+			String salesOrderPayLoad, boolean secure) throws Exception {
+		System.out.println(SERVICE_ROOT_URI);
 		String salesOrderId = null;
-		HttpResponse resp = executePostRequest(entityName, salesOrderPayLoad,
+		CloseableHttpResponse resp = ReSTExecutionHelper.executePostRequest(entityName, salesOrderPayLoad,
 				secure);
-		if (resp.getResponseCode() != 201) {
+		if (resp.getStatusLine().getStatusCode() != 201) {
 			return null;
 		}
-		JSONObject jo = getJSONResponseObject(resp.getBody());
+		JSONObject jo = getJSONResponseObject(ReSTExecutionHelper.readResponse(resp));
 		salesOrderId = jo.getString("SalesOrderId");
 		String customerDetails = UPDATE_LINK_PAYLOAD;
 		customerDetails = (secure) ? customerDetails.replace("<href>",
 				"secure/Customers('100000028')") : customerDetails.replace(
 				"<href>", "Customers('100000028')");
-		resp = executePutRequest("SalesOrderHeaders('" + salesOrderId
+		resp = ReSTExecutionHelper.executePutRequest("SalesOrderHeaders('" + salesOrderId
 				+ "')/$links/Customer", customerDetails, secure);
-		if (resp.getResponseCode() != 204) {
+		if (resp.getStatusLine().getStatusCode() != 204) {
 			return null;
 		}
 		String productDetails = UPDATE_LINK_PAYLOAD;
 		productDetails = (secure) ? productDetails.replace("<href>",
 				"secure/Products('HT-1002')") : productDetails.replace(
 				"<href>", "Products('HT-1002')");
-		resp = executePutRequest("SalesOrderItems(ItemNumber=10,SalesOrderId='"
+		resp = ReSTExecutionHelper.executePutRequest("SalesOrderItems(ItemNumber=10,SalesOrderId='"
 				+ salesOrderId + "')/$links/Product", productDetails, secure);
-		if (resp.getResponseCode() != 204) {
+		if (resp.getStatusLine().getStatusCode() != 204) {
 			return null;
 		}
 		return salesOrderId;

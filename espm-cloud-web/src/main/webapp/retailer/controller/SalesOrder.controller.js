@@ -1,18 +1,15 @@
 jQuery.sap.require("com.sap.espm.retailer.model.format");
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
 	"com/sap/espm/retailer/model/formatter",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast"
 	
 	
-], function(Controller, formatter) {
+], function(Controller, formatter, MessageBox, MessageToast) {
 	"use strict";
 
-	var statusId = 0;
-	var responseData;
-	
+
 	return Controller.extend("com.sap.espm.retailer.controller.SalesOrder", {
 
 		formatter: formatter,
@@ -80,16 +77,16 @@ sap.ui.define([
 						title : "{ProductId}"
 					}),
 					new sap.m.Text({
-						text : "{path: 'DeliveryDate', formatter: 'com.sap.espm.retailer.model.format.date'}",
+						text : "{path: 'DeliveryDate', formatter: 'com.sap.espm.retailer.model.format.date'}"
 					}),
 					new sap.m.Text({
-						text : "{path: 'Quantity', formatter: 'com.sap.espm.retailer.model.format.quantity'}",
+						text : "{path: 'Quantity', formatter: 'com.sap.espm.retailer.model.format.quantity'}"
 					}),
 					new sap.m.ObjectNumber({
 						emphasized : false,
 						number : "{path: 'GrossAmount', formatter:'com.sap.espm.retailer.model.format.formatAmount'}",
 						unit : "{CurrencyCode}"
-					}),
+					})
 					]
 			});
 			
@@ -113,14 +110,14 @@ sap.ui.define([
 			
 		},
 		
-		handleApprove: function(evt){
+		handleApprove: function(){
 				
 			var bundle = this.getView().getModel("i18n").getResourceBundle(); 
 			var that = this;
 			
-			sap.m.MessageBox.confirm( bundle.getText("sales.approveDialogMsg"), 
+			MessageBox.confirm( bundle.getText("sales.approveDialogMsg"), 
 					function (oAction) { 
-						if (sap.m.MessageBox.Action.OK === oAction) { 
+						if (MessageBox.Action.OK === oAction) { 
 							// notify user 
 							var id = that.getView().byId("detailObjectHeader").getTitle();
 							var oDataModel = that.getView().getModel("espmRetailerModel");
@@ -130,16 +127,16 @@ sap.ui.define([
 				        	}); 
 							var sPath = "/SalesOrderHeaders('" + id + "')";
 							var oData = {};
-							oData.LifeCycleStatus = 'P';
-							oData.LifeCycleStatusName = 'In Process';
-							oDataModel.update(sPath, oData, null, function(data){
+							oData.LifeCycleStatus = "P";
+							oData.LifeCycleStatusName = "In Process";
+							oDataModel.update(sPath, oData, null, function(){
 								//the sales order updated successfully
 								var successMsg = bundle.getText("sales.approveDialogSuccessMsg"); 
-								sap.m.MessageToast.show(successMsg);
+								MessageToast.show(successMsg);
 							},
-							function(data){
+							function(){
 								//the sales order updation failed
-								sap.m.MessageToast.show(bundle.getText("sales.soApprovalFailed"));
+								MessageToast.show(bundle.getText("sales.soApprovalFailed"));
 							});
 						} 
 						}, 
@@ -147,14 +144,14 @@ sap.ui.define([
 					
 		},
 		
-		handleReject: function(evt){
+		handleReject: function(){
 			
 			var bundle = this.getView().getModel("i18n").getResourceBundle(); 
 			var that = this;
 			
-			sap.m.MessageBox.confirm( bundle.getText("sales.RejectDialogMsg"), 
+			MessageBox.confirm( bundle.getText("sales.RejectDialogMsg"), 
 					function (oAction) { 
-						if (sap.m.MessageBox.Action.OK === oAction) { 
+						if (MessageBox.Action.OK === oAction) { 
 							// notify user 
 							var id = that.getView().byId("detailObjectHeader").getTitle();
 							var oDataModel = that.getView().getModel("espmRetailerModel");
@@ -164,16 +161,16 @@ sap.ui.define([
 				        	}); 
 							var sPath = "/SalesOrderHeaders('" + id + "')";
 							var oData = {};
-							oData.LifeCycleStatus = 'X';
-							oData.LifeCycleStatusName = 'Cancelled';
-							oDataModel.update(sPath, oData, null, function(data){
+							oData.LifeCycleStatus = "X";
+							oData.LifeCycleStatusName = "Cancelled";
+							oDataModel.update(sPath, oData, null, function(){
 								//the sales order updated successfully
 								var successMsg = bundle.getText("sales.rejectDialogSuccessMsg"); 
-								sap.m.MessageToast.show(successMsg);
+								MessageToast.show(successMsg);
 							},
-							function(data){
+							function(){
 								//the sales order updation failed
-								sap.m.MessageToast.show(bundle.getText("sales.soApprovalFailed"));
+								MessageToast.show(bundle.getText("sales.soApprovalFailed"));
 							});
 						} 
 						}, 

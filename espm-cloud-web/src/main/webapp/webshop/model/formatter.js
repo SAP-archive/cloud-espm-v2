@@ -89,6 +89,7 @@ sap.ui.define([
 				title: sTitle
 			};
 		},
+		
 		formatCountryName: function(sText){
 			var oResourceBundle = this.getModel("i18n").getResourceBundle();
 			return oResourceBundle.getText("sText");

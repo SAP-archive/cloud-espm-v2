@@ -1,12 +1,11 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	'sap/ui/model/json/JSONModel'
-], function(Controller, JSONModel) {
+	"sap/ui/core/mvc/Controller"
+], function(Controller) {
 	"use strict";
 
 	return Controller.extend("com.sap.espm.retailer.controller.Home", {
 		
-		onInit : function (evt) {
+		onInit : function () {
 			// set mock model
 			
 /*			var oModel = new JSONModel("/espm-cloud-web/retailer/model/tileData.json");
@@ -14,13 +13,12 @@ sap.ui.define([
 		},
 		onRoleButtonPressed: function(){
 			
-			var that = this;
 			var userId;
 			var bundle = this.getView().getModel("i18n").getResourceBundle();
 			var dialog = new sap.m.Dialog({
 				id:"roleDialogId",
 				title: bundle.getText("home.roleTitle"),
-				type: 'Message',
+				type: "Message",
 				content: [
 					new sap.ui.layout.form.SimpleForm({
 						content:[
@@ -97,12 +95,12 @@ sap.ui.define([
 			dialog.open();
 		},
 		
-		approveTilePressed: function(event){
+		approveTilePressed: function(){
 			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("SalesOrder");
 		},
-		stockTilePressed: function(event){
+		stockTilePressed: function(){
 			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("StockInformation");

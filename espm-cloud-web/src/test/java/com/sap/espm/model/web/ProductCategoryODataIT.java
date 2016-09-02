@@ -6,12 +6,16 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sap.espm.model.web.util.HttpResponse;
+import com.sap.espm.model.web.util.ReSTExecutionHelper;
 import com.sap.espm.model.web.util.RequestExecutionHelper;
 
 /**
@@ -21,7 +25,7 @@ import com.sap.espm.model.web.util.RequestExecutionHelper;
 public class ProductCategoryODataIT extends AbstractODataIT {
 
 	private final String ENTITY_NAME = "ProductCategories";
-
+	private static Logger logger = LoggerFactory.getLogger(ProductCategoryODataIT.class);
 	/**
 	 * Test if Product Categories are preloaded.
 	 * 
@@ -81,25 +85,6 @@ public class ProductCategoryODataIT extends AbstractODataIT {
 				jo.getString("Category"));
 	}
 
-	/**
-	 * Test Skip Service Query option via URL.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
-	 */
-/*	@Test
-	public void testProductCategoryUrlSkip() throws IOException, JSONException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
-				ENTITY_NAME + "?$format=json&$orderby=Category&$skip=1", false);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals(
-				"First product category in the ordered response not skipped",
-				"Computer system accessories", jo.getString("Category"));
-	}*/
 
 	/**
 	 * Test Select Service Query Option via URL.

@@ -44,8 +44,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.3.5</version>
-			<scope>compile</scope>
+			<version>4.5.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -342,7 +341,7 @@
 								<configuration>
 									<argLine>${browser.proxy.settings}</argLine>
 									<systemPropertyVariables>
-										<integration.test.server.url>http://${local.server.host}:${local.server.http.port}</integration.test.server.url>
+										 <integration.test.server.url>http://${local.server.host}:${local.server.http.port}</integration.test.server.url>				
 										<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
 									</systemPropertyVariables>
 								</configuration>

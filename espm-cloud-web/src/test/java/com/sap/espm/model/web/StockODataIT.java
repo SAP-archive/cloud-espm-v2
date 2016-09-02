@@ -9,12 +9,14 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.util.Random;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
 import com.sap.espm.model.web.util.HttpResponse;
+import com.sap.espm.model.web.util.ReSTExecutionHelper;
 import com.sap.espm.model.web.util.RequestExecutionHelper;
 import com.sap.espm.model.web.util.StreamHelper;
 
@@ -80,25 +82,6 @@ public class StockODataIT extends AbstractODataIT {
 	}
 
 	/**
-	 * Test Skip Service Query option via URL.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
-	 */
-/*	@Test
-	public void testStockUrlSkip() throws IOException, JSONException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
-				ENTITY_NAME + "?$format=json&$orderby=ProductId&$skip=1", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals("First product in the ordered response not skipped",
-				"HT-1000", jo.getString("ProductId"));
-	}*/
-
-	/**
 	 * Test Select Service Query Option via URL.
 	 * 
 	 * @throws IOException
@@ -124,12 +107,10 @@ public class StockODataIT extends AbstractODataIT {
 
 	/**
 	 * Test Update Stock via PUT request
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-	/*@Test
-	public void testUpdateStock() throws IOException, JSONException {
+	@Test
+	public void testUpdateStock() throws Exception {
 		String productId = "HX-" + rand.nextInt(200);
 		BigDecimal minStock = BigDecimal.valueOf(10.0);
 		String stockXml = StreamHelper.readFromFile(FILENAME);
@@ -137,35 +118,33 @@ public class StockODataIT extends AbstractODataIT {
 				"<d:ProductId>" + productId + "</d:ProductId>");
 		String id = RequestExecutionHelper.createEntityViaREST(ENTITY_NAME,
 				stockXml, true);
-		HttpResponse resp = RequestExecutionHelper.executeGetRequest(
+	CloseableHttpResponse resp = ReSTExecutionHelper.executeGetRequest(
 				ENTITY_NAME + "?$format=json&$filter=ProductId%20eq%20'"
 						+ productId + "'", true);
-		assertEquals("Stock not persisted", HttpURLConnection.HTTP_OK,
-				resp.getResponseCode());
+		assertEquals("Stock not persisted", HttpURLConnection.HTTP_OK,resp.getStatusLine().getStatusCode());
 		stockXml = stockXml.replace(
 				"<d:MinStock m:type=\"Edm.Decimal\">6.000</d:MinStock>",
 				"<d:MinStock m:type=\"Edm.Decimal\">" + minStock
 						+ "</d:MinStock>");
-		resp = RequestExecutionHelper.executePutRequest(ENTITY_NAME + "('" + id
+		resp = ReSTExecutionHelper.executePutRequest(ENTITY_NAME + "('" + id
 				+ "')", stockXml, true);
 		assertEquals("Unable to update Stock via REST. Response Message:"
-				+ resp.getResponseMessage(), HttpURLConnection.HTTP_NO_CONTENT,
-				resp.getResponseCode());
-		resp = RequestExecutionHelper.executeGetRequest(ENTITY_NAME
+				+ resp.getStatusLine().getReasonPhrase(), HttpURLConnection.HTTP_NO_CONTENT,
+				resp.getStatusLine().getStatusCode());
+		resp = ReSTExecutionHelper.executeGetRequest(ENTITY_NAME
 				+ "?$format=json&$filter=ProductId%20eq%20'" + productId + "'",
 				true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
+		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(ReSTExecutionHelper.readResponse(resp));
 		assertNotNull("Unable to parse JSON response", ja);
 		JSONObject jo = (JSONObject) ja.get(0);
 		assertEquals("Updated Stock via REST not persisted in db", minStock,
 				BigDecimal.valueOf(Double.valueOf(jo.getString("MinStock"))));
-		resp = RequestExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
+		resp = ReSTExecutionHelper.executeDeleteRequest(ENTITY_NAME + "('"
 				+ productId + "')", true);
 		assertEquals(
 				"Unable to delete Stock via REST or incorrect HTTP Response Code:"
-						+ resp.getResponseMessage(),
-				HttpURLConnection.HTTP_NO_CONTENT, resp.getResponseCode());
+						+ resp.getStatusLine().getReasonPhrase(),
+				HttpURLConnection.HTTP_NO_CONTENT, resp.getStatusLine().getStatusCode());
 
-	}*/
+	}
 }
