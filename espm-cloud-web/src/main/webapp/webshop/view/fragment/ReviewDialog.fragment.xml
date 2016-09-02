@@ -10,15 +10,15 @@
 				</contentRight>
 			</Bar>
 			<l:Grid defaultIndent="L1 M0 S0" defaultSpan="L10 M12 S12" id="reviewGrid" vSpacing="1">
-				<RatingIndicator change="onRatingChanged" class="sapUiMediumMarginEnd sapUiMediumMarginTop" iconSize="2.2rem" id="ratingIndicator"
+				<RatingIndicator change="validateReviewForm" class="sapUiMediumMarginEnd sapUiMediumMarginTop" iconSize="2.2rem" id="ratingIndicator"
 					maxValue="5" value="{Rating}" visualMode="Full"/>
 				<!-- set width (see defaultSpan) to 11/12 ~= 91% -->
-				<TextArea id="textArea" liveChange="onTextAreaChanged" placeholder="{i18n>detail.writeReview}" rows="12" value="{Comment}" width="100%"/>
+				<TextArea id="textArea" liveChange="validateReviewForm" placeholder="{i18n>detail.writeReview}" rows="12" value="{Comment}" width="100%"/>
 				<form:SimpleForm layout="ResponsiveGridLayout" editable="true" id="existingFormId">
 					<Label textAlign ="left" text="{i18n>detail.firstName}" required="true"/>
-					<Input id="firstNameId" placeholder="{i18n>detail.holderfirstName}" change ="" value=""/>
+					<Input id="firstNameId" placeholder="{i18n>detail.holderfirstName}" change="validateReviewForm" value=""/>
 					<Label textAlign ="left" text="{i18n>detail.lastName}" required="true"/>
-					<Input id="lastNameId" placeholder="{i18n>detail.holderlastName}" change ="" value=""/>
+					<Input id="lastNameId" placeholder="{i18n>detail.holderlastName}" change="validateReviewForm" value=""/>
 				</form:SimpleForm>
 			</l:Grid>
 		</content>

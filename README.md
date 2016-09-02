@@ -22,7 +22,6 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 5. [Setup the Runtime Environment](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html). please use the Java EE 6 Web Profile section in the above document
 6. Signup for [HCP Trial account](https://hcp.sap.com/developers.html#section_4) 
 
-
 ### Build the application and deploy
 1. Git configuration in Eclipse
    - From the Eclipse IDE main menu, choose Window > Preferences
@@ -82,6 +81,8 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
    - On this wizard page check that the master branch is selected and click again on Next >
    - On the last wizard page you can adjust the location of the local Git Repository, but for the scope of this tutorial we'll just leave the default as-is
    - Click on Finish so that the remote cloud-basecamp Git repository (source code) is cloned to the local location specified on the last wizard page.
+   - In Eclipse, open File->Import->Existing Maven projects.
+
 4. Update dependencies and build Maven project
 
     - Instruction to run update dependencies for the Maven project
@@ -213,33 +214,6 @@ The ESPM Sample Application is a Maven based project which has a parent pom.xml 
     ![Secure URL](/docs/images/servletfilter.png?raw=true)
 
     After deploying the application in HCP, assign the Retailer role to the user who will act as the retailer of the eCommerce site. Please refer to documentation of SAP HANA Cloud Platform on how to assign roles to users. See [Details](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html)
-
-### Protecting from Cross-Site Request Forgery
-
-In ESPM, we use **Custom header approach** for CSRF protection. For details on the same, please refer [SAP HANA Cloud Platform documentation](https://help.hana.ondemand.com/help/frameset.htm?1f5f34e31ec64af8b5fef1796ea07c0a.html)
-
-In Web.xml file in ESPM espm-cloud-web project(path src/main/webapp/WEB-INF/web.xml), we have added the below tags to enable CSRF protection for the secure odata service (http://<appname><accountname>.hana.ondemand.com/espm-cloud-web/espm.svc/secure)
-```sh
-	<!-- CSRF protection for the REST API for retailer scenario -->
-		<filter>
-		   <filter-name>RestCSRF</filter-name>
-		   <filter-class>org.apache.catalina.filters.RestCsrfPreventionFilter</filter-class>
-	 	</filter>
-	 <filter-mapping>
-	   	<filter-name>RestCSRF</filter-name>
-	    <!--modifying REST APIs  -->
-		<url-pattern>/espm.svc/secure/*</url-pattern>	    
-	 </filter-mapping>	
-```
-
-Note that the CSRF protection is performed only for modifying HTTP requests (different from GET|HEAD or OPTIONS).
-All CSRF protected resources should be protected with an authentication mechanism.
-
-In ESPM, the Retailer scenario (https://localhost:\<port\>/espm-cloud-web/retailer) is protected with authentication. The Sales Order Approval and Stock Update scenario is protected with CSRF protection. 
-
-The modifing HTTP requests to the secure service will be sent with header **X-CSRF-Token: <token_value>**
-
-Prior to sending a modifing HTTTP request, an HTTP GET request should be sent to a non-modifing HTTP request with the header **X-CSRF-Token: Fetch**. This will fetch the **<token_value>** required for the modifing request.
 
 # Important Disclaimers on Security and Legal Aspects
 This document is for informational purposes only. Its content is subject to change without notice, and SAP does not warrant that it is error-free. SAP MAKES NO WARRANTIES, EXPRESS OR IMPLIED, OR OF MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.

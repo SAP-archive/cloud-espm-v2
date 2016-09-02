@@ -7,7 +7,7 @@
 			</QuickViewGroup>
 			<QuickViewGroup heading="{i18n>detail.mainContact}">
 				<QuickViewGroupElement label="{i18n>detail.contactName}" value="{EspmModel>SupplierName}"/>
-				<QuickViewGroupElement label="{i18n>detail.email}" type="mobile" value="{EspmModel>EmailAddress}"/>
+				<QuickViewGroupElement label="{i18n>detail.email}" type="email" value="{EspmModel>EmailAddress}"/>
 			</QuickViewGroup>
 		</QuickViewPage>
 	</QuickView>
