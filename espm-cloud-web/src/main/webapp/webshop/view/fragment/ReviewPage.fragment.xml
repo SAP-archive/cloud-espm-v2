@@ -106,7 +106,7 @@
 						layout="ResponsiveGridLayout">
 					<form:content>
 						<Label text="{i18n>check.cardType}"/>
-						<Image src="Images/american.png" width="64px" align="left"></Image>
+						<Image id="cardImg" width="64px" align="left"></Image>
 						<Label text="{i18n>check.nameOnCard}r"/>
 						<Text id="cardOwner" text=""/>
 						<Label text="{i18n>check.cardNumber}"/>

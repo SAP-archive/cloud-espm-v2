@@ -83,27 +83,7 @@ public class CustomerODataIT extends AbstractODataIT {
 		assertEquals("Customer not filtered CustomerId", prefix0(40),
 				jo.getString("CustomerId"));
 	}
-
-	/**
-	 * Test if Customer URL Skip Service Query Option.
-	 * 
-	 * @throws IOException
-	 * @throws JSONException
-	 */
-/*	@Test
-	public void testCustomerUrlSkip() throws IOException, JSONException {
-		JSONObject jo;
-		HttpResponse resp = RequestExecutionHelper
-				.executeGetRequest(ENTITY_NAME
-						+ "?$format=json&$orderby=CustomerId&$skip=1", true);
-		JSONArray ja = RequestExecutionHelper.getJSONArrayofResults(resp
-				.getBody());
-		assertNotNull("Unable to parse JSON response", ja);
-		jo = (JSONObject) ja.get(0);
-		assertEquals("Customer not expanded by Address", prefix0(1),
-				jo.getString("CustomerId"));
-	}*/
-
+	
 	/**
 	 * Test if Customer URL Select Service Query Option.
 	 * 
