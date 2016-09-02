@@ -237,11 +237,6 @@
                             <PropertyValue Property="Label" String="Product Details"/>
                             <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ProductDetails"/>
                         </Record>
-                            <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="Products" />
-                            <PropertyValue Property="Target"
-                               AnnotationPath="Product/@UI.LineItem" />
-                        </Record>
                     </Collection>
                 </Annotation>
             </Annotations>

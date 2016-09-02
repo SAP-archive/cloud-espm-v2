@@ -34,6 +34,6 @@ public class JpaEntityManagerFactory {
 	 * @throws SQLException
 	 *             if a database occurs during initialization
 	 */
-	//TODO Add the EntitymanagerFactory Method here
+// TODO Add the EntitymangerFactory Method here
 
 }

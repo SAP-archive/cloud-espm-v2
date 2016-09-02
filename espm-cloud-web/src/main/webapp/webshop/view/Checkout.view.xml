@@ -1,5 +1,5 @@
 <mvc:View controllerName="com.sap.espm.shop.controller.Checkout" xmlns:core="sap.ui.core"  xmlns:layout="sap.ui.commons.layout" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc" xmlns:shop="com.sap.espm.shop.control" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	xmlns:mvc="sap.ui.core.mvc" xmlns:shop="com.sap.espm.shop.control" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<NavContainer id="wizardNavContainer">
 	<Page id ="checkoutContentPage" navButtonPress="onNavBack" showNavButton="true" busyIndicatorDelay="0" title="{i18n>check.titleCheckout}">
 		<headerContent>
@@ -75,13 +75,13 @@
 							<Label text="{i18n>check.newEmail}" required="true"/>
 							<Input id="newEmailId" placeholder="{i18n>check.holderNewEmail}" change="validateEmail" value=""/>
 							<Label text="{i18n>check.DOB}" required="true"/>
-							<DatePicker id="birthId" displayFormat="medium" type="sap.ui.model.type.Date" valueFormat="yyyy-MM-dd"/>
+							<DatePicker id="birthId" displayFormat="medium" type="sap.ui.model.type.Date" valueFormat="yyyy-MM-dd" change="validateDateField"/>
 							<Label text="{i18n>check.address}" required="true"/>
 							<Input id="streetId" placeholder="{i18n>check.holderStreetNumber}" type="sap.ui.model.type.Integer" liveChange="validateNumberInputField" value=""/>
 							<Input id="cityId" placeholder="{i18n>check.holderCity}" type="sap.ui.model.type.String" liveChange="validateStringInputField" value=""/>
 							<Input id="postalId" placeholder="{i18n>check.holderPostalCode}" type="sap.ui.model.type.Integer" liveChange="validateNumberInputField" value=""/>
 							<Label text="{i18n>check.country}" required="true"/>
-							<ComboBox id="countryListId" items="{path: 'countryModel>/Countries'}">
+							<ComboBox id="countryListId" items="{path: 'countryModel>/Countries' , length: '241'}">
 								<core:Item key="{countryModel>key}" text="{countryModel>name}"/>
 							</ComboBox>
 				</form:SimpleForm>
@@ -90,11 +90,11 @@
 					<form:SimpleForm editable="true" id="cardFormId">
 						<HBox alignItems="Center" justifyContent="Center" width="100%">
 							<Label text="{i18n>check.cardType}" required="true"/>
-							<RadioButton id="1" text="" selected="true" icon="Images/master.png"/>
+							<RadioButton id="card_type1" groupName="cardType" selected="true" app:cardtype="american" select="onRbChange"/>
 							<Image src="Images/american.png" width="100%" align="left"></Image>
-							<RadioButton id="2" selected="false" text=""/>
+							<RadioButton id="card_type2" groupName="cardType" selected="false" app:cardtype="master" select="onRbChange"/>
 							<Image src="Images/master.png" width="100%" align="left"></Image>
-							<RadioButton id="3" selected="false" text=""/>
+							<RadioButton id="card_type3" groupName="cardType" selected="false" app:cardtype="mastero" select="onRbChange"/>
 							<Image src="Images/mastero.png" width="100%" align="left"></Image>
 						</HBox>
 						<Label text="{i18n>check.nameOnCard}" required="true"/>

@@ -21,7 +21,7 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-//TODO add annotation for entity
+//TODO Add the annotation for entity
 public class SalesOrderHeader {
 
 	/* Sales order ids are generated within a number range starting with 5 */
