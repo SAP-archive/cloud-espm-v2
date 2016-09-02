@@ -1,17 +1,13 @@
 jQuery.sap.require("com.sap.espm.shop.model.format");
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
 	"com/sap/espm/shop/model/formatter",
-	"sap/m/MessageBox",
 	"sap/m/MessageToast"
-	
-	
-], function(Controller, formatter) {
+		
+], function(Controller, formatter, MessageToast) {
 	"use strict";
 
-	var statusId = 0;
-	var responseData, pdfURL;
+	var pdfURL;
 	
 	
 	return Controller.extend("com.sap.espm.shop.controller.SalesOrder", {
@@ -32,7 +28,11 @@ sap.ui.define([
 						that.showPopUpdialog();
 					}});
 				
-				this.getView().byId("detailPageId").setVisible(false); 
+				this.getView().byId("detailPageId").setVisible(false);  
+				var deviceModel = new sap.ui.model.json.JSONModel({
+				    isPhone: sap.ui.Device.system.phone
+				});
+				this.getView().setModel(deviceModel, "device");
 				
 			},
 
@@ -65,15 +65,15 @@ sap.ui.define([
 				
 				var that = this;
 				var emailId;
-				var oBundle = this.getView().getModel('i18n').getResourceBundle();
+				var oBundle = this.getView().getModel("i18n").getResourceBundle();
 				
 				var dialog = new sap.m.Dialog({
-					title: oBundle.getText('soPopup.pageTitle'),
-					type: 'Message',
+					title: oBundle.getText("soPopup.pageTitle"),
+					type: "Message",
 					content: [
 						new sap.ui.layout.form.SimpleForm({
 							content:[
-							        new sap.m.Label({text:oBundle.getText('soPopup.emailAddress')}),
+							        new sap.m.Label({text:oBundle.getText("soPopup.emailAddress")}),
 									new sap.m.Input({
 										liveChange:function(oEvent){
 											emailId = oEvent.getSource().getValue();
@@ -84,7 +84,7 @@ sap.ui.define([
 						})
 					],
 					beginButton: new sap.m.Button({
-						text: oBundle.getText('soPopup.salesOrderList'),
+						text: oBundle.getText("soPopup.salesOrderList"),
 						press: function () {
 							
 							if(emailId){
@@ -94,24 +94,24 @@ sap.ui.define([
 						            contentType:"application/json; charset=utf-8",
 						            dataType: "json",
 						            url: "/espm-cloud-web/espm.svc/GetSalesOrderInvoiceByEmail?EmailAddress='"+ emailId +"'&$expand=SalesOrderItems,Customer&$format=json",
-						            success: function(data, response) {
+						            success: function(data) {
 						            	
 						            	that.bindMasterPage(data);
 						            },
-						            error: function(err) {
-						            	sap.m.MessageToast.show(oBundle.getText('soPopup.errorMessage'));
+						            error: function() {
+						            	MessageToast.show(oBundle.getText("soPopup.errorMessage"));
 						            }
 						        	});
 								dialog.close();
 							}
 							else{
-								sap.m.MessageToast.show(oBundle.getText('soPopup.fieldEmpty'));
+								MessageToast.show(oBundle.getText("soPopup.fieldEmpty"));
 							}
 							
 						}
 					}),
 					endButton: new sap.m.Button({
-						text: oBundle.getText('soPopup.cancel'),
+						text: oBundle.getText("soPopup.cancel"),
 						press: function () {
 							dialog.close();
 						}
@@ -184,22 +184,25 @@ sap.ui.define([
 						title : "{ProductId}"
 					}),
 					new sap.m.Text({
-						text : "{path: 'DeliveryDate', formatter: 'com.sap.espm.shop.model.format.date'}",
+						text : "{path: 'DeliveryDate', formatter: 'com.sap.espm.shop.model.format.date'}"
 					}),
 					new sap.m.Text({
-						text : "{path: 'Quantity', formatter: 'com.sap.espm.shop.model.format.quantity'}",
+						text : "{path: 'Quantity', formatter: 'com.sap.espm.shop.model.format.quantity'}"
 					}),
 					new sap.m.ObjectNumber({
 						emphasized : false,
 						number : "{path: 'GrossAmount', formatter:'com.sap.espm.shop.model.format.formatAmount'}",
 						unit : "{CurrencyCode}"
-					}),
+					})
 					]
 			});
 			
 			var oTable = this.getView().byId("lineItemsId");
 			var bindString = context + "/SalesOrderItems/results";
 			oTable.bindItems(bindString, oTemplate);
+			if(this.getView().getModel("device").oData.isPhone){
+				this.byId("splitContId").to(this.byId("detailPageId"));
+			}
 			
 		},
 		
@@ -217,14 +220,16 @@ sap.ui.define([
 			
 		},
 		handleDownload: function(){
-			
-			this.pdfHTML.setVisible(true);
-			this.pdfHTML.setContent("<iframe src=" + pdfURL + " width='0%' height='0%'></iframe>");
-			
+			window.open(pdfURL);	
 		},
 		onNavBack: function(){
 			window.history.go(-1);
-		}
+		},
+		handleNavButtonPress: function(){
+    		var oSplitCont = this.byId("splitContId");
+    		var oMaster = oSplitCont.getMasterPages()[0];
+    		oSplitCont.toMaster(oMaster);
+  		}
 
 	});
 

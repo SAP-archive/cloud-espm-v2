@@ -1,15 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"com/sap/espm/retailer/model/formatter",
-	"sap/ui/core/routing/History",
-	'sap/m/Dialog',
-	"sap/m/Text",
-	"sap/m/Button",
-	'sap/ui/layout/HorizontalLayout',
-	'sap/ui/layout/VerticalLayout',
-	"sap/m/Input"
+	"com/sap/espm/retailer/model/formatter"
 	
-], function(Controller,formatter, VerticalLayout, HorizontalLayout, Text, Input, Dialog, Button) {
+], function(Controller,formatter) {
 	"use strict";
 
 	var bindingObject;
@@ -107,7 +100,7 @@ sap.ui.define([
 									}
 								}),
 								new sap.m.Label({text:bundle.getText("dialogItemInStock")}),
-								new sap.m.Input({value:stockString[0],editable: false}),
+								new sap.m.Input({value:stockString[0],editable: false})
 						         
 						      ]
 					})

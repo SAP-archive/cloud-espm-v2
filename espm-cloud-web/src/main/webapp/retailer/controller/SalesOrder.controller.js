@@ -1,16 +1,14 @@
 jQuery.sap.require("com.sap.espm.retailer.model.format");
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
 	"com/sap/espm/retailer/model/formatter",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast"
 	
 	
-], function(Controller, formatter) {
+], function(Controller, formatter, MessageBox, MessageToast) {
 	"use strict";
 
-	var statusId = 0;
 	var responseData;
 	
 	return Controller.extend("com.sap.espm.retailer.controller.SalesOrder", {
@@ -79,16 +77,16 @@ sap.ui.define([
 						title : "{ProductId}"
 					}),
 					new sap.m.Text({
-						text : "{path: 'DeliveryDate', formatter: 'com.sap.espm.retailer.model.format.date'}",
+						text : "{path: 'DeliveryDate', formatter: 'com.sap.espm.retailer.model.format.date'}"
 					}),
 					new sap.m.Text({
-						text : "{path: 'Quantity', formatter: 'com.sap.espm.retailer.model.format.quantity'}",
+						text : "{path: 'Quantity', formatter: 'com.sap.espm.retailer.model.format.quantity'}"
 					}),
 					new sap.m.ObjectNumber({
 						emphasized : false,
 						number : "{path: 'GrossAmount', formatter:'com.sap.espm.retailer.model.format.formatAmount'}",
 						unit : "{CurrencyCode}"
-					}),
+					})
 					]
 			});
 			
@@ -111,14 +109,14 @@ sap.ui.define([
 			binding.filter(filters); 
 			
 		},
-		handleApprove: function(evt){
+		handleApprove: function(){
 			
 			var bundle = this.getView().getModel("i18n").getResourceBundle(); 
 			var that = this;
 			
-			sap.m.MessageBox.confirm( bundle.getText("sales.approveDialogMsg"), 
+			MessageBox.confirm( bundle.getText("sales.approveDialogMsg"), 
 					function (oAction) { 
-						if (sap.m.MessageBox.Action.OK === oAction) { 
+						if (MessageBox.Action.OK === oAction) { 
 						// notify user 
 							
 							var id = that.getView().byId("detailObjectHeader").getTitle();
@@ -140,11 +138,11 @@ sap.ui.define([
 								model.refresh();
 								
 								var successMsg = bundle.getText("sales.approveDialogSuccessMsg"); 
-								sap.m.MessageToast.show(successMsg);
+								MessageToast.show(successMsg);
 							 	},
 							 	function()
 							 	{
-							 		sap.m.MessageToast.show(bundle.getText("sales.approveDialogFailureMsg"));
+							 		MessageToast.show(bundle.getText("sales.approveDialogFailureMsg"));
 							 	});
 						} 
 						}, 
@@ -153,13 +151,13 @@ sap.ui.define([
 					
 		},
 		
-		handleReject: function(evt){
+		handleReject: function(){
 			
 			var bundle = this.getView().getModel("i18n").getResourceBundle(); 
 			var that = this;
-			sap.m.MessageBox.confirm( bundle.getText("sales.rejectDialogMsg"), 
+			MessageBox.confirm( bundle.getText("sales.rejectDialogMsg"), 
 					function (oAction) { 
-						if (sap.m.MessageBox.Action.OK === oAction) { 
+						if (MessageBox.Action.OK === oAction) { 
 						// notify user 
 							
 							var id = that.getView().byId("detailObjectHeader").getTitle();
@@ -182,9 +180,9 @@ sap.ui.define([
 								
 								
 								var successMsg = bundle.getText("sales.rejectDialogSuccessMsg"); 
-								sap.m.MessageToast.show(successMsg);
+								MessageToast.show(successMsg);
 							 	},function(){
-							 		sap.m.MessageToast.show(bundle.getText("sales.rejectDialogSFailureMsg"));}); 
+							 		MessageToast.show(bundle.getText("sales.rejectDialogSFailureMsg"));}); 
 						} 
 						}, 
 						bundle.getText("sales.rejectDialogTitle") ); 
