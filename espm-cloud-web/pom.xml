@@ -229,7 +229,7 @@
 		<profile>
 			<id>local-integration-tests</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 				<property>
 					<name>local.integration.tests</name>
 				</property>
