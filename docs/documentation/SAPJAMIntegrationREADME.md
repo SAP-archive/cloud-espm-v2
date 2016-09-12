@@ -4,7 +4,8 @@ Enterprise Sales Procurement Model (ESPM) Sample Application With SAP JAM Integr
 # Pre-requisite
 
   - Make sure that you have enabled SAP Jam service in HCP as shown in the below screen shot
-  ![Services](/docs/documentation/SAPJAMIntegrationImages/EnableJamService.png?raw=true)
+
+![Services](/docs/documentation/SAPJAMIntegrationImages/EnableJamService.png?raw=true)
   - You have running ESPM application and deployed to SAP HCP as described in master branch
   - In the below guide, replace account information with your trial account. The application name is “espm” during deployment.
 
@@ -182,35 +183,37 @@ The demo can be split into 2 steps
 ###Creation of the Product Reviews in ESPM
 
 1. Open ESPM “webshop” URL in the browser.
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/ESPMURL.png?raw=true)
-
 2. Enter “Notebook Basic 15” in the product Search field.
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/NotebookBasic15Search.png?raw=true)
-
 3. Press the “Enter” key to view the Product “Notebook Basic 15” in the product list.
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/NotebookBasic15SearchList.png?raw=true)
-
 4. Select “Notebook Basic 15” item from the product list to view its details.
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/NotebookBasic15Selection.png?raw=true)
-
 5. Click on “Write a Review” button.
-![ESPM1](/docs/documentation/SAPJAMIntegrationImages/WriteProductReview.png?raw=true)
 
+![ESPM1](/docs/documentation/SAPJAMIntegrationImages/WriteProductReview.png?raw=true)
 6. In the popup window, enter the product review information and click on “Submit” button.
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/SubmitProductReview.png?raw=true)
 
 ### Viewing the Product Reviews in SAP Jam
 
 1. Open SAP Jam URL from HCP Service cockpit by clicking on “Go to Service” URL
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/JamURL.png?raw=true)
-
 2. Select the Groups dropdown “ESPM Product Reviews – HT-1000”
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/ESPMProductGroup.png?raw=true)
-
 3. You will be able to see the top rated and bottom rated reviews for the product “HT-1000”
-![ESPM1](/docs/documentation/SAPJAMIntegrationImages/ESPMProductReviews.png?raw=true)
 
+![ESPM1](/docs/documentation/SAPJAMIntegrationImages/ESPMProductReviews.png?raw=true)
 4. Click on link “View all 14 Items” to see product review information that was created earlier
+
 ![ESPM1](/docs/documentation/SAPJAMIntegrationImages/viewReviewdetails.png?raw=true)
 
 
