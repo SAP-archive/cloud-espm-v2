@@ -23,22 +23,25 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 6. Signup for [HCP Trial account](https://hcp.sap.com/developers.html#section_4) 
 
 ### Build the application and deploy
-1. Git configuration in Eclipse
+1.Git configuration in Eclipse
    - From the Eclipse IDE main menu, choose Window > Preferences
    - Enter git in the filter field in the top-left corner.
-   - Navigate to Team > Git > Configuration and select the Configuration node and add the following configuration 
-   ![EGit Configuration](/docs/images/EGitConfig.PNG?raw=true)
+   - Navigate to Team > Git > Configuration and select the Configuration node and add the following configuration
 
-        **Note! For most people the proxy value doesn’t need to be set but if you are working behind a proxy, then it should be set as per you environment**
-2. Maven configuration
+![EGit Configuration](/docs/images/EGitConfig.PNG?raw=true)
+
+**Note! For most people the proxy value doesn’t need to be set but if you are working behind a proxy, then it should be set as per you environment**
+ 
+2.Maven configuration
    - From the Eclipse IDE main menu, choose Window > Preferences
    - Enter maven in the filter field in the top-left corner
    - Navigate to Maven > User Settings and select the User Settings node
    - If you are using Maven for the first time you need to create a settings.xml file at location C:/Users/<your-user-name>/.m2/settings.xml. The contents of the settings .xml file should looks like below snippet:
    
-        ![Maven Settings Configuration](/docs/images/MavenSettings.PNG?raw=true)
+![Maven Settings Configuration](/docs/images/MavenSettings.PNG?raw=true)
    - Note: If you are not working behind a proxy firewall you can remove the entire proxy section from the snippet
    - Information:  If you have already installed Maven before you can click open file link and add e.g. the proxy configuration to your settings.xml if not already there.
+
     ```sh
         <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
         	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -66,15 +69,15 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
     ```
 
 
-3. Clone Git repository and import Maven project
+3.Clone Git repository and import Maven project
    - Open https://github.com/SAP/cloud-espm-v2 with your web browser
    - Click on the Copy to clipboard so that the Git repository URL of the opened cloud-basecamp GitHub repository is copied to your clipboard.
 
-        ![Repo URL](/docs/images/repoclone.png?raw=true)
+![Repo URL](/docs/images/repoclone.png?raw=true)
    - In Eclipse, open the Git perspective. From the Eclipse IDE main menu, choose Window > Open Perspective > Other.... Select Git and choose Ok to open the Git perspective. 
    - In this perspective you have the Git Repositories view on the left. As long as there is no Git Repository defined you will see 3 links (as shown here) to add a repository to the view.
 
-        ![Git Clone](/docs/images/GitClone.PNG?raw=true)
+![Git Clone](/docs/images/GitClone.PNG?raw=true)
    - In the corresponding menu (top-right of the view), click on the Clone a Git repository link.
    - Because you copied before the cloud-basecamp Git repository URL to your clipboard, the fields (URI, Host, Repository path and Protocol) of the opened dialog are filled automatically with the correct values.
    - Do not change anything, just click Next >
@@ -83,45 +86,53 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
    - Click on Finish so that the remote cloud-basecamp Git repository (source code) is cloned to the local location specified on the last wizard page.
    - In Eclipse, open File->Import->Existing Maven projects.
 
-4. Update dependencies and build Maven project
+4.Update dependencies and build Maven project
 
-    - Instruction to run update dependencies for the Maven project
-      - Right click on the web project in ESPM > and choose Maven > Click on Update Project
-    - Note! you need to modify the parent pom.xml for certain property values depending on your environment:
-      - local.server.proxy.settings - comment this out if you are not behind a proxy server. Else update your proxy settings here
-      - browser.proxy.settings - comment this out if your browser is not using a proxy. Else update your browser proxy settings here
-      - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java EE 6 Web Profile version that you intend to run the application with. the minimum version supported is 2.87.10
-      - olingo.version - The Apache Olingo version that you intend the application to run with. The minimum version supported is 2.0.6
+- Instruction to run update dependencies for the Maven project
+ - Right click on the web project in ESPM > and choose Maven > Click on Update Project
+- Note! you need to modify the parent pom.xml for certain property values depending on your environment:
+ - local.server.proxy.settings - comment this out if you are not behind a proxy server. Else update your proxy settings here
+ - browser.proxy.settings - comment this out if your browser is not using a proxy. Else update your browser proxy settings here
+ - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java EE 6 Web Profile version that you intend to run the application with. the minimum version supported is 2.87.10
+ - olingo.version - The Apache Olingo version that you intend the application to run with. The minimum version supported is 2.0.6
     
-    The application can be built with the maven command to the parent pom.xml
+ The application can be built with the maven command to the parent pom.xml
+
     ```sh
     clean install
     ```
 
-    **The unit tests and the integration tests are run by default when building the project with goal "clean install"**
-5. Deploy the application on local Cloud Runtime
-     - Run the application in HCP Java EE 6 Web Profile Server
-       - Right click on the web project in ESPM > and choose the Run on Server option
-       
-            ![Run ESPM Locally](/docs/images/RunESPM1.png?raw=true)
-       - Make sure that Manually define a new server is selected and choose SAP > Java EE 6 Web Profile Server as server type. Leave all other settings unchanged and choose Finish
+**The unit tests and the integration tests are run by default when building the project with goal "clean install"**
 
-            ![Run ESPM Finish](/docs/images/RunESPM2.png?raw=true)
-       - Now a local server is started that has your espm application deployed.
-     - Create Users and Assign Role
-       - To enable local users to access the Retailer UI, you need to define user IDs in the local user store and assigned the role “Retailer” to this user. 
+5.Deploy the application on local Cloud Runtime
+
+i)Run the application in HCP Java EE 6 Web Profile Server
+
+- Right click on the web project in ESPM > and choose the Run on Server option
        
-            Create a user with the below information
+![Run ESPM Locally](/docs/images/RunESPM1.png?raw=true)
+- Make sure that Manually define a new server is selected and choose SAP > Java EE 6 Web Profile Server as server type. Leave all other settings unchanged and choose Finish
+
+![Run ESPM Finish](/docs/images/RunESPM2.png?raw=true)
+- Now a local server is started that has your espm application deployed.
+
+ii)Create Users and Assign Role
+
+- To enable local users to access the Retailer UI, you need to define user IDs in the local user store and assigned the role “Retailer” to this user. 
+       
+  Create a user with the below information
             
             		ID		Name	Password	Role
             		ret   	ret		123			Retailer
 
-            ![Create User locally](/docs/images/localuser.png?raw=true)
-    * The eCommerce site can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/webshop
-    * The Retailer UI can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/retailer
-6. Deploy the application on SAP HCP via the cockpit
+![Create User locally](/docs/images/localuser.png?raw=true)
+- The eCommerce site can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/webshop
+- The Retailer UI can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/retailer
 
-    **Note! The application name must be "espm", else the above URL will change bsaed on the application name given during deployment**
+6.Deploy the application on SAP HCP via the cockpit
+
+ **Note! The application name must be "espm", else the above URL will change bsaed on the application name given during deployment**
+ 
    - Deploy the application in your SAP HANA Cloud Platform Trial account. 
      - Note! If you deploy with the console client, make sure to specify the --java-version parameter with value 7. Note! The application name must be espm.
    - Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP HANA Cloud Platform user to access the Retailer UI
@@ -161,7 +172,6 @@ The ESPM Sample Application is a Maven based project which has a parent pom.xml 
 ### The JPA Class diagram
 
 ![JPA Class Diagram](/docs/images/espm-cloud-jpa.png?raw=true)
-
 ### ESPM Source Code packages
 **The espm-cloud-jpa has the following packages:**
 
@@ -203,17 +213,15 @@ The ESPM Sample Application is a Maven based project which has a parent pom.xml 
 
 * The WebShop application uses non secure URL as any user without any logon credentials can create a sales order. The Retailer application uses secure URL as only a user with Java EE Web role Retailer can access it. To implement security we use a mix of Java EE Web roles and Servlet Filter
 
-    ![Web.xml for security](/docs/images/webxml.png?raw=true)
-
+![Web.xml for security](/docs/images/webxml.png?raw=true)
 * Any access to the secure entity and respective HTTP method via secure url (../espm.svc/secure/)is secured by Java EE Web role Retailer. The form authentication is specified for this Retailer and url-pattern /espm.svc/secure is restricted to this role. This is translated to SAML authentication on deploying in cloud
 
-    ![Secure URL](/docs/images/secureurl.png?raw=true)
-
+![Secure URL](/docs/images/secureurl.png?raw=true)
 * Any access to secure entity and respective HTTP via non-secure url is restricted by a servlet filter. The servlet filter is defined under the package com.sap.espm.model.web as EspmServiceFactoryFilter class and specified in the web.xml. The logic for restricting access to secure entities via non-secure url is implemented in isPathRestricted()
 
-    ![Secure URL](/docs/images/servletfilter.png?raw=true)
+![Secure URL](/docs/images/servletfilter.png?raw=true)
 
-    After deploying the application in HCP, assign the Retailer role to the user who will act as the retailer of the eCommerce site. Please refer to documentation of SAP HANA Cloud Platform on how to assign roles to users. See [Details](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html)
+After deploying the application in HCP, assign the Retailer role to the user who will act as the retailer of the eCommerce site. Please refer to documentation of SAP HANA Cloud Platform on how to assign roles to users. See [Details](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html)
 
 # Important Disclaimers on Security and Legal Aspects
 This document is for informational purposes only. Its content is subject to change without notice, and SAP does not warrant that it is error-free. SAP MAKES NO WARRANTIES, EXPRESS OR IMPLIED, OR OF MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.
