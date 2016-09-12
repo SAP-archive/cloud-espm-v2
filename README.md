@@ -34,11 +34,11 @@ The OData service exposed is https://espmxxxxxxxtrial.hanatrial.ondemand.com/esp
 
 # Demo Script
 1.	Open ESPM URL in the browser. https://espmxxxxxxxtrial.hanatrial.ondemand.com/espm-cloud-web/webshop/ . Click on the settings icon in the top right corner
+
 ![ESPM1](/docs/images/ESPM1.jpg?raw=true)
-
 2.	In the Popup window, Enter the API endpoint and the API key as provided above. Click on the Submit button
-![ESPM2](/docs/images/ESPM2.jpg?raw=true)
 
+![ESPM2](/docs/images/ESPM2.jpg?raw=true)
 3.	The Data URL that the ESPM application uses is now switched from the local service to API endpoint URL. The application loads data from API endpoint URL
 ![ESPM3](/docs/images/ESPM3.jpg?raw=true)
 
