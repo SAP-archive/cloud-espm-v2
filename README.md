@@ -57,29 +57,24 @@ In this Scenario Customer logs in with Twitter Account to the ESPM Webshop Appli
 
 # DEMO
 
-1. Login via Twitter, As a call back ESPM Webshop application loads
+1.Login via Twitter, As a call back ESPM Webshop application loads
 
- ![Usecase Diagram](/docs/images/TwitterLoginPage.jpg?raw=true)
-
+![Usecase Diagram](/docs/images/TwitterLoginPage.jpg?raw=true)
 2.	Go via normal flow, Browse and Select products
 
- ![ESPM1](/docs/images/ESPM1.jpg?raw=true)
-
+![ESPM1](/docs/images/ESPM1.jpg?raw=true)
 3.	Enter your details along with card details
 
- ![ESPM2](/docs/images/ESPM2.jpg?raw=true)
-
+![ESPM2](/docs/images/ESPM2.jpg?raw=true)
 4.	Click on Place an order 
 
- ![ESPM3](/docs/images/ESPM3.jpg?raw=true)
-
+![ESPM3](/docs/images/ESPM3.jpg?raw=true)
 5. Window with sales order id loads, Using the TWEET button on bottom right, you can tweet in Twitter
 
- ![ESPM4](/docs/images/ESPM4.jpg?raw=true)
-
+![ESPM4](/docs/images/ESPM4.jpg?raw=true)
 6. Your message will be tweeted in Twitter.
 
-   - ![ESPM5](/docs/images/ESPM5.jpg?raw=true)
+![ESPM5](/docs/images/ESPM5.jpg?raw=true)
 
 
 
