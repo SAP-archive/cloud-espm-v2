@@ -23,6 +23,17 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 6. Signup for [HCP Trial account](https://hcp.sap.com/developers.html#section_4) 
 
 ### Build the application and deploy
+Below are the Steps to build and run espm application.
+```sh
+1.Git configuration in Eclipse
+2.Maven configuration
+3.Clone Git repository and import Maven project
+4.Update dependencies and build Maven project
+5.Deploy the application on local Cloud Runtime
+6.Deploy the application on SAP HCP via the cockpit
+7.Bind the database to espm application and start espm application
+```
+
 1.Git configuration in Eclipse
    - From the Eclipse IDE main menu, choose Window > Preferences
    - Enter git in the filter field in the top-left corner.
