@@ -131,7 +131,7 @@ ii)Create Users and Assign Role
 
 6.Deploy the application on SAP HCP via the cockpit
 
- **Note! The application name must be "espm", else the above URL will change bsaed on the application name given during deployment**
+ **Note! The application name must be "espm", else the above URL will change based on the application name given during deployment**
  
    - Deploy the application in your SAP HANA Cloud Platform Trial account. 
      - Note! If you deploy with the console client, make sure to specify the --java-version parameter with value 7. Note! The application name must be espm.
@@ -143,14 +143,44 @@ ii)Create Users and Assign Role
     * The Retailer UI can be accessed via the URL: https://espm\<account\>.hanatrial.ondemand.com/espm-cloud-web/retailer
 
     **Note! The application name must be "espm", else the above URL will change bsaed on the application name given during deployment**
-    
-##### Demo script for [ESPM Webshop](/docs/demoscript/WebshopREADME.md) 
-##### Demo script for [ESPM Retailer-SalesorderApproval](/docs/demoscript/Retailer_SalesOrderApprovalREADME.md)
-##### Demo script for [ESPM Retailer-StockUpdate](/docs/demoscript/Retailer_StockUpdateREADME.md)
-##### Documentation for [Document Service](/docs/documentation/DocumentServiceREADME.md)
-##### Documentation for [SAP JAM Integration](/docs/documentation/SAPJAMIntegrationREADME.md)
 
 
+7.Bind the database to espm application and start espm application
+
+Below is the process to bind the database to the java application in HCP trial account using a Shared HANA database
+
+   - In the cockpit, select an account and choose Persistence -> Databases & Schemas -> in the navigation area.
+   - Click on the new button
+   - In the popup window, enter the below information
+   	```sh
+	Schema ID: espm
+	Database System: HANA (<shared>)
+	Version: 1.00*
+	Click on Save button
+	```
+	
+   - In the cockpit, select an account and choose Applications -> Java Application -> Click on the name of the espm application that you deployed
+   - In the navigation area in the cockpit, select Configuration -> Data Source Bindings
+   - Click "New Binding" button in detail plane
+   - In the popup window, enter the below information
+   	```sh
+	Data Source - <default> 
+	DB/Schema ID - select espm( the one that you created above)
+	Click on Save button
+	```
+
+   - Now you need to restart your espm application ( stop(if already started) and start the application) from the cockpit. 
+   
+   [help information on Binding applications to Database on HCP - Link 1](https://help.hana.ondemand.com/help/frameset.htm?1742986c3cfa47099442aee0cf8df5e9.html).
+   
+   [help information on Binding applications to Database on HCP - Link 2](https://help.hana.ondemand.com/help/frameset.htm?216cef2158cc419fade9a8247d5008fa.html).
+
+
+### Demo script for [ESPM Webshop](/docs/demoscript/WebshopREADME.md) 
+### Demo script for [ESPM Retailer-SalesorderApproval](/docs/demoscript/Retailer_SalesOrderApprovalREADME.md)
+### Demo script for [ESPM Retailer-StockUpdate](/docs/demoscript/Retailer_StockUpdateREADME.md)
+### Documentation for [Document Service](/docs/documentation/DocumentServiceREADME.md)
+### Documentation for [SAP JAM Integration](/docs/documentation/SAPJAMIntegrationREADME.md)
 # 2.Deep-dive guide
 ### Architecture Overview
 The following diagram provides an overview of the ESPM Sample application architecture: 
