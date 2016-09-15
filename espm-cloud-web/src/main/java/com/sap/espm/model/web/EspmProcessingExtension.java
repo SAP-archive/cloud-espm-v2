@@ -20,7 +20,7 @@ public class EspmProcessingExtension implements JPAEdmExtension {
 
 	@Override
 	public void extendWithOperation(JPAEdmSchemaView view) {
-		view.registerOperations(CustomerProcessor.class, null);
+		view.registerOperations(CustomerReviewProcessor.class, null);
 		view.registerOperations(SalesOrderProcessor.class, null);
 		//to-do replace this with your code implementation
 
