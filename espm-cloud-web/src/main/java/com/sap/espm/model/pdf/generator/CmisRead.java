@@ -34,12 +34,12 @@ public class CmisRead extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
       super.init(config);
      
-    //TODO connect to the add logic to connect to the CMIS repository - code snippet 2
+    //TODO connect to the add logic to connect to the CMIS repository - code snippet 1
      }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final String objectId =  request.getParameter("objectId");
-		//TODO Logic for reading the contents from the CMIS Repository - code snippet 3
+		//TODO Logic for reading the contents from the CMIS Repository - code snippet 2
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
