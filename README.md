@@ -8,18 +8,9 @@ Enterprise Sales Procurement Model (ESPM) Sample Application With Authorization 
 3. Demo
 4. Implementation
 
-
-
-
-
-
 # Introduction
 
 The Authorization Management API is a REST API that allows you to manage role and group assignments of users for Java and HTML5 applications and subscriptions. The authorization management REST API provides functionality to manage authorization entities such as roles, groups and their assignments. Roles can be assigned to users and groups. Groups can be assigned to users and roles. A user can be assigned to roles and groups. Roles can be provided within the web.xml or web-fragment.xml and will be extracted during the deployment of the application. Roles deployed with the application are visible for all subscriber accounts unless their shared flag is marked to false. Roles can also be created on subscription level. Assignments for those roles can be established only in the same subscription. Groups are created on account level.
-
-
-
-
 
 # Business Scenario
 
@@ -88,16 +79,26 @@ For Implementing Authorization API to assign Role to user from ESPM Cloud Retail
  ![AuthAPIImpl](/docs/images/AuthAPIImpl.jpg?raw=true)
 
  
-1.	Navigate the oAuth 2.0 Services -> Platform API -> create a Client ID and Client Secret. Save them for the next steps.
-2.	Create a destination as shown in the below screen shot.
-	Name - OAuthDestination
-	URL - https://api.hanatrial.ondemand.com/oauth2/apitoken/v1?grant_type=client_credentials 
-	Create Properties with name ClientId and ClientSecret and paste the saved values from Step 1.
+1.Go to Cockpit -> Enable Beta Feature
 
- ![OAuthDestination](/docs/images/OAuthDestination.jpg?raw=true)
-3.	In Config.Properties -> add AppName (your app name), AccountName ( your account name of SAP HCP) and LandscapeHost ( for hana trial account, the value is hanatrial.ondemand.com) , OAuthDestinationName (this is the HCP destination name -  OAuthDestination )
-4.	Grant role "Retailer" in HCP to your user.
-5.	Build the applciation in Eclipse and deploy the same to HCP.
+![BetaFeature](/docs/images/BetaFeature.jpg?raw=true)
+
+2.Navigate to services -> Go to oAuth 2.0 Services -> Platform API Beta-> create a Client ID and Client Secret. Save them for the next steps.
+
+3.Create a destination as shown in the below screen shot.
+	Name - oAuths
+	URL - https://api.hanatrial.ondemand.com/oauth2/apitoken/v1?grant_type=client_credentials 
+	User and Password has to be given the values ClientId and ClientSecret from Step 1.
+
+![OAuthDestination](/docs/images/OAuthDestination.jpg?raw=true)
+
+4.In espm-cloud-web/src/main/resources/Config.Properties -> add AppName (your app name), AccountName ( your account name of SAP HCP) and LandscapeHost ( for hana trial account, the value is hanatrial.ondemand.com) , OAuthDestinationName (this is the HCP destination name -  oAuths )
+
+5.Go to Cockpit -> Navigate to application -> Navigate to Security -> Go to Roles -> Grant role "Retailer" in HCP to your user.
+
+![Security](/docs/images/Security.jpg?raw=true)
+
+6.Build the applciation in Eclipse and deploy the same to HCP.
 
 ### Authorization API Source code packages:-
 
