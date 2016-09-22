@@ -15,8 +15,8 @@ import com.sap.espm.model.util.Util;
 public class OauthHandler {
 
 	// static HttpResponse oAuthResponse;
-	private static final String CLIENTID = "ClientId";
-	private static final String CLIENT_SECRET = "ClientSecret";
+	private static final String CLIENTID = "User";
+	private static final String CLIENT_SECRET = "Password";
 	private static final Logger LOGGER = LoggerFactory.getLogger(OauthHandler.class);
 
 	public static String oauthApiCaller() throws IOException {
