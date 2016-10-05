@@ -87,7 +87,7 @@ Record types in SAP Jam define how the data from the external application will b
   b.	Click on Add Record Type button <br />
   c.	In the Name text box, enter Products <br />
   d. 	In the External Type text box, enter <br/ >
-  https://espm<account>.hanatrial.ondemand.com/espm-cloud-web/espm.svc/$metadata#Products <br/ >
+  https://espmxxxxxxxtrial.hanatrial.ondemand.com/espm-cloud-web/espm.svc/$metadata#Products <br/ >
   e.	In the Annotations URL text field, enter <br/ >
         https://espmxxxxxxxtrial.hanatrial.ondemand.com/espm-cloud-web/webshop/reviews_annotations.xml <br/>
   f. 	Click on Import External resources button. You will be display with a success page. Click on Done button. <br/>
