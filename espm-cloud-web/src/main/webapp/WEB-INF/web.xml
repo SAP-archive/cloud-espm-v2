@@ -107,6 +107,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CmisRead</servlet-name>
-		<url-pattern>/CmisRead</url-pattern>
+		<url-pattern>/espm.svc/CmisRead</url-pattern>
 	</servlet-mapping>
 </web-app>

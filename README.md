@@ -15,12 +15,12 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 
 # 1. Quick start guide
 ### Setting up the developer environment
-1. Install [SAP JVM 7.*](https://tools.hana.ondemand.com/#cloud) or Java JDK 1.7 and setup the JAVA_HOME and PATH environment variables in your local machine
-2. Install [Eclipse](https://help.hana.ondemand.com/help/frameset.htm?761374e5711e1014839a8273b0e91070.html). Please download Eclipse Mars
+1. Install [SAP JVM 8.*](https://tools.hana.ondemand.com/#cloud) or Java JDK 1.8 and setup the JAVA_HOME and PATH environment variables in your local machine
+2. Install [Eclipse](https://help.hana.ondemand.com/help/frameset.htm?761374e5711e1014839a8273b0e91070.html). Please download Eclipse Neon
 3. [Install SAP Development Tools for Eclipse](https://help.hana.ondemand.com/help/frameset.htm?76137a37711e1014839a8273b0e91070.html)
-4. Install the [SAP HANA Cloud SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please download Java EE 6 Web Profile SDK
-5. [Setup the Runtime Environment](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html). please use the Java EE 6 Web Profile section in the above document
-6. Signup for [HCP Trial account](https://hcp.sap.com/developers.html#section_4) 
+4. Install the [SAP HANA Cloud SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please download Java Web Tomcat 8 SDK
+5. Use Java Web Tomcat 8 Runtime Environment as described in [Setup the Runtime Environment](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html) document
+6. Signup for [HCP Trial account](https://hcp.sap.com/developers.html#section_4) if you don't have HCP Trial Account
 
 ### Build the application and deploy
 Below are the Steps to build and run espm application.
@@ -34,7 +34,7 @@ Below are the Steps to build and run espm application.
 7.Bind the database to espm application and start espm application
 ```
 
-1.Git configuration in Eclipse
+#### 1.Git configuration in Eclipse
    - From the Eclipse IDE main menu, choose Window > Preferences
    - Enter git in the filter field in the top-left corner.
    - Navigate to Team > Git > Configuration and select the Configuration node and add the following configuration
@@ -43,7 +43,7 @@ Below are the Steps to build and run espm application.
 
 **Note! For most people the proxy value doesn’t need to be set but if you are working behind a proxy, then it should be set as per you environment**
  
-2.Maven configuration
+#### 2.Maven configuration
    - From the Eclipse IDE main menu, choose Window > Preferences
    - Enter maven in the filter field in the top-left corner
    - Navigate to Maven > User Settings and select the User Settings node
@@ -80,7 +80,7 @@ Below are the Steps to build and run espm application.
     ```
 
 
-3.Clone Git repository and import Maven project
+#### 3.Clone Git repository and import Maven project
    - Open https://github.com/SAP/cloud-espm-v2 with your web browser
    - Click on the Copy to clipboard so that the Git repository URL of the opened cloud-basecamp GitHub repository is copied to your clipboard.
 
@@ -97,14 +97,14 @@ Below are the Steps to build and run espm application.
    - Click on Finish so that the remote cloud-basecamp Git repository (source code) is cloned to the local location specified on the last wizard page.
    - In Eclipse, open File->Import->Existing Maven projects.
 
-4.Update dependencies and build Maven project
+#### 4.Update dependencies and build Maven project
 
 - Instruction to run update dependencies for the Maven project
  - Right click on the web project in ESPM > and choose Maven > Click on Update Project
 - Note! you need to modify the parent pom.xml for certain property values depending on your environment:
  - local.server.proxy.settings - comment this out if you are not behind a proxy server. Else update your proxy settings here
  - browser.proxy.settings - comment this out if your browser is not using a proxy. Else update your browser proxy settings here
- - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java EE 6 Web Profile version that you intend to run the application with. the minimum version supported is 2.87.10
+ - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with. the minimum version supported is 3.22.10
  - olingo.version - The Apache Olingo version that you intend the application to run with. The minimum version supported is 2.0.6
     
  The application can be built with the maven command to the parent pom.xml
@@ -115,14 +115,14 @@ Below are the Steps to build and run espm application.
 
 **The unit tests and the integration tests are run by default when building the project with goal "clean install"**
 
-5.Deploy the application on local Cloud Runtime
+#### 5.Deploy the application on local Cloud Runtime
 
-i)Run the application in HCP Java EE 6 Web Profile Server
+i)Run the application in HCP Java Web Tomcat 8 Server
 
 - Right click on the web project in ESPM > and choose the Run on Server option
        
 ![Run ESPM Locally](/docs/images/RunESPM1.png?raw=true)
-- Make sure that Manually define a new server is selected and choose SAP > Java EE 6 Web Profile Server as server type. Leave all other settings unchanged and choose Finish
+- Make sure that Manually define a new server is selected and choose SAP > Java Web Tomcat 8 Server as server type. Leave all other settings unchanged and choose Finish
 
 ![Run ESPM Finish](/docs/images/RunESPM2.png?raw=true)
 - Now a local server is started that has your espm application deployed.
@@ -140,12 +140,26 @@ ii)Create Users and Assign Role
 - The eCommerce site can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/webshop
 - The Retailer UI can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/retailer
 
-6.Deploy the application on SAP HCP via the cockpit
+#### 6.Deploy the application on SAP HCP via the cockpit
 
  **Note! The application name must be "espm", else the above URL will change based on the application name given during deployment**
  
    - Deploy the application in your SAP HANA Cloud Platform Trial account. 
-     - Note! If you deploy with the console client, make sure to specify the --java-version parameter with value 7. Note! The application name must be espm.
+   
+1.Go to HCP Cockpit --> Click on Java Application under Applications --> Click on Deploy Application
+    
+![HCP Cockpit](/docs/images/HCPCockpit.png?raw=true)
+
+
+2.Add War File Location, Give Application Name "espm" ,select Runtime Name "Java Web Tomcat 8" and JVM Version "JRE 8"
+      
+![HCP Deploy](/docs/images/HCPDeploy.png?raw=true)
+
+
+3.After Successful Deployment , Click on Start
+ 
+![Deployed](/docs/images/Deployed.png?raw=true)
+
    - Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP HANA Cloud Platform user to access the Retailer UI
 
     You can access the application from the URL
@@ -156,7 +170,7 @@ ii)Create Users and Assign Role
     **Note! The application name must be "espm", else the above URL will change bsaed on the application name given during deployment**
 
 
-7.Bind the database to espm application and start espm application
+#### 7.Bind the database to espm application and start espm application
 
 Below is the process to bind the database to the java application in HCP trial account using a Shared HANA database
 
@@ -276,3 +290,4 @@ Copyright 2016 SAP SE
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+

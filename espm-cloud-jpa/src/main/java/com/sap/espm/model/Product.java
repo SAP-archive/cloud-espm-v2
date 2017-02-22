@@ -3,6 +3,7 @@ package com.sap.espm.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,6 @@ public class Product {
 
 	private String name;
 
-	@SalesOrderReportField
 	@Column(name = "SHORT_DESCRIPTION")
 	private String shortDescription;
 
@@ -57,7 +57,6 @@ public class Product {
 	@Column(name = "WEIGHT_UNIT", length = 3)
 	private String weightUnit;
 
-	@SalesOrderReportField
 	@Column(precision = 23, scale = 3)
 	private BigDecimal price;
 
@@ -84,14 +83,14 @@ public class Product {
 
 	@OneToOne
 	private Supplier supplier;
-	
-	@OneToMany(mappedBy="product",targetEntity=CustomerReview.class,fetch=FetchType.EAGER)
-	private List<CustomerReview> reviews;   
+
+	@OneToMany(mappedBy = "product", targetEntity = CustomerReview.class, fetch = FetchType.EAGER)
+	private List<CustomerReview> reviews;
 
 	public Product() {
 		this.reviews = new ArrayList<CustomerReview>();
 	}
-	
+
 	public String getProductId() {
 		return this.productId;
 	}
@@ -235,12 +234,12 @@ public class Product {
 	public void setSupplier(Supplier param) {
 		this.supplier = param;
 	}
-	
-	public void addReview(CustomerReview review){
+
+	public void addReview(CustomerReview review) {
 		this.reviews.add(review);
 	}
-	
-	public List<CustomerReview> getReviews(){
+
+	public List<CustomerReview> getReviews() {
 		return this.reviews;
 	}
 
@@ -255,8 +254,7 @@ public class Product {
 		EntityManagerFactory emf = Utility.getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		try {
-			List<Product> products = em.createQuery("SELECT p FROM Product p",
-					Product.class).getResultList();
+			List<Product> products = em.createQuery("SELECT p FROM Product p", Product.class).getResultList();
 			prices = new HashMap<String, BigDecimal>();
 			for (Product p : products) {
 				prices.put(p.getProductId(), p.getPrice());
@@ -326,15 +324,23 @@ public class Product {
 	}
 
 	private ProductText getProductText(EntityManager em) {
-		TypedQuery<ProductText> query = em
-				.createQuery(
-						"SELECT p FROM ProductText p WHERE p.productId = :productId AND p.language = :language",
-						ProductText.class);
+		TypedQuery<ProductText> query = em.createQuery(
+				"SELECT p FROM ProductText p WHERE p.productId = :productId AND p.language = :language",
+				ProductText.class);
 		try {
-			return query.setParameter("productId", this.getProductId())
-					.setParameter("language", "EN").getSingleResult();
+			return query.setParameter("productId", this.getProductId()).setParameter("language", "EN")
+					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+
+	public Map<String, String> getProductReportMap() {
+
+		Map<String, String> productMap = new LinkedHashMap<>(2);
+		productMap.put("shortDescription", shortDescription);
+		productMap.put("price", String.valueOf(price));
+
+		return productMap;
 	}
 }
