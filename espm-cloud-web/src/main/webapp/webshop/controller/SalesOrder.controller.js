@@ -70,7 +70,7 @@ sap.ui.define([
 							        new sap.m.Label({text:oBundle.getText("soPopup.emailAddress")}),
 									new sap.m.Input({
 										liveChange:function(oEvent){
-											emailId = oEvent.getSource().getValue();
+											emailId = oEvent.getSource().getValue().toLowerCase();
 										}
 									})
 							         

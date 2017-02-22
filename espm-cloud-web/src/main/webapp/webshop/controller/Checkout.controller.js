@@ -290,7 +290,7 @@ sap.ui.define([
 			            type: "PUT",
 			            async: true,
 			            contentType:"application/json; charset=utf-8",
-			            url: oData.d.__metadata.id + "/$links/Customer",
+			             url: "/espm-cloud-web/espm.svc/SalesOrderHeaders('" + oData.d.SalesOrderId + "')/$links/Customer",
 			            data :JSON.stringify(dataJson),
 			            success: function() {
 			            	
@@ -311,7 +311,7 @@ sap.ui.define([
 								            async: true,
 								            dataType: "json",
 								            contentType:"application/json; charset=utf-8",
-								            url: data.d.results[j].__metadata.id + "/$links/Product",
+								            url: "/espm-cloud-web/espm.svc/SalesOrderItems(ItemNumber=" + data.d.results[j].ItemNumber + ",SalesOrderId='"+ data.d.results[j].SalesOrderId + "')/$links/Product",
 								            data :JSON.stringify(productDataJson),
 								            success: function() {
 								            	

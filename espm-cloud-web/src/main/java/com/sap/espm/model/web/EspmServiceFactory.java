@@ -8,10 +8,17 @@ import org.apache.olingo.odata2.jpa.processor.api.ODataJPAServiceFactory;
 import org.apache.olingo.odata2.jpa.processor.api.exception.ODataJPARuntimeException;
 
 /**
- * Odata JPA Processor implementation class
+ * Odata JPA Processor implementation class. This is required for the
+ * configuration of OData via the Olingo Framework.
+ * <p>
+ * For more information regarding the Olingo framework configuration steps,
+ * refer to the documentation: https://olingo.apache.org/doc/odata4/index.html
  */
 public class EspmServiceFactory extends ODataJPAServiceFactory {
 
+	/**
+	 * The package that contains all the model classes.
+	 */
 	private static final String PERSISTENCE_UNIT_NAME = "com.sap.espm.model";
 
 	@Override

@@ -28,13 +28,11 @@ public class EspmProcessingExtension implements JPAEdmExtension {
 
 	@Override
 	public void extendJPAEdmSchema(JPAEdmSchemaView arg0) {
-		// TODO Auto-generated method stub
 
 	}
 	
 	@Override
 	public InputStream getJPAEdmMappingModelStream(){
-		// TODO Auto-generated method stub
 		return null;
 	}
 

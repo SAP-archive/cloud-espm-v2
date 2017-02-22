@@ -1,6 +1,8 @@
 package com.sap.espm.model;
 
 import java.util.Calendar;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,49 +25,40 @@ public class Customer {
 	@Column(name = "CUSTOMER_ID", length = 10)
 	private String customerId;
 
-	@SalesOrderReportField
 	@Column(name = "EMAIL_ADDRESS", unique = true)
 	private String emailAddress;
 
 	@Column(name = "PHONE_NUMBER", length = 30)
 	private String phoneNumber;
-	
-	@SalesOrderReportField
+
 	@Column(name = "FIRST_NAME", length = 40)
 	private String firstName;
 
-	@SalesOrderReportField
 	@Column(name = "LAST_NAME", length = 40)
 	private String lastName;
 
-	@SalesOrderReportField
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Calendar dateOfBirth;
 
-	@SalesOrderReportField
 	@Column(name = "CITY", length = 40)
 	private String city;
 
-	@SalesOrderReportField
 	@Column(name = "POSTAL_CODE", length = 10)
 	private String postalCode;
-	@SalesOrderReportField
+
 	@Column(name = "STREET", length = 60)
 	private String street;
 
 	@Column(name = "HOUSE_NUMBER", length = 10)
 	private String houseNumber;
 
-	@SalesOrderReportField
 	@Column(name = "COUNTRY", length = 3)
 	private String country;
 	
 	@Column(name = "TWITTER_ID", unique=true)
 	private String twitterid;
 	
-	
-
 	public String getCustomerId() {
 		return this.customerId;
 	}
@@ -162,5 +155,17 @@ public class Customer {
 		this.twitterid = twitterid;
 	}
 	
-	
+	public Map<String, String> getCustomerReportData() {
+
+		Map<String, String> customerMapData = new LinkedHashMap<String, String>(7);
+		customerMapData.put("firstName", firstName);
+		customerMapData.put("lastName", lastName);
+		customerMapData.put("emailAddress", emailAddress);
+		customerMapData.put("phoneNumber", phoneNumber);
+		customerMapData.put("city", city);
+		customerMapData.put("street", street);
+		customerMapData.put("country", country);
+		return customerMapData;
+
+	}
 }
