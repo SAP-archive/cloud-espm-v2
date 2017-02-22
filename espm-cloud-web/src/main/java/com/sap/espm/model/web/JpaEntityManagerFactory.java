@@ -15,13 +15,31 @@ import org.eclipse.persistence.config.PersistenceUnitProperties;
 import com.sap.espm.model.util.Utility;
 
 /**
- * Handles the singleton EntityManagerFactory instance.
+ * Handles the singleton {@link EntityManagerFactory} instance.
+ * <p>
+ * This class is responsible for fetching the details of the {@link DataSource}
+ * that has the connection related details (Host, username, password) on how to
+ * connect to the data source.
+ * <p>
+ * <b>Note</b> - This class fetches the {@link DataSource} details via JNDI, so
+ * ensure that you have the DataSource configured as a JNDI lookup variable in
+ * the respective ServletContainer where the application is deployed.
  */
 public class JpaEntityManagerFactory {
 
+	/**
+	 * The JNDI name of the DataSource.
+	 */
 	public static final String DATA_SOURCE_NAME = "java:comp/env/jdbc/DefaultDB";
+	
+	/**
+	 * The package name which contains all the model classes.
+	 */
 	public static final String PERSISTENCE_UNIT_NAME = "com.sap.espm.model";
 
+	/**
+	 * The static {@link EntityManagerFactory}
+	 */
 	private static EntityManagerFactory entityManagerFactory = null;
 
 	/**
@@ -34,6 +52,7 @@ public class JpaEntityManagerFactory {
 	 * @throws SQLException
 	 *             if a database occurs during initialization
 	 */
-// TODO Add the EntitymangerFactory Method here
+	
+	// TODO Add the EntitymangerFactory Method here
 
 }

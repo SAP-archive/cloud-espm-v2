@@ -49,7 +49,7 @@
 		<url-pattern>/espm.svc/secure/*</url-pattern>
 	</servlet-mapping>
 	<!-- TODO Add the JPA reference here -->
-	<servlet>
+		<servlet>
 		<description></description>
 		<display-name>StartupServlet</display-name>
 		<servlet-name>StartupServlet</servlet-name>
@@ -104,6 +104,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CmisRead</servlet-name>
-		<url-pattern>/CmisRead</url-pattern>
+		<url-pattern>/espm.svc/CmisRead</url-pattern>
 	</servlet-mapping>
 </web-app>
