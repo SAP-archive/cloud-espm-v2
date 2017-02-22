@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
@@ -30,7 +31,12 @@ import com.sap.espm.model.ProductCategory;
 import com.sap.espm.model.Supplier;
 
 /**
- * Stax Parser Implementation
+ * Utility class that is used to read the contents of the XMLs present in the
+ * resource folder and parse the content and construct equivalent POJO classes.
+ * 
+ * The POJO classes are defined in the package com.sap.espm.model. The POJO
+ * classes represent {@link Entity} objects that will be persisted into the
+ * database.
  * 
  */
 public class XMLParser {
@@ -127,8 +133,8 @@ public class XMLParser {
 	/**
 	 * Parse Product XML and fill it in List
 	 * 
-	 * @param productXml
-	 * @return Parsed List of Products
+	 * @param productXml - The location of the XML that contains the list of products.
+	 * @return Parsed List of {@link Product}
 	 */
 	public List<Product> readProduct(EntityManager em, String productXml,
 			List<Supplier> suppliers) {
@@ -324,8 +330,8 @@ public class XMLParser {
 	/**
 	 * Parse Product XML and fill it in List
 	 * 
-	 * @param reviewXml
-	 * @return Parsed List of CustomerReviews
+	 * @param reviewXml - The location of the XML that contains the list of Customer Reviews.
+	 * @return Parsed List of {@link CustomerReview}
 	 */
 	public List<CustomerReview> readCustomerReview(EntityManager em, String reviewXml,
 			List<Product> products) {
@@ -427,8 +433,8 @@ public class XMLParser {
 	/**
 	 * Parse Customers and fill List
 	 * 
-	 * @param bpXml
-	 * @return Parsed List of Customers
+	 * @param bpXml - The location of the XML that contains the list of {@link Customer}
+	 * @return Parsed List of {@link Customer}
 	 */
 	public List<Customer> readCustomers(EntityManager em, String bpXml) {
 		ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -570,8 +576,8 @@ public class XMLParser {
 	/**
 	 * Parse Suppliers and fill List
 	 * 
-	 * @param bpXml
-	 * @return Parsed List of Suppliers
+	 * @param bpXml - The location of the XML that contains the list of Suppliers
+	 * @return Parsed List of {@link Supplier}
 	 */
 	public List<Supplier> readSuppliers(EntityManager em, String bpXml) {
 		ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
@@ -694,13 +700,11 @@ public class XMLParser {
 	}
 
 	/**
-	 * Parse Product Categeory and fill List
+	 * Parse Product Category and fill List
 	 * 
-	 * @param pcXml
-	 * @param productList
-	 *            TODO
-	 * 
-	 * @return Parsed List of Product Categories
+	 * @param pcXml - The location of the XML that contains the list of Product Categories.
+	 * @param productList - The list of {@link Product}
+	 * @return Boolean flag for successful insertion of data.
 	 */
 	public Boolean readProductCategory(EntityManager em, String pcXml,
 			List<Product> products) {
