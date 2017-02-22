@@ -22,9 +22,11 @@ sap.ui.define([
 			UIComponent.prototype.init.apply(this, arguments);
 			
 			
+		
 			//to-do replace this with your code implementation
 			
 			//initialize router
+			
 			this.getRouter().initialize();
 		}
 	});
