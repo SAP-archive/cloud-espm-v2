@@ -21,12 +21,30 @@ import com.sap.espm.model.keystore.passwordKeyStore;
 import com.sap.espm.model.util.Util;
 
 /**
- * Servlet implementation class AuthorizationApiRoleManagement
+ * {@link HttpServlet} used for check the roles of the input user, based on the
+ * Authorization token passed as the input.
+ * <p>
+ * Refer to the {@link AuthApiHandler} for the methods exposed on how to fetch
+ * the roles of an input user.
  */
 public class AuthorizationApiRoleManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * The {@link Gson} instance used for parsing the HttpRequest any particular
+	 * data.
+	 */
 	private Gson gson = new Gson();
+
+	/**
+	 * {@link AuthApiHandler} instance. Refer to the JavaDoc of
+	 * {@link AuthApiHandler} for more information.
+	 */
 	AuthApiHandler authApiHandler = new AuthApiHandler();
+
+	/**
+	 * {@link Logger} instance used for logging messages.
+	 */
 	private static Logger logger = LoggerFactory.getLogger(AuthorizationApiRoleManagement.class);
 
 	@Override

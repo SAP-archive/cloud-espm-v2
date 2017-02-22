@@ -176,7 +176,7 @@ sap.ui.define([
 			var firstName = this.byId("firstNameId").getValue();
 			var lastName = this.byId("lastnameId").getValue();
 			var birthDate = this.byId("birthId").getValue();
-			var eMail = this.byId("newEmailId").getValue();
+			var eMail = this.byId("newEmailId").getValue().toLowerCase();
 			var street = this.byId("streetId").getValue();
 			var city = this.byId("cityId").getValue();
 			var postalCode = this.byId("postalId").getValue();
@@ -249,7 +249,7 @@ sap.ui.define([
 			var utctime = Date.parse(date);		
 			date = "/Date("+utctime+")/";
 			var customer = {
-				"EmailAddress":this.byId("newEmailId").getValue(),
+				"EmailAddress":this.byId("newEmailId").getValue().toLowerCase(),
 				"LastName":this.byId("lastnameId").getValue(),
 				"FirstName":this.byId("firstNameId").getValue(),
 				"DateOfBirth":date,
@@ -321,7 +321,7 @@ sap.ui.define([
 			            type: "PUT",
 			            async: true,
 			            contentType:"application/json; charset=utf-8",
-			            url: oData.d.__metadata.id + "/$links/Customer",
+			            url: "/espm-cloud-web/espm.svc/SalesOrderHeaders('" + oData.d.SalesOrderId + "')/$links/Customer",
 			            data :JSON.stringify(dataJson),
 			            success: function() {
 			            	
@@ -342,7 +342,7 @@ sap.ui.define([
 								            async: true,
 								            dataType: "json",
 								            contentType:"application/json; charset=utf-8",
-								            url: data.d.results[j].__metadata.id + "/$links/Product",
+								            url: "/espm-cloud-web/espm.svc/SalesOrderItems(ItemNumber=" + data.d.results[j].ItemNumber + ",SalesOrderId='"+ data.d.results[j].SalesOrderId + "')/$links/Product",
 								            data :JSON.stringify(productDataJson),
 								            success: function() {
 								            	
@@ -422,12 +422,12 @@ sap.ui.define([
 			var sFunctionImportEmailParam;
 			if(buttonIndex === 0){
 				if(that.byId("newEmailId").getValue().length !== 0){
-					sFunctionImportEmailParam = "EmailAddress='" + that.byId("newEmailId").getValue() + "'";
+					sFunctionImportEmailParam = "EmailAddress='" + that.byId("newEmailId").getValue().toLowerCase() + "'";
 				}
 			}
 			else{
 				if(that.byId("existingEmailId").getValue().length !== 0){
-					sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue() + "'";
+					sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue().toLowerCase() + "'";
 				}
 			}
 			
@@ -462,7 +462,7 @@ sap.ui.define([
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			if(this.validateEmail(this.byId("existingEmailId").getValue()) === true){
 				
-				var sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue() + "'";
+				var sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue().toLowerCase() + "'";
 				var aParams = [];
 				aParams.push(sFunctionImportEmailParam);
 				

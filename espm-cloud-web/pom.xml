@@ -21,135 +21,100 @@
 		<dependency>
    			 <groupId>com.google.http-client</groupId>
     		 <artifactId>google-http-client</artifactId>
-    		 <version>1.22.0</version>
 		</dependency>
 		<dependency>
   			<groupId>com.google.api-client</groupId>
  		 	<artifactId>google-api-client-jackson2</artifactId>
-  			<version>1.20.0</version>
 		</dependency>
 		<!-- SAP HANA Cloud SDK dependencies -->
 		<dependency>
 			<groupId>com.sap.cloud</groupId>
-			<artifactId>neo-javaee6-wp-api</artifactId>
-			<version>${sap.cloud.sdk.version}</version>
+			<artifactId>neo-java-web-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
-			<!-- <version>4.3.2</version> -->
-			<version>4.4</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.2</version>
 			<scope>compile</scope>
 		</dependency>
 		<!-- odata library -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>2.7.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.olingo</groupId>
 			<artifactId>olingo-odata2-api</artifactId>
-			<version>${olingo.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.olingo</groupId>
 			<artifactId>olingo-odata2-core</artifactId>
-			<version>${olingo.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.olingo</groupId>
 			<artifactId>olingo-odata2-jpa-processor-api</artifactId>
-			<version>${olingo.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.olingo</groupId>
 			<artifactId>olingo-odata2-api-annotation</artifactId>
-			<version>${olingo.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.olingo</groupId>
 			<artifactId>olingo-odata2-jpa-processor-core</artifactId>
-			<version>${olingo.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<!-- PDF Box Dependencies -->
 		<dependency>
-			<groupId>org.apache.chemistry.opencmis</groupId>
-			<artifactId>chemistry-opencmis-commons-impl</artifactId>
-			<version>0.13.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.chemistry.opencmis</groupId>
-			<artifactId>chemistry-opencmis-commons-api</artifactId>
-			<version>0.13.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.chemistry.opencmis</groupId>
-			<artifactId>chemistry-opencmis-client-api</artifactId>
-			<version>0.13.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.chemistry.opencmis</groupId>
-			<artifactId>chemistry-opencmis-client-impl</artifactId>
-			<version>0.13.0</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>
-						chemistry-opencmis-client-bindings
-					</artifactId>
-					<groupId>org.apache.chemistry.opencmis</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox-app</artifactId>
-			<version>1.8.10</version>
 		</dependency>
-		
 		<!-- HTTP client apache - testing purpose -->
 		 
-	<dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.5.2</version>
-    </dependency> 
+		<dependency>
+	      <groupId>org.apache.httpcomponents</groupId>
+	      <artifactId>httpclient</artifactId>
+	    </dependency> 
+		
 
 		
 
 		<!-- Test dependencies -->
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.codehaus.jettison</groupId>
 			<artifactId>jettison</artifactId>
-			<version>1.3.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -158,8 +123,8 @@
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.5</version>
 				<configuration>
 					<filesets>
 						<fileset>
@@ -177,7 +142,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.4</version>
 				<executions>
 					<execution>
 						<id>copy-installed</id>
@@ -215,148 +179,7 @@
 					</execution>
 				</executions>
 			</plugin>
-            <plugin>
-                <groupId>com.sap.cloud</groupId>
-                <artifactId>neo-javaee6-wp-maven-plugin</artifactId>
-                <version>${sap.cloud.sdk.version}</version>
-                <executions>
-                    <execution>
-                        <!-- Choose a phase when to install the SDK -->
-                        <phase>initialize</phase>
-                        <goals>
-                            <!-- Call the SDK installation goal of this plugin -->
-                            <goal>install-sdk</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!-- Location of the SAP HANA Cloud Platform SDK -->
-                    <sdkInstallPath>${sap.cloud.sdk.path}</sdkInstallPath>
-                </configuration>
-            </plugin>			
 		</plugins>
 	</build>
-
-	<profiles>
-		<!-- Install local server from the P2 repository that is contained inside 
-			the SDK, deploy the built web application into it, start local server, wait 
-			for it and the built and deployed web application to become available, integration-test 
-			the web application on the local server, and stop the local server finally -->
-		<profile>
-			<id>local-integration-tests</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-				<property>
-					<name>local.integration.tests</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<!-- Find free random ports for the local test server -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>build-helper-maven-plugin</artifactId>
-						<version>1.7</version>
-						<executions>
-							<execution>
-								<id>reserve-network-port</id>
-								<goals>
-									<goal>reserve-network-port</goal>
-								</goals>
-								<phase>validate</phase>
-								<configuration>
-									<portNames>
-										<portName>local.server.console.port</portName>
-										<portName>local.server.jmx.port</portName>
-										<portName>local.server.http.port</portName>
-										<portName>local.server.https.port</portName>
-										<portName>local.server.ajp.port</portName>
-									</portNames>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<version>1.7</version>
-						<executions>
-							<execution>
-								<id>prepare-local-server</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<target>
-										<exec dir="${sap.cloud.sdk.path}/tools" executable="${sap.cloud.console.shell}"
-											failonerror="true">
-											<arg
-												line="${sap.cloud.console.script} install-local --location ${local.server.root} --jmxPort ${local.server.jmx.port} --httpPort ${local.server.http.port} --httpsPort ${local.server.https.port} --ajpPort ${local.server.ajp.port} ${local.server.proxy.settings}" />
-										</exec>
-										<!-- <copy
-											todir="${local.server.root}/config_master/service.destinations/destinations">
-											<fileset dir="${destinations.path}" />
-										</copy> -->
-										<copy file="${project.build.directory}/${project.artifactId}.war"
-											todir="${local.server.root}/pickup" />
-										<copy
-											file="${project.basedir}/src/test/resources/com/sap/espm/model/web/neousers.json"
-											todir="${local.server.root}/config_master/com.sap.security.um.provider.neo.local">
-										</copy>
-										<exec dir="${sap.cloud.sdk.path}/tools" executable="${sap.cloud.console.shell}"
-											failonerror="true">
-											<arg
-												line="${sap.cloud.console.script} start-local --location ${local.server.root} --consolePort ${local.server.console.port} --waitUrl http://${local.server.host}:${local.server.http.port}/${project.artifactId}/ --waitUrlTimeout 120" />
-										</exec>
-									</target>
-								</configuration>
-							</execution>
-							<execution>
-								<id>cleanup-local-server</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<target>
-										<exec dir="${sap.cloud.sdk.path}/tools" executable="${sap.cloud.console.shell}"
-											failonerror="true">
-											<arg
-												line="${sap.cloud.console.script} stop-local --consolePort ${local.server.console.port}" />
-										</exec>
-									</target>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.14</version>
-						<executions>
-							<execution>
-								<id>execute-local-integration-tests</id>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-								<configuration>
-									<argLine>${browser.proxy.settings}</argLine>
-									<systemPropertyVariables>
-										 <integration.test.server.url>http://${local.server.host}:${local.server.http.port}</integration.test.server.url>				
-										<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
-									</systemPropertyVariables>
-								</configuration>
-							</execution>
-							<execution>
-								<id>verify-local-integration-tests</id>
-								<goals>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>

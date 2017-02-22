@@ -1,21 +1,12 @@
-Enterprise Sales Procurement Model (ESPM) Sample Application With Authorization API
-============================================================
+Enterprise Sales Procurement Model (ESPM) Sample Application - Security Features
+======================================================================
 
-# Table of Contents
+1. Enterprise Sales Procurement Model (ESPM) Application with Cross-Site Request Forgery
+2. Enterprise Sales Procurement Model (ESPM) Application with Authorization API
 
-1. Introduction
-2. Business Scenario
-3. Demo
-4. Implementation
 
-# Introduction
 
-The Authorization Management API is a REST API that allows you to manage role and group assignments of users for Java and HTML5 applications and subscriptions. The authorization management REST API provides functionality to manage authorization entities such as roles, groups and their assignments. Roles can be assigned to users and groups. Groups can be assigned to users and roles. A user can be assigned to roles and groups. Roles can be provided within the web.xml or web-fragment.xml and will be extracted during the deployment of the application. Roles deployed with the application are visible for all subscriber accounts unless their shared flag is marked to false. Roles can also be created on subscription level. Assignments for those roles can be established only in the same subscription. Groups are created on account level.
-
-# Business Scenario
-
-In ESPM Cloud Web application, retailer logs into the application. SAP HANA Cloud checks the authorization to see if he is a retailer. Retailer accepts/reject the sales orders created by customer. He also monitors his stock and if any products stock falls below target he raises a purchase order with his supplier.
-Assume that a new user is joining as a retailer and needs to access the ESPM Retailer portal. Using Authorization API Retailer can assign retailer role to new user through ESPM Webshop application. 
+## Enterprise Sales Procurement Model (ESPM) Application with Cross-Site Request Forgery
 
 ### Protecting from Cross-Site Request Forgery
 
@@ -43,13 +34,28 @@ In ESPM, the Retailer scenario (https://localhost:\<port\>/espm-cloud-web/retail
 The modifing HTTP requests to the secure service will be sent with header **X-CSRF-Token: <token_value>**
 
 Prior to sending a modifing HTTTP request, an HTTP GET request should be sent to a non-modifing HTTP request with the header **X-CSRF-Token: Fetch**. This will fetch the **<token_value>** required for the modifing request.
+
+## Enterprise Sales Procurement Model (ESPM) Application with Authorization API
  
 
+### Table of Contents
 
+1. Introduction
+2. Business Scenario
+3. Setup Authorization API
+4. Demo
+5. Code Explaination 
 
+### Introduction
 
+The Authorization Management API is a REST API that allows you to manage role and group assignments of users for Java and HTML5 applications and subscriptions. The authorization management REST API provides functionality to manage authorization entities such as roles, groups and their assignments. Roles can be assigned to users and groups. Groups can be assigned to users and roles. A user can be assigned to roles and groups. Roles can be provided within the web.xml or web-fragment.xml and will be extracted during the deployment of the application. Roles deployed with the application are visible for all subscriber accounts unless their shared flag is marked to false. Roles can also be created on subscription level. Assignments for those roles can be established only in the same subscription. Groups are created on account level.
 
-# DEMO
+### Business Scenario
+
+In ESPM Cloud Web application, retailer logs into the application. SAP HANA Cloud checks the authorization to see if he is a retailer. Retailer accepts/reject the sales orders created by customer. He also monitors his stock and if any products stock falls below target he raises a purchase order with his supplier.
+Assume that a new user is joining as a retailer and needs to access the ESPM Retailer portal. Using Authorization API Retailer can assign retailer role to new user through ESPM Webshop application. 
+
+### DEMO
 
 
 1.	Open ESPM Cloud Retailer application.
@@ -70,9 +76,7 @@ Prior to sending a modifing HTTTP request, an HTTP GET request should be sent to
 
 
 
-
-
-# Implementation
+### Setup Authorization API
 
 For Implementing Authorization API to assign Role to user from ESPM Cloud Retailer Application.
 
@@ -83,7 +87,7 @@ For Implementing Authorization API to assign Role to user from ESPM Cloud Retail
 
 ![BetaFeature](/docs/images/BetaFeature.jpg?raw=true)
 
-2.Navigate to services -> Go to oAuth 2.0 Services -> Platform API Beta-> create a Client ID and Client Secret. Save them for the next steps.
+2.Navigate to services -> oAuth 2.0 Service -> Click on Service link -> Platform API Beta-> create a Client ID and Client Secret. Save them for the next steps.
 
 3.Create a destination as shown in the below screen shot.
 	Name - oAuths
@@ -94,13 +98,15 @@ For Implementing Authorization API to assign Role to user from ESPM Cloud Retail
 
 4.In espm-cloud-web/src/main/resources/Config.Properties -> add AppName (your app name), AccountName ( your account name of SAP HCP) and LandscapeHost ( for hana trial account, the value is hanatrial.ondemand.com) , OAuthDestinationName (this is the HCP destination name -  oAuths )
 
-5.Go to Cockpit -> Navigate to application -> Navigate to Security -> Go to Roles -> Grant role "Retailer" in HCP to your user.
+5.Build the application in Eclipse and deploy the same to HCP.
+
+6.Go to Cockpit -> Navigate to application -> Navigate to Security -> Go to Roles -> Grant role "Retailer" in HCP to your user.
 
 ![Security](/docs/images/Security.jpg?raw=true)
 
-6.Build the applciation in Eclipse and deploy the same to HCP.
+###Code Explaination 
 
-### Authorization API Source code packages:-
+#### Authorization API Source code packages:-
 
 Packages related to Authorization API Implementation on ESPM:-
 

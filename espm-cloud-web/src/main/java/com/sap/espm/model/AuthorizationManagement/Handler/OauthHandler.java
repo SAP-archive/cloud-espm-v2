@@ -12,13 +12,32 @@ import org.slf4j.LoggerFactory;
 import com.sap.espm.model.util.HttpClientUtil;
 import com.sap.espm.model.util.Util;
 
+/**
+ * This class acts as a wrapper to get the OAuth Details via JNDI. Refer to
+ * class {@link Util} for more information on the implementation on how to fetch
+ * the details.
+ * <p>
+ * Using the OAuthDetails, we use the ClientId and the Client Secret to fetch
+ * the OAuthDetails.
+ */
 public class OauthHandler {
 
 	// static HttpResponse oAuthResponse;
 	private static final String CLIENTID = "User";
 	private static final String CLIENT_SECRET = "Password";
+
+	/**
+	 * The {@link Logger} instance used for logging.
+	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(OauthHandler.class);
 
+	/**
+	 * This method calls the OAuthHandler for the getting the OAuth Token.
+	 * 
+	 * @return - The String response from the OAuthApi.
+	 * @throws IOException
+	 *             - In case of any exception while invoking the OAuthApi.
+	 */
 	public static String oauthApiCaller() throws IOException {
 
 		Map<String, String> oAuthResponse;

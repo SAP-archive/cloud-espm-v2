@@ -3,6 +3,7 @@ package com.sap.espm.model.AuthorizationManagement;
 import java.io.IOException;
 
 import javax.naming.NamingException;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,12 +21,37 @@ import com.sap.espm.model.AuthorizationManagement.Handler.OauthHandler;
 import com.sap.espm.model.keystore.passwordKeyStore;
 import com.sap.espm.model.util.Util;
 
+/**
+ * This {@link Servlet} is used to validate the role that is passed in the
+ * request and validate the same using the token present in the Password store.
+ * <p>
+ * Separate method implementations for GET and POST.
+ */
 public class AuthorizationApiUserManagementWs extends HttpServlet {
+
+	/**
+	 * Default Serial Id.
+	 */
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * {@link Gson} object for JSON Parsing.
+	 */
 	private Gson gson = new Gson();
+
+	/**
+	 * The {@link AuthApiHandler} that is used to invoke the Authorization API.
+	 */
 	AuthApiHandler authApiHandler = new AuthApiHandler();
+
+	/**
+	 * The {@link Logger} instance used for logging.
+	 */
 	private static Logger logger = LoggerFactory.getLogger(AuthorizationApiUserManagementWs.class);
 
+	/**
+	 * Default constructor.
+	 */
 	public AuthorizationApiUserManagementWs() {
 		super();
 	}
@@ -33,9 +59,15 @@ public class AuthorizationApiUserManagementWs extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		/*
+		 * 1. Get the "RoleName" from the request. 2. If the accessToken is
+		 * stored in the Key store, fetch the list of users based on the
+		 * password and the role name. 3. Else, Fetch the OAuthResponse via the
+		 * OAuthHandler, parse the JSON data (which contains the Access Token)
+		 * and store this in the Keystore.
+		 */
 		logger.debug("Entering AuthorizationApiUserManagementWs.doGet Method");
 		String oAuthResponse, userList, accessToken;
-
 		JsonElement element;
 		JsonObject jsonObj;
 		char[] pass = null;
@@ -67,9 +99,11 @@ public class AuthorizationApiUserManagementWs extends HttpServlet {
 				Util.exceptionResponseHandler("Exception occured when oAuthAPI Called", 500, e, response);
 				return;
 			}
+			// Get the Auth Access Token from the response.
 			element = gson.fromJson(oAuthResponse, JsonElement.class);
 			jsonObj = element.getAsJsonObject();
 			accessToken = jsonObj.get("access_token").getAsString();
+			// Set the password in the password keystore.
 			passwordKeyStore.getInstance().setPassword("accessToken", accessToken.toCharArray());
 			try {
 				userList = authApiHandler.getUsers(accessToken, (roleName != null) ? roleName : "");
@@ -96,6 +130,13 @@ public class AuthorizationApiUserManagementWs extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		/*
+		 * 1. Get the "RoleName" from the request. 2. If the accessToken is
+		 * stored in the Key store, fetch the list of users based on the
+		 * password and the role name. 3. Else, Fetch the OAuthResponse via the
+		 * OAuthHandler, parse the JSON data (which contains the Access Token)
+		 * and store this in the Keystore.
+		 */
 		String oAuthResponse, recc, accessToken;
 		String body = Util.getHttpRequestAsString(request);
 		AuthApiHandler aah = new AuthApiHandler();
