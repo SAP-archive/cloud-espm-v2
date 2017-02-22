@@ -21,6 +21,19 @@ import com.sap.espm.model.CustomerReview;
 import com.sap.espm.model.Product;
 import com.sap.espm.model.util.Utility;
 
+/**
+ * This is a custom Apache Olingo Function Import. For more reference
+ * information regarding a Function Import, refer to the official Olingo
+ * documentation:
+ * <p>
+ * https://olingo.apache.org/doc/odata2/tutorials/jpafunctionimport.html
+ * <p>
+ * http://olingo.apache.org/doc/odata2/
+ * <p>
+ * This class is used as a function import to define custom OData functions
+ * regarding {@link CustomerReview} entity model.
+ *
+ */
 public class CustomerReviewProcessor {
 
 	/**
@@ -67,7 +80,7 @@ public class CustomerReviewProcessor {
 			} catch (NoResultException e) {
 				throw new ODataApplicationException(
 						"Error creating customer review:" , Locale.ENGLISH,
-						HttpStatusCodes.BAD_REQUEST);
+						HttpStatusCodes.BAD_REQUEST, e);
 			}
 		} finally {
 			em.close();

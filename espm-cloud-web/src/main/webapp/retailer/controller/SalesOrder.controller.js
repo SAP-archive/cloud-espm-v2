@@ -21,6 +21,11 @@ sap.ui.define([
 		 * @memberOf com.sap.espm.retailer.view.SalesOrder
 		 */
 			onInit: function() {
+				
+				var deviceModel = new sap.ui.model.json.JSONModel({
+ 				    isPhone: sap.ui.Device.system.phone
+ 				});
+ 				this.getView().setModel(deviceModel, "device");
 		
 			},
 
@@ -94,6 +99,10 @@ sap.ui.define([
 			var oTable = this.getView().byId("lineItemsId");
 			var bindString = context + "/SalesOrderItems";
 			oTable.bindItems(bindString, oTemplate);
+			
+			if(this.getView().getModel("device").oData.isPhone){
+ 				this.byId("splitContId").to(this.byId("detailPageId"));
+ 			}
 			
 		},
 		
@@ -192,7 +201,13 @@ sap.ui.define([
 		},
 		onNavBack: function(){
 			window.history.go(-1);
-		}
+		},
+		
+		handleNavButtonPress: function(){
+     		var oSplitCont = this.byId("splitContId");
+     		var oMaster = oSplitCont.getMasterPages()[0];
+     		oSplitCont.toMaster(oMaster);
+  		}
 
 	});
 

@@ -21,7 +21,17 @@ import com.sap.espm.model.util.Utility;
 
 /**
  * 
- * Function Import processor class for Customer
+ * This is a custom Apache Olingo Function Import. For more reference
+ * information regarding a Function Import, refer to the official Olingo
+ * documentation:
+ * <p>
+ * https://olingo.apache.org/doc/odata2/tutorials/jpafunctionimport.html
+ * <p>
+ * http://olingo.apache.org/doc/odata2/ 
+ * <p>
+ * This class is used to define custom OData
+ * functions for {@link Customer} entity.
+ * 
  * 
  */
 public class CustomerProcessor {
@@ -34,10 +44,9 @@ public class CustomerProcessor {
 	 * @return customer entity.
 	 * @throws ODataException
 	 */
-	
+	@SuppressWarnings("unchecked")
 	//to-do - replace the below function signature with your code implementation
-	public List<Customer> getCustomerByEmailAddress(String emailAddress)
-			throws ODataException {
+        {
 		EntityManagerFactory emf = Utility.getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		List<Customer> custList = null;
@@ -56,7 +65,7 @@ public class CustomerProcessor {
 				throw new ODataApplicationException(
 						"No matching customer with Email Address:"
 								+ emailAddress, Locale.ENGLISH,
-						HttpStatusCodes.BAD_REQUEST);
+						HttpStatusCodes.BAD_REQUEST, e);
 			}
 		} finally {
 			em.close();

@@ -20,21 +20,20 @@ public class EspmProcessingExtension implements JPAEdmExtension {
 
 	@Override
 	public void extendWithOperation(JPAEdmSchemaView view) {
-		view.registerOperations(CustomerReviewProcessor.class, null);
+		
 		view.registerOperations(SalesOrderProcessor.class, null);
+		view.registerOperations(CustomerReviewProcessor.class, null);
 		//to-do replace this with your code implementation
 
 	}
 
 	@Override
 	public void extendJPAEdmSchema(JPAEdmSchemaView arg0) {
-		// TODO Auto-generated method stub
 
 	}
 	
 	@Override
 	public InputStream getJPAEdmMappingModelStream(){
-		// TODO Auto-generated method stub
 		return null;
 	}
 
