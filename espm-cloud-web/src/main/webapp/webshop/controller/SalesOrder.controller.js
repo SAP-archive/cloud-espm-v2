@@ -66,6 +66,7 @@ sap.ui.define([
 				var that = this;
 				var emailId;
 				var oBundle = this.getView().getModel("i18n").getResourceBundle();
+				var oDataModel = this.getView().getModel("EspmModel");
 				
 				var dialog = new sap.m.Dialog({
 					title: oBundle.getText("soPopup.pageTitle"),
@@ -76,7 +77,7 @@ sap.ui.define([
 							        new sap.m.Label({text:oBundle.getText("soPopup.emailAddress")}),
 									new sap.m.Input({
 										liveChange:function(oEvent){
-											emailId = oEvent.getSource().getValue();
+											emailId = oEvent.getSource().getValue().toLowerCase();
 										}
 									})
 							         
@@ -87,13 +88,16 @@ sap.ui.define([
 						text: oBundle.getText("soPopup.salesOrderList"),
 						press: function () {
 							
+							
+							
 							if(emailId){
 								$.ajax({
 						            type: "GET",
 						            async: true,
 						            contentType:"application/json; charset=utf-8",
 						            dataType: "json",
-						            url: "/espm-cloud-web/espm.svc/GetSalesOrderInvoiceByEmail?EmailAddress='"+ emailId +"'&$expand=SalesOrderItems,Customer&$format=json",
+						            headers: { "APIKey": window.secretKey },
+						            url: oDataModel.sServiceUrl + "/GetSalesOrderInvoiceByEmail?EmailAddress='"+ emailId +"'&$expand=SalesOrderItems,Customer&$format=json",
 						            success: function(data) {
 						            	
 						            	that.bindMasterPage(data);
@@ -161,8 +165,9 @@ sap.ui.define([
 		},
 		
 		handleListItemPress: function(event){
+			var oDataModel = this.getView().getModel("EspmModel");
 			
-			pdfURL = "/espm-cloud-web/CmisRead?objectId="+event.getSource().getBindingContext().getObject("InvoiceLink");
+			pdfURL = oDataModel.sServiceUrl + "/CmisRead?objectId="+event.getSource().getBindingContext().getObject("InvoiceLink");
 			
 			this.getView().byId("detailPageId").setVisible(true);
 			
@@ -220,7 +225,8 @@ sap.ui.define([
 			
 		},
 		handleDownload: function(){
-			window.open(pdfURL);	
+			window.open(pdfURL);
+
 		},
 		onNavBack: function(){
 			window.history.go(-1);

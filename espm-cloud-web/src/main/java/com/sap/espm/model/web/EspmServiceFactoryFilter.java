@@ -12,14 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.olingo.odata2.api.exception.ODataException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
- * Servlet Filter to block access to secure entities via non secure servlet
+ * Servlet {@link Filter} to block access to secure entities via non secure servlet
  * (/espm.svc/)
+ * <p>
+ * Refer to the web.xml file on the declaration of the Filter.
  * 
  */
 public class EspmServiceFactoryFilter implements Filter {
+	
+	/**
+	 * {@link Logger} implementation for logging.
+	 */
+	private static final Logger LOGGER = LoggerFactory.getLogger(EspmServiceFactoryFilter.class);
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -49,7 +58,7 @@ public class EspmServiceFactoryFilter implements Filter {
 			}
 
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			LOGGER.error(e.getMessage());
 		}
 
 	}
