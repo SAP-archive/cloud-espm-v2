@@ -2,7 +2,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 		<Page navButtonPress="onNavBack" showNavButton="true" title="{i18n>sales.pageTitle}">
 			<content>
-				<SplitContainer id="splitContId">
+				<SplitContainer>
 					<masterPages>
 						<Page id="masterPageId" title="{i18n>sales.masterPageTitle}">
 							<subHeader>
@@ -37,7 +37,7 @@
 						</Page>
 					</masterPages>
 					<detailPages>
-						<Page id="detailPageId" title="{i18n>sales.detailPageTitle}" showNavButton="{device>/isPhone}" navButtonPress="handleNavButtonPress">
+						<Page id="detailPageId" title="{i18n>sales.detailPageTitle}">
 							<ObjectHeader id="detailObjectHeader" title="{SalesOrderId}" number="{path: 'GrossAmount', formatter:'com.sap.espm.retailer.model.format.formatAmount'}" numberUnit="{CurrencyCode}" > 
 								<attributes> <ObjectAttribute text="{CustomerId}" /> <ObjectAttribute text="{path: 'CreatedAt', formatter: 'com.sap.espm.retailer.model.format.date'}" />
 								</attributes> 

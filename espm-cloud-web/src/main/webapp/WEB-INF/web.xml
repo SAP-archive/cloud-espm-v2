@@ -63,10 +63,6 @@
 		<res-ref-name>connectivity/DestinationFactory</res-ref-name>
 		<res-type>com.sap.core.connectivity.api.DestinationFactory</res-type>
 	</resource-ref>
-	<resource-ref>
-		<res-ref-name>EcmService</res-ref-name>
-		<res-type>com.sap.ecm.api.EcmService</res-type>
-	</resource-ref>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
@@ -99,14 +95,4 @@
 	<security-role>
 		<role-name>Retailer</role-name>
 	</security-role>
-	<servlet>
-		<description></description>
-		<display-name>CmisRead</display-name>
-		<servlet-name>CmisRead</servlet-name>
-		<servlet-class>com.sap.espm.model.pdf.generator.CmisRead</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CmisRead</servlet-name>
-		<url-pattern>/espm.svc/CmisRead</url-pattern>
-	</servlet-mapping>
 </web-app>

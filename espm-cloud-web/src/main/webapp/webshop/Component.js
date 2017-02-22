@@ -20,12 +20,20 @@ sap.ui.define([
 		init: function() {
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
-			
-			
-		
-			//to-do replace this with your code implementation
-			
 			//initialize router
+			
+			// set the device model
+			this.setModel(models.createDeviceModel(), "device");
+			
+			var sServiceUrl = this.getMetadata().getManifestEntry("sap.app").dataSources.espmDataModel.uri;
+			var oEspmModel = new sap.ui.model.odata.ODataModel(sServiceUrl, {json: true,loadMetadataAsync: true});
+			this.setModel(oEspmModel,"EspmModel");
+
+			var oData ={
+				ShoppingCart:[]
+			};
+			var oModel = new sap.ui.model.json.JSONModel(oData);
+			this.setModel(oModel,"Cart");
 			
 			this.getRouter().initialize();
 		}

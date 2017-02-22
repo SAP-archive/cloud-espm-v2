@@ -4,16 +4,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.sap.espm.model.data.DataLoader;
 
 /**
  * The Startup {@link Servlet} loads intitial data and provides some additional basic
  * services.
- * 
  */
 public class StartupServlet extends HttpServlet {
 
@@ -35,7 +32,6 @@ public class StartupServlet extends HttpServlet {
 	/**
 	 * Retrieves the JPA entity manager factory and loads initial data into the
 	 * ESPM model tables.
-	 * 
 	 */
 	@Override
 	public void init() throws ServletException {
@@ -43,14 +39,12 @@ public class StartupServlet extends HttpServlet {
 			emf = JpaEntityManagerFactory.getEntityManagerFactory();
 			DataLoader loader = new DataLoader(emf);
 			loader.loadData();
-
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage());
 			throw new ServletException(e);
 		}
 	}
 
-	/**
+	/*
 	 * Closes the JPA entity manager factory.
 	 */
 	@Override

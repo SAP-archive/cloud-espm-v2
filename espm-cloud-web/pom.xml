@@ -79,12 +79,6 @@
 		</dependency>
 		<!-- PDF Box Dependencies -->
 		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox-app</artifactId>
-		</dependency>
-
-		<!-- Test dependencies -->
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>

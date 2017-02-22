@@ -12,7 +12,15 @@
 		"description": "{{appDescription}}",
 		"resources": "resources.json",
 		"ach": "ach",
-         //to-do - replace this with your code implementation
+		"dataSources": {
+			"espmDataModel": {
+				"uri": "/espm-cloud-web/espm.svc",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		},
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.32.0"

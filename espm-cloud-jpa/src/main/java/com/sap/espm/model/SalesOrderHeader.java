@@ -57,9 +57,6 @@ public class SalesOrderHeader {
 	@Temporal(TemporalType.DATE)
 	private Calendar createdAt;
 
-	@Column(name = "INVOICE_LINK", length = 200)
-	private String invoiceLink;
-
 	@OneToOne
 	private Customer customer;
 
@@ -152,14 +149,6 @@ public class SalesOrderHeader {
 
 	public Calendar getCreatedAt() {
 		return this.createdAt;
-	}
-	
-	public void setInvoiceLink(String invoiceLink) {
-		this.invoiceLink = invoiceLink;
-	}
-
-	public String getInvoiceLink() {
-		return this.invoiceLink;
 	}
 
 	public Customer getCustomer() {

@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(Controller, formatter, utility, UIComponent, Sorter, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageBox"
+], function(Controller, formatter, utility, UIComponent, Sorter, Filter, FilterOperator, MessageBox) {
 	"use strict";
 
 
@@ -202,8 +203,9 @@ sap.ui.define([
 		
 		onOrdersButtonPressed: function(){
 			
-			var oRouter = UIComponent.getRouterFor(this);
-			oRouter.navTo("SalesOrder");
+			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			MessageBox.information(oBundle.getText("soPopup.notImplemented"));
+
 		}
 		
 		

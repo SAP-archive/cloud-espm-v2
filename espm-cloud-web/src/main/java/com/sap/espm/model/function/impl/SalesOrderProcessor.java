@@ -6,7 +6,6 @@ import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
@@ -24,10 +23,6 @@ import com.sap.espm.model.Customer;
 import com.sap.espm.model.Product;
 import com.sap.espm.model.SalesOrderHeader;
 import com.sap.espm.model.SalesOrderItem;
-import com.sap.espm.model.documentservice.CMISSessionHelper;
-import com.sap.espm.model.documentservice.InvoiceBuilder;
-import com.sap.espm.model.exception.CMISConnectionException;
-import com.sap.espm.model.exception.ReportGenerationException;
 import com.sap.espm.model.util.Utility;
 
 /**
@@ -156,31 +151,14 @@ public class SalesOrderProcessor {
 						salesOrderItem.setProduct(product);
 
 					}
-					// if the sales order are fetched successfully, generate the
-					// pdf report data.
-					try {
-						if (CMISSessionHelper.getInstance().getSession() != null) {
-							InvoiceBuilder builder = new InvoiceBuilder();
-							String reportPath = builder.generateInvoice(soiList);
-							updateSalesOrderHeader(reportPath, soiList, em);
-						}
-					} catch (CMISConnectionException cmisConnectionException) {
-						// There was an exception while generating the report.
-						LOGGER.error(cmisConnectionException.getMessage());
-					}
-					
-					
-
 				}
 
 			} catch (NoResultException e) {
 				throw new ODataApplicationException("No matching Sales Order with Sales Order Id:" + salesOrderId,
-						Locale.ENGLISH, HttpStatusCodes.BAD_REQUEST, e);
-			} catch (ReportGenerationException reportGenerationException) {
-				//LOGGER.error("Exception while generating the report : " + reportGenerationException.getMessage());
-				reportGenerationException.printStackTrace();
+						Locale.ENGLISH, HttpStatusCodes.BAD_REQUEST , e);
+			} catch(Exception e){
 				throw new ODataApplicationException("PDF Report Generation Error for :" + salesOrderId,
-						Locale.ENGLISH, HttpStatusCodes.INTERNAL_SERVER_ERROR, reportGenerationException);
+						Locale.ENGLISH, HttpStatusCodes.INTERNAL_SERVER_ERROR , e);
 			}
 
 			return soiList;
@@ -189,34 +167,7 @@ public class SalesOrderProcessor {
 		}
 	}
 
-	/**
-	 * Function Import implementation for updating SalesOrderHeader
-	 */
-	private void updateSalesOrderHeader(String reportPath, List<SalesOrderItem> soiList, EntityManager em) {
-		if (soiList != null && !soiList.isEmpty()) {
-			EntityTransaction transaction = em.getTransaction();
-			try {
-				transaction.begin();
-				// add the path to the SalesOrder
-
-				for (SalesOrderItem orderItem : soiList) {
-
-					orderItem.getSalesOrderHeader().setInvoiceLink(reportPath);
-					// save the soiList.
-					em.merge(orderItem);
-
-				}
-
-
-			} finally {
-				if(transaction!=null){
-					transaction.commit();
-				}
-				
-			}
-		}
-	}
-
+		
 	/**
 	 * Function Import implementation for getting all the Sales Order invoices
 	 * by email Address under a Sales Order Header
