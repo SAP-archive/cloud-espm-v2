@@ -1,0 +1,96 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" xmlns:semantic="sap.m.semantic" controllerName="com.sap.espm.retailer.controller.SalesOrder"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+		<Page navButtonPress="onNavBack" showNavButton="true" title="{i18n>sales.pageTitle}">
+			<content>
+				<SplitContainer id="splitContId">
+					<masterPages>
+						<Page id="masterPageId" title="{i18n>sales.masterPageTitle}">
+							<subHeader>
+								<Bar id="searchBar">
+									<contentMiddle>
+										<SearchField id="searchField" placeholder="{i18n>sales.masterSearchPlaceholder}" search="handleSearch" showRefreshButton="{device>/isNoTouch}"
+											tooltip="{i18n>sales.masterSearchTooltip}" width="100%"></SearchField>
+									</contentMiddle>
+								</Bar>
+							</subHeader>
+							<content>
+								<List updateFinished="listUpdateFinished" growing="true" growingScrollToLoad="true" id="list" 
+									items="{path: 'espmRetailerModel>/SalesOrderHeaders', sorter: {path: 'espmRetailerModel>LifeCycleStatusName', descending: false}, parameters:{expand : 'Customer'}}" 
+									mode="" noDataText="{i18n>sales.masterListNoDataText}" select="onSelect">
+									<items>
+										<ObjectListItem press="handleListItemPress" type="Active" 
+											numberUnit="{espmRetailerModel>CurrencyCode}" 
+											number="{path: 'espmRetailerModel>GrossAmount', formatter:'com.sap.espm.retailer.model.format.formatAmount'}" 
+											title="{espmRetailerModel>SalesOrderId}" >
+											<attributes> <ObjectAttribute text="{espmRetailerModel>Customer/FirstName}" /> 
+											</attributes> 
+											<firstStatus> 
+												<ObjectStatus state="{ path: 'espmRetailerModel>LifeCycleStatus', formatter: 'com.sap.espm.retailer.model.format.statusState' }" text="{ path: 'espmRetailerModel>LifeCycleStatus', formatter: 'com.sap.espm.retailer.model.format.statusText' }"/>
+											</firstStatus>
+										</ObjectListItem>
+									</items>
+								</List>
+							</content>
+							<footer>
+								<Toolbar></Toolbar>
+							</footer>
+						</Page>
+					</masterPages>
+					<detailPages>
+						<Page id="detailPageId" title="{i18n>sales.detailPageTitle}" showNavButton="{device>/isPhone}" navButtonPress="handleNavButtonPress">
+							<ObjectHeader id="detailObjectHeader" title="{SalesOrderId}" number="{path: 'GrossAmount', formatter:'com.sap.espm.retailer.model.format.formatAmount'}" numberUnit="{CurrencyCode}" > 
+								<attributes> <ObjectAttribute text="{CustomerId}" /> <ObjectAttribute text="{path: 'CreatedAt', formatter: 'com.sap.espm.retailer.model.format.date'}" />
+								</attributes> 
+								<firstStatus> 
+									<ObjectStatus state="{ path: 'LifeCycleStatus', formatter: 'com.sap.espm.retailer.model.format.statusState' }" text="{path: 'LifeCycleStatus',formatter: 'com.sap.espm.retailer.model.format.statusText'}"/> 
+								</firstStatus> 
+							</ObjectHeader>
+							<IconTabBar expanded="true" > 
+								<items> 
+									<IconTabFilter icon="sap-icon://supplier"> 
+										<form:SimpleForm id="customerForm" minWidth="1024" > 
+											<core:Title text="{i18n>sales.address}" /> 
+											<Label text="{i18n>sales.customerName}"/> 
+											<Text text="{FirstName} {LastName}" /> 
+											<Label text="{i18n>sales.email}"/> 
+											<Text text="{EmailAddress}"/> 
+											<Label text="{i18n>sales.street}"/> 
+											<Text text="{Street}" /> 
+											<Label text="{i18n>sales.city}"/> 
+											<Text text="{City}, {PostalCode}" /> 
+											<Label text="{i18n>sales.country}"/> 
+											<Text text="{Country}" /> 
+										</form:SimpleForm> 
+									</IconTabFilter> 
+								</items> 
+							</IconTabBar>
+							<Table id="lineItemsId" headerText="{i18n>sales.lineItemTableHeader}" > 
+								<columns> 
+									<Column> <header><Label text="{i18n>sales.lineItemTitle}" /></header> </Column> 
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" > <header><Label text="Delivery Date" /></header> </Column> 
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" > <header><Label text="Quantity" /></header> </Column> 
+									<Column hAlign="Right" > <header><Label text="Price" /></header> </Column> 
+								</columns> 
+								<ColumnListItem id="columnListLineItem" type="Navigation" press="handleLineItemPress" > 
+									<cells> 
+										<ObjectIdentifier title="{ProductId}" /> 
+										<Text text="{ path:'DeliveryDate', formatter: 'com.sap.espm.retailer.model.format.date'}"/> 
+										<Text text="{ path:'Quantity', formatter:'com.sap.espm.retailer.model.format.quantity'}"/> 
+										<ObjectNumber number="{path: 'GrossAmount', formatter:'com.sap.espm.retailer.model.format.formatAmount'}" numberUnit="{CurrencyCode}" /> 
+									</cells> 
+								</ColumnListItem> 
+							</Table>
+							<footer> 
+								<Bar> 
+									<contentRight> 
+										<Button id="approveButtonId" text="{i18n>sales.ApproveButtonText}" type="Accept" icon="sap-icon://accept" press="handleApprove" />
+										<Button text="{i18n>sales.RejectButtonText}" type="Reject" icon="sap-icon://reject" press="handleReject" /> 
+									</contentRight> 
+								</Bar> 
+							</footer>
+						</Page>
+					</detailPages>
+				</SplitContainer>
+			</content>
+		</Page>
+</mvc:View>

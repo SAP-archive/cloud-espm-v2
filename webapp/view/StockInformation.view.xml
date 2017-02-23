@@ -1,0 +1,63 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.sap.espm.retailer.controller.StockInformation" xmlns:html="http://www.w3.org/1999/xhtml">
+		<Page navButtonPress="onNavBack" showNavButton="true" title="{i18n>stock.pageTitle}">
+			<content>
+				<Table selectionMode="MultiToggle" rowSelectionChange="onItemPressed" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" id="catalogTable" 
+					noDataText="{i18n>stock.noDataProducts}" items="{path: 'espmRetailerModel>/Stocks', sorter: {path: 'espmRetailerModel>QuantityLessMin', descending: true}, parameters:{expand : 'Product/Supplier'}}" 
+						updateFinished="onUpdateFinished" width="auto" enableBusyIndicator="true">
+						<headerToolbar>
+							<OverflowToolbar id="tableToolbar">
+								<Title id="catalogTitle" text="{catalogTitle}" visible="{= !${device>/system/phone}}"/>
+								<ToolbarSpacer id="toolbarSpacer" visible="{= !${device>/system/phone}}"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Center" id="pictureColumn" width="{= !${device>/system/phone}? '9%' : '5rem'}">
+								<header>
+									<Label id="imageLbl" text="{i18n>stock.image}" visible="{= !${device>/system/phone}}"/>
+								</header>
+							</Column>
+							<Column hAlign="Center" id="nameAvailabilityColumn" width="{= !${device>/system/phone}? '18%' : '80%'}">
+								<header>
+									<Label id="NameLabel" text="{i18n>stock.name}" visible="{= !${device>/system/phone}}"/>
+								</header>
+							</Column>
+							<Column demandPopin="true" hAlign="Center" id="descriptionColumn" minScreenWidth="Tablet" popinDisplay="Inline" width="20%">
+								<header>
+									<Label id="descriptionLbl" text="{i18n>stock.description}"/>
+								</header>
+							</Column>
+							<Column demandPopin="true" hAlign="Center" id="priceColumn" minScreenWidth="Tablet" popinDisplay="Inline" width="20%">
+								<header>
+									<Label id="priceLbl" text="{i18n>stock.price}"/>
+								</header>
+							</Column>
+							<Column demandPopin="true" hAlign="Center" id="stockColumn" minScreenWidth="Tablet" popinDisplay="Inline" width="20%">
+								<header>
+									<Label id="stockLbl" text="{i18n>stock.stockItems}"/>
+								</header>
+							</Column>
+							<Column hAlign="Center" id="statusColumn" width="{= !${device>/system/phone}? '9%' : '5rem'}">
+								<header>
+									<Label id="statusLbl" text="{i18n>stock.status}" visible="{= !${device>/system/phone}}"/>
+								</header>
+							</Column>
+						</columns>
+						<ColumnListItem id="columnListItem" press="onLineItemPressed" type="Navigation" vAlign="Middle">
+							<cells>
+								<Image alt="{i18n>xfld.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
+									id="imageImage" src="/ESPM/espm-cloud-web/images/{espmRetailerModel>Product/PictureUrl}" width="3rem"/>
+								<ObjectIdentifier class="sapMTableContentMargin" id="availabilityObjIdent"
+									text="{espmRetailerModel>Product/Name}"/>
+								<Text class="sapMTableContentMargin" id="desctiptionTxt" maxLines="5" text="{espmRetailerModel>Product/ShortDescription}"/>
+								<ObjectNumber class="sapMTableContentMargin" id="priceObjNumber" number="{path: 'espmRetailerModel>Product/Price', formatter:'.formatter.formatAmount' }"
+									unit="{espmRetailerModel>Product/CurrencyCode}"/>
+								<Link class="sapMTableContentMargin" id="stockTxt" maxLines="3" press="updateStock" text="{path: 'espmRetailerModel>Quantity', formatter:'.formatter.formatQuantity' }/{path: 'espmRetailerModel>MinStock', formatter:'.formatter.formatQuantity' }"/>
+								<Image alt="{i18n>xfld.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false"
+									id="statusImage" src="{path : 'espmRetailerModel>QuantityLessMin',formatter :'.formatter.formatImage'}"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+			</content>
+		</Page>
+</mvc:View>

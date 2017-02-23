@@ -1,0 +1,34 @@
+{
+    "application": {
+        "id": "",
+        "title": "ESPM_Retailer",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#ESPM_Retailer-Display",
+        "navigationComponentName": "com.sap.espm.retailer",
+        "intentSemanticObject": "ESPM_Retailer",
+        "intentAction": "Display",
+        "html5ApplicationName": "espmretailer",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "04c6584e-92ad-4660-9cfb-7651861ea928"
+        ],
+        "contentPackages": [
+            "c531593a-a2f6-4d2d-9531-c67c881b37b6"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "ESPM_Retailer",
+        "subtitle": "Retailer App for ESPM",
+        "searchKeywords": "ESPM_Retailer,Retailer App for ESPM",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

@@ -1,0 +1,126 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "com.sap.espm.retailer",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"dataSources": {
+			"espmRetailerDataModel": {
+				"uri": "/ESPM/espm-cloud-web/espm.svc/secure/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.38.11"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "com.sap.espm.retailer.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.sap.espm.retailer.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "espmRetailerDataModel"
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.sap.espm.retailer.view",
+				"controlId": "espmRetailerId",
+				"controlAggregation": "pages"
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "Home",
+					"target": "Home"
+				},
+				{
+					"pattern": "SalesOrder",
+					"name": "SalesOrder",
+					"target": "SalesOrder"
+				},
+				{
+					"pattern": "StockInformation",
+					"name": "StockInformation",
+					"target": "StockInformation"
+				}
+			],
+			"targets": {
+				"Home": {
+					"viewName": "Home"
+				},
+				"SalesOrder": {
+					"viewName": "SalesOrder"
+				},
+				"StockInformation": {
+					"viewName": "StockInformation"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

@@ -1,0 +1,93 @@
+{
+    "resources": [
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "view/StockInformation.view.xml"
+        },
+        {
+            "name": "view/SalesOrder.view.xml"
+        },
+        {
+            "name": "view/Home.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "model/format.js"
+        },
+        {
+            "name": "fragment/SupplierCard.fragment.xml"
+        },
+        {
+            "name": "test/integration/opaTests.qunit.html"
+        },
+        {
+            "name": "test/integration/HomeJourney.js"
+        },
+        {
+            "name": "test/integration/AllJourneys.js"
+        },
+        {
+            "name": "test/integration/pages/HomePage.js"
+        },
+        {
+            "name": "test/integration/pages/StockPage.js"
+        },
+        {
+            "name": "test/integration/pages/SalesOrderPage.js"
+        },
+        {
+            "name": "test/integration/test.html"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "images/green_tick.png"
+        },
+        {
+            "name": "images/red_cross.png"
+        },
+        {
+            "name": "controller/StockInformation.controller.js"
+        },
+        {
+            "name": "controller/SalesOrder.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/Home.controller.js"
+        },
+        {
+            "name": "extended_runnable_file.html"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "neo-app.json"
+        }
+    ]
+}
