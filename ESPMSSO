@@ -1,0 +1,11 @@
+#
+#Thu Feb 23 14:37:59 UTC 2017
+Type=HTTP
+Authentication=AppToAppSSO
+WebIDEUsage=odata_gen
+Name=ESPMSSO
+WebIDEEnabled=true
+CloudConnectorVersion=2
+ProxyType=Internet
+URL=https\://espmi332371trial.hanatrial.ondemand.com
+WebIDESystem=ESPM
