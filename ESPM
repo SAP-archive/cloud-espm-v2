@@ -1,0 +1,11 @@
+#
+#Thu Feb 23 14:35:15 UTC 2017
+Type=HTTP
+Authentication=NoAuthentication
+WebIDEUsage=odata_gen
+Name=ESPM
+WebIDEEnabled=true
+CloudConnectorVersion=2
+ProxyType=Internet
+URL=https\://espmi332371trial.hanatrial.ondemand.com
+WebIDESystem=ESP

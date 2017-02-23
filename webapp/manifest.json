@@ -142,19 +142,5 @@
 	"sap.platform.hcp": {
 		"uri": "webapp",
 		"_version": "1.1.0"
-	},
-	"sap.mobile": {
-		"_version": "1.1.0",
-		"scenario": "com.sap.espm.shop.offline.Scenario",
-		"definingRequests": {},
-		"stores": [
-			{
-				"name": "PRODUCT_LISTING",
-				"serviceRoot": "/ESPM/espm-cloud-web/espm.svc/",
-				"definingRequests": {
-					"Products": "/Products"
-				}
-			}
-		]
 	}
 }
