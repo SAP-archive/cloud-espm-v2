@@ -1,0 +1,34 @@
+{
+    "application": {
+        "id": "",
+        "title": "ESPM_Desktop",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#ESPM_Desktop-Display",
+        "navigationComponentName": "com.sap.espm.shop",
+        "intentSemanticObject": "ESPM_Desktop",
+        "intentAction": "Display",
+        "html5ApplicationName": "espmdesktop",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "04c6584e-92ad-4660-9cfb-7651861ea928"
+        ],
+        "contentPackages": [
+            "c531593a-a2f6-4d2d-9531-c67c881b37b6"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "ESPM Desktop App",
+        "subtitle": "Version 34",
+        "searchKeywords": "ESPM Desktop App,Version 34",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

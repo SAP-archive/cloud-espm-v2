@@ -1,0 +1,126 @@
+<core:FragmentDefinition
+		height="100%"
+		xmlns:layout="sap.ui.layout"
+		xmlns:form="sap.ui.layout.form"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m">
+		<Page id="wizardReviewPage">
+			<customHeader >
+				<Bar>
+					<contentLeft>
+						<Button icon="sap-icon://nav-back"
+								press="backToWizardContent">
+						</Button>
+					</contentLeft>
+					<contentMiddle>
+						<Title text="{i18n>review.titleSummary}"/>
+					</contentMiddle>
+				</Bar>
+			</customHeader >
+			<content>
+				<form:SimpleForm
+						title="{i18n>review.titleCartForm}"
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout">
+					<form:content>
+						<Table class="sapUiResponsiveMargin" delete="onDeletePressed" growing="true" growingScrollToLoad="true" id="reviewCartTable" items="{path: 'Cart>/ShoppingCart'}"
+						mode="" noDataText="{i18n>review.noDataShoppingCart}" updateFinished="onUpdateFinished" width="1200px">
+						<columns>
+							<!-- Picture -->
+							<Column hAlign="Left" id="pictureColumn" minScreenWidth="Tablet" width="13%">
+								<header><Label id="itemsLbl" text="{i18n>check.items}"/></header>
+							</Column>
+							<!-- Name + Availability -->
+							<Column hAlign="Left" id="availabilityColumn" width="{= ${device>/system/phone}? '35%' : '23%'}">
+								<header><Label id="availabilityLbl" text="{i18n>check.name}" visible="{= !${device>/system/phone}}"/></header>
+							</Column>
+							<!-- Quantity -->
+							<Column demandPopin="true" hAlign="Right" id="quantityColumn" minScreenWidth="Tablet" width="11%">
+								<header><Label id="quantityLbl" text="{i18n>check.quantity}"/></header>
+							</Column>
+							<!-- Unit Price -->
+							<Column demandPopin="true" hAlign="Right" id="priceColumn" minScreenWidth="Tablet" popinDisplay="Inline" width="23%">
+								<header><Label id="priceLbl" text="{i18n>check.unitPrice}"/></header>
+							</Column>
+							<!-- Subtotal & Total footer-->
+							<Column hAlign="Right" width="{= ${device>/system/phone}? '25%' : '13%'}">
+								<header><Label id="subTotalLbl" text="{i18n>check.subTotal}" visible="true"/></header>
+								<footer>
+									<ObjectNumber id="totalFooter"
+										number=""
+										unit=""/>
+								</footer>
+							</Column>
+						</columns>
+						<ColumnListItem press="onLineItemPressed" type="Navigation" vAlign="Middle">
+							<cells>
+								<!-- Picture -->
+								<Image alt="{i18n>xfld.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
+									id="reviewproductImage" src="https://espmespm.neo.ondemand.com/espm-cloud-web/images/{Cart>PictureUrl}" width="3rem"/>
+								<!-- Name + Availability -->
+								<ObjectIdentifier id="reviewavalaibilityObjIdent" text="{path: 'StockQuantity', formatter: '.formatter.formatAvailabilityText'}"
+									title="{Cart>Name}"/>
+								<!-- Quantity -->
+								<Text id="reviewquantityTxt" text="{Cart>Quantity}" width="5rem"/>
+								<!-- Unit Price -->
+								<ObjectNumber emphasized="false" id="reviewpriceObjNumber" number="{path: 'Cart>Price', formatter:'com.sap.espm.shop.model.format.formatAmount'}"
+									unit="{Cart>CurrencyCode}"/>
+								<!-- Subtotal -->
+								<ObjectNumber id="reviewsubTotalObjNumber" number="{path: 'Cart>Total', formatter:'com.sap.espm.shop.model.format.formatAmount'}" unit="{Cart>CurrencyCode}"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+					</form:content>
+				</form:SimpleForm>
+
+				<form:SimpleForm
+						title="{i18n>review.titlenameAddressForm}"
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout">
+					<form:content>
+						<Label text="{i18n>review.firstname}"/>
+						<Text id="firstname" text=""/>
+						<Label text="{i18n>review.lastname}"/>
+						<Text id="lastName" text="{/productName}"/>
+						<Label text="{i18n>check.DOB}"/>
+						<Text id="dateBirth" text="{/productWeight}"/>
+						<Label text="{i18n>check.newEmail}"/>
+						<Text id="emailAddress" text="{/productWeight}"/>
+						<Label text="{i18n>review.street}"/>
+						<Text id="street" text="{/productManufacturer}"/>
+						<Label text="{i18n>review.city}"/>
+						<Text id="city" text="{/productDescription}"/>
+						<Label text="{i18n>review.postalCode}"/>
+						<Text id="postalCode" text="{/productDescription}"/>
+						<Label text="{i18n>review.country}"/>
+						<Text id="country" text="{/productDescription}"/>
+					</form:content>
+				</form:SimpleForm>
+
+				<form:SimpleForm
+						title="{i18n>review.titleBillingForm}"
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout">
+					<form:content>
+						<Label text="{i18n>check.cardType}"/>
+						<Image id="cardImg" width="64px" align="left"></Image>
+						<Label text="{i18n>check.nameOnCard}r"/>
+						<Text id="cardOwner" text=""/>
+						<Label text="{i18n>check.cardNumber}"/>
+						<Text id="cardNumber" text="{/productDescription}"/>
+					</form:content>
+				</form:SimpleForm>
+			</content>
+			<footer>
+				<Bar>
+					<contentRight>
+						<Button id="orderButtonId" text="{i18n>review.placeOrder}" press="handleWizardSubmit"></Button>
+						<Button text="{i18n>check.cancel}" press="handleWizardCancel"></Button>
+					</contentRight>
+				</Bar>
+			</footer>
+		</Page>
+</core:FragmentDefinition>

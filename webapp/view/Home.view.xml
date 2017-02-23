@@ -1,0 +1,71 @@
+<mvc:View controllerName="com.sap.espm.shop.controller.Home" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:shop="com.sap.espm.shop.control" xmlns:table="sap.ui.table" xmlns="sap.m">
+			<Page id="productListPage" title="{i18n>home.Title}">
+				<headerContent>
+					<Button icon="sap-icon://my-sales-order" id="btnOrdersId" press="onOrdersButtonPressed" tooltip="{i18n>home.salesOrder}"/>
+					<Button binding="{/Cart}" icon="sap-icon://cart" id="btnProductListHeader" press="onShoppingCartPressed" text="{TotalQunatity}"
+						tooltip="{i18n>home.cart}"/>
+				</headerContent>
+				<content>
+					<Table selectionMode="MultiToggle" rowSelectionChange="onItemPressed" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" id="catalogTable" noDataText="{i18n>home.noDataProducts}" items="{path: 'EspmModel>/Products', sorter: {path: 'Name', descending: false}}" updateFinished="onUpdateFinished" width="auto" enableBusyIndicator="true">
+						<headerToolbar>
+							<OverflowToolbar id="tableToolbar">
+								<Title id="catalogTitle" text="{catalogTitle}" visible="{= !${device>/system/phone}}"/>
+								<ToolbarSpacer id="toolbarSpacer" visible="{= !${device>/system/phone}}"/>
+								<ComboBox id="categoryListId" selectionChange="handleSelectionFinish" width="500px" items="{path: 'EspmModel>/ProductCategories'}">
+									<core:Item key="{EspmModel>Category}" text="{EspmModel>Category}" />
+								</ComboBox>
+								<SearchField id="searchField" placeholder="{i18n>home.searchplaceholder}" search="onSearchPressed" showRefreshButton="false" width="200px"/>
+								<OverflowToolbarButton icon="sap-icon://sort" id="sortBtn" press="onSortPressed" text="{i18n>home.sort}" tooltip="{i18n>home.sort}"/>
+								<OverflowToolbarButton icon="sap-icon://group-2" id="groupBtn" press="onGroupPressed" text="{i18n>home.group}" tooltip="{i18n>home.group}"/>
+								<OverflowToolbarButton icon="sap-icon://refresh" id="filter" press="onResetPressed" text="" tooltip="{i18n>home.clear}"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Left" id="pictureColumn" width="{= !${device>/system/phone}? '9%' : '5rem'}">
+								<header>
+									<Label id="imageLbl" text="{i18n>home.image}" visible="{= !${device>/system/phone}}"/>
+								</header>
+							</Column>
+							<Column hAlign="Left" id="nameAvailabilityColumn" width="{= !${device>/system/phone}? '18%' : '80%'}">
+								<header>
+									<Label id="NameLabel" text="{i18n>home.name}" visible="{= !${device>/system/phone}}"/>
+								</header>
+							</Column>
+							<Column demandPopin="true" hAlign="Left" id="descriptionColumn" minScreenWidth="Tablet" popinDisplay="Inline" width="25%">
+								<header>
+									<Label id="descriptionLbl" text="{i18n>home.description}"/>
+								</header>
+							</Column>
+							<Column demandPopin="true" hAlign="Right" id="priceColumn" minScreenWidth="Tablet" popinDisplay="Inline" width="10%">
+								<header>
+									<Label id="priceLbl" text="{i18n>home.price}"/>
+								</header>
+							</Column>
+							<Column demandPopin="true" hAlign="Right" id="buttonColumn" minScreenWidth="Tablet" popinDisplay="WithoutHeader" width="15%">
+								<header>
+									<Label id="addToCart" text="{i18n>home.addToCart}" visible="{= ${device>/system/phone}}"/>
+								</header>
+							</Column>
+						</columns>
+						<ColumnListItem id="columnListItem" press="onLineItemPressed" type="Navigation" vAlign="Middle">
+							<cells>
+								<!--<core:Icon class="sapThemeHighlight-asColor sapMTableContentMargin" id="favoriteIcon" src="sap-icon://favorite"
+									visible="{IsFavoriteOfCurrentUser}"/>-->
+								<Image alt="{i18n>home.productImage}" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
+									id="imageImage" src="/ESPM/espm-cloud-web/images/{EspmModel>PictureUrl}" width="3rem"/>
+								<ObjectIdentifier class="sapMTableContentMargin" id="availabilityObjIdent"
+									text="{EspmModel>Name}"/>
+								<Text class="sapMTableContentMargin" id="desctiptionTxt" maxLines="2" text="{EspmModel>ShortDescription}"/>
+								<ObjectNumber class="sapMTableContentMargin" id="priceObjNumber" number="{path: 'EspmModel>Price', formatter:'.formatter.formatAmount' }"
+									unit="{EspmModel>CurrencyCode}"/>
+								<Button class="sapMTableContentMargin" id="btnAddToCart" press="onAddToCartHomePressed" text="{i18n>home.addToCart}"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</content>
+				<footer>
+					<Bar/>
+				</footer>
+			</Page>
+</mvc:View>

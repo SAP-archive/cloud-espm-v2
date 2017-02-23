@@ -1,0 +1,55 @@
+{
+  "run": [
+    {
+      "filePath": "/webapp/Component.js",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "runnerId": "fiorirunner",
+        "id": 1210403,
+        "displayName": "Run Component.js",
+        "lastRunTimeStamp": 1487848235590
+      }
+    },
+    {
+      "filePath": "/webapp/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "id": 2768751,
+        "runnerId": "webapprunner",
+        "displayName": "Run index.html",
+        "lastRunTimeStamp": 1487602591044
+      }
+    }
+  ],
+  "hybrid": {
+    "dirty": false,
+    "cordovaContainerId": "",
+    "cordovaPackageId": "",
+    "commonError": "Only two apps are allowed per HCP trial account.\n\nGo to the Fiori Mobile admin console, and delete an existing app if two apps are already present. If less than two apps are displayed in the admin console, go to the Mobile Service for Development & Operations cockpit, delete an app.\n\nThen build this project again.  (logToken 58aedc5c8c400).",
+    "callStart": "2017-02-23T12:58:03.815Z",
+    "packagingEnd": "",
+    "packagingStart": "",
+    "results": {
+      "ios": {},
+      "android": {
+        "requested": true
+      }
+    }
+  }
+}

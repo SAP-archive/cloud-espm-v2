@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns="sap.m">
+	<Dialog contentHeight="600px" contentWidth="40%" id="reviewDialog" showHeader="false">
+		<content>
+			<Bar design="Header" id="reviewDialogHeaderBar">
+				<contentMiddle>
+					<Title id="reviewDialogTitle" text="{i18n>detail.myReview}"/>
+				</contentMiddle>
+				<contentRight>
+					
+				</contentRight>
+			</Bar>
+			<l:Grid defaultIndent="L1 M0 S0" defaultSpan="L10 M12 S12" id="reviewGrid" vSpacing="1">
+				<RatingIndicator liveChange="validateReviewForm" class="sapUiMediumMarginEnd sapUiMediumMarginTop" iconSize="2.2rem" id="ratingIndicator"
+					maxValue="5" value="{Rating}" visualMode="Full"/>
+				<!-- set width (see defaultSpan) to 11/12 ~= 91% -->
+				<TextArea id="textArea" liveChange="validateReviewForm" placeholder="{i18n>detail.writeReview}" rows="12" value="{Comment}" width="100%"/>
+				<form:SimpleForm layout="ResponsiveGridLayout" editable="true" id="existingFormId">
+					<Label textAlign ="left" text="{i18n>detail.firstName}" required="true"/>
+					<Input id="firstNameId" placeholder="{i18n>detail.holderfirstName}" liveChange="validateReviewForm" value=""/>
+					<Label textAlign ="left" text="{i18n>detail.lastName}" required="true"/>
+					<Input id="lastNameId" placeholder="{i18n>detail.holderlastName}" liveChange="validateReviewForm" value=""/>
+				</form:SimpleForm>
+			</l:Grid>
+		</content>
+		<beginButton>
+			<Button enabled="false" id="btnOK" press="onReviewDialogOKPressed" text="{i18n>detail.okButton}"/>
+		</beginButton>
+		<endButton>
+			<Button id="btnCancel" press="onReviewDialogCancelPressed" text="{i18n>detail.cancelButton}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
