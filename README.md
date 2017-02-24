@@ -1,11 +1,11 @@
 # Enterprise Sales Procurement Model (ESPM) Application
 
-ESPM (Enterprise Sales & Procurement Model) is reference application which demonstrates how to build applications on SAP HANA Cloud Platform (HCP) with the Java runtime. It also consumes application services like Persistence Service, Document Service, SAP Jam Service, API Management Service which is offered by the platform. The application User Interface (UI) is built with SAPUI5 framework and has SAP FIORI look and feel. 
+The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP HANA Cloud Platform (HCP) with the Java runtime. The application also consumes and showcases services like the Persistence Service, Document Service, SAP Jam Collaboration, and API Management which are offered by the platform. The application User Interface (UI) is built with the SAPUI5 framework after the SAP Fiori design principles.
 
 # Business Scenario
 The business scenario is that of an eCommerce site that sells electronic products. 
 
-- The Customers can order products and provide review on the products
+- The Customers can order products and provide reviews on the products.
 - The Retailer can then accept the sales orders created against orders created by customers. The Retailer can also update the product stock information.
 
 ![Usecase Diagram](/docs/images/ESPMUseCase.png?raw=true)
