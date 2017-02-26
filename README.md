@@ -15,15 +15,16 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 
 # 1. Quick start guide
 ### Setting up the developer environment
-1. Install [SAP JVM 8.*](https://tools.hana.ondemand.com/#cloud) or Java JDK 1.8 and setup the JAVA_HOME and PATH environment variables in your local machine
-2. Install [Eclipse](https://help.hana.ondemand.com/help/frameset.htm?761374e5711e1014839a8273b0e91070.html). Please download Eclipse Neon
-3. [Install SAP Development Tools for Eclipse](https://help.hana.ondemand.com/help/frameset.htm?76137a37711e1014839a8273b0e91070.html)
-4. Install the [SAP HANA Cloud SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please download Java Web Tomcat 8 SDK
-5. Use Java Web Tomcat 8 Runtime Environment as described in [Setup the Runtime Environment](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html) document
-6. Signup for [HCP Trial account](https://hcp.sap.com/developers.html#section_4) if you don't have HCP Trial Account
+1. Install Oracle Java SE Development Kit (JDK) 8 or [SAP JVM 8.*](https://help.hana.ondemand.com/help/frameset.htm?76137f42711e1014839a8273b0e91070.html) and set up the JAVA_HOME and PATH environment variables on your local machine.
+2. [Install Eclipse](https://help.hana.ondemand.com/help/frameset.htm?761374e5711e1014839a8273b0e91070.html). Please install Eclipse Neon.
+3. (Optional: Only if you use SAP JVM) [Set up SAP JVM in Eclipse](https://help.hana.ondemand.com/help/frameset.htm?7613eaad711e1014839a8273b0e91070.html).
+4. [Install SAP Development Tools for Eclipse](https://help.hana.ondemand.com/help/frameset.htm?76137a37711e1014839a8273b0e91070.html). Please use the link for Eclipse Neon.
+5. [Install SAP HANA Cloud Platform SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please install Java Web Tomcat 8.
+6. [Set up the Runtime Environment in Eclipse](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html). Please follow the steps for Java Web Tomcat 8 Runtime.
+7. Register for a free developer account on [SAP HANA Cloud Platform](https://account.hanatrial.ondemand.com).
 
 ### Build the application and deploy
-Below are the Steps to build and run espm application.
+Below are the steps to build and run the ESPM application:
 ```sh
 1.Git configuration in Eclipse
 2.Maven configuration
@@ -36,76 +37,74 @@ Below are the Steps to build and run espm application.
 
 #### 1.Git configuration in Eclipse
    - From the Eclipse IDE main menu, choose Window > Preferences
-   - Enter git in the filter field in the top-left corner.
+   - Enter git in the filter field in the top-left corner
    - Navigate to Team > Git > Configuration and select the Configuration node and add the following configuration
 
 ![EGit Configuration](/docs/images/EGitConfig.PNG?raw=true)
 
-**Note! For most people the proxy value doesn’t need to be set but if you are working behind a proxy, then it should be set as per you environment**
+**Note! For most people the proxy value doesn’t need to be set but if you are working behind a proxy, then it should be set as per you environment.**
  
 #### 2.Maven configuration
    - From the Eclipse IDE main menu, choose Window > Preferences
    - Enter maven in the filter field in the top-left corner
    - Navigate to Maven > User Settings and select the User Settings node
-   - If you are using Maven for the first time you need to create a settings.xml file at location C:/Users/<your-user-name>/.m2/settings.xml. The contents of the settings .xml file should looks like below snippet:
+   - If you have already installed Maven before you can click the open file link. If you are using Maven for the first time you need to create a settings.xml file at the location /Users/your-user-name/.m2/settings.xml. The contents of the settings.xml file should look like the snippet below.
    
 ![Maven Settings Configuration](/docs/images/MavenSettings.PNG?raw=true)
-   - Note: If you are not working behind a proxy firewall you can remove the entire proxy section from the snippet
-   - Information:  If you have already installed Maven before you can click open file link and add e.g. the proxy configuration to your settings.xml if not already there.
 
-    ```sh
-        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-        	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-        	<localRepository>${user.home}/.m2/repository</localRepository>
-        	<profiles>
-        		<profile>
-        			<id>development</id>
-        			<activation>
-        				<activeByDefault>true</activeByDefault>
-        			</activation>
-        			<properties>
-        			</properties>
-        		</profile>
-        	</profiles>
-        	<proxies>
-        	<proxy>
-        		<active>true</active>
-        		<protocol>http</protocol>
-        		<host>proxy</host>
-        		<port>8080</port>
-        	</proxy>
-        </proxies>
-        </settings>
-    ```
+	<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+		<localRepository>${user.home}/.m2/repository</localRepository>
+		<profiles>
+			<profile>
+				<id>development</id>
+				<activation>
+					<activeByDefault>true</activeByDefault>
+				</activation>
+				<properties>
+				</properties>
+			</profile>
+		</profiles>
+		<proxies>
+			<proxy>
+				<active>true</active>
+				<protocol>http</protocol>
+				<host>proxy</host>
+				<port>8080</port>
+			</proxy>
+		</proxies>
+	</settings>
 
+**Note! For most people the proxy value doesn’t need to be set, you can remove the entire proxy section from the snippet, but if you are working behind a proxy, then it should be set as per you environment.**
 
 #### 3.Clone Git repository and import Maven project
-   - Open https://github.com/SAP/cloud-espm-v2 with your web browser
-   - Click on the Copy to clipboard so that the Git repository URL of the opened cloud-basecamp GitHub repository is copied to your clipboard.
+   - Open https://github.com/SAP/cloud-espm-v2 with your web browser.
+   - Click on the Copy to clipboard so that the Git repository URL of the opened GitHub repository is copied to your clipboard.
 
 ![Repo URL](/docs/images/repoclone.png?raw=true)
+
    - In Eclipse, open the Git perspective. From the Eclipse IDE main menu, choose Window > Open Perspective > Other.... Select Git and choose Ok to open the Git perspective. 
    - In this perspective you have the Git Repositories view on the left. As long as there is no Git Repository defined you will see 3 links (as shown here) to add a repository to the view.
 
 ![Git Clone](/docs/images/GitClone.PNG?raw=true)
+
    - In the corresponding menu (top-right of the view), click on the Clone a Git repository link.
    - Because you copied before the cloud-basecamp Git repository URL to your clipboard, the fields (URI, Host, Repository path and Protocol) of the opened dialog are filled automatically with the correct values.
-   - Do not change anything, just click Next >
-   - On this wizard page check that the master branch is selected and click again on Next >
-   - On the last wizard page you can adjust the location of the local Git Repository, but for the scope of this tutorial we'll just leave the default as-is
-   - Click on Finish so that the remote cloud-basecamp Git repository (source code) is cloned to the local location specified on the last wizard page.
-   - In Eclipse, open File->Import->Existing Maven projects.
+   - Do not change anything, just click Next >.
+   - On this wizard page check that the master branch is selected and click again on Next >.
+   - On the last wizard page you can adjust the location of the local Git Repository, but for the scope of this tutorial we'll just leave the default as-is.
+   - Click on Finish so that the remote Git repository (source code) is cloned to the local location specified on the last wizard page.
+   - In Eclipse, open File->Import->Existing Maven projects and import the Maven project.
 
 #### 4.Update dependencies and build Maven project
-
 - Instruction to run update dependencies for the Maven project
  - Right click on the web project in ESPM > and choose Maven > Click on Update Project
-- Note! you need to modify the parent pom.xml for certain property values depending on your environment:
- - local.server.proxy.settings - comment this out if you are not behind a proxy server. Else update your proxy settings here
- - browser.proxy.settings - comment this out if your browser is not using a proxy. Else update your browser proxy settings here
- - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with. the minimum version supported is 3.22.10
- - olingo.version - The Apache Olingo version that you intend the application to run with. The minimum version supported is 2.0.6
+- Note! If you face errors you need to modify the parent pom.xml for certain property values depending on your environment:
+ - local.server.proxy.settings - delete this if you are not behind a proxy server, else update your proxy settings here
+ - browser.proxy.settings - delete this if your browser is not using a proxy, else update your browser proxy settings here
+ - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with, the minimum version supported is 3.22.10
+ - olingo.version - The Apache Olingo version that you intend the application to run with, the minimum version supported is 2.0.6
     
  The application can be built with the maven command to the parent pom.xml
 
@@ -122,9 +121,11 @@ i)Run the application in HCP Java Web Tomcat 8 Server
 - Right click on the web project in ESPM > and choose the Run on Server option
        
 ![Run ESPM Locally](/docs/images/RunESPM1.png?raw=true)
+
 - Make sure that Manually define a new server is selected and choose SAP > Java Web Tomcat 8 Server as server type. Leave all other settings unchanged and choose Finish
 
 ![Run ESPM Finish](/docs/images/RunESPM2.png?raw=true)
+
 - Now a local server is started that has your espm application deployed.
 
 ii)Create Users and Assign Role
@@ -137,6 +138,7 @@ ii)Create Users and Assign Role
             		ret   	ret		123			Retailer
 
 ![Create User locally](/docs/images/localuser.png?raw=true)
+
 - The eCommerce site can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/webshop
 - The Retailer UI can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/retailer
 
@@ -150,11 +152,9 @@ ii)Create Users and Assign Role
     
 ![HCP Cockpit](/docs/images/HCPCockpit.png?raw=true)
 
-
 2.Add War File Location, Give Application Name "espm" ,select Runtime Name "Java Web Tomcat 8" and JVM Version "JRE 8"
       
 ![HCP Deploy](/docs/images/HCPDeploy.png?raw=true)
-
 
 3.After Successful Deployment , Click on Start
  
@@ -200,12 +200,13 @@ Below is the process to bind the database to the java application in HCP trial a
    
    [help information on Binding applications to Database on HCP - Link 2](https://help.hana.ondemand.com/help/frameset.htm?216cef2158cc419fade9a8247d5008fa.html).
 
-
 ### Demo script for [ESPM Webshop](/docs/demoscript/WebshopREADME.md) 
 ### Demo script for [ESPM Retailer-SalesorderApproval](/docs/demoscript/Retailer_SalesOrderApprovalREADME.md)
 ### Demo script for [ESPM Retailer-StockUpdate](/docs/demoscript/Retailer_StockUpdateREADME.md)
+
 ### Documentation for [Document Service](/docs/documentation/DocumentServiceREADME.md)
 ### Documentation for [SAP JAM Integration](/docs/documentation/SAPJAMIntegrationREADME.md)
+
 # 2.Deep-dive guide
 ### Architecture Overview
 The following diagram provides an overview of the ESPM Sample application architecture: 
@@ -227,6 +228,7 @@ The ESPM Sample Application is a Maven based project which has a parent pom.xml 
 ### The JPA Class diagram
 
 ![JPA Class Diagram](/docs/images/espm-cloud-jpa.png?raw=true)
+
 ### ESPM Source Code packages
 **The espm-cloud-jpa has the following packages:**
 
