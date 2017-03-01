@@ -58,9 +58,8 @@ public class CmisRead extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-
 		
-          //TODO connect to the add logic to connect to the CMIS repository - code snippet 1
+		//TODO add logic to connect to the CMIS repository - code snippet 2
 	}
 
 	/**
@@ -74,8 +73,8 @@ public class CmisRead extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		final String objectId = request.getParameter("objectId");
-	//TODO Logic for reading the contents from the CMIS Repository - code snippet 2
-
+		
+		//TODO add logic for reading the contents from the CMIS Repository - code snippet 3
 	}
 
 	/**
