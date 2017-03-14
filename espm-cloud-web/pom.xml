@@ -77,7 +77,7 @@
 			<artifactId>olingo-odata2-jpa-processor-core</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- PDF Box Dependencies -->
+		<!-- Test Dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
