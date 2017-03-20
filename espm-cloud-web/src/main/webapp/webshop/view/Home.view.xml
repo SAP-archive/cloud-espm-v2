@@ -4,7 +4,7 @@
 				<headerContent>
 					<Button icon="sap-icon://my-sales-order" id="btnOrdersId" press="onOrdersButtonPressed" tooltip="{i18n>home.salesOrder}"/>
 					<Button icon="sap-icon://settings" id="btnSettingsId" press="onSettingsButtonPressed" tooltip="{i18n>home.settings}"/>
-					<Button binding="{/Cart}" icon="sap-icon://cart" id="btnProductListHeader" press="onShoppingCartPressed" text="{TotalQunatity}"
+					<Button icon="sap-icon://cart" id="btnProductListHeader" press="onShoppingCartPressed" text="{TotalQunatity}"
 						tooltip="{i18n>home.cart}"/>
 				</headerContent>
 				<content>
