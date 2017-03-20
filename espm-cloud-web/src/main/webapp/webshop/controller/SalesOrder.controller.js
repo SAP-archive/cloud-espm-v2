@@ -163,7 +163,7 @@ sap.ui.define([
 		
 		handleListItemPress: function(event){
 			
-			pdfURL = "/espm-cloud-web/espm.svc/CmisRead?objectId="+event.getSource().getBindingContext().getObject("InvoiceLink");
+			pdfURL = "/espm-cloud-web/CmisRead?objectId="+event.getSource().getBindingContext().getObject("InvoiceLink");
 			
 			this.getView().byId("detailPageId").setVisible(true);
 			
