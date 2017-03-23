@@ -55,6 +55,36 @@ The Authorization Management API is a REST API that allows you to manage role an
 In ESPM Cloud Web application, retailer logs into the application. SAP HANA Cloud checks the authorization to see if he is a retailer. Retailer accepts/reject the sales orders created by customer. He also monitors his stock and if any products stock falls below target he raises a purchase order with his supplier.
 Assume that a new user is joining as a retailer and needs to access the ESPM Retailer portal. Using Authorization API Retailer can assign retailer role to new user through ESPM Webshop application. 
 
+### Setup Authorization API
+
+For Implementing Authorization API to assign Role to user from ESPM Cloud Retailer Application.
+
+ ![AuthAPIImpl](/docs/images/AuthAPIImpl.jpg?raw=true)
+
+ 
+1.Go to Cockpit -> Enable Beta Feature
+
+![BetaFeature](/docs/images/BetaFeature.jpg?raw=true)
+
+2.Navigate to services -> oAuth 2.0 Service -> Click on Service link -> Platform API -> Create API Client -> Specify an OAuth client description -> Choose the Authorization Management option and required combination of scopes -> Save -> Client ID and Client Secret is generated. Save them for the next steps.
+
+![Authpic](/docs/images/AuthScope.png?raw=true)
+
+3.Create a destination as shown in the below screen shot.
+	Name - oAuths
+	URL - https://api.hanatrial.ondemand.com/oauth2/apitoken/v1?grant_type=client_credentials 
+	User and Password has to be given the values ClientId and ClientSecret from Step 1.
+
+![OAuthDestination](/docs/images/OAuthDestination.jpg?raw=true)
+
+4.In espm-cloud-web/src/main/resources/Config.Properties -> add AppName (your app name), AccountName ( your account name of SAP HCP) and LandscapeHost ( for hana trial account, the value is hanatrial.ondemand.com) , OAuthDestinationName (this is the HCP destination name -  oAuths )
+
+5.Build the application in Eclipse and deploy the same to HCP.
+
+6.Go to Cockpit -> Navigate to application -> Navigate to Security -> Go to Roles -> Grant role "Retailer" in HCP to your user.
+
+![Security](/docs/images/Security.jpg?raw=true)
+
 ### DEMO
 
 
@@ -74,37 +104,7 @@ Assume that a new user is joining as a retailer and needs to access the ESPM Ret
 
  ![ESPMRetailer4](/docs/images/ESPMRetailer4.jpg?raw=true)
 
-
-
-### Setup Authorization API
-
-For Implementing Authorization API to assign Role to user from ESPM Cloud Retailer Application.
-
- ![AuthAPIImpl](/docs/images/AuthAPIImpl.jpg?raw=true)
-
- 
-1.Go to Cockpit -> Enable Beta Feature
-
-![BetaFeature](/docs/images/BetaFeature.jpg?raw=true)
-
-2.Navigate to services -> oAuth 2.0 Service -> Click on Service link -> Platform API Beta-> create a Client ID and Client Secret. Save them for the next steps.
-
-3.Create a destination as shown in the below screen shot.
-	Name - oAuths
-	URL - https://api.hanatrial.ondemand.com/oauth2/apitoken/v1?grant_type=client_credentials 
-	User and Password has to be given the values ClientId and ClientSecret from Step 1.
-
-![OAuthDestination](/docs/images/OAuthDestination.jpg?raw=true)
-
-4.In espm-cloud-web/src/main/resources/Config.Properties -> add AppName (your app name), AccountName ( your account name of SAP HCP) and LandscapeHost ( for hana trial account, the value is hanatrial.ondemand.com) , OAuthDestinationName (this is the HCP destination name -  oAuths )
-
-5.Build the application in Eclipse and deploy the same to HCP.
-
-6.Go to Cockpit -> Navigate to application -> Navigate to Security -> Go to Roles -> Grant role "Retailer" in HCP to your user.
-
-![Security](/docs/images/Security.jpg?raw=true)
-
-###Code Explaination 
+### Code Explaination 
 
 #### Authorization API Source code packages:-
 
