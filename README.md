@@ -98,20 +98,23 @@ Below are the steps to build and run the ESPM application:
    - In Eclipse, open File->Import->Existing Maven projects and import the Maven project.
 
 #### 4.Update dependencies and build Maven project
-- Instruction to run update dependencies for the Maven project
- - Right click on the web project in ESPM > and choose Maven > Click on Update Project
-- Note! If you face errors you need to modify the parent pom.xml for certain property values depending on your environment:
- - local.server.proxy.settings - delete this if you are not behind a proxy server, else update your proxy settings here
- - browser.proxy.settings - delete this if your browser is not using a proxy, else update your browser proxy settings here
- - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with, the minimum version supported is 3.22.10
- - olingo.version - The Apache Olingo version that you intend the application to run with, the minimum version supported is 2.0.6
+   - Instruction to run update dependencies for the Maven project
+     - Right click on the web project in ESPM > and choose Maven > Click on Update Project
+   - Note! If you face errors you need to modify the parent pom.xml for certain property values depending on your environment:
+     - local.server.proxy.settings - delete this if you are not behind a proxy server, else update your proxy settings here
+     - browser.proxy.settings - delete this if your browser is not using a proxy, else update your browser proxy settings here
+     - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with, the minimum version supported is 3.22.10
+     - olingo.version - The Apache Olingo version that you intend the application to run with, the minimum version supported is 2.0.6
     
  The application can be built with the maven command to the parent pom.xml
 
-    ```sh
-    clean install
-    ```
-
+ ```sh
+ clean install
+   ```
+After building the application update the Maven Project :
+ 
+  Right click on the web project in ESPM > and choose Maven > Click on Update Project
+    
 **The unit tests and the integration tests are run by default when building the project with goal "clean install"**
 
 #### 5.Deploy the application on local Cloud Runtime
@@ -134,13 +137,13 @@ ii)Create Users and Assign Role
        
   Create a user with the below information
             
-            		ID		Name	Password	Role
-            		ret   	ret		123			Retailer
+            		ID	Name	 Password	Role
+            		ret   	ret       123	       Retailer
 
 ![Create User locally](/docs/images/localuser.png?raw=true)
 
-- The eCommerce site can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/webshop
-- The Retailer UI can be accessed via the URL: https://localhost:\<port\>/espm-cloud-web/retailer
+  - The eCommerce site can be accessed via the URL: https://localhost:<port\>/espm-cloud-web/webshop
+  - The Retailer UI can be accessed via the URL: https://localhost:<port\>/espm-cloud-web/retailer
 
 #### 6.Deploy the application on SAP HCP via the cockpit
 
@@ -160,14 +163,14 @@ ii)Create Users and Assign Role
  
 ![Deployed](/docs/images/Deployed.png?raw=true)
 
-   - Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP HANA Cloud Platform user to access the Retailer UI
+- Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP HANA Cloud Platform user to access the Retailer UI
 
-    You can access the application from the URL
+You can access the application from the URL
+
+- The eCommerce site can be accessed via the URL: https://espm\<account\>.hanatrial.ondemand.com/espm-cloud-web/webshop
+- The Retailer UI can be accessed via the URL: https://espm\<account\>.hanatrial.ondemand.com/espm-cloud-web/retailer
     
-    * The eCommerce site can be accessed via the URL: https://espm\<account\>.hanatrial.ondemand.com/espm-cloud-web/webshop
-    * The Retailer UI can be accessed via the URL: https://espm\<account\>.hanatrial.ondemand.com/espm-cloud-web/retailer
-
-    **Note! The application name must be "espm", else the above URL will change bsaed on the application name given during deployment**
+**Note! The application name must be "espm", else the above URL will change bsaed on the application name given during deployment**
 
 
 #### 7.Bind the database to espm application and start espm application
@@ -177,24 +180,23 @@ Below is the process to bind the database to the java application in HCP trial a
    - In the cockpit, select an account and choose Persistence -> Databases & Schemas -> in the navigation area.
    - Click on the new button
    - In the popup window, enter the below information
-   	```sh
-	Schema ID: espm
-	Database System: HANA (<shared>)
-	Version: 1.00*
-	Click on Save button
-	```
+  ```sh
+Schema ID: espm
+Database System: HANA (<shared>)
+Version: 1.00*
+Click on Save button
+```
 	
    - In the cockpit, select an account and choose Applications -> Java Application -> Click on the name of the espm application that you deployed
    - In the navigation area in the cockpit, select Configuration -> Data Source Bindings
    - Click "New Binding" button in detail plane
    - In the popup window, enter the below information
-   	```sh
-	Data Source - <default> 
-	DB/Schema ID - select espm( the one that you created above)
-	Click on Save button
-	```
-
-   - Now you need to restart your espm application ( stop(if already started) and start the application) from the cockpit. 
+```sh
+Data Source - <default> 
+DB/Schema ID - select espm( the one that you created above)
+Click on Save button
+```
+ - Now you need to restart your espm application ( stop(if already started) and start the application) from the cockpit. 
    
    [help information on Binding applications to Database on HCP - Link 1](https://help.hana.ondemand.com/help/frameset.htm?1742986c3cfa47099442aee0cf8df5e9.html).
    
