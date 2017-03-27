@@ -1,6 +1,6 @@
 # Enterprise Sales Procurement Model (ESPM) Application
 
-The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP HANA Cloud Platform (HCP) with the Java runtime. The application also consumes and showcases services like the Persistence Service, Document Service, SAP Jam Collaboration, and API Management which are offered by the platform. The application User Interface (UI) is built with the SAPUI5 framework after the SAP Fiori design principles.
+The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP Cloud Platform (HCP) with the Java runtime. The application also consumes and showcases services like the Persistence Service, Document Service, SAP Jam Collaboration, and API Management which are offered by the platform. The application User Interface (UI) is built with the SAPUI5 framework after the SAP Fiori design principles.
 
 # Business Scenario
 The business scenario is that of an eCommerce site that sells electronic products. 
@@ -19,9 +19,9 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 2. [Install Eclipse](https://help.hana.ondemand.com/help/frameset.htm?761374e5711e1014839a8273b0e91070.html). Please install Eclipse Neon.
 3. (Optional: Only if you use SAP JVM) [Set up SAP JVM in Eclipse](https://help.hana.ondemand.com/help/frameset.htm?7613eaad711e1014839a8273b0e91070.html).
 4. [Install SAP Development Tools for Eclipse](https://help.hana.ondemand.com/help/frameset.htm?76137a37711e1014839a8273b0e91070.html). Please use the link for Eclipse Neon.
-5. [Install SAP HANA Cloud Platform SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please install Java Web Tomcat 8.
+5. [Install SAP Cloud Platform SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please install Java Web Tomcat 8.
 6. [Set up the Runtime Environment in Eclipse](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html). Please follow the steps for Java Web Tomcat 8 Runtime.
-7. Register for a free developer account on [SAP HANA Cloud Platform](https://account.hanatrial.ondemand.com).
+7. Register for a free developer account on [SAP Cloud Platform](https://account.hanatrial.ondemand.com).
 
 ### Build the application and deploy
 Below are the steps to build and run the ESPM application:
@@ -40,7 +40,7 @@ Below are the steps to build and run the ESPM application:
    - Enter git in the filter field in the top-left corner
    - Navigate to Team > Git > Configuration and select the Configuration node and add the following configuration
 
-![EGit Configuration](/docs/images/EGitConfig.PNG?raw=true)
+![EGit Configuration](/docs/images/Eclipse-Git-settings.png?raw=true)
 
 **Note! For most people the proxy value doesn’t need to be set but if you are working behind a proxy, then it should be set as per you environment.**
  
@@ -50,7 +50,7 @@ Below are the steps to build and run the ESPM application:
    - Navigate to Maven > User Settings and select the User Settings node
    - If you have already installed Maven before you can click the open file link. If you are using Maven for the first time you need to create a settings.xml file at the location /Users/your-user-name/.m2/settings.xml. The contents of the settings.xml file should look like the snippet below.
    
-![Maven Settings Configuration](/docs/images/MavenSettings.PNG?raw=true)
+![Maven Settings Configuration](/docs/images/Eclipse-maven-Settings.png?raw=true)
 
 	<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -82,28 +82,30 @@ Below are the steps to build and run the ESPM application:
    - Open https://github.com/SAP/cloud-espm-v2 with your web browser.
    - Click on the Copy to clipboard so that the Git repository URL of the opened GitHub repository is copied to your clipboard.
 
-![Repo URL](/docs/images/repoclone.png?raw=true)
+![Repo URL](/docs/images/CloneGithub-Repo.png?raw=true)
 
    - In Eclipse, open the Git perspective. From the Eclipse IDE main menu, choose Window > Open Perspective > Other.... Select Git and choose Ok to open the Git perspective. 
    - In this perspective you have the Git Repositories view on the left. As long as there is no Git Repository defined you will see 3 links (as shown here) to add a repository to the view.
 
-![Git Clone](/docs/images/GitClone.PNG?raw=true)
+![Git Clone](/docs/images/CloneGit.png?raw=true)
 
    - In the corresponding menu (top-right of the view), click on the Clone a Git repository link.
-   - Because you copied before the cloud-basecamp Git repository URL to your clipboard, the fields (URI, Host, Repository path and Protocol) of the opened dialog are filled automatically with the correct values.
+   - Because you copied before the ESPM repository URL to your clipboard, the fields (URI, Host, Repository path and Protocol) of the opened dialog are filled automatically with the correct values.
    - Do not change anything, just click Next >.
-   - On this wizard page check that the master branch is selected and click again on Next >.
+   - On this wizard page check that the base branch is selected and click again on Next >.
    - On the last wizard page you can adjust the location of the local Git Repository, but for the scope of this tutorial we'll just leave the default as-is.
-   - Click on Finish so that the remote Git repository (source code) is cloned to the local location specified on the last wizard page.
+   - Click on Finish so that the remote ESPM repository (source code) is cloned to the local location specified on the last wizard page.
    - In Eclipse, open File->Import->Existing Maven projects and import the Maven project.
 
 #### 4.Update dependencies and build Maven project
    - Instruction to run update dependencies for the Maven project
      - Right click on the web project in ESPM > and choose Maven > Click on Update Project
+![Maven Update](/docs/images/MavenUpdate.png?raw=true)
+
    - Note! If you face errors you need to modify the parent pom.xml for certain property values depending on your environment:
      - local.server.proxy.settings - delete this if you are not behind a proxy server, else update your proxy settings here
      - browser.proxy.settings - delete this if your browser is not using a proxy, else update your browser proxy settings here
-     - sap.cloud.sdk.version - The SAP HANA Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with, the minimum version supported is 3.22.10
+     - sap.cloud.sdk.version - The SAP Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with, the minimum version supported is 3.22.10
      - olingo.version - The Apache Olingo version that you intend the application to run with, the minimum version supported is 2.0.6
     
  The application can be built with the maven command to the parent pom.xml
@@ -149,7 +151,7 @@ ii)Create Users and Assign Role
 
  **Note! The application name must be "espm", else the above URL will change based on the application name given during deployment**
  
-   - Deploy the application in your SAP HANA Cloud Platform Trial account. 
+   - Deploy the application in your SAP Cloud Platform Trial account. 
    
 1.Go to HCP Cockpit --> Click on Java Application under Applications --> Click on Deploy Application
     
@@ -163,7 +165,7 @@ ii)Create Users and Assign Role
  
 ![Deployed](/docs/images/Deployed.png?raw=true)
 
-- Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP HANA Cloud Platform user to access the Retailer UI
+- Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP Cloud Platform user to access the Retailer UI
 
 You can access the application from the URL
 
@@ -280,7 +282,7 @@ The ESPM Sample Application is a Maven based project which has a parent pom.xml 
 
 ![Secure URL](/docs/images/servletfilter.png?raw=true)
 
-After deploying the application in HCP, assign the Retailer role to the user who will act as the retailer of the eCommerce site. Please refer to documentation of SAP HANA Cloud Platform on how to assign roles to users. See [Details](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html)
+After deploying the application in HCP, assign the Retailer role to the user who will act as the retailer of the eCommerce site. Please refer to documentation of SAP Cloud Platform on how to assign roles to users. See [Details](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html)
 
 # Important Disclaimers on Security and Legal Aspects
 This document is for informational purposes only. Its content is subject to change without notice, and SAP does not warrant that it is error-free. SAP MAKES NO WARRANTIES, EXPRESS OR IMPLIED, OR OF MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.
