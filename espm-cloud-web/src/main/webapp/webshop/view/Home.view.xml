@@ -8,7 +8,7 @@
 						tooltip="{i18n>home.cart}"/>
 				</headerContent>
 				<content>
-					<Table selectionMode="MultiToggle" rowSelectionChange="onItemPressed" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" id="catalogTable" noDataText="{i18n>home.noDataProducts}" items="{path: 'EspmModel>/Products', sorter: {path: 'EspmModel>Name', descending: false}}" updateFinished="onUpdateFinished" width="auto" enableBusyIndicator="true">
+					<Table selectionMode="MultiToggle" rowSelectionChange="onItemPressed" class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" id="catalogTable" noDataText="{i18n>home.noDataProducts}" items="{path: 'EspmModel>/Products', sorter: {path: 'Name', descending: false}}" updateFinished="onUpdateFinished" width="auto" enableBusyIndicator="true">
 						<headerToolbar>
 							<OverflowToolbar id="tableToolbar">
 								<Title id="catalogTitle" text="{catalogTitle}" visible="{= !${device>/system/phone}}"/>
