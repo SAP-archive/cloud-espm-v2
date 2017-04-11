@@ -105,7 +105,7 @@ Below are the steps to build and run the ESPM application:
    - Note! If you face errors you need to modify the parent pom.xml for certain property values depending on your environment:
      - local.server.proxy.settings - delete this if you are not behind a proxy server, else update your proxy settings here
      - browser.proxy.settings - delete this if your browser is not using a proxy, else update your browser proxy settings here
-     - sap.cloud.sdk.version - The SAP Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with, the minimum version supported is 3.22.10
+     - sap.cloud.sdk.version - The SAP Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with,is version 3.20.3.1
      - olingo.version - The Apache Olingo version that you intend the application to run with, the minimum version supported is 2.0.6
     
  The application can be built with the maven command to the parent pom.xml
