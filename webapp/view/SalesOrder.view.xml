@@ -56,7 +56,9 @@
 											<Label text="{i18n>sales.email}"/> 
 											<Text text="{EmailAddress}"/> 
 											<Label text="{i18n>sales.street}"/> 
-											<Text text="{Street}" /> 
+											<Text text="{Street}" />
+											<Label text="{i18n>sales.streetNumber}"/> 
+											<Text text="{HouseNumber}" /> 
 											<Label text="{i18n>sales.city}"/> 
 											<Text text="{City}, {PostalCode}" /> 
 											<Label text="{i18n>sales.country}"/> 

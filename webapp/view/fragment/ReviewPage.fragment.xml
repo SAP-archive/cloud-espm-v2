@@ -83,19 +83,21 @@
 						<Label text="{i18n>review.firstname}"/>
 						<Text id="firstname" text=""/>
 						<Label text="{i18n>review.lastname}"/>
-						<Text id="lastName" text="{/productName}"/>
+						<Text id="lastName" text=""/>
 						<Label text="{i18n>check.DOB}"/>
-						<Text id="dateBirth" text="{/productWeight}"/>
+						<Text id="dateBirth" text=""/>
 						<Label text="{i18n>check.newEmail}"/>
-						<Text id="emailAddress" text="{/productWeight}"/>
+						<Text id="emailAddress" text=""/>
 						<Label text="{i18n>review.street}"/>
-						<Text id="street" text="{/productManufacturer}"/>
+						<Text id="street" text=""/>
+						<Label text="{i18n>review.streetNumber}"/>
+						<Text id="houseNumber" text=""/>
 						<Label text="{i18n>review.city}"/>
-						<Text id="city" text="{/productDescription}"/>
+						<Text id="city" text=""/>
 						<Label text="{i18n>review.postalCode}"/>
-						<Text id="postalCode" text="{/productDescription}"/>
+						<Text id="postalCode" text=""/>
 						<Label text="{i18n>review.country}"/>
-						<Text id="country" text="{/productDescription}"/>
+						<Text id="country" text=""/>
 					</form:content>
 				</form:SimpleForm>
 
@@ -110,7 +112,7 @@
 						<Label text="{i18n>check.nameOnCard}r"/>
 						<Text id="cardOwner" text=""/>
 						<Label text="{i18n>check.cardNumber}"/>
-						<Text id="cardNumber" text="{/productDescription}"/>
+						<Text id="cardNumber" text=""/>
 					</form:content>
 				</form:SimpleForm>
 			</content>
