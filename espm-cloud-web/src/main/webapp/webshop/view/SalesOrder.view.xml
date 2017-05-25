@@ -83,7 +83,7 @@
 									</cells> 
 								</ColumnListItem> 
 							</Table>
-							<core:HTML id="pdfHTMLId">							
+							<core:HTML id="pdfHTMLId">		
 							</core:HTML>
 							<footer> 
 								<Bar> 

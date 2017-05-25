@@ -149,6 +149,7 @@ public class Customer {
 		Map<String, String> customerMapData = new LinkedHashMap<String, String>(7);
 		customerMapData.put("firstName", firstName);
 		customerMapData.put("lastName", lastName);
+		customerMapData.put("houseNumber", houseNumber);
 		customerMapData.put("emailAddress", emailAddress);
 		customerMapData.put("phoneNumber", phoneNumber);
 		customerMapData.put("city", city);

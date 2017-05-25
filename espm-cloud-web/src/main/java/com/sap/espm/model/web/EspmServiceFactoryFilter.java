@@ -17,14 +17,14 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * Servlet {@link Filter} to block access to secure entities via non secure servlet
- * (/espm.svc/)
+ * Servlet {@link Filter} to block access to secure entities via non secure
+ * servlet (/espm.svc/)
  * <p>
  * Refer to the web.xml file on the declaration of the Filter.
  * 
  */
 public class EspmServiceFactoryFilter implements Filter {
-	
+
 	/**
 	 * {@link Logger} implementation for logging.
 	 */
@@ -36,8 +36,7 @@ public class EspmServiceFactoryFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
 		try {
 
 			if (request instanceof HttpServletRequest) {
@@ -57,9 +56,9 @@ public class EspmServiceFactoryFilter implements Filter {
 				}
 			}
 
-		} catch (Exception e) {
+		} catch (IOException | ServletException | ODataException e) {
 			LOGGER.error(e.getMessage());
-		}
+		} 
 
 	}
 
@@ -76,28 +75,22 @@ public class EspmServiceFactoryFilter implements Filter {
 	 * @return true if path is restricted else false
 	 * @throws ODataException
 	 */
-	private boolean isPathRestricted(HttpServletRequest oCntxt)
-			throws ODataException {
+	private boolean isPathRestricted(HttpServletRequest oCntxt) throws ODataException {
 
 		boolean status;
 		String path = oCntxt.getRequestURI().toString();
-		if ((path.contains("/SalesOrderHeaders") || path.contains("/Customers") || path
-				.contains("/SalesOrderItems"))
-				&& (oCntxt.getMethod().equals("GET") || oCntxt.getMethod()
-						.equals("DELETE"))) {
+		if ((path.contains("/SalesOrderHeaders") || path.contains("/Customers") || path.contains("/SalesOrderItems"))
+				&& (oCntxt.getMethod().equals("GET") || oCntxt.getMethod().equals("DELETE"))) {
 			status = true;
-		} else if (path.contains("/PurchaseOrderHeaders")
-				|| path.contains("/PurchaseOrderItems")
+		}
+		else if (path.contains("/PurchaseOrderHeaders") || path.contains("/PurchaseOrderItems")
 				|| path.contains("/Suppliers") || path.contains("/Stocks")) {
 			status = true;
-		} else if ((path.contains("/Products") || path
-				.contains("/ProductCategories"))
-				&& (oCntxt.getMethod().equals("POST")
-						|| oCntxt.getMethod().equals("PUT") || oCntxt
-						.getMethod().equals("DELETE"))) {
+		} else if ((path.contains("/Products") || path.contains("/ProductCategories"))
+				&& (oCntxt.getMethod().equals("POST") || oCntxt.getMethod().equals("PUT")
+						|| oCntxt.getMethod().equals("DELETE"))) {
 			status = true;
-		} else if ((path.contains("/ConfirmSalesOrder") || path
-				.contains("/CancelSalesOrder"))) {
+		} else if ((path.contains("/ConfirmSalesOrder") || path.contains("/CancelSalesOrder"))) {
 			status = true;
 		} else {
 			status = false;

@@ -18,7 +18,16 @@ public class HttpResponse {
 		responseCode = connection.getResponseCode();
 		responseMessage = connection.getResponseMessage();
 		InputStream stream = null;
-		try {
+		
+			if (responseCode != 401) {
+				stream = connection.getInputStream();
+				body = StreamHelper.readStreamContent(stream);
+				stream.close();
+			} else {
+				body = responseMessage;
+			}
+		
+		/*try {
 			if (responseCode != 401) {
 				stream = connection.getInputStream();
 				body = StreamHelper.readStreamContent(stream);
@@ -29,7 +38,7 @@ public class HttpResponse {
 			if (responseCode != 401) {
 				stream.close();
 			}
-		}
+		}*/
 	}
 
 	/**

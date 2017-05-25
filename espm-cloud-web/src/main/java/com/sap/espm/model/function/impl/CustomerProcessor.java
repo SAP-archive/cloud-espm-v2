@@ -27,10 +27,10 @@ import com.sap.espm.model.util.Utility;
  * <p>
  * https://olingo.apache.org/doc/odata2/tutorials/jpafunctionimport.html
  * <p>
- * http://olingo.apache.org/doc/odata2/ 
+ * http://olingo.apache.org/doc/odata2/
  * <p>
- * This class is used to define custom OData
- * functions for {@link Customer} entity.
+ * This class is used to define custom OData functions for {@link Customer}
+ * entity.
  * 
  * 
  */
@@ -47,16 +47,14 @@ public class CustomerProcessor {
 	@SuppressWarnings("unchecked")
 	@EdmFunctionImport(name = "GetCustomerByEmailAddress", entitySet = "Customers", returnType = @ReturnType(type = Type.ENTITY, isCollection = true))
 	public List<Customer> getCustomerByEmailAddress(
-			@EdmFunctionImportParameter(name = "EmailAddress") String emailAddress)
-			throws ODataException {
+			@EdmFunctionImportParameter(name = "EmailAddress") String emailAddress) throws ODataException {
 		EntityManagerFactory emf = Utility.getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		List<Customer> custList = null;
 		try {
 
-			Query query = em
-					.createQuery("SELECT c FROM Customer c WHERE c.emailAddress ='"
-							+ emailAddress + "'");
+			Query query = em.createQuery("SELECT c FROM Customer c WHERE c.emailAddress = :emailAddress");
+			query.setParameter("emailAddress", emailAddress);
 
 			try {
 
@@ -64,10 +62,8 @@ public class CustomerProcessor {
 				return custList;
 
 			} catch (NoResultException e) {
-				throw new ODataApplicationException(
-						"No matching customer with Email Address:"
-								+ emailAddress, Locale.ENGLISH,
-						HttpStatusCodes.BAD_REQUEST, e);
+				throw new ODataApplicationException("No matching customer with Email Address:" + emailAddress,
+						Locale.ENGLISH, HttpStatusCodes.BAD_REQUEST, e);
 			}
 		} finally {
 			em.close();
