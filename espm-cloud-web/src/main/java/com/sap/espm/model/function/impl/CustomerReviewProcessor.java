@@ -39,21 +39,30 @@ public class CustomerReviewProcessor {
 	/**
 	 * Function Import implementation for getting customer reviews created
 	 * 
-	 * @param productId productId of the reviewed product
-	 * @param firstName firstname of the reviewer
-	 * @param lastName lastname of the reviewer
-	 * @param rating rating for the product
-	 * @param creationDate date of creation of the review
-	 * @param comment comments for the review
+	 * @param productId
+	 *            productId of the reviewed product
+	 * @param firstName
+	 *            firstname of the reviewer
+	 * @param lastName
+	 *            lastname of the reviewer
+	 * @param rating
+	 *            rating for the product
+	 * @param creationDate
+	 *            date of creation of the review
+	 * @param comment
+	 *            comments for the review
 	 * @return customer entity.
 	 * @throws ODataException
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	@SuppressWarnings("unchecked")
 	@EdmFunctionImport(name = "CreateCustomerReview", entitySet = "CustomerReviews", returnType = @ReturnType(type = Type.ENTITY, isCollection = false))
-	public CustomerReview createCustomerReview(
-			@EdmFunctionImportParameter(name = "ProductId") String productId, @EdmFunctionImportParameter(name = "FirstName") String firstName, @EdmFunctionImportParameter(name = "LastName") String lastName, @EdmFunctionImportParameter(name = "Rating") String rating, @EdmFunctionImportParameter(name = "CreationDate") String creationDate, @EdmFunctionImportParameter(name = "Comment") String comment)
-			throws ODataException, ParseException {
+		public CustomerReview createCustomerReview(@EdmFunctionImportParameter(name = "ProductId") String productId,
+			@EdmFunctionImportParameter(name = "FirstName") String firstName,
+			@EdmFunctionImportParameter(name = "LastName") String lastName,
+			@EdmFunctionImportParameter(name = "Rating") String rating,
+			@EdmFunctionImportParameter(name = "CreationDate") String creationDate,
+			@EdmFunctionImportParameter(name = "Comment") String comment) throws ODataException, ParseException {
 		EntityManagerFactory emf = Utility.getEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		Product prod = null;
@@ -73,13 +82,14 @@ public class CustomerReviewProcessor {
 				customerReview.setProductId(productId);
 				customerReview.setProduct(prod);
 				em.persist(customerReview);
-				prod.addReview(customerReview);
+				if (prod != null) {
+					prod.addReview(customerReview);
+				}
 				em.getTransaction().commit();
 				return customerReview;
 
 			} catch (NoResultException e) {
-				throw new ODataApplicationException(
-						"Error creating customer review:" , Locale.ENGLISH,
+				throw new ODataApplicationException("Error creating customer review:", Locale.ENGLISH,
 						HttpStatusCodes.BAD_REQUEST, e);
 			}
 		} finally {

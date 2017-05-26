@@ -31,7 +31,7 @@ public final class CMISSessionHelper {
 	/**
 	 * The {@link CMISSessionHelper} used for the Singleton.
 	 */
-	private static CMISSessionHelper helper;
+	private static volatile CMISSessionHelper helper;
 
 	/**
 	 * The static instance of the {@link Session} that will be used to connect

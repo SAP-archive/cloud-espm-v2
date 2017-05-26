@@ -181,6 +181,7 @@ sap.ui.define([
 				sap.ui.getCore().byId("dateBirth").setText(this.byId("birthId").getValue());
 				sap.ui.getCore().byId("emailAddress").setText(this.byId("newEmailId").getValue());
 				sap.ui.getCore().byId("street").setText(this.byId("streetId").getValue());
+				sap.ui.getCore().byId("houseNumber").setText(this.byId("houseNumberId").getValue());
 				sap.ui.getCore().byId("city").setText(this.byId("cityId").getValue());
 				sap.ui.getCore().byId("postalCode").setText(this.byId("postalId").getValue());
 				sap.ui.getCore().byId("country").setText(this.byId("countryListId").getSelectedKey());
@@ -223,6 +224,7 @@ sap.ui.define([
 				"EmailAddress":this.byId("newEmailId").getValue(),
 				"LastName":this.byId("lastnameId").getValue(),
 				"FirstName":this.byId("firstNameId").getValue(),
+				"HouseNumber":this.byId("houseNumberId").getValue(),
 				"DateOfBirth":date,
 				"PostalCode":this.byId("postalId").getValue(),
 				"City":this.byId("cityId").getValue(),
@@ -483,6 +485,7 @@ sap.ui.define([
 	 				else{
 	 					var result = data.results;
 	 					that.byId("firstNameId").setValue(result[0].FirstName);
+	 					that.byId("houseNumberId").setValue(result[0].HouseNumber);
 	 					that.byId("lastnameId").setValue(result[0].LastName);
 	 					that.byId("newEmailId").setValue(result[0].EmailAddress);
 	 					that.byId("birthId").setDateValue(new Date(result[0].DateOfBirth));
@@ -546,7 +549,7 @@ sap.ui.define([
 		checkCustomerInformation: function(){
 			
 			if(this.byId("firstNameId").getValue().length === 0 || this.byId("lastnameId").getValue().length === 0 || this.byId("birthId").getValue().length === 0 || this.byId("newEmailId").getValue().length === 0 ||
-					this.byId("streetId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0 ||
+					this.byId("streetId").getValue().length === 0 || this.byId("houseNumberId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0 ||
 					this.byId("nameId").getValue().length === 0 ){
 				this._wizard.invalidateStep(this.getView().byId("creditCardStep"));
 			}

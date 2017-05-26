@@ -162,6 +162,7 @@ public class Customer {
 		customerMapData.put("lastName", lastName);
 		customerMapData.put("emailAddress", emailAddress);
 		customerMapData.put("phoneNumber", phoneNumber);
+		customerMapData.put("houseNumber", houseNumber);
 		customerMapData.put("city", city);
 		customerMapData.put("street", street);
 		customerMapData.put("country", country);
