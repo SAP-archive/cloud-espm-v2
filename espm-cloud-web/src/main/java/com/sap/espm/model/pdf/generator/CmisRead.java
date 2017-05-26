@@ -100,7 +100,7 @@ public class CmisRead extends HttpServlet {
 			}
 
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			LOGGER.error(exception.getMessage());
 		}
 
 	}

@@ -679,10 +679,11 @@ public class XMLParser {
 				}
 
 			}
-		} catch (Exception e) {
+		} catch(XMLStreamException e) {
 			logger.error("Exception occured", e);
 			status = false;
-		} finally {
+			}
+		finally {
 			try {
 				in.close();
 				eventReader.close();

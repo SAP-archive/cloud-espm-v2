@@ -60,34 +60,34 @@ public class XMLParser {
 					}
 
 					if (event.asStartElement().getName().getLocalPart()
-							.equals(LAST_NAME)) {
+							.equals(LAST_NAME) && custreview!=null) {
 						event = eventReader.nextEvent();
 						custreview.setLastName(getEvent(event));
 						continue;
 					}
 					if (event.asStartElement().getName().getLocalPart()
-							.equals(CUSTOMER_REVIEW_ID)) {
+							.equals(CUSTOMER_REVIEW_ID) && custreview!=null) {
 						event = eventReader.nextEvent();
 						custreview.setCustomerReviewId(getEvent(event));
 						continue;
 					}
 
 					if (event.asStartElement().getName().getLocalPart()
-							.equals(RATING)) {
+							.equals(RATING) && custreview!=null) {
 						event = eventReader.nextEvent();
 						custreview.setRating(Integer.parseInt(getEvent(event)));
 						continue;
 					}
 
 					if (event.asStartElement().getName().getLocalPart()
-							.equals(FIRST_NAME)) {
+							.equals(FIRST_NAME) && custreview!=null) {
 						event = eventReader.nextEvent();
 						custreview.setFirstName(getEvent(event));
 						continue;
 					}
 
 					if (event.asStartElement().getName().getLocalPart()
-							.equals(COMMENT)) {
+							.equals(COMMENT) && custreview!=null) {
 
 						event = eventReader.nextEvent();
 						custreview.setComment(getEvent(event));
@@ -96,7 +96,7 @@ public class XMLParser {
 					}
 
 					if (event.asStartElement().getName().getLocalPart()
-							.equals(PRODUCT_ID)) {
+							.equals(PRODUCT_ID) && custreview!=null) {
 						event = eventReader.nextEvent();
 						custreview.setProductId(getEvent(event));
 						continue;
@@ -112,7 +112,7 @@ public class XMLParser {
 				}
 			}
 
-		} catch (Exception e) {
+		} catch(XMLStreamException e) {
 			logger.error("Exception occured", e);
 			status = false;
 		} finally {

@@ -58,6 +58,8 @@
 											<Label text="{i18n>sales.street}"/> 
 											<Text text="{Street}" /> 
 											<Label text="{i18n>sales.city}"/> 
+											<Label text="{i18n>sales.streetNumber}"/> 
+											<Text text="{HouseNumber}" /> 
 											<Text text="{City}, {PostalCode}" /> 
 											<Label text="{i18n>sales.country}"/> 
 											<Text text="{Country}" /> 
@@ -82,8 +84,7 @@
 								</ColumnListItem> 
 							</Table>
 							<core:HTML id="pdfHTMLId">
-								
-							</core:HTML>
+			                </core:HTML>
 							<footer> 
 								<Bar> 
 									<contentRight> 
