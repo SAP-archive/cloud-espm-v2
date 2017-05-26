@@ -57,7 +57,8 @@ public class SalesOrderProcessor {
 		EntityManager em = emf.createEntityManager();
 		try {
 
-			Query query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId =" + salesOrderId);
+			Query query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+			query.setParameter("salesOrderId", salesOrderId);
 			try {
 				SalesOrderHeader so = (SalesOrderHeader) query.getSingleResult();
 				em.getTransaction().begin();
@@ -67,7 +68,8 @@ public class SalesOrderProcessor {
 				em.getTransaction().commit();
 				List<SalesOrderHeader> salesorderlist = null;
 
-				query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId ='" + salesOrderId + "'");
+				query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+				query.setParameter("salesOrderId", salesOrderId);
 				salesorderlist = query.getResultList();
 				return salesorderlist;
 
@@ -96,7 +98,8 @@ public class SalesOrderProcessor {
 		EntityManager em = emf.createEntityManager();
 		try {
 
-			Query query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId =" + salesOrderId);
+			Query query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+			query.setParameter("salesOrderId", salesOrderId);
 			try {
 				SalesOrderHeader so = (SalesOrderHeader) query.getSingleResult();
 				em.getTransaction().begin();
@@ -105,7 +108,8 @@ public class SalesOrderProcessor {
 				em.persist(so);
 				em.getTransaction().commit();
 				List<SalesOrderHeader> salesOrderList = null;
-				query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId ='" + salesOrderId + "'");
+				query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+				query.setParameter("salesOrderId", salesOrderId);
 				salesOrderList = query.getResultList();
 				return salesOrderList;
 			} catch (NoResultException e) {

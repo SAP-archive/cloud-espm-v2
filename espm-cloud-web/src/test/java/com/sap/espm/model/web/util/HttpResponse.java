@@ -22,6 +22,7 @@ public class HttpResponse {
 			if (responseCode != 401) {
 				stream = connection.getInputStream();
 				body = StreamHelper.readStreamContent(stream);
+				stream.close();
 			} else {
 				body = responseMessage;
 			}

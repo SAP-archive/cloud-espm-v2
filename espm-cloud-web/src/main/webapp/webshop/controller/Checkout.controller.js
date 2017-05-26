@@ -196,7 +196,7 @@ sap.ui.define([
 			
 			if(validationFlag === false || firstName.length === 0 || lastName.length === 0 || birthDate.length === 0 || eMail.length === 0 || street.length === 0 || city.length === 0 || postalCode.length === 0 || country.length === 0 ||
 					name.length === 0 || cardNumber.length === 0 || secNumber.length === 0 || (!street.match(myInteger)) === true || (!postalCode.match(myInteger)) === true || (name.match(myInteger)) === true || (!cardNumber.match(myInteger)) === true ||
-					firstName.match(myInteger) === true || lastName.match(myInteger) === true || city.match(myInteger) === true || country.match(myInteger) === true)
+					firstName.match(myInteger) === true || lastName.match(myInteger) === true || city.match(myInteger) === true || country.match(myInteger) === true || (!houseNumber.match(myInteger)) === true)
 			{
 				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
 			}
@@ -206,6 +206,7 @@ sap.ui.define([
 				sap.ui.getCore().byId("dateBirth").setText(this.byId("birthId").getValue());
 				sap.ui.getCore().byId("emailAddress").setText(this.byId("newEmailId").getValue());
 				sap.ui.getCore().byId("street").setText(this.byId("streetId").getValue());
+				sap.ui.getCore().byId("houseNumber").setText(this.byId("houseNumberId").getValue());
 				sap.ui.getCore().byId("city").setText(this.byId("cityId").getValue());
 				sap.ui.getCore().byId("postalCode").setText(this.byId("postalId").getValue());
 				sap.ui.getCore().byId("country").setText(this.byId("countryListId").getSelectedKey());
@@ -253,6 +254,7 @@ sap.ui.define([
 				"EmailAddress":this.byId("newEmailId").getValue().toLowerCase(),
 				"LastName":this.byId("lastnameId").getValue(),
 				"FirstName":this.byId("firstNameId").getValue(),
+				"HouseNumber":this.byId("houseNumberId").getValue(),
 				"DateOfBirth":date,
 				"PostalCode":this.byId("postalId").getValue(),
 				"City":this.byId("cityId").getValue(),
@@ -484,6 +486,7 @@ sap.ui.define([
 						that._wizard.validateStep(that.getView().byId("creditCardStep"));
 	 					that.byId("newEmailId").setValue(that.byId("existingEmailId").getValue());
 	 					that.byId("firstNameId").setValue("");
+	 					that.byId("houseNumberId").setValue("");
 	 					that.byId("lastnameId").setValue("");
 	 					that.byId("newEmailId").setValue("");
 	 					that.byId("birthId").setValue("");
@@ -499,6 +502,7 @@ sap.ui.define([
 	 				else{
 	 					var result = data.results;
 	 					that.byId("firstNameId").setValue(result[0].FirstName);
+	 					that.byId("houseNumberId").setValue(result[0].HouseNumber);
 	 					that.byId("lastnameId").setValue(result[0].LastName);
 	 					that.byId("newEmailId").setValue(result[0].EmailAddress);
 	 					that.byId("birthId").setDateValue(new Date(result[0].DateOfBirth));
@@ -570,7 +574,7 @@ sap.ui.define([
 		},
 		
 		checkCustomerInformation: function(){
-			if(this.byId("firstNameId").getValue().length === 0 || this.byId("lastnameId").getValue().length === 0 || this.byId("birthId").getValue().length === 0 || this.byId("newEmailId").getValue().length === 0 ||
+			if(this.byId("firstNameId").getValue().length === 0 || this.byId("houseNumberId").getValue().length === 0 || this.byId("lastnameId").getValue().length === 0 || this.byId("birthId").getValue().length === 0 || this.byId("newEmailId").getValue().length === 0 ||
 					this.byId("streetId").getValue().length === 0 || this.byId("cityId").getValue().length === 0 || this.byId("postalId").getValue().length === 0 || this.byId("countryListId").getSelectedKey().length === 0){
 				
 				this._wizard.invalidateStep(this.getView().byId("creditCardStep"));
@@ -593,6 +597,7 @@ sap.ui.define([
 		clearNewForm: function(){
 			this.byId("newEmailId").setValue("");
 			this.byId("firstNameId").setValue("");
+			this.byId("houseNumberId").setValue("");
 			this.byId("lastnameId").setValue("");
 			this.byId("newEmailId").setValue("");
 			this.byId("birthId").setValue("");
