@@ -97,6 +97,7 @@
 						<Label text="{i18n>review.postalCode}"/>
 						<Text id="postalCode" text=""/>
 						<Label text="{i18n>review.country}"/>
+						<Text id="country" text=""/>
 					</form:content>
 				</form:SimpleForm>
 
