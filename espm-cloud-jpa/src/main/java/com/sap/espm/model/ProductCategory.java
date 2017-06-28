@@ -3,10 +3,17 @@ package com.sap.espm.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ESPM_PRODUCT_CATEGORY")
+@NamedQueries({
+	@NamedQuery(name = "ProductCategory.getAllProductCategories", query = "SELECT pc FROM ProductCategory pc"),
+	@NamedQuery(name = "ProductCategory.getProductCategoryByCategory", query = "SELECT pc FROM ProductCategory pc WHERE pc.category= :category"),
+	@NamedQuery(name = "ProductCategory.getProductCategoryByCategoryName", query = "SELECT pc FROM ProductCategory pc WHERE pc.categoryName= :categoryName")
+})
 public class ProductCategory {
 
 	@Id

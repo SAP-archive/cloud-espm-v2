@@ -74,11 +74,8 @@ public class ProductCategoryTest extends AbstractTest {
 			em.getTransaction().begin();
 
 			// Search for Product category
-			TypedQuery<ProductCategory> query = em
-					.createQuery(
-							"SELECT pc FROM ProductCategory pc WHERE pc.category=:category",
-							ProductCategory.class);
-
+			TypedQuery<ProductCategory> query = em.createNamedQuery("ProductCategory.getProductCategoryByCategory",
+					ProductCategory.class);
 			prodCatResult = query.setParameter("category", prodCategory)
 					.getSingleResult();
 
@@ -167,8 +164,8 @@ public class ProductCategoryTest extends AbstractTest {
 			DataLoader dl = new DataLoader(emf);
 			dl.loadProductCategories(null);
 			// Search for mutiple Product Categories.
-			TypedQuery<ProductCategory> query = em.createQuery(
-					"SELECT pc FROM ProductCategory pc", ProductCategory.class);
+			TypedQuery<ProductCategory> query = em.createNamedQuery("ProductCategory.getAllProductCategories",
+					ProductCategory.class);
 			List<ProductCategory> result = query.getResultList();
 
 			assertTrue(
@@ -189,10 +186,8 @@ public class ProductCategoryTest extends AbstractTest {
 		em.getTransaction().begin();
 		try {
 			// Search for mutiple Product Category.
-			TypedQuery<ProductCategory> query = em
-					.createQuery(
-							"SELECT pc FROM ProductCategory pc WHERE pc.categoryName = :categoryName",
-							ProductCategory.class);
+			TypedQuery<ProductCategory> query = em.createNamedQuery("ProductCategory.getProductCategoryByCategoryName",
+					ProductCategory.class);
 			result = query.setParameter("categoryName", "Trackpad")
 					.getResultList();
 			assertEquals(

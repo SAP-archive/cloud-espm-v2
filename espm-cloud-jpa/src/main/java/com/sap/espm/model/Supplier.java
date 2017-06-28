@@ -5,11 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name = "ESPM_SUPPLIER")
+@NamedQueries({
+	@NamedQuery(name = "Supplier.getAllSuppliers", query = "SELECT s FROM Supplier s"),
+	@NamedQuery(name = "Supplier.getSupplierBySupplierId", query = "SELECT s FROM Supplier s WHERE s.supplierId= :supplierId")
+})
 public class Supplier {
 	/* Supplier ids are generated within a number range starting with 2 */
 	@TableGenerator(name = "SupplierGenerator", table = "ESPM_ID_GENERATOR", pkColumnName = "GENERATOR_NAME", valueColumnName = "GENERATOR_VALUE", pkColumnValue = "Customer", initialValue = 100000000, allocationSize = 100)

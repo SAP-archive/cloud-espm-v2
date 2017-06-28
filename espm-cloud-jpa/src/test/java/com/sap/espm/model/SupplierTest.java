@@ -73,11 +73,8 @@ public class SupplierTest extends AbstractTest {
 			assertTrue("Supplier not created",
 					tf.createSupplier(em, supplierId));
 			// Search for Supplier
-			TypedQuery<Supplier> query = em.createQuery(
-					"SELECT s FROM Supplier s WHERE s.supplierId=:id",
-					Supplier.class);
-
-			supplierAct = query.setParameter("id", supplierId)
+			TypedQuery<Supplier> query = em.createNamedQuery("Supplier.getSupplierBySupplierId", Supplier.class);
+			supplierAct = query.setParameter("supplierId", supplierId)
 					.getSingleResult();
 			assertEquals(
 					"Search via typed query for existing Supplier: Added Supplier not persisted in the database",
@@ -171,8 +168,7 @@ public class SupplierTest extends AbstractTest {
 			DataLoader dl = new DataLoader(emf);
 			dl.loadSuppliers();
 			// Search for mutiple Suppliers.
-			TypedQuery<Supplier> query = em.createQuery(
-					"SELECT s FROM Supplier s", Supplier.class);
+			TypedQuery<Supplier> query = em.createNamedQuery("Supplier.getAllSuppliers", Supplier.class);
 			List<Supplier> result = query.getResultList();
 			assertTrue(
 					"Search for mutiple existing Suppliers: Multiple Suppliers not added",
@@ -194,10 +190,7 @@ public class SupplierTest extends AbstractTest {
 		em.getTransaction().begin();
 		try {
 			// Search for mutiple Suppliers.
-			TypedQuery<Supplier> query = em
-					.createQuery(
-							"SELECT s FROM Supplier s WHERE s.supplierId = :supplierId",
-							Supplier.class);
+			TypedQuery<Supplier> query = em.createNamedQuery("Supplier.getSupplierBySupplierId", Supplier.class);
 			result = query.setParameter("supplierId", "104").getResultList();
 			assertEquals(
 					"Search via typed query for not existing mutiple Suppliers: Suppliers exists in database",

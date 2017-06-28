@@ -68,12 +68,10 @@ public class SalesOrderHeaderTest extends AbstractTest {
 			assertTrue("Sales Order Header not created",
 					tf.createSalesOrderHeader(em, soHeadId));
 			// Search for Sales Order Header.
-			TypedQuery<SalesOrderHeader> query = em
-					.createQuery(
-							"SELECT so FROM SalesOrderHeader so WHERE so.salesOrderId=:id",
-							SalesOrderHeader.class);
+			TypedQuery<SalesOrderHeader> query = em.createNamedQuery("SalesOrderHeader.getSOHBySaledOrderId",
+					SalesOrderHeader.class);
 
-			soHeaderAct = query.setParameter("id", soHeadId).getSingleResult();
+			soHeaderAct = query.setParameter("salesOrderId", soHeadId).getSingleResult();
 
 			assertEquals(
 					"Search via typed query for existing sales order header: Added sales order header not persisted in the database",
@@ -122,10 +120,7 @@ public class SalesOrderHeaderTest extends AbstractTest {
 		em.getTransaction().begin();
 		try {
 			// Search for mutiple SO Headers.
-			TypedQuery<SalesOrderHeader> query = em
-					.createQuery(
-							"SELECT so FROM SalesOrderHeader so WHERE so.customerId = :customerId",
-							SalesOrderHeader.class);
+			TypedQuery<SalesOrderHeader> query = em.createNamedQuery("SalesOrderHeader.getSOHByCustomerId", SalesOrderHeader.class);
 			result = query.setParameter("customerId", "98765").getResultList();
 			assertEquals(
 					"Search via typed query for not existing mutiple Sales Order Headers: Sales Order Headers exists in database",
