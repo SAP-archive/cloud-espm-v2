@@ -70,11 +70,9 @@ public class ProductTest extends AbstractTest {
 			em.getTransaction().begin();
 
 			// Search for Product
-			TypedQuery<Product> query = em.createQuery(
-					"SELECT p FROM Product p WHERE p.productId=:id",
-					Product.class);
+			TypedQuery<Product> query = em.createNamedQuery("Product.getProductByProductId", Product.class);
 
-			prodResult = query.setParameter("id", prodId).getSingleResult();
+			prodResult = query.setParameter("productId", prodId).getSingleResult();
 
 			assertEquals(
 					"Search via typed query for existing product: Added Product not persisted in the database",
@@ -155,8 +153,7 @@ public class ProductTest extends AbstractTest {
 			DataLoader dl = new DataLoader(emf);
 			dl.loadProducts(null);
 			// Search for mutiple Products.
-			TypedQuery<Product> query = em.createQuery(
-					"SELECT p FROM Product p", Product.class);
+			TypedQuery<Product> query = em.createNamedQuery("Product.getAllProducts", Product.class);
 			List<Product> result = query.getResultList();
 
 			assertTrue(
@@ -177,9 +174,7 @@ public class ProductTest extends AbstractTest {
 		em.getTransaction().begin();
 		try {
 			// Search for mutiple Products.
-			TypedQuery<Product> query = em.createQuery(
-					"SELECT p FROM Product p WHERE p.category = :category",
-					Product.class);
+			TypedQuery<Product> query = em.createNamedQuery("Product.getProductByCategory", Product.class);
 			result = query.setParameter("category", "Trackpad").getResultList();
 			assertEquals(
 					"Search via typed query for not existing mutiple products: Product exists in database",

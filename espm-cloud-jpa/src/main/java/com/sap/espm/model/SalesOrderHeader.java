@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -23,6 +25,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "ESPM_SALES_ORDER_HEADER")
+@NamedQueries({
+	@NamedQuery(name = "SalesOrderHeader.getSOHBySaledOrderId", query = "SELECT soh FROM SalesOrderHeader soh WHERE soh.salesOrderId= :salesOrderId"),
+	@NamedQuery(name = "SalesOrderHeader.getSOHByCustomerId", query = "SELECT soh FROM SalesOrderHeader soh WHERE soh.customerId= :customerId")
+})
 public class SalesOrderHeader {
 
 	/* Sales order ids are generated within a number range starting with 5 */

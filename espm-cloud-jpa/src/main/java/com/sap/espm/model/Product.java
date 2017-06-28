@@ -13,6 +13,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,6 +28,11 @@ import com.sap.espm.model.util.Utility;
 
 @Entity
 @Table(name = "ESPM_PRODUCT")
+@NamedQueries({
+	@NamedQuery(name = "Product.getProductByProductId", query = "SELECT p FROM Product p where p.productId = :productId"),
+	@NamedQuery(name = "Product.getAllProducts", query = "SELECT p FROM Product p"),
+	@NamedQuery(name = "Product.getProductByCategory", query = "SELECT p FROM Product p WHERE p.category = :category")
+})
 public class Product {
 
 	transient private static Map<String, BigDecimal> prices = null;

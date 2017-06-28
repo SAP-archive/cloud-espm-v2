@@ -70,10 +70,8 @@ public class StockTest extends AbstractTest {
 			// Add Stock
 			assertTrue("Stock not created", tf.createStock(em, productId));
 			// Search for Stock
-			TypedQuery<Stock> query = em.createQuery(
-					"SELECT s FROM Stock s WHERE s.productId=:id", Stock.class);
-
-			productAct = query.setParameter("id", productId).getSingleResult();
+			TypedQuery<Stock> query = em.createNamedQuery("Stock.getStockByProductId", Stock.class);
+			productAct = query.setParameter("productId", productId).getSingleResult();
 			assertEquals(
 					"Search via typed query for existing Stock: Added Stock is not persisted in the database",
 					productId, productAct.getProductId());
@@ -156,8 +154,7 @@ public class StockTest extends AbstractTest {
 			List<Product> products = dl.loadProducts(null);
 			dl.loadStock(products);
 			// Search for mutiple Stocks.
-			TypedQuery<Stock> query = em.createQuery("SELECT st FROM Stock st",
-					Stock.class);
+			TypedQuery<Stock> query = em.createNamedQuery("Stock.getAllStocks", Stock.class);
 			List<Stock> result = query.getResultList();
 
 			assertTrue(
@@ -178,9 +175,7 @@ public class StockTest extends AbstractTest {
 		em.getTransaction().begin();
 		try {
 			// Search for mutiple stocks.
-			TypedQuery<Stock> query = em.createQuery(
-					"SELECT st FROM Stock st WHERE st.productId = :productId",
-					Stock.class);
+			TypedQuery<Stock> query = em.createNamedQuery("Stock.getStockByProductId", Stock.class);
 			result = query.setParameter("productId", "HZ-1000").getResultList();
 			assertEquals(
 					"Search via typed query for not existing mutiple stocks: Stocks exists in database",

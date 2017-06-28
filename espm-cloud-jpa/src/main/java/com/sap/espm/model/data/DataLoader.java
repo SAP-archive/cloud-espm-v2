@@ -62,14 +62,14 @@ public class DataLoader {
 		List<Product> resProd = null;
 		try {
 			em.getTransaction().begin();
-			queryProd = em.createQuery("SELECT p FROM Product p", Product.class);
+			queryProd = em.createNamedQuery("Product.getAllProducts", Product.class);
 			resProd = queryProd.getResultList();
 			if (resProd.size() > 5) {
 				logger.info(resProd.size() + " Products already available in the db");
 			} else {
 				new XMLParser().readProduct(em, "com/sap/espm/model/data/Products.xml", suppliers);
 				em.getTransaction().commit();
-				queryProd = em.createQuery("SELECT p FROM Product p", Product.class);
+				queryProd = em.createNamedQuery("Product.getAllProducts", Product.class);
 				resProd = queryProd.getResultList();
 				logger.info(resProd.size() + " Products loaded into the db");
 			}
@@ -96,14 +96,14 @@ public class DataLoader {
 		List<CustomerReview> resReview = null;
 		try {
 			em.getTransaction().begin();
-			queryReviews = em.createQuery("SELECT p FROM CustomerReview p", CustomerReview.class);
+			queryReviews = em.createNamedQuery("CustomerReview.getAllCustomerReviews", CustomerReview.class);
 			resReview = queryReviews.getResultList();
 			if (resReview.size() > 5) {
 				logger.info(resReview.size() + " Customer Reviews already available in the db");
 			} else {
 				new XMLParser().readCustomerReview(em, "com/sap/espm/model/data/CustomerReviews.xml", products);
 				em.getTransaction().commit();
-				queryReviews = em.createQuery("SELECT p FROM CustomerReview p", CustomerReview.class);
+				queryReviews = em.createNamedQuery("CustomerReview.getAllCustomerReviews", CustomerReview.class);
 				resReview = queryReviews.getResultList();
 				logger.info(resReview.size() + " Products loaded into the db");
 			}
@@ -126,14 +126,14 @@ public class DataLoader {
 		List<Customer> resBP;
 		try {
 			em.getTransaction().begin();
-			queryBP = em.createQuery("SELECT c FROM Customer c", Customer.class);
+			queryBP = em.createNamedQuery("Customer.getAllCustomers",Customer.class);
 			resBP = queryBP.getResultList();
 			if (resBP.size() > 5) {
 				logger.info(resBP.size() + " Customers already available in the db");
 			} else {
 				new XMLParser().readCustomers(em, "com/sap/espm/model/data/Business_Partners.xml");
 				em.getTransaction().commit();
-				queryBP = em.createQuery("SELECT c FROM Customer c", Customer.class);
+				queryBP = em.createNamedQuery("Customer.getAllCustomers",Customer.class);
 				resBP = queryBP.getResultList();
 				logger.info(resBP.size() + " customers loaded into the db");
 			}
@@ -153,14 +153,14 @@ public class DataLoader {
 		List<Supplier> resBP = null;
 		try {
 			em.getTransaction().begin();
-			queryBP = em.createQuery("SELECT s FROM Supplier s", Supplier.class);
+			queryBP = em.createNamedQuery("Supplier.getAllSuppliers", Supplier.class);
 			resBP = queryBP.getResultList();
 			if (resBP.size() > 5) {
 				logger.info(resBP.size() + " Suppliers already available in the db");
 			} else {
 				new XMLParser().readSuppliers(em, "com/sap/espm/model/data/Business_Partners.xml");
 				em.getTransaction().commit();
-				queryBP = em.createQuery("SELECT s FROM Supplier s", Supplier.class);
+				queryBP = em.createNamedQuery("Supplier.getAllSuppliers", Supplier.class);
 				resBP = queryBP.getResultList();
 				logger.info(resBP.size() + " suppliers loaded into the db");
 			}
@@ -186,14 +186,14 @@ public class DataLoader {
 		List<ProductCategory> resPC;
 		try {
 			em.getTransaction().begin();
-			queryPC = em.createQuery("SELECT pc FROM ProductCategory pc", ProductCategory.class);
+			queryPC = em.createNamedQuery("ProductCategory.getAllProductCategories", ProductCategory.class);
 			resPC = queryPC.getResultList();
 			if (resPC.size() > 5) {
 				logger.info(resPC.size() + " Product Categories already available in the db");
 			} else {
 				new XMLParser().readProductCategory(em, "com/sap/espm/model/data/Product_Categories.xml", products);
 				em.getTransaction().commit();
-				queryPC = em.createQuery("SELECT pc FROM ProductCategory pc", ProductCategory.class);
+				queryPC = em.createNamedQuery("ProductCategory.getAllProductCategories", ProductCategory.class);
 				resPC = queryPC.getResultList();
 				logger.info(resPC.size() + " Product Categories loaded into the db");
 			}
@@ -222,7 +222,7 @@ public class DataLoader {
 		int lenProdName;
 		try {
 			em.getTransaction().begin();
-			queryStock = em.createQuery("SELECT st FROM Stock st", Stock.class);
+			queryStock = em.createNamedQuery("Stock.getAllStocks", Stock.class);
 			resStock = queryStock.getResultList();
 			if (resStock.size() > 5) {
 				logger.info(resStock.size() + " Stock already available in the db");
@@ -248,7 +248,7 @@ public class DataLoader {
 				}
 
 				em.getTransaction().commit();
-				queryStock = em.createQuery("SELECT st FROM Stock st", Stock.class);
+				queryStock = em.createNamedQuery("Stock.getAllStocks", Stock.class);
 				resStock = queryStock.getResultList();
 				logger.info(resStock.size() + " Stocks loaded into the db");
 			}

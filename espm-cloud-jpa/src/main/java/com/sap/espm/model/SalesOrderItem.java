@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,6 +19,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "ESPM_SALES_ORDER_ITEM")
+@NamedQueries({
+	@NamedQuery(name = "SalesOrderItem.getSOIBySalesOrderItemId", query = "SELECT soi FROM SalesOrderItem soi WHERE soi.id.salesOrderId= :id"),
+	@NamedQuery(name = "SalesOrderItem.getSOIByCurrencyCode", query = "SELECT soi FROM SalesOrderItem soi WHERE soi.currencyCode = :currencyCode")
+})
 public class SalesOrderItem {
 
 	private static final BigDecimal TAX_AMOUNT_FACTOR = new BigDecimal("0.19");
