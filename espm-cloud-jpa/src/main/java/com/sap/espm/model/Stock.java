@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -16,6 +18,10 @@ import com.sap.espm.model.util.Utility;
 
 @Entity
 @Table(name = "ESPM_STOCK")
+@NamedQueries({
+	@NamedQuery(name = "Stock.getAllStocks", query = "SELECT st FROM Stock st"),
+	@NamedQuery(name = "Stock.getStockByProductId", query = "SELECT s FROM Stock s WHERE s.productId= :productId")
+})
 public class Stock {
 
 	@Id

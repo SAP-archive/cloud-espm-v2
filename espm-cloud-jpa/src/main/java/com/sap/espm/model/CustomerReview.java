@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +19,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "ESPM_EXTENSION_CUSTOMER_REVIEW")
+@NamedQuery(name = "CustomerReview.getAllCustomerReviews", query = "SELECT cr FROM CustomerReview cr")
 public class CustomerReview implements Serializable {
 
 	private static final long serialVersionUID = 1L;

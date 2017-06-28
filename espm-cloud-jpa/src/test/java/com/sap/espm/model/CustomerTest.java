@@ -70,11 +70,8 @@ public class CustomerTest extends AbstractTest {
 			assertTrue("Business Partner not created",
 					tf.createCustomer(em, bupaId));
 			// Search for Business Partner
-			TypedQuery<Customer> query = em.createQuery(
-					"SELECT bp FROM Customer bp WHERE bp.customerId=:id",
-					Customer.class);
-
-			bupaAct = query.setParameter("id", bupaId).getSingleResult();
+			TypedQuery<Customer> query = em.createNamedQuery("Customer.getCustomerByCustomerId", Customer.class);
+			bupaAct = query.setParameter("customerId", bupaId).getSingleResult();
 			assertEquals(
 					"Search via typed query for existing Business Partner: Added Business Partner not persisted in the database",
 					bupaId, bupaAct.getCustomerId());
@@ -157,8 +154,7 @@ public class CustomerTest extends AbstractTest {
 			DataLoader dl = new DataLoader(emf);
 			dl.loadCustomers();
 			// Search for mutiple Business Partners.
-			TypedQuery<Customer> query = em.createQuery(
-					"SELECT bp FROM Customer bp", Customer.class);
+			TypedQuery<Customer> query = em.createNamedQuery("Customer.getAllCustomers", Customer.class);
 			List<Customer> result = query.getResultList();
 			assertTrue(
 					"Search for mutiple existing Business Partners: Multiple Business Partners not added",
@@ -178,10 +174,7 @@ public class CustomerTest extends AbstractTest {
 		em.getTransaction().begin();
 		try {
 			// Search for mutiple Customers.
-			TypedQuery<Customer> query = em
-					.createQuery(
-							"SELECT bp FROM Customer bp WHERE bp.customerId = :customerId",
-							Customer.class);
+			TypedQuery<Customer> query = em.createNamedQuery("Customer.getCustomerByCustomerId", Customer.class);
 			result = query.setParameter("customerId", "104").getResultList();
 			assertEquals(
 					"Search via typed query for not existing mutiple Business Partners: Business Partners exists in database",
