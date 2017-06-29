@@ -62,7 +62,7 @@ public class SalesOrderProcessor {
 		EntityManager em = emf.createEntityManager();
 		try {
 
-			Query query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+			Query query = em.createNamedQuery("SalesOrderHeader.getSOHBySaledOrderId");
 			query.setParameter("salesOrderId", salesOrderId);
 			try {
 				SalesOrderHeader so = (SalesOrderHeader) query.getSingleResult();
@@ -73,7 +73,7 @@ public class SalesOrderProcessor {
 				em.getTransaction().commit();
 				List<SalesOrderHeader> salesorderlist = null;
 
-				query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+				query = em.createNamedQuery("SalesOrderHeader.getSOHBySaledOrderId");
 				query.setParameter("salesOrderId", salesOrderId);
 				salesorderlist = query.getResultList();
 				return salesorderlist;
@@ -103,8 +103,9 @@ public class SalesOrderProcessor {
 		EntityManager em = emf.createEntityManager();
 		try {
 
-			Query query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+			Query query = em.createNamedQuery("SalesOrderHeader.getSOHBySaledOrderId");
 			query.setParameter("salesOrderId", salesOrderId);
+			
 			try {
 				SalesOrderHeader so = (SalesOrderHeader) query.getSingleResult();
 				em.getTransaction().begin();
@@ -113,7 +114,7 @@ public class SalesOrderProcessor {
 				em.persist(so);
 				em.getTransaction().commit();
 				List<SalesOrderHeader> salesOrderList = null;
-				query = em.createQuery("SELECT s FROM SalesOrderHeader s WHERE s.salesOrderId = :salesOrderId");
+				query = em.createNamedQuery("SalesOrderHeader.getSOHBySaledOrderId");
 				query.setParameter("salesOrderId", salesOrderId);
 				salesOrderList = query.getResultList();
 				return salesOrderList;
@@ -144,8 +145,8 @@ public class SalesOrderProcessor {
 		List<SalesOrderItem> soiList = null;
 		try {
 
-			Query query = em.createQuery("SELECT soi FROM SalesOrderItem soi where soi.id.salesOrderId= :salesOrderId");
-			query.setParameter("salesOrderId", salesOrderId);
+			Query query = em.createNamedQuery("SalesOrderItem.getSOIBySalesOrderItemId");
+			query.setParameter("id", salesOrderId);
 
 			try {
 
@@ -153,8 +154,7 @@ public class SalesOrderProcessor {
 				if (soiList != null && soiList.size() >= 1) {
 
 					for (SalesOrderItem salesOrderItem : soiList) {
-						query = em.createQuery(
-								"SELECT product FROM Product product where product.productId = :productId");
+						query = em.createNamedQuery("Product.getProductByProductId");
 						query.setParameter("productId", salesOrderItem.getProductId());
 						Product product = (Product) query.getSingleResult();
 						salesOrderItem.setProduct(product);
@@ -241,19 +241,16 @@ public class SalesOrderProcessor {
 		List<SalesOrderItem> itemList = new ArrayList<>();
 		try {
 			Query querySOItems;
-			;
-			Query queryCustomer = em.createQuery("SELECT c FROM Customer c where c.emailAddress= :emailAddress");
+			Query queryCustomer = em.createNamedQuery("Customer.getCustomerByEmailAddress");
 			queryCustomer.setParameter("emailAddress", emailAddress);
 			Customer c = (Customer) queryCustomer.getSingleResult();
 			String customerId = c.getCustomerId();
-			Query querySOHeader = em
-					.createQuery("SELECT soh FROM SalesOrderHeader soh where soh.customerId= :customerId");
+			Query querySOHeader = em.createNamedQuery("SalesOrderHeader.getSOHByCustomerId");
 			querySOHeader.setParameter("customerId", customerId);
 			orderList = querySOHeader.getResultList();
 			for (SalesOrderHeader salesOrderHeader : orderList) {
-				querySOItems = em
-						.createQuery("SELECT soi FROM SalesOrderItem soi where soi.id.salesOrderId= :salesOrderId");
-				querySOItems.setParameter("salesOrderId", salesOrderHeader.getSalesOrderId());
+				querySOItems = em.createNamedQuery("SalesOrderItem.getSOIBySalesOrderItemId");
+				querySOItems.setParameter("id", salesOrderHeader.getSalesOrderId());
 				itemList = querySOItems.getResultList();
 				salesOrderHeader.setSalesOrderItems(itemList);
 				salesOrderHeader.setCustomer(c);

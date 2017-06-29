@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -16,6 +18,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "ESPM_CUSTOMER")
+@NamedQueries({
+	@NamedQuery(name = "Customer.getCustomerByEmailAddress", query = "SELECT c FROM Customer c WHERE c.emailAddress = :emailAddress"),
+	@NamedQuery(name = "Customer.getCustomerByCustomerId", query = "SELECT cid FROM Customer cid WHERE cid.customerId= :customerId"),
+	@NamedQuery(name = "Customer.getAllCustomers", query = "SELECT c FROM Customer c")
+})
 public class Customer {
 
 	/* Customer ids are generated within a number range starting with 1 */

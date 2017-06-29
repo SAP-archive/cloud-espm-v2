@@ -449,7 +449,7 @@ sap.ui.define([
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var buttonIndex = that.getView().byId("radioButtonGroupId").getSelectedIndex();
 			var sFunctionImportEmailParam;
-			if(buttonIndex === 0){
+			if(buttonIndex === 1){
 				if(that.byId("newEmailId").getValue().length !== 0){
 					sFunctionImportEmailParam = "EmailAddress='" + that.byId("newEmailId").getValue().toLowerCase() + "'";
 				}

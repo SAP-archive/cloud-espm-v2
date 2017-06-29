@@ -69,11 +69,8 @@ public class SalesOrderItemTest extends AbstractTest {
 			// Add Sales Order Item
 			assertTrue("Sales Order Item", tf.createSalesOrderItem(em, soId));
 			// Search for Sales Order Item
-			TypedQuery<SalesOrderItem> query = em
-					.createQuery(
-							"SELECT soi FROM SalesOrderItem soi WHERE soi.id.salesOrderId=:id",
-							SalesOrderItem.class);
-
+			TypedQuery<SalesOrderItem> query = em.createNamedQuery("SalesOrderItem.getSOIBySalesOrderItemId",
+					SalesOrderItem.class);
 			soItemAct = query.setParameter("id", soId).getSingleResult();
 
 			assertEquals(
@@ -158,10 +155,8 @@ public class SalesOrderItemTest extends AbstractTest {
 		em.getTransaction().begin();
 		try {
 			// Search for mutiple SO Item.
-			TypedQuery<SalesOrderItem> query = em
-					.createQuery(
-							"SELECT soi FROM SalesOrderItem soi WHERE soi.currencyCode = :currencyCode",
-							SalesOrderItem.class);
+			TypedQuery<SalesOrderItem> query = em.createNamedQuery("SalesOrderItem.getSOIByCurrencyCode",
+					SalesOrderItem.class);
 			result = query.setParameter("currencyCode", "INV").getResultList();
 			assertEquals(
 					"Search via typed query for not existing mutiple Sales Order Items: Sales Order Items exists in database",

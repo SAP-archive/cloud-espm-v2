@@ -53,7 +53,7 @@ public class CustomerProcessor {
 		List<Customer> custList = null;
 		try {
 
-			Query query = em.createQuery("SELECT c FROM Customer c WHERE c.emailAddress = :emailAddress");
+			Query query = em.createNamedQuery("Customer.getCustomerByEmailAddress");
 			query.setParameter("emailAddress", emailAddress);
 			try {
 
