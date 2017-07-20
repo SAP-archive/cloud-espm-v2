@@ -589,7 +589,7 @@ sap.ui.define([
 						this.byId("houseNumberId").getValue().length === 0 || 
 						this.byId("cityId").getValue().length === 0 || 
 						this.byId("postalId").getValue().length === 0 || 
-						this.byId("countryListId").getSelectedKey().length === 0)
+						this.byId("countryListId").getSelectedKey().length === 0){
 				this._wizard.invalidateStep(this.getView().byId("creditCardStep"));
 			} else {
 
