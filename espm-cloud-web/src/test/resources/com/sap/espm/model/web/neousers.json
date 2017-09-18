@@ -1,0 +1,25 @@
+{
+  "Users": [
+    {
+      "UID": "ret",
+      "Password": "{SSHA}6WoSDJ3CanPf3CGUhUztNK9d5VTlaHnEpm0\u003d",
+      "Roles": [
+        "Retailer"
+      ],
+      "Attributes": [
+        {
+          "attributeName": "firstname",
+          "attributeValue": ""
+        },
+        {
+          "attributeName": "lastname",
+          "attributeValue": ""
+        },
+        {
+          "attributeName": "email",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

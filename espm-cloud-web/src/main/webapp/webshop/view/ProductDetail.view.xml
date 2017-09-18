@@ -1,0 +1,111 @@
+<mvc:View controllerName="com.sap.espm.shop.controller.ProductDetail" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:shop="com.sap.espm.shop.control" xmlns="sap.m">
+			<Page id="productDetailsPage" navButtonPress="onNavBack" showNavButton="true" title="{i18n>detail.product}">
+				<headerContent>
+					<Button icon="sap-icon://cart" id="btnProductHeader"
+						press="onShoppingCartPressed" text="{TotalQuantity}" tooltip="{i18n>detail.cart}"/>
+				</headerContent>
+				<content>
+					<ObjectHeader backgroundDesign="Translucent" icon="/espm-cloud-web/images/{EspmModel>PictureUrl}" iconActive="true" iconAlt="{i18n>xfld.productImage}" iconDensityAware="false"
+						iconPress="onImagePressed" id="pd_header" markFavorite="{IsFavoriteOfCurrentUser}"
+						number="{path : 'EspmModel>Price', formatter:'.formatter.formatAmount'}" numberUnit="{EspmModel>CurrencyCode}" responsive="true" showMarkers="true"
+						title="{EspmModel>Name}">
+						<statuses>
+							<ObjectStatus id="availabilityStatus" state="{= ${StockQuantity} &lt; 1 ? 'Error' : 'Success' }"
+								text="{path: 'EspmModel>StockQuantity'}"/>
+						</statuses>
+						<attributes>
+							<ObjectAttribute id="categoryAttribute" text="{EspmModel>CategoryName}" title="{i18n>detail.mainCategory}"/>
+							<ObjectAttribute id="subCategoryAttribute" text="{EspmModel>Category}" title="{i18n>detail.subCategory}"/>
+						</attributes>
+					</ObjectHeader>
+				<core:ExtensionPoint name="extensionAfterObjectHeader"/>
+			<!-- Form for Product Details -->
+				<f:SimpleForm class="sapUiResponsiveMargin sapUiForceWidthAuto" columnsL="2" columnsM="2" editable="false" emptySpanL="0" emptySpanM="0"
+						id="productDetailForm" labelSpanL="4" labelSpanM="4" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024"
+						title="{i18n>detail.productDetails}">
+					<f:content>
+						<core:Title id="generalDataTitle" text="{i18n>detail.generalInformation}"/>
+						<Label id="productIDLbl" text="{i18n>detail.productId}"/>
+						<Text id="productId" text="{EspmModel>ProductId}"/>
+						<Label id="descriptionLbl" text="{i18n>detail.description}"/>
+						<Text id="descriptionTxt" text="{EspmModel>LongDescription}"/>
+						<Label id="supplierLbl" text="{i18n>detail.supplierInfo}"/>
+						<Link class="sapUiForceWidthAuto" id="supplierLink" press="onSupplierPressed" text="ITelo"/>
+						<!-- <Label id="ratingLbl" text="{i18n>xfld.reviews}"></Label>
+						<shop:RatingAndCount enabled="true" iconSize="1rem" id="ratingCount" maxRatingValue="5" press="onRatingPressed" ratingCount="{RatingCount}"
+							value="{AverageRating}" verticalAdjustment="-15" verticalAlignContent="true"/> -->
+						<core:Title id="technicalDataTitle" text="{i18n>detail.technicalData}"/>
+						<Label id="quantityUnitLbl" text="{i18n>detail.unitOfMeasure}"/>
+						<Text id="quantityUnitTxt" text="{EspmModel>QuantityUnit}"/>
+						<Label id="depthLbl" text="{i18n>detail.length}"/>
+						<Text id="depthTxt" text = "{EspmModel>DimensionDepth} m"/>
+							<!--text="{parts:[{path: 'DimensionDepth', type: 'sap.ui.model.type.Float', formatOptions: {style: 'long'}}], formatter: '.formatter.formatMeasure' }"/>-->
+						<Label id="widthLbl" text="{i18n>detail.width}"/>
+						<Text id="widthTxt" text = "{EspmModel>DimensionWidth} m"/>
+							<!--text="{parts:[{path: 'DimensionWidth' , type: 'sap.ui.model.type.Float', formatOptions: {style: 'long'}}], formatter: '.formatter.formatMeasure' }"/>-->
+						<Label id="heightLbl" text="{i18n>detail.height}"/>
+						<Text id="heightTxt" text = "{EspmModel>DimensionHeight} m"/>
+							<!--text="{parts:[{path: 'DimensionHeight', type: 'sap.ui.model.type.Float', formatOptions: {style: 'long'}}], formatter: '.formatter.formatMeasure' }"/>-->
+						<Label id="weightLbl" text="{i18n>detail.weight}"/>
+						<Text id="weightTxt" text = "{EspmModel>Weight} kg"/>
+							<!--text="{parts:[{path: 'Weight', type: 'sap.ui.model.type.Float', formatOptions: {style: 'long'}}, {path: 'WeightUnit'}], formatter: '.formatter.formatMeasure' }"/>-->
+					</f:content>
+				</f:SimpleForm>
+				<core:ExtensionPoint name="extensionAfterForm"/>
+					<Table class="sapUiResponsiveMargin" growing="true" growingScrollToLoad="true" id="reviewTable" items="{}"
+						noDataText="{i18n>detail.noDataReviews}" width="auto">
+					<headerToolbar>
+						<Toolbar id="tableHeaderBar">
+							<Title class="sapMH4FontSize" id="reviewLbl" text="{i18n>detail.reviews}"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://sort" id="btnSettings" press="onTableSettingsPressed" tooltip="{i18n>detail.sort}"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+					<!-- Rating Indicator -->
+						<Column demandPopin="true" hAlign="Left" id="ratingIndicatorColumn" minScreenWidth="Tablet" popinDisplay="Inline" vAlign="Top" width="6rem">
+							<header>
+								<Label id="ratingIndicatorLbl" text="{i18n>detail.rating}"/>
+							</header>
+						</Column>
+						<!-- Name and Date -->
+						<Column demandPopin="true" hAlign="Left" id="nameAndDateColumn" minScreenWidth="Tablet" vAlign="Top" width="20%">
+							<header>
+								<Label id="nameLbl" text="{i18n>detail.name}"/>
+							</header>
+						</Column>
+						<!-- Comment -->
+						<Column demandPopin="true" hAlign="Left" id="commentColumn" minScreenWidth="Tablet" vAlign="Top" width="55%">
+							<header>
+								<Label id="commentLbl" text="{i18n>detail.comment}"/>
+							</header>
+						</Column>
+						<!-- Links for Helpful, Edit and Delete -->
+						<Column demandPopin="true" hAlign="Left" id="linksColumn" minScreenWidth="Tablet" vAlign="Top" width="12rem"/>
+					</columns>
+					<ColumnListItem id="reviewListItem">
+						<cells >
+							<!-- Rating Indicator -->
+							<RatingIndicator class="sapMTableContentMargin" enabled="false" iconSize='0.875rem' id="ratingIndicatorControl" maxValue="5"
+								value="{path:'EspmModel>Rating',	formatter:'.formatter.formatRating'}"/>
+							<!-- Name and Date -->
+							<ObjectIdentifier class="sapMTableContentMargin" id="nameAndDateObjIdent"
+								text="{path:'EspmModel>ChangedAt', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true, parseAsString: true} }"
+								title="{EspmModel>FirstName}"/>
+							<!-- Comment -->
+							<Text class="sapMTableContentMargin" id="commentTxt" text="{EspmModel>Comment}"/>
+						</cells>
+					</ColumnListItem>
+				</Table>
+			</content>
+			<footer>
+			<OverflowToolbar id="productDetailFooter">
+				<ToolbarSpacer/>
+				<Button id="btnAddToCart" press="onAddToCartPressed" text="{i18n>detail.addToCart}" type="Emphasized"/>
+				<Button id="btnReview" press="onEditReviewPressed" text="{i18n>detail.writeReview}"/>
+			</OverflowToolbar>
+		</footer>
+		</Page>
+</mvc:View>

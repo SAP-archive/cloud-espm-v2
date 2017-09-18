@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<product_category_data>
+	<product_category>
+		<main_category>TV/Video/HiFi</main_category>
+		<category>Beamers</category>
+	</product_category>
+	<product_category>
+		<main_category>TV/Video/HiFi</main_category>
+		<category>TV flat screens</category>
+	</product_category>
+	<product_category>
+		<main_category>TV/Video/HiFi</main_category>
+		<category>Portable Players</category>
+	</product_category>
+	<product_category>
+		<main_category>TV/Video/HiFi</main_category>
+		<category>MP3-Players</category>
+	</product_category>
+	<product_category>
+		<main_category>Printers and Scanners</main_category>
+		<category>Ink jet printers</category>
+	</product_category>
+	<product_category>
+		<main_category>Printers and Scanners</main_category>
+		<category>Laser printers</category>
+	</product_category>
+	<product_category>
+		<main_category>Printers and Scanners</main_category>
+		<category>Multifunction printers</category>
+	</product_category>
+	<product_category>
+		<main_category>Printers and Scanners</main_category>
+		<category>Scanners</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer systems</main_category>
+		<category>Notebooks</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer systems</main_category>
+		<category>PCs</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer systems</main_category>
+		<category>Servers</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer systems</main_category>
+		<category>Computer system accessories</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Flat screens</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Graphic cards</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Keyboards</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Mousepads</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Mice</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Speakers</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Headsets</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>Telecommunication</category>
+	</product_category>
+	<product_category>
+		<main_category>Computer components</main_category>
+		<category>PDAs/Organizers</category>
+	</product_category>
+	<product_category>
+		<main_category>Software</main_category>
+		<category>Software</category>
+	</product_category>
+</product_category_data>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JPAEDMMappingModel
+	xmlns="http://www.apache.org/olingo/odata2/jpa/processor/api/model/mapping">
+	<PersistenceUnit name="com.sap.espm.model">
+		<JPAEntityTypes>
+			<JPAEntityType name="ProductCategory">
+				<EDMEntitySet>ProductCategories</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="category">Category</JPAAttribute>
+					<JPAAttribute name="categoryName">CategoryName</JPAAttribute>
+					<JPAAttribute name="mainCategory">MainCategory</JPAAttribute>
+					<JPAAttribute name="mainCategoryName">MainCategoryName</JPAAttribute>
+					<JPAAttribute name="numberOfProducts">NumberOfProducts</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+				</JPARelationships>
+			</JPAEntityType>
+			<JPAEntityType name="SalesOrderHeader">
+				<EDMEntitySet>SalesOrderHeaders</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="createdAt">CreatedAt</JPAAttribute>
+					<JPAAttribute name="currencyCode">CurrencyCode</JPAAttribute>
+					<JPAAttribute name="customerId">CustomerId</JPAAttribute>
+					<JPAAttribute name="grossAmount">GrossAmount</JPAAttribute>
+					<JPAAttribute name="lifeCycleStatus">LifeCycleStatus</JPAAttribute>
+					<JPAAttribute name="lifeCycleStatusName">LifeCycleStatusName</JPAAttribute>
+					<JPAAttribute name="netAmount">NetAmount</JPAAttribute>
+					<JPAAttribute name="salesOrderId">SalesOrderId</JPAAttribute>
+					<JPAAttribute name="taxAmount">TaxAmount</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+					<JPARelationship name="customer">Customer</JPARelationship>
+					<JPARelationship name="salesOrderItems">SalesOrderItems</JPARelationship>
+				</JPARelationships>
+			</JPAEntityType>
+			<JPAEntityType name="SalesOrderItem">
+				<EDMEntitySet>SalesOrderItems</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="currencyCode">CurrencyCode</JPAAttribute>
+					<JPAAttribute name="deliveryDate">DeliveryDate</JPAAttribute>
+					<JPAAttribute name="grossAmount">GrossAmount</JPAAttribute>
+					<JPAAttribute name="itemNumber">ItemNumber</JPAAttribute>
+					<JPAAttribute name="salesOrderId">SalesOrderId</JPAAttribute>
+					<JPAAttribute name="netAmount">NetAmount</JPAAttribute>
+					<JPAAttribute name="productId">ProductId</JPAAttribute>
+					<JPAAttribute name="quantity">Quantity</JPAAttribute>
+					<JPAAttribute name="quantityUnit">QuantityUnit</JPAAttribute>
+					<JPAAttribute name="taxAmount">TaxAmount</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+					<JPARelationship name="product">Product</JPARelationship>
+					<JPARelationship name="salesOrderHeader">SalesOrderHeader</JPARelationship>
+				</JPARelationships>
+			</JPAEntityType>
+			<JPAEntityType name="Stock">
+				<EDMEntitySet>Stocks</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="lotSize">LotSize</JPAAttribute>
+					<JPAAttribute name="minStock">MinStock</JPAAttribute>
+					<JPAAttribute name="productId">ProductId</JPAAttribute>
+					<JPAAttribute name="quantity">Quantity</JPAAttribute>
+					<JPAAttribute name="quantityLessMin">QuantityLessMin</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+					<JPARelationship name="product">Product</JPARelationship>
+				</JPARelationships>
+			</JPAEntityType>
+			<JPAEntityType name="Product">
+				<EDMEntitySet>Products</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="category">Category</JPAAttribute>
+					<JPAAttribute name="categoryName">CategoryName</JPAAttribute>
+					<JPAAttribute name="currencyCode">CurrencyCode</JPAAttribute>
+					<JPAAttribute name="dimensionDepth">DimensionDepth</JPAAttribute>
+					<JPAAttribute name="dimensionHeight">DimensionHeight</JPAAttribute>
+					<JPAAttribute name="dimensionUnit">DimensionUnit</JPAAttribute>
+					<JPAAttribute name="dimensionWidth">DimensionWidth</JPAAttribute>
+					<JPAAttribute name="longDescription">LongDescription</JPAAttribute>
+					<JPAAttribute name="name">Name</JPAAttribute>
+					<JPAAttribute name="pictureUrl">PictureUrl</JPAAttribute>
+					<JPAAttribute name="price">Price</JPAAttribute>
+					<JPAAttribute name="productId">ProductId</JPAAttribute>
+					<JPAAttribute name="quantity">Quantity</JPAAttribute>
+					<JPAAttribute name="quantityUnit">QuantityUnit</JPAAttribute>
+					<JPAAttribute name="shortDescription">ShortDescription</JPAAttribute>
+					<JPAAttribute name="supplierId">SupplierId</JPAAttribute>
+					<JPAAttribute name="weight">Weight</JPAAttribute>
+					<JPAAttribute name="weightUnit">WeightUnit</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+					<JPARelationship name="supplier">Supplier</JPARelationship>
+					<JPARelationship name="reviews">CustomerReview</JPARelationship>
+				</JPARelationships>
+			</JPAEntityType>
+			<JPAEntityType name="CustomerReview">
+				<EDMEntitySet>CustomerReviews</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="customerReviewId">CustomerReviewId</JPAAttribute>
+					<JPAAttribute name="comment">Comment</JPAAttribute>
+					<JPAAttribute name="rating">Rating</JPAAttribute>
+					<JPAAttribute name="productId">ProductId</JPAAttribute>
+					<JPAAttribute name="creationDate">CreationDate</JPAAttribute>
+					<JPAAttribute name="firstName">FirstName</JPAAttribute>
+					<JPAAttribute name="lastName">LastName</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+					<JPARelationship name="product">Product</JPARelationship>
+				</JPARelationships>
+			</JPAEntityType>
+			
+			<JPAEntityType name="PurchaseOrderHeader">
+				<EDMEntitySet>PurchaseOrderHeaders</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="currencyCode">CurrencyCode</JPAAttribute>
+					<JPAAttribute name="grossAmount">GrossAmount</JPAAttribute>
+					<JPAAttribute name="netAmount">NetAmount</JPAAttribute>
+					<JPAAttribute name="purchaseOrderId">PurchaseOrderId</JPAAttribute>
+					<JPAAttribute name="taxAmount">TaxAmount</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+					<JPARelationship name="purchaseOrderItems">PurchaseOrderItems</JPARelationship>
+				</JPARelationships>
+			</JPAEntityType>
+			<JPAEntityType name="PurchaseOrderItem">
+				<EDMEntitySet>PurchaseOrderItems</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="currencyCode">CurrencyCode</JPAAttribute>
+					<JPAAttribute name="grossAmount">GrossAmount</JPAAttribute>
+					<JPAAttribute name="itemNumber">ItemNumber</JPAAttribute>
+					<JPAAttribute name="purchaseOrderId">PurchaseOrderId</JPAAttribute>
+					<JPAAttribute name="netAmount">NetAmount</JPAAttribute>
+					<JPAAttribute name="productId">ProductId</JPAAttribute>
+					<JPAAttribute name="quantity">Quantity</JPAAttribute>
+					<JPAAttribute name="quantityUnit">QuantityUnit</JPAAttribute>
+					<JPAAttribute name="taxAmount">TaxAmount</JPAAttribute>
+				</JPAAttributes>
+				<JPARelationships>
+					<JPARelationship name="product">Product</JPARelationship>
+					<JPARelationship name="purchaseOrderHeader">PurchaseOrderHeader</JPARelationship>
+				</JPARelationships>
+			</JPAEntityType>
+		</JPAEntityTypes>
+		<JPAEmbeddableTypes>
+		</JPAEmbeddableTypes>
+	</PersistenceUnit>
+</JPAEDMMappingModel>

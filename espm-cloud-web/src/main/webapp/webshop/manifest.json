@@ -1,0 +1,129 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "com.sap.espm.shop",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"ach": "ach",
+		"dataSources": {
+			"espmDataModel": {
+				"uri": "/espm-cloud-web/espm.svc",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.32.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_bluecrystal"]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "com.sap.espm.shop.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.sap.espm.shop.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "espmDataModel"
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.sap.espm.shop.view",
+				"controlId": "espmWebshopId",
+				"controlAggregation": "pages"
+			},
+			"routes": [{
+				"pattern": "",
+				"name": "Home",
+				"target": "Home"
+			}, {
+				"pattern": "ProductDetail/{Productdetails}",
+				"name": "ProductDetail",
+				"target": "ProductDetail"
+			}, {
+				"pattern": "Shoppingcart",
+				"name": "Shoppingcart",
+				"target": "Shoppingcart"
+			}, {
+				"pattern": "Checkout",
+				"name": "Checkout",
+				"target": "Checkout"
+			}, {
+				"pattern": "SalesOrder",
+				"name": "SalesOrder",
+				"target": "SalesOrder"
+			}],
+			"targets": {
+				"Home": {
+					"viewName": "Home"
+				},
+				"ProductDetail": {
+					"viewName": "ProductDetail"
+				},
+				"Shoppingcart": {
+					"viewName": "Shoppingcart"
+				},
+				"Checkout": {
+					"viewName": "Checkout"
+				},
+				"SalesOrder": {
+					"viewName": "SalesOrder"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		}
+	}
+}

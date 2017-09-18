@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset>
+  <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
+    <priority>1</priority>
+    <properties>
+      <property name="allowCommentedBlocks" value="true" />
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/basic.xml/MisplacedNullCheck">
+    <priority>2</priority>
+  </rule>
+  <rule ref="rulesets/java/sunsecure.xml/MethodReturnsInternalArray">
+    <priority>2</priority>
+  </rule>
+  <rule ref="rulesets/java/design.xml/AvoidInstanceofChecksInCatchClause">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/strictexception.xml/AvoidThrowingRawExceptionTypes">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/design.xml/NonCaseLabelInSwitchStatement">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/design.xml/PreserveStackTrace">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/basic.xml/ReturnFromFinallyBlock">
+    <priority>2</priority>
+  </rule>
+  <rule ref="rulesets/java/strictexception.xml/SignatureDeclareThrowsException">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/strictexception.xml/DoNotThrowExceptionInFinally">
+    <priority>2</priority>
+  </rule>
+  <rule ref="rulesets/java/logging-java.xml/SystemPrintln">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/basic.xml/BrokenNullCheck">
+    <priority>2</priority>
+  </rule>
+  <rule ref="rulesets/java/basic.xml/UnconditionalIfStatement">
+    <priority>2</priority>
+  </rule>
+  <rule ref="rulesets/java/clone.xml/CloneThrowsCloneNotSupportedException">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/strictexception.xml/AvoidThrowingNullPointerException">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/imports.xml/UnusedImports">
+    <priority>5</priority>
+  </rule>
+</ruleset>
+

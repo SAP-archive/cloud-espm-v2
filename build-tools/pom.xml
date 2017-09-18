@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sap.refapps</groupId>
+	<artifactId>build-tools</artifactId>
+	<version>1.0</version>
+	<name>build-tools</name>
+	<description>This module is used as a place-holder for the static code analysis Tool RuleSets (PMD, Checkstyle, FindBugs). 
+	The Rules are present in the src/main/resource folder. These rules are based on the SAP LDI maven project archetype. 
+	These rules are a subset of the tool rule sets. Configuration of the maven plugins can be found in the official links:
+	
+	https://maven.apache.org/plugins/maven-pmd-plugin/examples/multi-module-config.html
+	http://gleclaire.github.io/findbugs-maven-plugin/examples/multi-module-config.html
+	https://maven.apache.org/plugins/maven-checkstyle-plugin/examples/multi-module-config.html
+	</description>
+</project>

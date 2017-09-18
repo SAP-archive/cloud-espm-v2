@@ -1,0 +1,1987 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<businessPartnerData>
+  <businessPartner>
+    <partner_id>0000000001</partner_id>
+    <currency>USD</currency>
+    <company_name>ITelO</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Viola</firstname>
+    <lastname>Gains</lastname>
+    <middlename>Sarah</middlename>
+    <sex>female</sex>
+    <date_of_birth>19801231</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Antioch, Illinois</city>
+      <postal_code>60002</postal_code>
+      <street>Spring Garden Street</street>
+      <building>143</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1029384756</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>viola.gains@itelo.info</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.itelo.info</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000002</partner_id>
+    <currency >USD</currency > 
+    <company_name>ITelO</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Paul</firstname>
+    <lastname>Burke</lastname>
+    <sex>male</sex>
+    <date_of_birth>19811224</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Los Angeles, California</city>
+      <postal_code>90067</postal_code>
+      <street>Main Street</street>
+      <building>100</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1029384757</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>paul.burke@itelo.info</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.itelo.info</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000003</partner_id>
+    <currency >EUR</currency > 
+    <company_name>ITelO</company_name>
+    <legal_form>SA</legal_form>
+    <firstname>Sally</firstname>
+    <lastname>Spring</lastname>
+    <sex>female</sex>
+    <date_of_birth>19791224</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Rome</city>
+      <postal_code>00164</postal_code>
+      <street>Piazza Adriana</street>
+      <building>53</building>
+      <country>IT</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1029384758</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>sally.spring@itelo.info</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.itelo.info</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000004</partner_id>
+    <currency >USD</currency > 
+    <company_name>ITelO</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Sue</firstname>
+    <lastname>Bay</lastname>
+    <sex>female</sex>
+    <date_of_birth>19811221</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Antioch, Illinois</city>
+      <postal_code>60002</postal_code>
+      <street>Spring Garden Street</street>
+      <building>143</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1029384759</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>sue.bay@itelo.info</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.itelo.info</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000005</partner_id>
+    <currency >EUR</currency > 
+    <company_name>ITelO</company_name>
+    <legal_form>GmbH</legal_form>
+    <firstname>James</firstname>
+    <lastname>Field</lastname>
+    <sex>male</sex>
+    <date_of_birth>19801224</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Munich</city>
+      <postal_code>80809</postal_code>
+      <street>Olympia Park</street>
+      <building>10</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1029384750</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>james.field@itelo.info</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.itelo.info</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000006</partner_id>
+    <currency >EUR</currency > 
+    <company_name>SAP</company_name>
+    <legal_form>AG</legal_form>
+    <firstname>Karl</firstname>
+    <lastname>Muller</lastname>
+    <middlename />
+    <title />
+    <nickname />
+    <sex>male</sex>
+    <date_of_birth>19811024</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Walldorf</city>
+      <postal_code>69190</postal_code>
+      <street>Dietmar-Hopp-Allee</street>
+      <building>15</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>E</langu>
+        <text>Main Address Building WDF01</text>
+      </description>
+      <description>
+        <langu>D</langu>
+        <text>Hauptadresse Gebaeude WDF01</text>
+      </description>
+    </address>
+    <address>
+      <city>Walldorf</city>
+      <postal_code>69190</postal_code>
+      <street>Robert-Koch-Strasse</street>
+      <building>1</building>
+      <country>DE</country>
+      <type>02</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>E</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <address>
+      <city>St.-Leon Rot</city>
+      <postal_code>68789</postal_code>
+      <street>Opelstrasse</street>
+      <building>6</building>
+      <country>DE</country>
+      <type>03</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>E</langu>
+        <text>Delivery of large parcels</text>
+      </description>
+      <description>
+        <langu>D</langu>
+        <text>Versand von grossen Paketen</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>0622734567</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <phone>
+      <phone_number>01701234567</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>karl.mueller@sap.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.sap.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000007</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Becker Berlin</company_name>
+    <legal_form>GmbH</legal_form>
+    <firstname>Dagmar</firstname>
+    <lastname>Schulze</lastname>
+    <sex>female</sex>
+    <date_of_birth>19810921</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Berlin</city>
+      <postal_code>13467</postal_code>
+      <street>Calvinstrasse</street>
+      <building>36</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>3088530</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>dagmar.schulze@beckerberlin.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.beckerberlin.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000008</partner_id>
+    <currency >USD</currency > 
+    <company_name>DelBont Industries</company_name>
+    <legal_form>Ltd.</legal_form>
+    <firstname>Maria</firstname>
+    <lastname>Brown</lastname>
+    <sex>female</sex>
+    <date_of_birth>19811224</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Wilmington, Delaware</city>
+      <postal_code>19899</postal_code>
+      <street>1 2345 King Street</street>
+      <building>1</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>3023352668</phone_number>
+      <phone_extension>15243</phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>maria.brown@delbont.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.delbont.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000009</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Talpa</company_name>
+    <legal_form>GmbH</legal_form>
+    <firstname>Saskia</firstname>
+    <lastname>Sommer</lastname>
+    <middlename>Clara</middlename>
+    <sex>female</sex>
+    <date_of_birth>19811011</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Hannover</city>
+      <postal_code>30625</postal_code>
+      <street>An der Breiten Wiese</street>
+      <building>422</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>511403266</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>saskia.sommer@talpa-hannover.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.talpa-hannover.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000010</partner_id>
+    <currency >USD</currency > 
+    <company_name>Panorama Studios</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Bob</firstname>
+    <lastname>Buyer</lastname>
+    <sex>male</sex>
+    <date_of_birth>19811011</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Hollywood, California</city>
+      <postal_code>91602</postal_code>
+      <street>Morning Drive</street>
+      <building>178</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>2244668800</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>bob.buyer@panorama-studios.biz</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.panorama-studios.biz</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000011</partner_id>
+    <currency >EUR</currency > 
+    <company_name>TECUM</company_name>
+    <legal_form>AG</legal_form>
+    <firstname>Bart</firstname>
+    <lastname>Koenig</lastname>
+    <middlename>Friedrich</middlename>
+    <sex>male</sex>
+    <date_of_birth>19711011</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Muenster</city>
+      <postal_code>48155</postal_code>
+      <street>Albersloher Weg</street>
+      <building>24</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>2511415</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>bart.koenig@tecum-ag.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.tecum-ag.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000012</partner_id>
+    <currency >JPY</currency > 
+    <company_name>Asia High tech</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Yoko</firstname>
+    <lastname>Nakamura</lastname>
+    <sex>female</sex>
+    <date_of_birth>19711011</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Tokyo</city>
+      <postal_code>1000004</postal_code>
+      <street>1-7-2 Ohtemachi</street>
+      <building>1</building>
+      <country>JP</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>9078563412</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>yoko.nakamura@asia-ht.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.asia-ht.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000013</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Laurent</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Sophie</firstname>
+    <lastname>Ribery</lastname>
+    <middlename></middlename>
+    <title></title>
+    <nickname></nickname>
+    <sex>female</sex>
+    <date_of_birth>19711011</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Paris</city>
+      <postal_code>75015</postal_code>
+      <street>Rue de la Republique 863</street>
+      <building>1</building>
+      <country>FR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>149744423</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>sophie.ribery@laurent-paris.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.laurent-paris.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000014</partner_id>
+    <currency >MXN</currency > 
+    <company_name>AVANTEL</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Victor</firstname>
+    <lastname>Sanchez</lastname>
+    <sex>male</sex>
+    <date_of_birth>19611019</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Mexiko City</city>
+      <postal_code>17000</postal_code>
+      <street>Bosque de Duraznos</street>
+      <building>24</building>
+      <country>MX</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>7257716</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>victor.sanchez@avantel.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.avantel.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000015</partner_id>
+    <currency >ARS</currency > 
+    <company_name>Telecomunicaciones Star</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Jorge</firstname>
+    <lastname>Velez</lastname>
+    <sex>male</sex>
+    <date_of_birth>19611019</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Buenos Aires</city>
+      <postal_code>1511</postal_code>
+      <street>Av. Libertador</street>
+      <building>12221</building>
+      <country>AR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1133557799</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>jorge.velez@telecomunicacionesstar.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.telecomunicacionesstar.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000016</partner_id>
+    <currency >USD</currency > 
+    <company_name>Pear Computing Services</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Franklin</firstname>
+    <lastname>Jones</lastname>
+    <sex>male</sex>
+    <date_of_birth>19611019</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Atlanta, Georgia</city>
+      <postal_code>30338</postal_code>
+      <street>Dunwoody Xing</street>
+      <building>3000</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6789012345</phone_number>
+      <phone_extension>54321</phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>franklin.jones@pear-computing.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.pear-computing.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000017</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Alpine Systems</company_name>
+    <legal_form>AG</legal_form>
+    <firstname>Joseph</firstname>
+    <lastname>Gschwandtner</lastname>
+    <sex>male</sex>
+    <date_of_birth>19611119</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Salzburg</city>
+      <postal_code>5010</postal_code>
+      <street>Arnold Schwarzenegger Weg</street>
+      <building>54</building>
+      <country>AT</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6623612804</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>joseph_gschwandtner@alp-systems.at</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.alp-systems.at</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000018</partner_id>
+    <currency >GBP</currency > 
+    <company_name>New Line Design</company_name>
+    <legal_form>Ltd.</legal_form>
+    <firstname>George</firstname>
+    <lastname>Grant</lastname>
+    <middlename>David</middlename>
+    <sex>male</sex>
+    <date_of_birth>19611119</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Manchester</city>
+      <postal_code>M4 8RE</postal_code>
+      <street>Kelley Street</street>
+      <building>97</building>
+      <country>GB</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>2589436180</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>george_d_grant@newlinedesign.co.uk</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.newlinedesign.co.uk</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000019</partner_id>
+    <currency >EUR</currency > 
+    <company_name>HEPA Tec</company_name>
+    <legal_form>GmbH</legal_form>
+    <firstname>Sarah</firstname>
+    <lastname>Schwind</lastname>
+    <sex>female</sex>
+    <date_of_birth>19650119</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Bremen</city>
+      <postal_code>28213</postal_code>
+      <street>Theodor Heuss Allee</street>
+      <building>43</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>4507867136</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>sarah.schwind@hepa-tec.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.hepa-tec.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000020</partner_id>
+    <currency >USD</currency > 
+    <company_name>Anav Ideon</company_name>
+    <legal_form>Ltd.</legal_form>
+    <firstname>Theodor</firstname>
+    <lastname>Monathy</lastname>
+    <sex>male</sex>
+    <date_of_birth>19650119</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Bismarck, North Dakota</city>
+      <postal_code>58501</postal_code>
+      <street>Franklin Ave</street>
+      <building>153</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>5850428367</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>theodor.monathy@anavideon.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.anavideon.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000021</partner_id>
+    <currency >CAD</currency > 
+    <company_name>Robert Brown Entertainment</company_name>
+    <legal_form>Ltd.</legal_form>
+    <firstname>Robert</firstname>
+    <lastname>Brown</lastname>
+    <sex>male</sex>
+    <date_of_birth>19650529</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Quebec</city>
+      <postal_code>J0L 1T0</postal_code>
+      <street>Rue Sault Au Matelot</street>
+      <building>65</building>
+      <country>CA</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>7609448173</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>robert_brown@rb-entertainment.ca</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.rb-entertainment.ca</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000022</partner_id>
+    <currency >MXN</currency > 
+    <company_name>Mexican Oil Trading Company</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Jorge</firstname>
+    <lastname>Montalban</lastname>
+    <sex>male</sex>
+    <date_of_birth>19750119</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Puebla</city>
+      <postal_code>40615</postal_code>
+      <street>Av. Hermanos Serdan</street>
+      <building>366</building>
+      <country>MX</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6879342945</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>jorgemontalban@motc.mx</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.motc.mx</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000023</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Meliva</company_name>
+    <legal_form>AG</legal_form>
+    <firstname>Johanna</firstname>
+    <lastname>Esther</lastname>
+    <sex>female</sex>
+    <date_of_birth>19750119</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Köln</city>
+      <postal_code>50827</postal_code>
+      <street>Robert Koch Straße</street>
+      <building>14</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>2208791738</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>johanna.esther@meliva.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.meliva.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000024</partner_id>
+    <currency >ARS</currency > 
+    <company_name>Compostela</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Miguel</firstname>
+    <lastname>Luengo</lastname>
+    <sex>male</sex>
+    <date_of_birth>19750119</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Mendoza</city>
+      <postal_code>M5500</postal_code>
+      <street>Avenida De Julio</street>
+      <building>53</building>
+      <country>AR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>4440238917</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>miguel.luengo@compostela.ar</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.compostela.ar</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000025</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Pateu</company_name>
+    <legal_form>S.A.R.L.</legal_form>
+    <firstname>Isabel</firstname>
+    <lastname>Nemours</lastname>
+    <sex>female</sex>
+    <date_of_birth>19850919</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Lyon</city>
+      <postal_code>69007</postal_code>
+      <street>Quai de Pierre Scize</street>
+      <building>81</building>
+      <country>FR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6328490087</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>isabel.nemours@pateu.fr</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.pateu.fr</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000026</partner_id>
+    <currency >RUB</currency > 
+    <company_name>Russian Electronic Trading Company</company_name>
+    <legal_form>z.a.o.</legal_form>
+    <firstname>Igor</firstname>
+    <lastname>Tarassow</lastname>
+    <sex>male</sex>
+    <date_of_birth>19850919</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Moskau</city>
+      <postal_code>125719</postal_code>
+      <street>Elektrosawodskaja</street>
+      <building>354</building>
+      <country>RU</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>4050378468</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>igor.tarassow@retc.ru</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.retc.ru</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000027</partner_id>
+    <currency >USD</currency > 
+    <company_name>Florida Holiday Company</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Alexis</firstname>
+    <lastname>Harper</lastname>
+    <sex>female</sex>
+    <date_of_birth>19850919</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Jacksonville, Florida</city>
+      <postal_code>32229</postal_code>
+      <street>Marshall Street</street>
+      <building>77</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6065470312</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>alexis.harper@flor-hc.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.flor-hc.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000028</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Quimica Madrilenos</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Cristal</firstname>
+    <lastname>Alfaro</lastname>
+    <sex>female</sex>
+    <date_of_birth>19550909</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Madrid</city>
+      <postal_code>17000</postal_code>
+      <street>Calle Aldama</street>
+      <building>137</building>
+      <country>ES</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>7980023486</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>c.alfaro@quimica-madrilenos.es</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.quimica-madrilenos.es</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000029</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Getränkegroßhandel Janssen</company_name>
+    <legal_form>GmbH</legal_form>
+    <firstname>Sven</firstname>
+    <lastname>Janssen</lastname>
+    <sex>male</sex>
+    <date_of_birth>19550909</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>München</city>
+      <postal_code>80935</postal_code>
+      <street>Albert Schweitzer Straße</street>
+      <building>16</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>3629731486</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>sven.j@getraenke-janssen.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.getraenke-janssen.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000030</partner_id>
+    <currency >JPY</currency > 
+    <company_name>JaTeCo</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Yoshiko</firstname>
+    <lastname>Kakuji</lastname>
+    <sex>female</sex>
+    <date_of_birth>19550909</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Sapporo</city>
+      <postal_code>608611</postal_code>
+      <street>Narashino-Shi</street>
+      <building>51</building>
+      <country>JP</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>3206580974</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>yoshiko.kakuji@jateco.jp</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.jateco.jp</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000031</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Tessile Casa Di Roma</company_name>
+    <legal_form>Srl</legal_form>
+    <firstname>Alessio</firstname>
+    <lastname>Galasso</lastname>
+    <sex>male</sex>
+    <date_of_birth>19780409</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Rom</city>
+      <postal_code>00185</postal_code>
+      <street>Via San Martino della Battaglia</street>
+      <building>63</building>
+      <country>IT</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>4580963184</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>alessio.galasso@tcdr.it</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.tcdr.it</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000032</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Vente Et Réparation de Ordinateur</company_name>
+    <legal_form>S.A.R.L.</legal_form>
+    <firstname>Romain</firstname>
+    <lastname>Le Mason</lastname>
+    <sex>male</sex>
+    <date_of_birth>19780409</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Paris</city>
+      <postal_code>75013</postal_code>
+      <street>Rue Lourmel</street>
+      <building>42</building>
+      <country>FR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1012697341</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>romain.le_mason@verdo.fr</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.verdo.fr</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000033</partner_id>
+    <currency >ARS</currency > 
+    <company_name>Developement Para O Governo</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Martha</firstname>
+    <lastname>Calcagno</lastname>
+    <sex>female</sex>
+    <date_of_birth>19780409</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Santa Fe</city>
+      <postal_code>1510</postal_code>
+      <street>de Enero</street>
+      <building>85</building>
+      <country>AR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>7345697824</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>martha.calcagno@dpg.ar</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.dpg.ar</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000034</partner_id>
+    <currency >BRL</currency > 
+    <company_name>Brazil Technologies</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Beatriz</firstname>
+    <lastname>da Silva</lastname>
+    <sex>female</sex>
+    <date_of_birth>19880505</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Rio de Janeiro</city>
+      <postal_code>20230</postal_code>
+      <street>Rua do Passeio</street>
+      <building>7</building>
+      <country>BR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>469614115</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>beatriz.da_silva@brazil-tec.br</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.brazil-tec.br</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000035</partner_id>
+    <currency >CAD</currency > 
+    <company_name>C.R.T.U.</company_name>
+    <legal_form>Ltd.</legal_form>
+    <firstname>Anthony</firstname>
+    <lastname>Leboeuf</lastname>
+    <sex>male</sex>
+    <date_of_birth>19880509</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Montreal</city>
+      <postal_code>H2Y 1N3</postal_code>
+      <street>Avenue du Mont-Royal Est</street>
+      <building>63</building>
+      <country>CA</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6839542781</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>anthony.lebouef@crtu.ca</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.crtu.ca</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000036</partner_id>
+    <currency >CHF</currency > 
+    <company_name>Jologa</company_name>
+    <legal_form>GmbH</legal_form>
+    <firstname>Lisa</firstname>
+    <lastname>Felske</lastname>
+    <sex>female</sex>
+    <date_of_birth>19880707</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Zürich</city>
+      <postal_code>2564</postal_code>
+      <street>Paul-Clairmont-Straße</street>
+      <building>23</building>
+      <country>CH</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6714954542</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>lisa.felske@jologa.ch</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.jologa.ch</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000037</partner_id>
+    <currency >USD</currency > 
+    <company_name>Baleda</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Jonathan</firstname>
+    <lastname>Mason</lastname>
+    <middlename>Dwight</middlename>
+    <sex>male</sex>
+    <date_of_birth>19880707</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Dallas, Texas</city>
+      <postal_code>75364</postal_code>
+      <street>McKinney Ave</street>
+      <building>2407</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>2483693027</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>jonathan.d.mason@baleda.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.baleda.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000038</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Angeré</company_name>
+    <legal_form>S.A.R.L.</legal_form>
+    <firstname>Amélie</firstname>
+    <lastname>Troyat</lastname>
+    <sex>female</sex>
+    <date_of_birth>19880707</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Paris</city>
+      <postal_code>75018</postal_code>
+      <street>Rue de Rivoli</street>
+      <building>143</building>
+      <country>FR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>2094573421</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>amelie.troyat@angere.fr</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.angere.fr</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000039</partner_id>
+    <currency >USD</currency > 
+    <company_name>PC Gym Tec</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Pete</firstname>
+    <lastname>Waltham</lastname>
+    <sex>male</sex>
+    <date_of_birth>19880707</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Chicago, Illinois</city>
+      <postal_code>60773</postal_code>
+      <street>North Michigan Avenue</street>
+      <building>50</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>4136278910</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>pete_waltham@pc-gym-tec.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.pc-gym-tec.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000040</partner_id>
+    <currency >JPY</currency > 
+    <company_name>Japan Insurance Partner</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Ryu</firstname>
+    <lastname>Toshiro</lastname>
+    <sex>male</sex>
+    <date_of_birth>19830705</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Tokyo</city>
+      <postal_code>1000003</postal_code>
+      <street>4-2-8- Shibakoen</street>
+      <building>73</building>
+      <country>JP</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>3540671320</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>ryu.toshiro@jip.jp</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.jip.jp</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000041</partner_id>
+    <currency >ARS</currency > 
+    <company_name>Entertainment Argentinia</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>José</firstname>
+    <lastname>Lopez</lastname>
+    <sex>male</sex>
+    <date_of_birth>19830705</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Buenos Aires</city>
+      <postal_code>1511</postal_code>
+      <street>Villanueva</street>
+      <building>87</building>
+      <country>AR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>7315064077</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>jose-lopez@en-ar.ar</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.en-ar.ar</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000042</partner_id>
+    <currency >ZAR</currency > 
+    <company_name>African Gold And Diamant Corporation</company_name>
+    <legal_form>Ltd.</legal_form>
+    <firstname>Dahoma</firstname>
+    <lastname>Lawla</lastname>
+    <sex>male</sex>
+    <date_of_birth>19820905</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Johannesburg</city>
+      <postal_code>2006</postal_code>
+      <street>Bay View Ave</street>
+      <building>45</building>
+      <country>ZA</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>4381762683</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>dahoma.lawla@agadc.co.za</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.agadc.co.za</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000043</partner_id>
+    <currency >USD</currency > 
+    <company_name>PicoBit</company_name>
+    <legal_form>Inc.</legal_form>
+    <firstname>Jefferson</firstname>
+    <lastname>Parker</lastname>
+    <sex>male</sex>
+    <date_of_birth>19820905</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>New York City</city>
+      <postal_code>10184</postal_code>
+      <street>Fith Avenue</street>
+      <building>1843</building>
+      <country>US</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>9703586412</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>jefferson.parker@pico-bit.com</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.pico-bit.com</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000044</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Bionic Research Lab</company_name>
+    <legal_form>AG</legal_form>
+    <firstname>Tamara</firstname>
+    <lastname>Flaig</lastname>
+    <sex>female</sex>
+    <date_of_birth>19820905</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Bühl</city>
+      <postal_code>77815</postal_code>
+      <street>Hauptstraße</street>
+      <building>12</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>6843585642</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>tamara.flaig@brl-ag.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.brl-ag.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000045</partner_id>
+    <currency >INR</currency > 
+    <company_name>Indian IT Trading Company</company_name>
+    <legal_form>Ltd.</legal_form>
+    <firstname>Sunita</firstname>
+    <lastname>Kapoor</lastname>
+    <sex>female</sex>
+    <date_of_birth>19900905</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Mumbai</city>
+      <postal_code>400021</postal_code>
+      <street>Nariman Point</street>
+      <building>11</building>
+      <country>IN</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>4203876954</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>sunita-kapoor@it-trade.in</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.it-trade.in</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000046</partner_id>
+    <currency >PLN</currency > 
+    <company_name>Chemia A Technicznie Fabryka</company_name>
+    <legal_form>Sp.z.o.o.</legal_form>
+    <firstname>Pawel</firstname>
+    <lastname>Lewandowski</lastname>
+    <sex>male</sex>
+    <date_of_birth>19900905</date_of_birth>
+    <role_code>02</role_code>
+        <address>
+      <city>Warschau</city>
+      <postal_code>00564</postal_code>
+      <street>Koszykowa</street>
+      <building>28</building>
+      <country>PL</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>8367920106</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>pawel-lewandoski@catf.pl</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.catf.pl</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000047</partner_id>
+    <currency >ARS</currency > 
+    <company_name>South American IT Company</company_name>
+    <legal_form>S.A.</legal_form>
+    <firstname>Laura</firstname>
+    <lastname>Campillo</lastname>
+    <sex>female</sex>
+    <date_of_birth>19890905</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Cordoba</city>
+      <postal_code>5003</postal_code>
+      <street>Av. Ambrosio Olmos</street>
+      <building>297</building>
+      <country>AR</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>1438907230</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>laura.campillo@saitc.ar</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.saitc.ar</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000048</partner_id>
+    <currency >CNY</currency > 
+    <company_name>Siwusha</company_name>
+    <legal_form>CJV</legal_form>
+    <firstname>Jian</firstname>
+    <lastname>Si</lastname>
+    <sex>male</sex>
+    <date_of_birth>19890905</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Shanghai</city>
+      <postal_code>610041</postal_code>
+      <street>Shui Dian</street>
+      <building>37</building>
+      <country>CN</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>7412697340</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>jian.si@siwusha.cn</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.siwusha.cn</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000049</partner_id>
+    <currency >DKK</currency > 
+    <company_name>Danish Fish Trading Company</company_name>
+    <legal_form>A/S</legal_form>
+    <firstname>Frederik</firstname>
+    <lastname>Christensen</lastname>
+    <sex>male</sex>
+    <date_of_birth>19860305</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Kopenhagen</city>
+      <postal_code>1907</postal_code>
+      <street>Stockholmsgade</street>
+      <building>79</building>
+      <country>DK</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>3102050749</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>frederik.christensen@dftc.dk</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.dftc.dk</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+  <businessPartner>
+    <partner_id>0000000050</partner_id>
+    <currency >EUR</currency > 
+    <company_name>Sorali</company_name>
+    <legal_form>AG</legal_form>
+    <firstname>Mirjam</firstname>
+    <lastname>Schmidt</lastname>
+    <sex>female</sex>
+    <date_of_birth>19860305</date_of_birth>
+    <role_code>01</role_code>
+        <address>
+      <city>Karlsruhe</city>
+      <postal_code>76188</postal_code>
+      <street>Rubensstraße</street>
+      <building>140</building>
+      <country>DE</country>
+      <type>01</type>
+      <val_date_Start>20000101</val_date_Start>
+      <val_date_end>99991231</val_date_end>
+      <description>
+        <langu>EN</langu>
+        <text>Main Address</text>
+      </description>
+      <description>
+        <langu>DE</langu>
+        <text>Hauptadresse</text>
+      </description>
+    </address>
+    <phone>
+      <phone_number>3102050749</phone_number>
+      <phone_extension></phone_extension>
+      <validity_date>99991231</validity_date>
+    </phone>
+    <email>
+      <email_address>mirjam.schmidt@sorali.de</email_address>
+      <validity_date>99991231</validity_date>
+    </email>
+    <webaddress>
+      <web_address>http://www.sorali.de</web_address>
+      <validity_date>99991231</validity_date>
+    </webaddress>
+  </businessPartner>
+</businessPartnerData>
