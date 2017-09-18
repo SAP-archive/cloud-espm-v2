@@ -9,58 +9,59 @@ sap.ui.define([
 	"sap/m/MessageBox"
 ], function(Controller, formatter, UIComponent, ODataModel, JSONModel, History, MessageBox) {
 	"use strict";
-	var oDataModel;
-	var customerId = "";
-
+		var oDataModel;
+		var customerId = "";
+		
 	return Controller.extend("com.sap.espm.shop.controller.Checkout", {
-
+		
 		formatter: formatter,
 		cardType: "american",
-		onInit: function() {
-
+		onInit:function()
+		{
+			
+			
 			var that = this;
-
+			
 			var oCheckoutTemplate = new sap.m.ColumnListItem({
-				cells: [
+				cells:[
 					new sap.m.Image({
-						src: "/ESPM/espm-cloud-web/images/{PictureUrl}",
-						decorative: false,
-						densityAware: false,
-						height: "3rem",
-						width: "3rem"
-
+						src : "/ESPM/espm-cloud-web/images/{PictureUrl}",
+						decorative : false,
+						densityAware : false,
+						height : "3rem",
+						width : "3rem"
+						
 					}),
 					new sap.m.ObjectIdentifier({
-						title: "{Name}"
+						title : "{Name}"
 					}),
 					new sap.m.Text({
-						text: "{Quantity}"
-
+						text : "{Quantity}"
+						
+					}), 
+					new sap.m.ObjectNumber({
+						emphasized : false,
+						id : "checkoutPrice",
+						number : "{path: 'Price', formatter:'com.sap.espm.shop.model.format.formatAmount'}",
+						unit : "{CurrencyCode}"
 					}),
 					new sap.m.ObjectNumber({
-						emphasized: false,
-						id: "checkoutPrice",
-						number: "{path: 'Price', formatter:'com.sap.espm.shop.model.format.formatAmount'}",
-						unit: "{CurrencyCode}"
-					}),
-					new sap.m.ObjectNumber({
-						number: "{path: 'Total', formatter:'com.sap.espm.shop.model.format.formatAmount'}",
-						id: "checkoutCurrency",
-						unit: "{CurrencyCode}"
+						number : "{path: 'Total', formatter:'com.sap.espm.shop.model.format.formatAmount'}",
+						id : "checkoutCurrency",
+						unit : "{CurrencyCode}"
 					})
-				]
+					]
 			});
 			var oComponent = this.getOwnerComponent();
 			var model = oComponent.getModel("Cart");
 			var oCheckoutTable = this.getView().byId("checkoutCartTable");
 			oCheckoutTable.setModel(model);
-			oCheckoutTable.bindItems("/ShoppingCart", oCheckoutTemplate);
-
+			oCheckoutTable.bindItems("/ShoppingCart",oCheckoutTemplate);
+			
 			this.getView().addEventDelegate({
 				onAfterShow: function() {
 					that.onAddCountToCart();
-				}
-			});
+				}});
 			this._oView = this.getView();
 			this._oTotalFooter = this.byId("totalFooter");
 			this._oExistingForm = this.byId("existingFormId");
@@ -71,61 +72,66 @@ sap.ui.define([
 			this._oWizardReviewPage = sap.ui.xmlfragment("com.sap.espm.shop.view.fragment.ReviewPage", this);
 			this._oNavContainer.addPage(this._oWizardReviewPage);
 			this._oWizardContentPage = this.getView().byId("checkoutContentPage");
-
+			
 			var oreviewTable = sap.ui.getCore().byId("reviewCartTable");
 			oreviewTable.setModel(model);
-			oreviewTable.bindItems("/ShoppingCart", oCheckoutTemplate);
-
+			oreviewTable.bindItems("/ShoppingCart",oCheckoutTemplate);
+			
 			//model for countries in the UI
-			var ocountryModel = new JSONModel();
+			var ocountryModel = new JSONModel(); 
 			ocountryModel.loadData("/ESPM/espm-cloud-web/webshop/model/countries.json");
 			this.getView().byId("countryListId").setModel(ocountryModel, "countryModel");
-
+			
 			var today = new Date();
 			this.getView().byId("birthId").setMaxDate(today);
-
+			
 		},
-		onAfterRendering: function() {
-
+		onAfterRendering: function() 
+		{
+		
 		},
-		onBeforeRendering: function() {
-
+		onBeforeRendering: function() 
+		{
+		
 		},
-		onNavBack: function() {
+		onNavBack: function () {
 			window.history.go(-1);
 		},
-		onAddCountToCart: function() {
-
+		onAddCountToCart: function(){
+			
 			var totalQuantity = 0;
 			var subTotal = 0;
 			var currency;
 			var oModel = this.getView().getModel("Cart");
-			var data = oModel.getProperty('/ShoppingCart');
-			if (data) {
-				for (var i = 0; i < data.length; i++) {
+			var data = oModel.getProperty("/ShoppingCart");
+			if(data){
+				for(var i=0; i<data.length; i++){
 					var prodId = data[i];
 					totalQuantity += prodId.Quantity;
 					subTotal += prodId.Total;
 					currency = "EUR";
 				}
-				this.getView().byId("btnShoppingCartHeader").setText(totalQuantity);
-
-				subTotal = formatter.formatAmount(subTotal);
-				this._oTotalFooter.setNumber(subTotal);
-				this._oTotalFooter.setUnit(currency);
-				sap.ui.getCore().byId("totalFooter").setNumber(subTotal);
-				sap.ui.getCore().byId("totalFooter").setUnit(currency);
-			} else {
+			this.getView().byId("btnShoppingCartHeader").setText(totalQuantity);
+			
+			subTotal = formatter.formatAmount(subTotal);
+			this._oTotalFooter.setNumber(subTotal);
+			this._oTotalFooter.setUnit(currency);
+			sap.ui.getCore().byId("totalFooter").setNumber(subTotal);
+			sap.ui.getCore().byId("totalFooter").setUnit(currency);
+			}
+			else{
 				this._oTotalFooter.setNumber("");
 				this._oTotalFooter.setUnit("");
 			}
-
+			
+			
+			
 		},
-		_handleMessageBoxOpen: function(sMessage, sMessageBoxType) {
+		_handleMessageBoxOpen : function (sMessage, sMessageBoxType) {
 			var that = this;
 			MessageBox[sMessageBoxType](sMessage, {
 				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-				onClose: function(oAction) {
+				onClose: function (oAction) {
 					if (oAction === MessageBox.Action.YES) {
 						that._handleNavigationToStep(0);
 						that._wizard.discardProgress(that._wizard.getSteps()[0]);
@@ -133,10 +139,9 @@ sap.ui.define([
 				}
 			});
 		},
-		_handleNavigationToStep: function(iStepNumber) {
+		_handleNavigationToStep : function (iStepNumber) {
 			var that = this;
-
-			function fnAfterNavigate() {
+			function fnAfterNavigate () {
 				that._wizard.goToStep(that._wizard.getSteps()[iStepNumber]);
 				that._oNavContainer.detachAfterNavigate(fnAfterNavigate);
 			}
@@ -144,11 +149,11 @@ sap.ui.define([
 			this._oNavContainer.attachAfterNavigate(fnAfterNavigate);
 			this.backToWizardContent();
 		},
-		discardProgress: function() {
+		discardProgress: function () {
 			this._wizard.discardProgress(this.getView().byId("ProductTypeStep"));
 
-			var clearContent = function(content) {
-				for (var i = 0; i < content.length; i++) {
+			var clearContent = function (content) {
+				for (var i = 0; i < content.length ; i++) {
 					if (content[i].setValue) {
 						content[i].setValue("");
 					}
@@ -160,15 +165,15 @@ sap.ui.define([
 			};
 			clearContent(this._wizard.getSteps());
 		},
-		wizardCompletedHandler: function() {
-
+		wizardCompletedHandler : function () {
+			
 			//get the resource bundle
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			//validation of input
 			var validationFlag = true;
 			var myInteger = (/^-?\d*(\.\d+)?$/);
-			var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
-
+			var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;	
+			
 			var firstName = this.byId("firstNameId").getValue();
 			var lastName = this.byId("lastnameId").getValue();
 			var birthDate = this.byId("birthId").getValue();
@@ -181,16 +186,16 @@ sap.ui.define([
 			var name = this.byId("nameId").getValue();
 			var cardNumber = this.byId("numberId").getValue();
 			var secNumber = this.byId("securityId").getValue();
-
+			
 			if (!eMail.match(mailregex)) {
 				validationFlag = false;
 			}
-
-			if (this.getView().byId("birthId").getValueState() === "Error") {
+			
+			if(this.getView().byId("birthId").getValueState() === "Error"){
 				validationFlag = false;
 			}
-
-			 if(validationFlag === false || 
+			
+			  if(validationFlag === false || 
 						firstName.length === 0 || 
 						lastName.length === 0 || 
 						birthDate.length === 0 || 
@@ -213,7 +218,8 @@ sap.ui.define([
 						country.match(myInteger) === true)
 			{
 				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
-			} else {
+			}
+			else{
 				sap.ui.getCore().byId("firstname").setText(this.byId("firstNameId").getValue());
 				sap.ui.getCore().byId("lastName").setText(this.byId("lastnameId").getValue());
 				sap.ui.getCore().byId("dateBirth").setText(this.byId("birthId").getValue());
@@ -227,360 +233,366 @@ sap.ui.define([
 				sap.ui.getCore().byId("cardNumber").setText(this.byId("numberId").getValue());
 
 				sap.ui.getCore().byId("cardImg").setSrc(this.getView().getModel("sImagePath").getProperty("/path") + "/" + this.cardType + ".png");
-
+				
 				this._oNavContainer.to(this._oWizardReviewPage);
 			}
-
+			
 		},
-		handleWizardCancel: function() {
-
+		handleWizardCancel: function(){
+			
 			this._oNavContainer.backToPage(this._oWizardContentPage.getId());
 			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("Home", true);
 		},
-		handleWizardSubmit: function() {
+		handleWizardSubmit : function () {
 			var that = this;
 			this.getCustomerId();
-			if (customerId.length === 0) {
+			if(customerId.length === 0){
 				this._oWizardReviewPage.setBusy(true);
 				this.createCustomer();
-			} else {
+			}
+			else{
 				this._oWizardReviewPage.setBusy(true);
 				this.createSalesOrder();
 			}
-
-			that.byId("radioButtonGroupId").setSelectedIndex(1); // = 1;
+			
+			that.byId("radioButtonGroupId").setSelectedIndex(1);// = 1;
 			that._oExistingForm.setVisible(true);
 			that._oNewForm.setVisible(false);
 			that.clearNewForm();
-
+			
+			
 		},
-		createCustomer: function() {
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+		createCustomer: function(){
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var that = this;
 			var date = this.byId("birthId").getValue();
-			var utctime = Date.parse(date);
-			date = "/Date(" + utctime + ")/";
+			var utctime = Date.parse(date);		
+			date = "/Date("+utctime+")/";
 			var customer = {
-				"EmailAddress": this.byId("newEmailId").getValue().toLowerCase(),
-				"LastName": this.byId("lastnameId").getValue(),
-				"FirstName": this.byId("firstNameId").getValue(),
+				"EmailAddress":this.byId("newEmailId").getValue().toLowerCase(),
+				"LastName":this.byId("lastnameId").getValue(),
+				"FirstName":this.byId("firstNameId").getValue(),
 				"HouseNumber":this.byId("houseNumberId").getValue(),
-				"DateOfBirth": date,
-				"PostalCode": this.byId("postalId").getValue(),
-				"City": this.byId("cityId").getValue(),
-				"Street": this.byId("streetId").getValue(),
-				"Country": this.byId("countryListId").getSelectedKey()
-
+				"DateOfBirth":date,
+				"PostalCode":this.byId("postalId").getValue(),
+				"City":this.byId("cityId").getValue(),
+				"Street":this.byId("streetId").getValue(),
+				"Country":this.byId("countryListId").getSelectedKey()
+				
 			};
-
+			
 			$.ajax({
-				type: "POST",
-				async: true,
-				contentType: "application/json; charset=utf-8",
-				dataType: "json",
-				url: "/ESPM/espm-cloud-web/espm.svc/Customers",
-				data: JSON.stringify(customer),
-				success: function(responsedata) {
-					customerId = responsedata.d.CustomerId;
-					that.createSalesOrder();
-				},
-				error: function() {
-					sap.m.MessageToast.show(oBundle.getText("check.customerCreateFailed"));
-				}
-			});
-
+            type: "POST",
+            async: true,
+            contentType:"application/json; charset=utf-8",
+            dataType: "json",
+            url: "/ESPM/espm-cloud-web/espm.svc/Customers",
+            data : JSON.stringify(customer),
+            success: function(responsedata) {
+            		customerId = responsedata.d.CustomerId;
+ 					that.createSalesOrder();
+            },
+            error: function() {
+                sap.m.MessageToast.show(oBundle.getText("check.customerCreateFailed"));
+            }
+        	});
+        	
+			
 		},
-		createSalesOrder: function() {
-
+		createSalesOrder: function(){
+			
 			var that = this;
 			var sCustomerId = customerId;
 			var SalesOrderHeader = {};
-
+	
 			SalesOrderHeader.CustomerId = sCustomerId;
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
+		
 			var items = [];
 			var cartModel = this.getView().getModel("Cart");
-			var products = cartModel.getProperty('/ShoppingCart');
+			var products = cartModel.getProperty("/ShoppingCart");
 			for (var i = 0; i < products.length; i++) {
 				var product = products[i];
 				var item = {
-					"ProductId": product.ProductId,
-					"ItemNumber": ((i + 1) * 10),
-					"Quantity": product.Quantity + "",
-					"QuantityUnit": product.QuantityUnit,
-					"DeliveryDate": "2017-02-01T11:55:00"
+					"ProductId" : product.ProductId,
+					"ItemNumber" : ((i + 1) * 10),
+					"Quantity" : product.Quantity + "",
+					"QuantityUnit" : product.QuantityUnit,
+					"DeliveryDate" :  "2017-02-01T11:55:00"
 				};
 				items.push(item);
 			}
 			SalesOrderHeader.SalesOrderItems = items;
-
+			
+			
 			$.ajax({
-				type: "POST",
-				async: true,
-				contentType: "application/json; charset=utf-8",
-				dataType: "json",
-				url: "/ESPM/espm-cloud-web/espm.svc/SalesOrderHeaders",
-				data: JSON.stringify(SalesOrderHeader),
-				success: function(oData) {
-
-					var dataJson = {
-						"uri": "Customers('" + oData.d.CustomerId + "')"
-					};
-					$.ajax({
-						type: "PUT",
-						async: true,
-						contentType: "application/json; charset=utf-8",
-						url: "/ESPM/espm-cloud-web/espm.svc/SalesOrderHeaders('" + oData.d.SalesOrderId + "')/$links/Customer",
-						data: JSON.stringify(dataJson),
-						success: function() {
-
-							$.ajax({
-								type: "GET",
-								async: true,
-								contentType: "application/json; charset=utf-8",
-								dataType: "json",
-								url: "/ESPM/espm-cloud-web/espm.svc/GetSalesOrderItemsById?SalesOrderId='" + oData.d.SalesOrderId + "'",
-								success: function(data) {
-									var length = data.d.results.length;
-									for (var j = 0; j < length; j++) {
-										var productDataJson = {
-											"uri": "Products('" + data.d.results[j].ProductId + "')"
-										};
-										$.ajax({
-											type: "PUT",
-											async: true,
-											dataType: "json",
-											contentType: "application/json; charset=utf-8",
-											url: "/ESPM/espm-cloud-web/espm.svc/SalesOrderItems(ItemNumber=" + data.d.results[j].ItemNumber +
-												",SalesOrderId='" + data.d.results[j].SalesOrderId + "')/$links/Product",
-											data: JSON.stringify(productDataJson),
-											success: function() {
-
-											},
-											error: function() {
-												sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
-												that._oWizardReviewPage.setBusy(false);
-											}
-										});
-									}
-									that._oWizardReviewPage.setBusy(false);
-									sap.m.MessageBox.information(oBundle.getText("check.soIDCreated", [oData.d.SalesOrderId]), {
-										onClose: function() {
-
-											that._oNavContainer.backToPage(that._oWizardContentPage.getId());
-											var model = that.getView().getModel("Cart");
+            type: "POST",
+            async: true,
+            contentType:"application/json; charset=utf-8",
+            dataType: "json",
+            url: "/ESPM/espm-cloud-web/espm.svc/SalesOrderHeaders",
+            data : JSON.stringify(SalesOrderHeader),
+            success: function(oData) {
+            		
+            		
+            		var dataJson = {
+            			"uri" : "Customers('" + oData.d.CustomerId + "')"
+            		};
+            		$.ajax({
+			            type: "PUT",
+			            async: true,
+			            contentType:"application/json; charset=utf-8",
+			            url: "/ESPM/espm-cloud-web/espm.svc/SalesOrderHeaders('" + oData.d.SalesOrderId + "')/$links/Customer",
+			            data :JSON.stringify(dataJson),
+			            success: function() {
+			            	
+			            	$.ajax({
+					            type: "GET",
+					            async: true,
+					            contentType:"application/json; charset=utf-8",
+					            dataType: "json",
+					            url: "/ESPM/espm-cloud-web/espm.svc/GetSalesOrderItemsById?SalesOrderId='"+ oData.d.SalesOrderId +"'",
+					            success: function(data) {
+					            	var length = data.d.results.length;
+					            	for(var j=0;j<length;j++){
+					            		var productDataJson = {
+					            				"uri" : "Products('" + data.d.results[j].ProductId + "')"
+					                		};
+					            		$.ajax({
+								            type: "PUT",
+								            async: true,
+								            dataType: "json",
+								            contentType:"application/json; charset=utf-8",
+								            url: "/ESPM/espm-cloud-web/espm.svc/SalesOrderItems(ItemNumber=" + data.d.results[j].ItemNumber + ",SalesOrderId='" + data.d.results[j].SalesOrderId + "')/$links/Product",
+								            data :JSON.stringify(productDataJson),
+								            success: function() {
+								            	
+								            	
+								            },
+								            error: function() {
+								                sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+								                that._oWizardReviewPage.setBusy(false);
+								            }});
+					            	}
+					            	that._oWizardReviewPage.setBusy(false);
+					            	sap.m.MessageBox.information(oBundle.getText("check.soIDCreated", [oData.d.SalesOrderId]),{
+						            	onClose: function(){
+						            			
+						            		that._oNavContainer.backToPage(that._oWizardContentPage.getId());
+						            		var model = that.getView().getModel("Cart");
 											var newArray = [];
-											model.setData({
-												ShoppingCart: newArray
-											});
+											model.setData({ShoppingCart : newArray});
 											sap.ui.getCore().byId("totalFooter").setNumber("");
 											sap.ui.getCore().byId("totalFooter").setUnit("");
 											that.getView().byId("existingCustomerId").setSelected(true);
 											var oRouter = UIComponent.getRouterFor(that);
 											oRouter.navTo("Home", true);
-										}
-									});
-								},
-								error: function() {
-									sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
-									that._oWizardReviewPage.setBusy(false);
-								}
-							});
-
-						},
-						error: function() {
-							sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
-							that._oWizardReviewPage.setBusy(false);
-						}
-					});
-				},
-				error: function() {
-					sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
-					that._oWizardReviewPage.setBusy(false);
-				}
-			});
-
+					            		}
+						            });
+					            },
+					            error: function() {
+					            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+					                that._oWizardReviewPage.setBusy(false);
+					            }
+					        });
+			            	
+			            	
+			            		
+			            },
+			            error: function() {
+			            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+			                that._oWizardReviewPage.setBusy(false);
+			            }
+			        	});
+            },
+            error: function() {
+            	sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+                that._oWizardReviewPage.setBusy(false);
+            }
+        	});
+			
+				
 		},
-		backToWizardContent: function() {
+		backToWizardContent : function () {
 			this._oNavContainer.backToPage(this._oWizardContentPage.getId());
 		},
-		radioButtonSelected: function(oEvent) {
-
+		radioButtonSelected: function(oEvent){
+			
 			var buttonId = oEvent.getSource().getSelectedIndex();
-			if (buttonId === 0) {
+			if(buttonId === 0){
 				this._oExistingForm.setVisible(true);
 				this._oNewForm.setVisible(false);
 				this._wizard.validateStep(this.getView().byId("creditCardStep"));
 				this.clearNewForm();
-			} else {
+			}
+			else{
 				this._oExistingForm.setVisible(false);
 				this._oNewForm.setVisible(true);
 				this._wizard.validateStep(this.getView().byId("creditCardStep"));
 				this.clearNewForm();
-
+				
 			}
-
+			
 		},
-
-		getCustomerId: function() {
+		
+		getCustomerId: function(){
 			var that = this;
 			customerId = "";
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var buttonIndex = that.getView().byId("radioButtonGroupId").getSelectedIndex();
 			var sFunctionImportEmailParam;
-			if (buttonIndex === 0) {
-				if (that.byId("newEmailId").getValue().length !== 0) {
+			if(buttonIndex === 0){
+				if(that.byId("newEmailId").getValue().length !== 0){
 					sFunctionImportEmailParam = "EmailAddress='" + that.byId("newEmailId").getValue().toLowerCase() + "'";
 				}
-			} else {
-				if (that.byId("existingEmailId").getValue().length !== 0) {
+			}
+			else{
+				if(that.byId("existingEmailId").getValue().length !== 0){
 					sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue().toLowerCase() + "'";
 				}
 			}
-
+			
 			var aParams = [];
 			aParams.push(sFunctionImportEmailParam);
-
+			
 			oDataModel = this.getView().getModel("EspmModel");
-
-			$.ajax({
-				type: "GET",
-				async: true,
-				contentType: "application/json; charset=utf-8",
-				dataType: "json",
-				url: "/ESPM/espm-cloud-web/espm.svc/GetCustomerByEmailAddress?" + sFunctionImportEmailParam,
-				success: function(data) {
-
-					if (data.d.results.length === 0) {
-						customerId = "";
-					} else {
-						customerId = data.results[0].CustomerId;
-
-					}
-
-				},
-				error: function() {
-					sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
-				}
-			});
-
+			
+			oDataModel.setHeaders({  
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        	}); 
+			oDataModel.read("/GetCustomerByEmailAddress",null, aParams , false, function(data)
+			{
+ 				if(data.results.length === 0){
+ 					customerId = "";
+ 				}
+ 				else{		
+					customerId = data.results[0].CustomerId;
+ 					
+ 				}
+ 			},function(){
+ 				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+ 				
+ 			});
+				
 		},
-
-		checkExistingEmailId: function() {
-
+		
+		checkExistingEmailId: function(){
+			
 			var that = this;
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			if (this.validateEmail(this.byId("existingEmailId").getValue()) === true) {
-
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
+			if(this.validateEmail(this.byId("existingEmailId").getValue()) === true){
+				
 				var sFunctionImportEmailParam = "EmailAddress='" + this.byId("existingEmailId").getValue().toLowerCase() + "'";
 				var aParams = [];
 				aParams.push(sFunctionImportEmailParam);
-
+				
 				oDataModel = this.getView().getModel("EspmModel");
-
-				$.ajax({
-					type: "GET",
-					async: true,
-					contentType: "application/json; charset=utf-8",
-					dataType: "json",
-					url: '/ESPM/espm-cloud-web/espm.svc/GetCustomerByEmailAddress?' + sFunctionImportEmailParam,
-					success: function(data) {
-
-						if (data.d.results.length === 0) {
-							sap.m.MessageToast.show(oBundle.getText("check.customerNotExist"));
-
-							that.byId("radioButtonGroupId").setSelectedIndex(1); // = 1;
-							that._oExistingForm.setVisible(false);
-							that._oNewForm.setVisible(true);
-							that._wizard.validateStep(that.getView().byId("creditCardStep"));
-							that.byId("newEmailId").setValue(that.byId("existingEmailId").getValue());
-							that.byId("firstNameId").setValue("");
-							that.byId("houseNumberId").setValue("");
-							that.byId("lastnameId").setValue("");
-							that.byId("newEmailId").setValue("");
-							that.byId("birthId").setValue("");
-							that.byId("streetId").setValue("");
-							that.byId("cityId").setValue("");
-							that.byId("countryListId").setSelectedKey("");
-							that.byId("postalId").setValue("");
-							that.byId("nameId").setValue("");
-							that.byId("numberId").setValue("");
-							that.byId("securityId").setValue("");
-							//customerId = "";
-						} else {
-							var result = data.d.results;
-							that.byId("firstNameId").setValue(result[0].FirstName);
-							that.byId("houseNumberId").setValue(result[0].HouseNumber);
-							that.byId("lastnameId").setValue(result[0].LastName);
-							that.byId("newEmailId").setValue(result[0].EmailAddress);
-							that.byId("birthId").setDateValue(new Date(result[0].DateOfBirth));
-							that.byId("streetId").setValue(result[0].Street);
-							that.byId("cityId").setValue(result[0].City);
-							that.byId("countryListId").setSelectedKey(result[0].Country);
-							that.byId("postalId").setValue(result[0].PostalCode);
-							that.byId("nameId").setValue(result[0].FirstName + " " + result[0].LastName);
-
-							that._oExistingForm.setVisible(false);
-							that._oNewForm.setVisible(true);
-							that._wizard.validateStep(that.getView().byId("creditCardStep"));
-							that.byId("radioButtonGroupId").setSelectedIndex(0);
-							//customerId = result[0].CustomerId;
-
-						}
-
-					},
-					error: function() {
-						sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
-					}
-				});
-
+				
+				oDataModel.setHeaders({  
+	            "Content-Type": "application/json",
+	            "Accept": "application/json"
+	        	}); 
+				oDataModel.read("/GetCustomerByEmailAddress",null, aParams , false, function(data)
+				{
+	 				if(data.results.length === 0){
+	 					sap.m.MessageToast.show(oBundle.getText("check.customerNotExist"));
+	 					
+	 					that.byId("radioButtonGroupId").setSelectedIndex(1);// = 1;
+	 					that._oExistingForm.setVisible(false);
+						that._oNewForm.setVisible(true);
+						that._wizard.validateStep(that.getView().byId("creditCardStep"));
+	 					that.byId("newEmailId").setValue(that.byId("existingEmailId").getValue());
+	 					that.byId("firstNameId").setValue("");
+	 					that.byId("houseNumberId").setValue("");
+	 					that.byId("lastnameId").setValue("");
+	 					that.byId("newEmailId").setValue("");
+	 					that.byId("birthId").setValue("");
+	 					that.byId("streetId").setValue("");
+	 					that.byId("cityId").setValue("");
+	 					that.byId("countryListId").setSelectedKey("");
+	 					that.byId("postalId").setValue("");
+	 					that.byId("nameId").setValue("");
+	 					that.byId("numberId").setValue("");
+	 					that.byId("securityId").setValue("");
+	 					//customerId = "";
+	 				}
+	 				else{
+	 					var result = data.results;
+	 					that.byId("firstNameId").setValue(result[0].FirstName);
+	 					that.byId("houseNumberId").setValue(result[0].HouseNumber);
+	 					that.byId("lastnameId").setValue(result[0].LastName);
+	 					that.byId("newEmailId").setValue(result[0].EmailAddress);
+	 					that.byId("birthId").setDateValue(new Date(result[0].DateOfBirth));
+	 					that.byId("streetId").setValue(result[0].Street);
+	 					that.byId("cityId").setValue(result[0].City);
+	 					that.byId("countryListId").setSelectedKey(result[0].Country);
+	 					that.byId("postalId").setValue(result[0].PostalCode);
+	 					that.byId("nameId").setValue(result[0].FirstName+" "+result[0].LastName);
+	 
+	 					that._oExistingForm.setVisible(false);
+						that._oNewForm.setVisible(true);
+						that._wizard.validateStep(that.getView().byId("creditCardStep"));
+						that.byId("radioButtonGroupId").setSelectedIndex(0);
+						//customerId = result[0].CustomerId;
+	 					
+	 				}
+	 			},function(){
+	 				sap.m.MessageToast.show(oBundle.getText("soPopup.errorMessage"));
+	 				
+	 			});
+				
 			}
-
+			
+			
+     
 		},
-		validateEmail: function(mail) {
-
-			var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
-			var oBundle = this.getView().getModel('i18n').getResourceBundle();
-			if (typeof(mail) === "object") {
+		validateEmail: function(mail){
+			
+			var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;	
+			var oBundle = this.getView().getModel("i18n").getResourceBundle();
+			if(typeof(mail) === "object"){
 				mail = mail.getSource().getValue();
 			}
 
 			if (mail.match(mailregex)) {
 				return (true);
-			} else {
-				sap.m.MessageToast.show(oBundle.getText("soPopup.invalidEmailAddress"));
+			}else{
+				sap.m.MessageToast.show(oBundle.getText("soPopup.invalidEmailAddress")); 
 
 			}
 		},
-		validateNumberInputField: function(oEvent) {
-
+		validateNumberInputField: function(oEvent){
+			
 			var myInteger = (/^-?\d*(\.\d+)?$/);
-			if (!oEvent.getSource().getValue().match(myInteger)) {
+			if( !oEvent.getSource().getValue().match(myInteger) ){
 				oEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
-			} else {
+			}
+			else{
 				oEvent.getSource().setValueState(sap.ui.core.ValueState.None);
 			}
-
+			
 		},
-		validateStringInputField: function(oEvent) {
-
+		validateStringInputField: function(oEvent){
+			
 			var myInteger = (/^-?\d*(\.\d+)?$/);
-			if (oEvent.getSource().getValue().match(myInteger)) {
+			if( oEvent.getSource().getValue().match(myInteger) ){
 				oEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
-			} else {
+			}
+			else{
 				oEvent.getSource().setValueState(sap.ui.core.ValueState.None);
 			}
-
+			
+			
 		},
-
-		valueChanged: function() {
-
-			this.byId("nameId").setValue(this.byId("firstNameId").getValue() + " " + this.byId("lastnameId").getValue());
+		
+		valueChanged: function(){
+			
+			this.byId("nameId").setValue(this.byId("firstNameId").getValue()+" "+this.byId("lastnameId").getValue());
 		},
-
-		checkCustomerInformation: function() {
+		
+		checkCustomerInformation: function(){
 			if( this.byId("firstNameId").getValue().length === 0 || 
 						this.byId("lastnameId").getValue().length === 0 || 
 						this.byId("birthId").getValue().length === 0 || 
@@ -591,28 +603,30 @@ sap.ui.define([
 						this.byId("postalId").getValue().length === 0 || 
 						this.byId("countryListId").getSelectedKey().length === 0){
 				this._wizard.invalidateStep(this.getView().byId("creditCardStep"));
-			} else {
-
+			}
+			else{
+				
 				this._wizard.validateStep(this.getView().byId("creditCardStep"));
 			}
 		},
-
-		addMoreProducts: function() {
+		
+		addMoreProducts: function(){
 			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.navTo("Home", true);
 		},
-
-		formatCustomerLocation: function(location) {
-			return formatter.formatCountryName(location);
+		
+		formatCustomerLocation: function(location){
+			 return formatter.formatCountryName(location);
 		},
-
-		clearNewForm: function() {
+		
+		clearNewForm: function(){
 			this.byId("newEmailId").setValue("");
 			this.byId("firstNameId").setValue("");
 			this.byId("lastnameId").setValue("");
-			this.byId("houseNumberId").setValue("");
+			this.byId("newEmailId").setValue("");
 			this.byId("birthId").setValue("");
 			this.byId("streetId").setValue("");
+			this.byId("houseNumberId").setValue("");
 			this.byId("cityId").setValue("");
 			this.byId("countryListId").setSelectedKey("");
 			this.byId("postalId").setValue("");
@@ -621,19 +635,20 @@ sap.ui.define([
 			this.byId("securityId").setValue("");
 			this.byId("existingEmailId").setValue("");
 		},
-
-		validateDateField: function(oEvent) {
-			if (!oEvent.getParameter("valid")) {
+		
+		validateDateField: function(oEvent){
+			if(!oEvent.getParameter("valid")){
 				oEvent.oSource.setValueState(sap.ui.core.ValueState.Error);
-
-			} else {
+				
+			}else{
 				oEvent.oSource.setValueState(sap.ui.core.ValueState.None);
 			}
 		},
 
-		onRbChange: function(oEvent) {
+		onRbChange: function(oEvent){
 			this.cardType = oEvent.getSource().data("cardtype");
 		}
+		
 
 	});
 

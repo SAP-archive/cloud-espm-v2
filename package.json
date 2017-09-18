@@ -1,0 +1,10 @@
+{
+    "name": "com.espm.webshop",
+    "version": "1.0.0",
+    "description": "Webshop application grunt build",
+    "private": true,     
+    "devDependencies": {
+        "grunt": "1.0.1",
+        "@sap/grunt-sapui5-bestpractice-build": "^1.3.17"
+    }
+}
