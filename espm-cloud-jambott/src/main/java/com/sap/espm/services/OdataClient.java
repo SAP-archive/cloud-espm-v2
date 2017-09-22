@@ -107,6 +107,7 @@ public class OdataClient {
 				for (int j = 0; j < valueProperties.length; j++) {
 					for (int k = 0; k < keyProperties.length; k++) {
 						String id = getValue(keyProperties[k], null, object);
+						id = id.replaceAll("\"", "inches"); 
 						String value = values.get(id + valueProperties[j]);
 						if (value == null) {
 							value = getValue(valueProperties[j], value, object);
