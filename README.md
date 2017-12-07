@@ -1,9 +1,9 @@
 # Enterprise Sales Procurement Model (ESPM) Application
 
-
+## Description
 The ESPM (Enterprise Sales & Procurement Model)application is a reference application which demonstrates how to build applications on SAP Cloud Platform (HCP) with the Java runtime.The application also consumes and showcases services like the Persistence Service, Document Service, SAP Jam Collaboration, and API Management Service which are offered by the platform. The application User Interface (UI) is built with the SAPUI5 framework after the SAP FIORI Fiori design principles. 
 
-# Business Scenario
+### Business Scenario
 The business scenario is that of an eCommerce site that sells electronic products. 
 
 - Customers give reviews and ratings to the products they have purchased.
@@ -14,13 +14,13 @@ The business scenario is that of an eCommerce site that sells electronic product
 
 ![datamodel](/docs/images/ML_DataModel.png?raw=true)
 
-# Pre-requisite
+# Requirements
 
   - Make sure that you have enabled SAP Jam service in account.hanatrial.com as shown in the below screen shot
 
 ![Services](/docs/documentation/SAPJAMIntegrationImages/EnableJamService.png?raw=true)
 
-# Build and Deploy the Apllication
+# Download and Installation
 
 ## 1.Clone Git repository and import Maven project
    - Open https://github.wdf.sap.corp/refapps/espmv2.0 with your web browser.
@@ -99,7 +99,7 @@ The business scenario is that of an eCommerce site that sells electronic product
 When all of the above settings are complete, click Save to save the record and establish the trust relationship with the OAuth client application.
 You are returned to the OAuth Clients page, with the OAuth client record that you just added listed in the catalog.
 
-### ii)Create an Alias User
+### iii)Create an Alias User
 - In SAP Jam, click on the "cog" settings icon and select Admin. The SAP Jam Admin page will appear.
 - Select Users > Alias Accounts.
 - Click New Alias Account.
@@ -142,7 +142,7 @@ Your webhook servlet should be ready to receive webhook calls. Try creating @men
 - Rename the generated model to 'classifier.dat' and save it in the folder espmv2.0\espm-cloud-jambott\src\main\resources\utils.
 - Repeat the steps mentioned above to update and deploy the application.
 
-# Machine Learning - Deep Dive
+# Configurations Used
 In the current scenario, ESPM has used machine learning library - weka to categorize the questions a user posts in SAP Jam and then reply accordingly. First step to use any machine learning algorithm is to prepare your training data. Here, our training data can be found in the path ‘espmv2.0\espm-cloud-jambott\src\main\resources\utils\espmdataset.arff’. The file has the following details: 
 
 - Possible categories (Attribute Class)
@@ -163,7 +163,9 @@ The categories used in this case are:
 
 This training data  is fed to the ‘Classifier’ which is an instance of the class weka.classifiers.meta.FilteredClassifier. The classifier now forms inferences from the training data and creates a machine learning model. This model is checked for accuracy. If accuracy is as per expectations, it is put to productive use. Every question user posts, is passed to the model created and is thus classified to one of the above mentioned categories. Each category has a corresponding query (or filter) attached to it and using this, we hit the backend via a rest api and get the appropriate results. This result formatted and sent to the user as reply to his question.
 
-
+# How to obtain support
+Please contact Shankari G R (shankari.g.r@sap.com) and Lakshmi C Rajeev (lakshmi.c.rajeev@sap.com) for any queries. 
+To contact the Reference Application team, write to us at DL SAP_CP_EngSrv_RefApps_IN (External) <DL_5731D8E45F99B75FC100004A@exchange.sap.corp>.
  
 # Copyright and License
 Copyright 2016 SAP SE
@@ -171,4 +173,3 @@ Copyright 2016 SAP SE
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
