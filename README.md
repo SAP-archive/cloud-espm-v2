@@ -164,8 +164,7 @@ The categories used in this case are:
 This training data  is fed to the ‘Classifier’ which is an instance of the class weka.classifiers.meta.FilteredClassifier. The classifier now forms inferences from the training data and creates a machine learning model. This model is checked for accuracy. If accuracy is as per expectations, it is put to productive use. Every question user posts, is passed to the model created and is thus classified to one of the above mentioned categories. Each category has a corresponding query (or filter) attached to it and using this, we hit the backend via a rest api and get the appropriate results. This result formatted and sent to the user as reply to his question.
 
 # How to obtain support
-Please contact Shankari G R (shankari.g.r@sap.com) and Lakshmi C Rajeev (lakshmi.c.rajeev@sap.com) for any queries. 
-To contact the Reference Application team, write to us at DL SAP_CP_EngSrv_RefApps_IN (External) <DL_5731D8E45F99B75FC100004A@exchange.sap.corp>.
+In case you find a bug/need support, please create github issues
  
 # Copyright and License
 Copyright 2016 SAP SE
