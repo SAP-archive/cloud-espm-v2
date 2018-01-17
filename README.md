@@ -23,7 +23,7 @@ The business scenario is that of an eCommerce site that sells electronic product
 # Download and Installation
 
 ## 1.Clone Git repository and import Maven project
-   - Open https://github.wdf.sap.corp/refapps/espmv2.0 with your web browser.
+   - Open https://github.com/SAP/cloud-espm-v2/ with your web browser.
    - Click on the Copy to clipboard so that the Git repository URL of the opened GitHub repository is copied to your clipboard.
 
 ![gitclonenew](/docs/images/gitclonenew.PNG?raw=true)
