@@ -138,9 +138,10 @@ Your webhook servlet should be ready to receive webhook calls. Try creating @men
 - Go to the java class espm-cloud-jambott\src\main\java\com\sap\espm\services\TextLearner.java and update the path to your new data set
 ![text_learner](/docs/images/TextLearner.JPG?raw=true)
 
-- Run TextLearner.java as 'Java Application'. New model will be saved in the root folder.
-- Rename the generated model to 'classifier.dat' and save it in the folder espmv2.0\espm-cloud-jambott\src\main\resources\utils.
-- Repeat the steps mentioned above to update and deploy the application.
+- Run TextLearner.java as 'Java Application'. New model 'classifier.dat' will be saved in the root folder.
+- Replace the 'classifier.dat' in the utils folder with that of the newly generated one(in the root folder).
+- Build the application with `mvn clean install` command from the root folder of your application.
+- Redeploy the application to your SAP Cloud Platform account.
 
 # Configurations Used
 In the current scenario, ESPM has used machine learning library - weka to categorize the questions a user posts in SAP Jam and then reply accordingly. First step to use any machine learning algorithm is to prepare your training data. Here, our training data can be found in the path ‘espmv2.0\espm-cloud-jambott\src\main\resources\utils\espmdataset.arff’. The file has the following details: 
