@@ -1,6 +1,9 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/m/Dialog",
+	"sap/m/Button",
+	"sap/m/Text"
+], function(Controller, Dialog, Button, Text) {
 	"use strict";
 
 	return Controller.extend("com.sap.espm.retailer.controller.App", {
@@ -28,9 +31,28 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.sap.espm.retailer.view.App
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+			onAfterRendering: function() {
+				if (!this.pressDialog) {
+					this.pressDialog = new Dialog({
+						title: 'Important Information',
+						content: new Text({
+							text: "ESPM is a demo application. So, please do not enter any real personal information when using the application"
+						}),
+						beginButton: new Button({
+							text: 'Close',
+							press: function () {
+								this.pressDialog.close();
+							}.bind(this)
+						})
+					});
+
+					//to get access to the global model
+					this.getView().addDependent(this.pressDialog);
+				}
+
+				this.pressDialog.open();
+		
+			},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
