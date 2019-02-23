@@ -324,7 +324,7 @@
 	<profiles>
 	<!-- The profile "hcp" is activated by default, this assumes CMIS dependencies 
 		need to be present on class path of the deployment environment. USE THIS 
-		PROFILE IF YOU PLAN TO DEPLOY ON HANA CLOUD PLATFORM (HCP) -->
+		PROFILE IF YOU PLAN TO DEPLOY ON SAP CLOUD PLATFORM (HCP) -->
 		<profile>
 			<id>hcp</id>
 			<activation>
