@@ -17,19 +17,18 @@
 	<artifactId>espm</artifactId>
 	<version>2.0.0</version>
 	<packaging>pom</packaging>
-	<description>ESPM application showcases how to build applications on SAP HANA Cloud Platform consuming various platform services</description>
+	<description>ESPM application showcases how to build applications on SAP Cloud Platform Neo Enviornment consuming various platform services</description>
 
 	<organization>
-		<name>SAP AG</name>
+		<name>SAP SE</name>
 		<url>http://www.sap.com</url>
 	</organization>
 
 	<developers>
 		<developer>
-			<name>SAP HANA Cloud</name>
-			<email>netweaver-cloud@sap.com</email>
-			<url>http://hana.ondemand.com</url>
-			<organization>SAP AG</organization>
+			<name>SAP Cloud Platfrom</name>
+			<url>https://cloudplatform.sap.com</url>
+			<organization>SAP SE</organization>
 			<organizationUrl>http://www.sap.com/</organizationUrl>
 		</developer>
 	</developers>
