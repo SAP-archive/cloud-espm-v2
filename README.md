@@ -1,7 +1,7 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-espm-v2)](https://api.reuse.software/info/github.com/SAP-samples/cloud-espm-v2)
 # Enterprise Sales Procurement Model (ESPM) Application
 
-The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP Cloud Platform (HCP) with the Java runtime. The application also consumes and showcases services like the Persistence Service, Document Service, SAP Jam Collaboration, and API Management which are offered by the platform. The application User Interface (UI) is built with the SAPUI5 framework after the SAP Fiori design principles.
+The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP Business Technology Platform (BTP) with the Java runtime. The application also consumes and showcases services like the Persistence Service, Document Service, SAP Jam Collaboration, and API Management which are offered by the platform. The application User Interface (UI) is built with the SAPUI5 framework after the SAP Fiori design principles.
 
 Demo URL of the application [https://espmrefapps.hana.ondemand.com/espm-cloud-web/webshop/](https://espmrefapps.hana.ondemand.com/espm-cloud-web/webshop/)
 
@@ -22,9 +22,9 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 2. [Install Eclipse](https://help.hana.ondemand.com/help/frameset.htm?761374e5711e1014839a8273b0e91070.html). Please install Eclipse Neon.
 3. (Optional: Only if you use SAP JVM) [Set up SAP JVM in Eclipse](https://help.hana.ondemand.com/help/frameset.htm?7613eaad711e1014839a8273b0e91070.html).
 4. [Install SAP Development Tools for Eclipse](https://help.hana.ondemand.com/help/frameset.htm?76137a37711e1014839a8273b0e91070.html). Please use the link for Eclipse Neon.
-5. [Install SAP Cloud Platform SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please install Java Web Tomcat 8.
+5. [Install SAP Business Technology Platform SDK](https://help.hana.ondemand.com/help/frameset.htm?7613843c711e1014839a8273b0e91070.html). Please install Java Web Tomcat 8.
 6. [Set up the Runtime Environment in Eclipse](https://help.hana.ondemand.com/help/frameset.htm?7613f000711e1014839a8273b0e91070.html). Please follow the steps for Java Web Tomcat 8 Runtime.
-7. Register for a free developer account on [SAP Cloud Platform](https://account.hanatrial.ondemand.com).
+7. Register for a free developer account on [SAP Business Technology Platform](https://account.hanatrial.ondemand.com).
 
 ### Build the application and deploy
 Below are the steps to build and run the ESPM application:
@@ -108,7 +108,7 @@ Below are the steps to build and run the ESPM application:
    - Note! If you face errors you need to modify the parent pom.xml for certain property values depending on your environment:
      - local.server.proxy.settings - delete this if you are not behind a proxy server, else update your proxy settings here
      - browser.proxy.settings - delete this if your browser is not using a proxy, else update your browser proxy settings here
-     - sap.cloud.sdk.version - The SAP Cloud Platform SDK for Java Web Tomcat 8 version that you intend to run the application with,is version 3.20.3.1
+     - sap.cloud.sdk.version - The SAP Business Technology Platform SDK for Java Web Tomcat 8 version that you intend to run the application with,is version 3.20.3.1
      - olingo.version - The Apache Olingo version that you intend the application to run with, the minimum version supported is 2.0.6
     
  The application can be built with the maven command to the parent pom.xml
@@ -154,7 +154,7 @@ ii)Create Users and Assign Role
 
  **Note! The application name must be "espm", else the above URL will change based on the application name given during deployment**
  
-   - Deploy the application in your SAP Cloud Platform Trial account. 
+   - Deploy the application in your SAP Business Technology Platform Trial account. 
    
 1.Go to HCP Cockpit --> Click on Java Application under Applications --> Click on Deploy Application
     
@@ -168,7 +168,7 @@ ii)Create Users and Assign Role
  
 ![Deployed](/docs/images/Deployed.png?raw=true)
 
-- Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP Cloud Platform user to access the Retailer UI
+- Configure the application role assignments from the [cockpit](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html). You basically need to add the "Retailer" role to your SAP Business Technology Platform user to access the Retailer UI
 
 You can access the application from the URL
 
@@ -285,7 +285,7 @@ The ESPM Sample Application is a Maven based project which has a parent pom.xml 
 
 ![Secure URL](/docs/images/servletfilter.png?raw=true)
 
-After deploying the application in HCP, assign the Retailer role to the user who will act as the retailer of the eCommerce site. Please refer to documentation of SAP Cloud Platform on how to assign roles to users. See [Details](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html)
+After deploying the application in HCP, assign the Retailer role to the user who will act as the retailer of the eCommerce site. Please refer to documentation of SAP Business Technology Platform on how to assign roles to users. See [Details](https://help.hana.ondemand.com/help/frameset.htm?db8175b9d976101484e6fa303b108acd.html)
 
 # Important Disclaimers on Security and Legal Aspects
 This document is for informational purposes only. Its content is subject to change without notice, and SAP does not warrant that it is error-free. SAP MAKES NO WARRANTIES, EXPRESS OR IMPLIED, OR OF MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.
