@@ -14,10 +14,9 @@ import org.apache.chemistry.opencmis.client.api.Folder;
 import org.apache.chemistry.opencmis.commons.PropertyIds;
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
 import org.apache.chemistry.opencmis.commons.enums.VersioningState;
-import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.slf4j.Logger;
@@ -141,7 +140,7 @@ public class InvoiceBuilder {
 				out.close();
 				reportPath = cmisDocument.getId();
 
-			} catch (IOException | COSVisitorException | CMISConnectionException e) {
+			} catch (IOException | CMISConnectionException e) {
 				LOGGER.error(e.getMessage());
 				throw new ReportGenerationException(e);
 			}
