@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import org.apache.geronimo.mail.util.Base64;
+import org.apache.cxf.common.util.Base64Utility;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -37,7 +37,7 @@ public class RequestExecutionHelper {
 	private static final String user = "ret";
 	private static final String password = "123";
 	private static final String AUTHORIZATION = "Basic "
-			+ new String(Base64.encode((user + ":" + password).getBytes()));
+			+ new String(Base64Utility.encode((user + ":" + password).getBytes()));
 
 	/**
 	 * Get JSONArray from a JSON response
