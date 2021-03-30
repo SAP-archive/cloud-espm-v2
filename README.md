@@ -183,23 +183,18 @@ Below is the process to bind the database to the java application in BTP trial a
 
    - In the cockpit, select an account and choose Persistence -> Databases & Schemas -> in the navigation area.
    - Click on the new button
-   - In the popup window, enter the below information
-  ```sh
-Schema ID: espm
-Database System: HANA (<shared>)
-Version: 1.00*
-Click on Save button
-```
+   - In the popup window, fill the mandatory details
+  
+   ![New Database/Schema](/docs/images/NewDatabaseSchema.jpg?raw=true)
+
 	
    - In the cockpit, select an account and choose Applications -> Java Application -> Click on the name of the espm application that you deployed
    - In the navigation area in the cockpit, select Configuration -> Data Source Bindings
    - Click "New Binding" button in detail plane
-   - In the popup window, enter the below information
-```sh
-Data Source - <default> 
-DB/Schema ID - select espm( the one that you created above)
-Click on Save button
-```
+   - In the popup window, fill the mandatory details. Make sure to use "SYSTEM" as the Database user and also uncheck the "Verify credentials" checkbox before saving.
+
+   ![DataSourceBinding](/docs/images/DataSourceBinding.jpg?raw=true)
+   
  - Now you need to restart your espm application ( stop(if already started) and start the application) from the cockpit. 
    
 ### Demo script for [ESPM Webshop](/docs/demoscript/WebshopREADME.md) 
