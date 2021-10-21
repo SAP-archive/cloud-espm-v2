@@ -23,7 +23,7 @@ Clone the Git [repository](https://github.com/SAP/cloud-espm-v2.git) or download
 3. (Optional: Only if you use SAP JVM) [Set up SAP JVM in Eclipse](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/da030d10d97610149defa1084cb0b2f1.html).
 4. [Install SAP Development Tools for Eclipse](https://help.sap.com/viewer/ea72206b834e4ace9cd834feed6c0e09/Cloud/en-US/76137a37711e1014839a8273b0e91070.html). Please use the link for Eclipse Oxygen.
 5. [Install SAP Business Technology Platform SDK](https://tools.hana.ondemand.com/#cloud). Please install Java Web Tomcat 8.
-6. Register for a free developer account on [SAP Business Technology Platform](https://account.hanatrial.ondemand.com).
+6. Register for a free developer account on SAP Business Technology Platform, follow the [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html).
 
 ### Build the application and deploy
 Below are the steps to build and run the ESPM application:
