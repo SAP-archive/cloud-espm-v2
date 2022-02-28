@@ -1,4 +1,8 @@
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-espm-v2)](https://api.reuse.software/info/github.com/SAP-samples/cloud-espm-v2)
+![](https://img.shields.io/badge/STATUS-NOT%20CURRENTLY%20MAINTAINED-red.svg?longCache=true&style=flat)
+ 
+# Important Notice
+This public repository is read-only and no longer maintained. 
+
 # Enterprise Sales Procurement Model (ESPM) Application
 
 The ESPM (Enterprise Sales & Procurement Model) application is a reference application which demonstrates how to build applications on SAP Business Technology Platform (BTP) with the Java runtime. The application also consumes and showcases services like the Persistence Service, Document Service, SAP Jam Collaboration, and API Management which are offered by the platform. The application User Interface (UI) is built with the SAPUI5 framework after the SAP Fiori design principles.
